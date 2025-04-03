@@ -31,21 +31,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void handleKeyInput() 
     {
-            if(Input.GetKeyDown(KeyCode.W)) 
+            if(Input.GetKey(KeyCode.W)) 
             {
                 newState = PlayerState.WalkingUp; 
             } 
-            else if (Input.GetKeyDown(KeyCode.D)) 
+            else if (Input.GetKey(KeyCode.D)) 
             {
                 newState = PlayerState.WalkingRight; 
             } 
-            else if (Input.GetKeyDown(KeyCode.A)) 
+            else if (Input.GetKey(KeyCode.A)) 
             {
                 newState = PlayerState.WalkingLeft; 
             } 
-            else if(Input.GetKeyDown(KeyCode.S)) 
+            else if(Input.GetKey(KeyCode.S)) 
             {
                 newState = PlayerState.WalkingDown; 
+            }
+            else 
+            {
+                newState = PlayerState.Idle;    
             }
         
     } 
@@ -100,6 +104,18 @@ public class PlayerMovement : MonoBehaviour
                     {
                         movementAnimation.SetInteger("state" , 3);
                     }
+                    break;
+
+                case PlayerState.Idle
+:
+                    if(!inBoss) 
+                    {
+                        movementAnimation.SetInteger("state" ,4);
+                    }
+                    else 
+                    {
+                        movementAnimation.SetInteger("state" , 4);
+                    } 
                     break;
             }
         }
