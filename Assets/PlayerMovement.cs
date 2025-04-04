@@ -21,11 +21,16 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState currentState; 
     public PlayerState newState;
 
+    private Quaternion targetRotation;
+    private float rotationSpeed = 200f;
+    
+
     public bool inBoss = false; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentState = PlayerState.Idle;
+        newState = PlayerState.Idle;
     }
 
     // Update is called once per frame
@@ -64,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingLeft:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                        targetRotation = Quaternion.Euler(0, -90, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -75,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingRight:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                        targetRotation = Quaternion.Euler(0, 90, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -86,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingUp:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                        targetRotation = Quaternion.Euler(0, 0, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -97,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingDown:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, 180, 0);
+                        targetRotation = Quaternion.Euler(0, 180, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -121,10 +126,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+    public void rotatePLayerToTarget() 
+    {
+        if(currentState != PlayerState.Idle) 
+        {
+            Quaternion target = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = target; 
+        }
+    }
     void Update()
     {
         handleKeyInput(); 
         handleStateChange();
+        rotatePLayerToTarget();
         
     }
 }
