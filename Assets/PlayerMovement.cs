@@ -23,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
 
     private Quaternion targetRotation;
     private float rotationSpeed = 200f;
+
+    private bool isPLayerAttacking = false;
+
+    private float attackTimer = 0f; 
+
+    private float attackDuration = 2f; 
     
 
     public bool inBoss = false; 
@@ -36,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void handleKeyInput() 
     {
+        if(!isPLayerAttacking) 
+        {
+            Debug.Log("Key pressed");
             if(Input.GetKey(KeyCode.W)) 
             {
                 newState = PlayerState.WalkingUp; 
@@ -52,16 +61,31 @@ public class PlayerMovement : MonoBehaviour
             {
                 newState = PlayerState.WalkingDown; 
             }
-            else 
+            else if(Input.GetKey(KeyCode.Space)) 
+            {
+                newState = PlayerState.Attacking;
+            }
+            else if(!isPLayerAttacking)
             {
                 newState = PlayerState.Idle;    
             }
+        }
+            
         
     } 
 
     void handleStateChange() 
     {
-        if(currentState != newState) 
+        if(isPLayerAttacking) 
+        {
+            attackTimer += Time.deltaTime; 
+            if(attackTimer >= attackDuration) 
+            {
+                isPLayerAttacking = false; 
+                attackTimer = 0f; 
+            }
+        }
+        else if(currentState != newState) 
         {
             currentState = newState; 
             switch(currentState) 
@@ -120,6 +144,19 @@ public class PlayerMovement : MonoBehaviour
                     else 
                     {
                         movementAnimation.SetInteger("state" , 4);
+                    } 
+                    break;
+
+                case PlayerState.Attacking:
+                    if(!inBoss) 
+                    {
+                        isPLayerAttacking = true;
+                        movementAnimation.SetInteger("state" ,5);
+                    }
+                    else 
+                    {
+                        isPLayerAttacking = true;
+                        movementAnimation.SetInteger("state" , 5);
                     } 
                     break;
             }
