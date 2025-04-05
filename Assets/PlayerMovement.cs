@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState newState;
 
     private Quaternion targetRotation;
-    private float rotationSpeed = 200f;
+    private float rotationSpeed = 500f;
 
     private bool isPLayerAttacking = false;
 
@@ -44,27 +44,32 @@ public class PlayerMovement : MonoBehaviour
     {
         if(!isPLayerAttacking) 
         {
-            Debug.Log("Key pressed");
-            if(Input.GetKey(KeyCode.W)) 
+            if(Input.anyKey) 
             {
-                newState = PlayerState.WalkingUp; 
-            } 
-            else if (Input.GetKey(KeyCode.D)) 
-            {
-                newState = PlayerState.WalkingRight; 
-            } 
-            else if (Input.GetKey(KeyCode.A)) 
-            {
-                newState = PlayerState.WalkingLeft; 
-            } 
-            else if(Input.GetKey(KeyCode.S)) 
-            {
-                newState = PlayerState.WalkingDown; 
+                if(Input.GetKey(KeyCode.W)) 
+                {
+                    newState = PlayerState.WalkingUp; 
+                } 
+                if (Input.GetKey(KeyCode.D)) 
+                {
+                    transform.rotation *= Quaternion.Euler(Vector3.up * rotationSpeed * Time.deltaTime);
+                    newState = PlayerState.WalkingRight; 
+                } 
+                if (Input.GetKey(KeyCode.A)) 
+                {
+                    transform.rotation *= Quaternion.Euler(Vector3.down * rotationSpeed * Time.deltaTime);
+                    newState = PlayerState.WalkingLeft; 
+                } 
+                if(Input.GetKey(KeyCode.S)) 
+                {
+                    newState = PlayerState.WalkingDown; 
+                }
+                if(Input.GetKey(KeyCode.Space)) 
+                {
+                    newState = PlayerState.Attacking;
+                }
             }
-            else if(Input.GetKey(KeyCode.Space)) 
-            {
-                newState = PlayerState.Attacking;
-            }
+            
             else if(!isPLayerAttacking)
             {
                 newState = PlayerState.Idle;    
@@ -93,7 +98,6 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingLeft:
                     if(!inBoss) 
                     {
-                        targetRotation = Quaternion.Euler(0, -90, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -104,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingRight:
                     if(!inBoss) 
                     {
-                        targetRotation = Quaternion.Euler(0, 90, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -115,7 +118,6 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingUp:
                     if(!inBoss) 
                     {
-                        targetRotation = Quaternion.Euler(0, 0, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -126,7 +128,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingDown:
                     if(!inBoss) 
                     {
-                        targetRotation = Quaternion.Euler(0, 180, 0);
+                        transform.rotation = Quaternion.Euler(0, 180, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -176,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
     {
         handleKeyInput(); 
         handleStateChange();
-        rotatePLayerToTarget();
+        // rotatePLayerToTarget();
         
     }
 }
