@@ -21,31 +21,40 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState currentState; 
     public PlayerState newState;
 
+    private Quaternion targetRotation;
+    private float rotationSpeed = 200f;
+    
+
     public bool inBoss = false; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentState = PlayerState.Idle;
+        newState = PlayerState.Idle;
     }
 
     // Update is called once per frame
     void handleKeyInput() 
     {
-            if(Input.GetKeyDown(KeyCode.W)) 
+            if(Input.GetKey(KeyCode.W)) 
             {
                 newState = PlayerState.WalkingUp; 
             } 
-            else if (Input.GetKeyDown(KeyCode.D)) 
+            else if (Input.GetKey(KeyCode.D)) 
             {
                 newState = PlayerState.WalkingRight; 
             } 
-            else if (Input.GetKeyDown(KeyCode.A)) 
+            else if (Input.GetKey(KeyCode.A)) 
             {
                 newState = PlayerState.WalkingLeft; 
             } 
-            else if(Input.GetKeyDown(KeyCode.S)) 
+            else if(Input.GetKey(KeyCode.S)) 
             {
                 newState = PlayerState.WalkingDown; 
+            }
+            else 
+            {
+                newState = PlayerState.Idle;    
             }
         
     } 
@@ -60,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingLeft:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                        targetRotation = Quaternion.Euler(0, -90, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -71,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingRight:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                        targetRotation = Quaternion.Euler(0, 90, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -82,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingUp:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                        targetRotation = Quaternion.Euler(0, 0, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -93,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
                 case PlayerState.WalkingDown:
                     if(!inBoss) 
                     {
-                        transform.rotation = Quaternion.Euler(0, 180, 0);
+                        targetRotation = Quaternion.Euler(0, 180, 0);
                         movementAnimation.SetInteger("state" ,2);
                     }
                     else 
@@ -101,14 +110,36 @@ public class PlayerMovement : MonoBehaviour
                         movementAnimation.SetInteger("state" , 3);
                     }
                     break;
+
+                case PlayerState.Idle
+:
+                    if(!inBoss) 
+                    {
+                        movementAnimation.SetInteger("state" ,4);
+                    }
+                    else 
+                    {
+                        movementAnimation.SetInteger("state" , 4);
+                    } 
+                    break;
             }
         }
 
+    }
+
+    public void rotatePLayerToTarget() 
+    {
+        if(currentState != PlayerState.Idle) 
+        {
+            Quaternion target = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = target; 
+        }
     }
     void Update()
     {
         handleKeyInput(); 
         handleStateChange();
+        rotatePLayerToTarget();
         
     }
 }
