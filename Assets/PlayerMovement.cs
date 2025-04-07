@@ -43,8 +43,11 @@ public class PlayerMovement : MonoBehaviour
     void handleKeyInput() 
     {
         
+        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        Debug.Log("Horizontal: " + horizontal + ", Vertical: " + vertical);
 
         playerDirection = new Vector3(horizontal, 0, vertical).normalized;
 
@@ -56,17 +59,15 @@ public class PlayerMovement : MonoBehaviour
         cameraRight.y = 0;
         cameraRight.Normalize();
 
+
         movementDirection = cameraDirection * vertical + cameraRight * horizontal; 
 
-        if(playerDirection.magnitude >= 0.1f) 
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) 
         {
-            Debug.Log("Player is moving");
             newState = PlayerState.Walking;
-            transform.rotation = Quaternion.LookRotation(movementDirection);
         }
         else 
         {
-            Debug.Log("Player is idle");
             newState = PlayerState.Idle; 
         }
     } 
