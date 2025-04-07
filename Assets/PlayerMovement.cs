@@ -4,13 +4,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public enum PlayerState 
     {
-        WalkingLeft,
-
-        WalkingRight,
-
-        WalkingUp, 
-
-        WalkingDown, 
+        Walking, 
         Idle, 
         Running,
         Attacking
@@ -22,13 +16,19 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState newState;
 
     private Quaternion targetRotation;
-    private float rotationSpeed = 500f;
+    private float rotationSpeed = 1000f;
 
     private bool isPLayerAttacking = false;
 
     private float attackTimer = 0f; 
 
     private float attackDuration = 2f; 
+
+    public Transform mainCamera; 
+
+    public Vector3 playerDirection;
+
+    private Vector3 movementDirection;
     
 
     public bool inBoss = false; 
@@ -42,41 +42,33 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void handleKeyInput() 
     {
-        if(!isPLayerAttacking) 
-        {
-            if(Input.anyKey) 
-            {
-                if(Input.GetKey(KeyCode.W)) 
-                {
-                    newState = PlayerState.WalkingUp; 
-                } 
-                if (Input.GetKey(KeyCode.D)) 
-                {
-                    transform.rotation *= Quaternion.Euler(Vector3.up * rotationSpeed * Time.deltaTime);
-                    newState = PlayerState.WalkingRight; 
-                } 
-                if (Input.GetKey(KeyCode.A)) 
-                {
-                    transform.rotation *= Quaternion.Euler(Vector3.down * rotationSpeed * Time.deltaTime);
-                    newState = PlayerState.WalkingLeft; 
-                } 
-                if(Input.GetKey(KeyCode.S)) 
-                {
-                    newState = PlayerState.WalkingDown; 
-                }
-                if(Input.GetKey(KeyCode.Space)) 
-                {
-                    newState = PlayerState.Attacking;
-                }
-            }
-            
-            else if(!isPLayerAttacking)
-            {
-                newState = PlayerState.Idle;    
-            }
-        }
-            
         
+        float horizontal = Input.GetAxis("Horizontal");
+        float vertical = Input.GetAxis("Vertical");
+
+        playerDirection = new Vector3(horizontal, 0, vertical).normalized;
+
+        Vector3 cameraDirection = mainCamera.forward;
+        cameraDirection.y = 0;
+        cameraDirection.Normalize();
+
+        Vector3 cameraRight = mainCamera.right;
+        cameraRight.y = 0;
+        cameraRight.Normalize();
+
+        movementDirection = cameraDirection * vertical + cameraRight * horizontal; 
+
+        if(playerDirection.magnitude >= 0.1f) 
+        {
+            Debug.Log("Player is moving");
+            newState = PlayerState.Walking;
+            transform.rotation = Quaternion.LookRotation(movementDirection);
+        }
+        else 
+        {
+            Debug.Log("Player is idle");
+            newState = PlayerState.Idle; 
+        }
     } 
 
     void handleStateChange() 
@@ -92,93 +84,34 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(currentState != newState) 
         {
-            currentState = newState; 
-            switch(currentState) 
+            switch(newState) 
             {
-                case PlayerState.WalkingLeft:
-                    if(!inBoss) 
-                    {
-                        movementAnimation.SetInteger("state" ,2);
-                    }
-                    else 
-                    {
-                        movementAnimation.SetInteger("state" , 0);
-                    } 
-                    break;
-                case PlayerState.WalkingRight:
-                    if(!inBoss) 
-                    {
-                        movementAnimation.SetInteger("state" ,2);
-                    }
-                    else 
-                    {
-                        movementAnimation.SetInteger("state" , 1);
-                    } 
-                    break;
-                case PlayerState.WalkingUp:
-                    if(!inBoss) 
-                    {
-                        movementAnimation.SetInteger("state" ,2);
-                    }
-                    else 
-                    {
-                        movementAnimation.SetInteger("state" , 2);
-                    }
-                    break;
-                case PlayerState.WalkingDown:
-                    if(!inBoss) 
-                    {
-                        transform.rotation = Quaternion.Euler(0, 180, 0);
-                        movementAnimation.SetInteger("state" ,2);
-                    }
-                    else 
-                    {
-                        movementAnimation.SetInteger("state" , 3);
-                    }
-                    break;
-
-                case PlayerState.Idle
-:
-                    if(!inBoss) 
-                    {
-                        movementAnimation.SetInteger("state" ,4);
-                    }
-                    else 
-                    {
-                        movementAnimation.SetInteger("state" , 4);
-                    } 
-                    break;
-
-                case PlayerState.Attacking:
-                    if(!inBoss) 
-                    {
-                        isPLayerAttacking = true;
-                        movementAnimation.SetInteger("state" ,5);
-                    }
-                    else 
-                    {
-                        isPLayerAttacking = true;
-                        movementAnimation.SetInteger("state" , 5);
-                    } 
+                case PlayerState.Walking: 
+                    movementAnimation.SetInteger("state", 2);
+                    break; 
+                case PlayerState.Idle: 
+                    movementAnimation.SetInteger("state", 4);
                     break;
             }
+            currentState = newState; 
         }
 
     }
 
-    public void rotatePLayerToTarget() 
+    public void handleCameraRotation() 
     {
-        if(currentState != PlayerState.Idle) 
+        if(movementDirection.magnitude >= 0.1f)
         {
-            Quaternion target = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = target; 
+            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
+
     void Update()
     {
         handleKeyInput(); 
         handleStateChange();
-        // rotatePLayerToTarget();
+        handleCameraRotation();
         
     }
 }

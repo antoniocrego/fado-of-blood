@@ -1219,6 +1219,8 @@ MonoBehaviour:
   movementAnimation: {fileID: 1101207795}
   currentState: 0
   newState: 0
+  mainCamera: {fileID: 1551476533}
+  playerDirection: {x: 0, y: 0, z: 0}
   inBoss: 0
 --- !u!114 &1101207798
 MonoBehaviour:
