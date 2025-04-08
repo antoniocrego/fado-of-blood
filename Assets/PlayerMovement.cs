@@ -150,10 +150,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(movementDirection.magnitude >= 0.1f)
         {
-            Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
-            intermediateAnimation = movementAnimation.GetBool("intermediateAnimation"); 
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
+            // Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            // transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 

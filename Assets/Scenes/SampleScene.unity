@@ -1223,6 +1223,7 @@ MonoBehaviour:
   acceleration: 10
   mainCamera: {fileID: 1551476533}
   playerDirection: {x: 0, y: 0, z: 0}
+  intermediateAnimation: 0
   inBoss: 1
 --- !u!114 &1101207798
 MonoBehaviour:
