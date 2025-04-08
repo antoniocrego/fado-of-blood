@@ -1192,7 +1192,7 @@ Animator:
   m_GameObject: {fileID: 1101207793}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ea9285ea89bfa1449acc379a399b49e7, type: 3}
-  m_Controller: {fileID: 9100000, guid: 1ad4a862591e85846b19951d117fe9fb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9bca3db8a415c0449ba6893cd0c6327b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1219,9 +1219,11 @@ MonoBehaviour:
   movementAnimation: {fileID: 1101207795}
   currentState: 0
   newState: 0
+  previousState: 0
+  acceleration: 10
   mainCamera: {fileID: 1551476533}
   playerDirection: {x: 0, y: 0, z: 0}
-  inBoss: 0
+  inBoss: 1
 --- !u!114 &1101207798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1335,7 +1337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3602752539000441939, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.26
+      value: 0.455
       objectReference: {fileID: 0}
     - target: {fileID: 3602752539000441939, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       propertyPath: m_LocalPosition.z
