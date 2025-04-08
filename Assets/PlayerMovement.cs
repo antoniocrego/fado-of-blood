@@ -39,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 playerDirection;
 
     private Vector3 movementDirection;
+
+    public bool intermediateAnimation = false;
     
 
     public bool inBoss = false; 
@@ -149,7 +151,9 @@ public class PlayerMovement : MonoBehaviour
         if(movementDirection.magnitude >= 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
+            intermediateAnimation = movementAnimation.GetBool("intermediateAnimation"); 
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
         }
     }
 
