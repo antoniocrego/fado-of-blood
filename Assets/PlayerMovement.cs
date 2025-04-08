@@ -4,7 +4,13 @@ public class PlayerMovement : MonoBehaviour
 {
     public enum PlayerState 
     {
-        Walking, 
+        WalkingLeft,
+
+        WalkingRight,
+
+        WalkingForward,
+
+        WalkingBackward, 
         Idle, 
         Running,
         Attacking
@@ -15,8 +21,12 @@ public class PlayerMovement : MonoBehaviour
     public PlayerState currentState; 
     public PlayerState newState;
 
+    public PlayerState previousState; 
+
     private Quaternion targetRotation;
     private float rotationSpeed = 1000f;
+
+    public float acceleration = 10.0f;
 
     private bool isPLayerAttacking = false;
 
@@ -37,15 +47,17 @@ public class PlayerMovement : MonoBehaviour
     {
         currentState = PlayerState.Idle;
         newState = PlayerState.Idle;
+        previousState = PlayerState.Idle;
     }
 
     // Update is called once per frame
     void handleKeyInput() 
     {
         
-        
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+        movementAnimation.SetFloat("X", horizontal);
+        movementAnimation.SetFloat("Y", vertical);
 
         Debug.Log("Horizontal: " + horizontal + ", Vertical: " + vertical);
 
@@ -62,12 +74,32 @@ public class PlayerMovement : MonoBehaviour
 
         movementDirection = cameraDirection * vertical + cameraRight * horizontal; 
 
-        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)) 
+        if((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space)) && !isPLayerAttacking) 
         {
-            newState = PlayerState.Walking;
+            if(Input.GetKey(KeyCode.A)) 
+            {
+                newState = PlayerState.WalkingLeft;
+            }
+            else if(Input.GetKey(KeyCode.D)) 
+            {
+                newState = PlayerState.WalkingRight; 
+            }
+            if(Input.GetKey(KeyCode.W)) 
+            {
+                newState = PlayerState.WalkingForward; 
+            }
+            else if(Input.GetKey(KeyCode.S)) 
+            {
+                newState = PlayerState.WalkingBackward; 
+            }
+            if(Input.GetKey(KeyCode.Space)) 
+            {
+                newState = PlayerState.Attacking; 
+            }
         }
-        else 
+        else if(!isPLayerAttacking) 
         {
+            previousState = newState;
             newState = PlayerState.Idle; 
         }
     } 
@@ -87,11 +119,24 @@ public class PlayerMovement : MonoBehaviour
         {
             switch(newState) 
             {
-                case PlayerState.Walking: 
+                case PlayerState.WalkingLeft: 
+                    movementAnimation.SetInteger("state", 0); 
+                    break;
+                case PlayerState.WalkingRight:
+                    movementAnimation.SetInteger("state", 1); 
+                    break;
+                case PlayerState.WalkingForward: 
                     movementAnimation.SetInteger("state", 2);
-                    break; 
+                    break;
+                case PlayerState.WalkingBackward:
+                    movementAnimation.SetInteger("state", 3); 
+                    break;  
                 case PlayerState.Idle: 
                     movementAnimation.SetInteger("state", 4);
+                    break;
+                case PlayerState.Attacking: 
+                    isPLayerAttacking = true;
+                    movementAnimation.SetInteger("state", 5); 
                     break;
             }
             currentState = newState; 
@@ -110,6 +155,14 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+         if(Input.GetKey(KeyCode.LeftShift)) 
+            {
+                movementAnimation.SetBool("sprint", true); 
+            }
+        if(Input.GetKeyUp(KeyCode.LeftShift)) 
+            {
+                movementAnimation.SetBool("sprint", false); 
+            }
         handleKeyInput(); 
         handleStateChange();
         handleCameraRotation();
