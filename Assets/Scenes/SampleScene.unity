@@ -1219,8 +1219,11 @@ MonoBehaviour:
   movementAnimation: {fileID: 1101207795}
   currentState: 0
   newState: 0
-  previousState: 0
+  nextState: 0
+  previousStateBeforeIdle: 0
   acceleration: 10
+  isTurning: 0
+  turningDuration: 0.7
   mainCamera: {fileID: 1551476533}
   playerDirection: {x: 0, y: 0, z: 0}
   intermediateAnimation: 0
@@ -1240,33 +1243,6 @@ MonoBehaviour:
   cameras:
   - {fileID: 330585545}
   - {fileID: 1551476532}
---- !u!54 &1101207800
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1101207793}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 4
-  m_CollisionDetection: 0
 --- !u!1001 &1137145004
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1334,7 +1310,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3602752539000441939, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.8723363
+      value: 2.616
       objectReference: {fileID: 0}
     - target: {fileID: 3602752539000441939, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1342,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3602752539000441939, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5358185
+      value: 0.84
       objectReference: {fileID: 0}
     - target: {fileID: 3602752539000441939, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1396,9 +1372,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4230108153291888361, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1101207798}
-    - targetCorrespondingSourceObject: {fileID: 4230108153291888361, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1101207800}
     - targetCorrespondingSourceObject: {fileID: 1078345630923787075, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1289913663}
