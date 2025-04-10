@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float turningTimer = 0f; 
 
-    public float turningDuration = 0.7f;
+    public float turningDuration = 0.6f;
 
     private float attackTimer = 0f; 
 
@@ -54,6 +54,10 @@ public class PlayerMovement : MonoBehaviour
     
 
     public bool inBoss = false; 
+
+    public float cameraCooldownTimer = 0f;
+
+    public float cameraCooldownDuration = 0.2f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -70,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
             return;
         }
+
         
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -87,11 +92,15 @@ public class PlayerMovement : MonoBehaviour
 
         movementDirection = cameraDirection * vertical + cameraRight * horizontal; 
 
-        if((Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space))) 
+        if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space))
         {
+            if(isTurning) 
+            {
+                return;
+            }
             if(Input.GetKey(KeyCode.A)) 
             {
-                if(currentState == PlayerState.WalkingRight || previousStateBeforeIdle == PlayerState.WalkingRight) 
+                if(currentState == PlayerState.WalkingRight || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingRight))
                 {
                     nextState = PlayerState.WalkingLeft;
                     newState = PlayerState.Turning;
@@ -104,7 +113,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(Input.GetKey(KeyCode.D)) 
             {
-                if(currentState == PlayerState.WalkingLeft || previousStateBeforeIdle == PlayerState.WalkingLeft) 
+                if(currentState == PlayerState.WalkingLeft || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingLeft)) 
                 {
                     nextState = PlayerState.WalkingRight;
                     newState = PlayerState.Turning;
@@ -117,12 +126,12 @@ public class PlayerMovement : MonoBehaviour
             }
             if(Input.GetKey(KeyCode.W)) 
             {
-                if(currentState == PlayerState.WalkingBackward || previousStateBeforeIdle == PlayerState.WalkingBackward) 
+                if(currentState == PlayerState.WalkingBackward || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingBackward))
                 {
                     nextState = PlayerState.WalkingForward;
                     newState = PlayerState.Turning;
                 }
-                else 
+                else if(!isTurning)
                 {
                     newState = PlayerState.WalkingForward; 
                 }
@@ -130,12 +139,12 @@ public class PlayerMovement : MonoBehaviour
             }
             else if(Input.GetKey(KeyCode.S)) 
             {
-                if(currentState == PlayerState.WalkingForward || previousStateBeforeIdle == PlayerState.WalkingForward) 
+                if(currentState == PlayerState.WalkingForward || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingForward))
                 {
                     nextState = PlayerState.WalkingBackward;
                     newState = PlayerState.Turning;
                 }
-                else 
+                else if(!isTurning)
                 {
                     newState = PlayerState.WalkingBackward; 
                 }
@@ -172,12 +181,14 @@ public class PlayerMovement : MonoBehaviour
             turningTimer += Time.deltaTime; 
             if(turningTimer >= turningDuration) 
             {
-                // currentState = newState;
+                Debug.Log("the new state is " + newState);
                 newState = nextState;
+                nextState = PlayerState.Idle;
                 turningTimer = 0f; 
                 previousStateBeforeIdle = PlayerState.Idle;
                 checkCurrentState();
-                isTurning = false; 
+                isTurning = false;
+                cameraCooldownTimer = 0f;
             }
         }
         else if(currentState != newState) 
@@ -195,10 +206,9 @@ public class PlayerMovement : MonoBehaviour
                     movementAnimation.SetInteger("state", 0); 
                     break;
                 case PlayerState.WalkingRight:
-                    Debug.Log("Walking Right");
                     movementAnimation.SetInteger("state", 1); 
                     break;
-                case PlayerState.WalkingForward: 
+                case PlayerState.WalkingForward:
                     movementAnimation.SetInteger("state", 2);
                     break;
                 case PlayerState.WalkingBackward:
@@ -221,6 +231,11 @@ public class PlayerMovement : MonoBehaviour
 
     public void handleCameraRotation() 
     {
+        if(cameraCooldownTimer < cameraCooldownDuration) 
+        {
+            cameraCooldownTimer += Time.deltaTime; 
+            return; 
+        }
         if(movementDirection.magnitude >= 0.1f && !isTurning)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);

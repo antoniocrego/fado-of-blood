@@ -578,7 +578,7 @@ AnimatorState:
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
-  m_TimeParameter: 
+  m_TimeParameter: Blend
 --- !u!1101 &-4808646945041268103
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1247,6 +1247,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: isTurning
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1360,6 +1366,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 2
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &761785556931720370
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 90Degrees
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: -203655887218126122, guid: 188c0342f060dc746a1c7335d138e141, type: 3}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &1194758876585162689
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1474,10 +1506,10 @@ AnimatorStateMachine:
     m_Position: {x: 420, y: 590, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5861045944239927672}
-    m_Position: {x: 1360, y: 1190, z: 0}
+    m_Position: {x: 1570, y: 1180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3463682659416331625}
-    m_Position: {x: 1340, y: 600, z: 0}
+    m_Position: {x: 1550, y: 600, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 2462187297339192991}
     m_Position: {x: 120, y: 250, z: 0}
@@ -1490,6 +1522,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -4956829655033830100}
     m_Position: {x: 900, y: 1600, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: 761785556931720370}
+    m_Position: {x: 190, y: 1330, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
