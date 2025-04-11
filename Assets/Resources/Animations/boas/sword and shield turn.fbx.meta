@@ -31,7 +31,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 90Degrees
+      name: 90DegreesRight
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0

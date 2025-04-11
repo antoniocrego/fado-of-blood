@@ -15,7 +15,13 @@ public class PlayerMovement : MonoBehaviour
         Running,
         Attacking,
 
-        Turning
+        Turning180,
+
+        Turning90Left,
+
+        Turning90Right,
+
+        Roll
     }
 
     public Animator movementAnimation;
@@ -39,6 +45,12 @@ public class PlayerMovement : MonoBehaviour
     private float turningTimer = 0f; 
 
     public float turningDuration = 0.6f;
+
+    public bool isRolling = false;
+
+    private float rollingTimer = 0f;
+
+    public float rollDuration = 2.0f; 
 
     private float attackTimer = 0f; 
 
@@ -94,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space))
         {
-            if(isTurning) 
+            if(isTurning || isRolling) 
             {
                 return;
             }
@@ -103,9 +115,19 @@ public class PlayerMovement : MonoBehaviour
                 if(currentState == PlayerState.WalkingRight || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingRight))
                 {
                     nextState = PlayerState.WalkingLeft;
-                    newState = PlayerState.Turning;
+                    newState = PlayerState.Turning180;
                 }
-                else 
+                else if(previousStateBeforeIdle == PlayerState.WalkingForward) 
+                {
+                    nextState = PlayerState.WalkingLeft;
+                    newState = PlayerState.Turning90Left;
+                }
+                else if(previousStateBeforeIdle == PlayerState.WalkingBackward) 
+                {
+                    nextState = PlayerState.WalkingLeft;
+                    newState = PlayerState.Turning90Right;
+                }
+                else if(!isTurning || !isRolling)
                 {
                     newState = PlayerState.WalkingLeft; 
                 }
@@ -116,9 +138,19 @@ public class PlayerMovement : MonoBehaviour
                 if(currentState == PlayerState.WalkingLeft || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingLeft)) 
                 {
                     nextState = PlayerState.WalkingRight;
-                    newState = PlayerState.Turning;
+                    newState = PlayerState.Turning180;
                 }
-                else 
+                else if(previousStateBeforeIdle == PlayerState.WalkingBackward) 
+                {
+                    nextState = PlayerState.WalkingRight;
+                    newState = PlayerState.Turning90Left;
+                }
+                else if(previousStateBeforeIdle == PlayerState.WalkingForward) 
+                {
+                    nextState = PlayerState.WalkingRight;
+                    newState = PlayerState.Turning90Right;
+                }
+                else if(!isTurning || !isRolling)
                 {
                     newState = PlayerState.WalkingRight; 
                 }
@@ -129,9 +161,19 @@ public class PlayerMovement : MonoBehaviour
                 if(currentState == PlayerState.WalkingBackward || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingBackward))
                 {
                     nextState = PlayerState.WalkingForward;
-                    newState = PlayerState.Turning;
+                    newState = PlayerState.Turning180;
                 }
-                else if(!isTurning)
+                else if(previousStateBeforeIdle == PlayerState.WalkingRight) 
+                {
+                    nextState = PlayerState.WalkingForward;
+                    newState = PlayerState.Turning90Left;
+                }
+                else if(previousStateBeforeIdle == PlayerState.WalkingLeft) 
+                {
+                    nextState = PlayerState.WalkingForward;
+                    newState = PlayerState.Turning90Right;
+                }
+                else if(!isTurning || !isRolling)
                 {
                     newState = PlayerState.WalkingForward; 
                 }
@@ -142,20 +184,35 @@ public class PlayerMovement : MonoBehaviour
                 if(currentState == PlayerState.WalkingForward || (currentState == PlayerState.Idle && previousStateBeforeIdle == PlayerState.WalkingForward))
                 {
                     nextState = PlayerState.WalkingBackward;
-                    newState = PlayerState.Turning;
+                    newState = PlayerState.Turning180;
                 }
-                else if(!isTurning)
+                else if(previousStateBeforeIdle == PlayerState.WalkingLeft)
+                {
+                    nextState = PlayerState.WalkingBackward;
+                    newState = PlayerState.Turning90Left;
+                }
+                else if(previousStateBeforeIdle == PlayerState.WalkingRight) 
+                {
+                    nextState = PlayerState.WalkingBackward;
+                    newState = PlayerState.Turning90Right;
+                }
+                else if(!isTurning || !isRolling)
                 {
                     newState = PlayerState.WalkingBackward; 
                 }
                 previousStateBeforeIdle = PlayerState.Idle;
+            }
+            if(Input.GetKey(KeyCode.LeftAlt)) 
+            {
+                nextState = currentState; 
+                newState = PlayerState.Roll; 
             }
             if(Input.GetKey(KeyCode.Space)) 
             {
                 newState = PlayerState.Attacking; 
             }
         }
-        else if(!isPLayerAttacking && !isTurning) 
+        else if(!isPLayerAttacking && !isTurning && !isRolling) 
         {
             if(newState != PlayerState.Idle) 
             {
@@ -181,13 +238,26 @@ public class PlayerMovement : MonoBehaviour
             turningTimer += Time.deltaTime; 
             if(turningTimer >= turningDuration) 
             {
-                Debug.Log("the new state is " + newState);
                 newState = nextState;
                 nextState = PlayerState.Idle;
                 turningTimer = 0f; 
                 previousStateBeforeIdle = PlayerState.Idle;
                 checkCurrentState();
                 isTurning = false;
+                cameraCooldownTimer = 0f;
+            }
+        }
+        else if(isRolling) 
+        {
+            rollingTimer += Time.deltaTime; 
+            if(rollingTimer >= rollDuration) 
+            {
+                newState = nextState; 
+                nextState = PlayerState.Idle; 
+                rollingTimer = 0f; 
+                previousStateBeforeIdle = PlayerState.Idle;
+                checkCurrentState();
+                isRolling = false;
                 cameraCooldownTimer = 0f;
             }
         }
@@ -221,9 +291,21 @@ public class PlayerMovement : MonoBehaviour
                     isPLayerAttacking = true;
                     movementAnimation.SetInteger("state", 5); 
                     break;
-                case PlayerState.Turning: 
+                case PlayerState.Turning180: 
                     isTurning = true;
                     movementAnimation.SetInteger("state", 6); 
+                    break;
+                case PlayerState.Turning90Left: 
+                    isTurning = true; 
+                    movementAnimation.SetInteger("state", 7);
+                    break;
+                case PlayerState.Turning90Right:
+                    isTurning = true; 
+                    movementAnimation.SetInteger("state", 8); 
+                    break;
+                case PlayerState.Roll: 
+                    isRolling = true; 
+                    movementAnimation.SetInteger("state", 9);
                     break;
             }
             currentState = newState; 
@@ -236,7 +318,7 @@ public class PlayerMovement : MonoBehaviour
             cameraCooldownTimer += Time.deltaTime; 
             return; 
         }
-        if(movementDirection.magnitude >= 0.1f && !isTurning)
+        if(movementDirection.magnitude >= 0.1f && !isTurning && !isRolling)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movementDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);

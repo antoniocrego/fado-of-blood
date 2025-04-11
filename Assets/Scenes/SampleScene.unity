@@ -1224,10 +1224,14 @@ MonoBehaviour:
   acceleration: 10
   isTurning: 0
   turningDuration: 0.7
+  isRolling: 0
+  rollDuration: 2
   mainCamera: {fileID: 1551476533}
   playerDirection: {x: 0, y: 0, z: 0}
   intermediateAnimation: 0
   inBoss: 1
+  cameraCooldownTimer: 0
+  cameraCooldownDuration: 0.2
 --- !u!114 &1101207798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1243,7 +1247,7 @@ MonoBehaviour:
   cameras:
   - {fileID: 330585545}
   - {fileID: 1551476532}
---- !u!54 &1101207800
+--- !u!54 &1101207802
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1401,7 +1405,7 @@ PrefabInstance:
       addedObject: {fileID: 1101207798}
     - targetCorrespondingSourceObject: {fileID: 4230108153291888361, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1101207800}
+      addedObject: {fileID: 1101207802}
     - targetCorrespondingSourceObject: {fileID: 1078345630923787075, guid: 0e2a52fc7d5047e4f8b326785cca41b8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1289913663}
