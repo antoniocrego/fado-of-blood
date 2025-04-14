@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ac86160109a9d447a5cb75db3d84f15, type: 3}
   m_Name: Take Damage Effect
   m_EditorClassIdentifier: 
-  instantEffectID: 0
+  instantEffectID: 1
   characterCausingDamage: {fileID: 0}
-  damage: 0
+  damage: 10
   playDamageAnimation: 1
   damageAnimation: 
   willPlayDamageSFX: 1
