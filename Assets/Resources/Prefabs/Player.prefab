@@ -271,6 +271,7 @@ GameObject:
   - component: {fileID: 4168413056940886147}
   - component: {fileID: 2931473718204174979}
   - component: {fileID: 2656330275641653131}
+  - component: {fileID: -3666868536411148229}
   - component: {fileID: 626443189428484444}
   m_Layer: 0
   m_Name: Player
@@ -374,6 +375,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 0}
   equipmentManager: {fileID: 0}
+  characterEffectsManager: {fileID: 0}
+  health: 0
+  stamina: 0
+  isDead: 0
   playerInventoryManager: {fileID: 0}
 --- !u!114 &2931473718204174979
 MonoBehaviour:
@@ -406,6 +411,20 @@ MonoBehaviour:
   cameras:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &-3666868536411148229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749865201942795662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bf6cc1a497c34c41b9bc6536a7b242e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToTest: {fileID: 0}
+  processEffect: 0
 --- !u!54 &626443189428484444
 Rigidbody:
   m_ObjectHideFlags: 0
