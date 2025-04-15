@@ -1,8 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponModelInstantiationSlot : MonoBehaviour
 {
-    public WeaponModelSlot weaponSlot;
+    public WeaponModelSlot weaponSlot; // Says where the weapon is (right hand, left hand, back, hip, etc.)
     public GameObject currentWeaponModel;
 
     public void UnloadWeapon(){

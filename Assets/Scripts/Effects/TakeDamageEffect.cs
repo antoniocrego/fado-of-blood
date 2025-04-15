@@ -22,7 +22,7 @@ public class TakeDamageEffect : InstantCharacterEffect
     [Header("Sound FX")]
     public bool willPlayDamageSFX = true;
 
-    [Header("Direction Damage Taken From")]
+    [Header("Direction Damage Taken From")] //this is used to know where to place the blood splatter
     public float angleHitFrom;
     public Vector3 contactPoint;
 
@@ -37,8 +37,10 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     private void CalculateDamage(CharacterManager character){
         if(characterCausingDamage != null){
-            finalDamageDealt = damage; //change this in the future if we add modifiers
+            //apply modifiers according to different characters
         }
+
+        finalDamageDealt = damage;
 
         Debug.Log("Character health before taking damage: " + character.health);
         character.health -= finalDamageDealt;

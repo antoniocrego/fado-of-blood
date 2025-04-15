@@ -12,16 +12,12 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     public GameObject leftHandWeaponModel;
 
     protected override void Awake(){
-        base.Awake();
-
         player = GetComponent<PlayerManager>();
 
         InitializeWeaponSlots();
     }
 
     protected override void Start(){
-        base.Start();
-
         LoadWeaponOnBothHands();
     }
 
