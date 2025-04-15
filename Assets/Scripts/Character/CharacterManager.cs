@@ -17,4 +17,8 @@ public class CharacterManager : MonoBehaviour
         health = 100;
         stamina = 100;
     }
+
+    protected virtual void Update(){
+        
+    }
 }
