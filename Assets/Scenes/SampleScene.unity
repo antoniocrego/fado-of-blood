@@ -1430,6 +1430,7 @@ MonoBehaviour:
   horizontalInput: 0
   movementCombined: 0
   movementInput: {x: 0, y: 0}
+  dodgeInput: 0
 --- !u!4 &1986336940
 Transform:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 
 public class PlayerLocomotionManager : CharacterLocomotionManager
@@ -18,6 +19,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] private float runningSpeed = 5f; 
 
     [SerializeField] private float walkingSpeed = 2f;
+
+    private Vector3 rollDirection;
     override protected void Awake() 
     {
         base.Awake();
@@ -50,7 +53,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleMovement() 
     {
+
         GetVerticalAndHorizontalInputs();
+        if(!player.canMove)
+            return;
         movementDirection = PlayerCamera.instance.transform.forward * verticalMovement; 
         movementDirection = movementDirection + PlayerCamera.instance.transform.right * horizontalMovement;
         movementDirection.Normalize();
@@ -68,6 +74,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleRotation() 
     {
+        if(!player.canRotate)
+            return;
         targetDirection = Vector3.zero; 
         targetDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
         targetDirection = targetDirection + PlayerCamera.instance.cameraObject.transform.right * horizontalMovement;
@@ -81,6 +89,31 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         Quaternion newRotation = Quaternion.LookRotation(targetDirection);
         Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
         transform.rotation = targetRotation;
+    }
+
+    public void AttemptToPerformDodge() 
+    {
+        if(player.isPerformingAction) 
+        {
+            return;
+        }
+        if(PlayerInputManager.instance.movementCombined > 0) 
+        {
+            rollDirection = PlayerCamera.instance.cameraObject.transform.forward * PlayerInputManager.instance.verticalInput;
+            rollDirection += PlayerCamera.instance.cameraObject.transform.right * PlayerInputManager.instance.horizontalInput;
+
+            rollDirection.y = 0;
+            Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
+            player.transform.rotation = playerRotation;
+
+            player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward", true); 
+        }
+        else 
+        {
+            player.playerAnimatorManager.PlayTargetActionAnimation("StepBack", true); 
+        }
+       
+
     }
     
 }

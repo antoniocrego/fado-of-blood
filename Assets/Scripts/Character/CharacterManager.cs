@@ -13,6 +13,14 @@ public class CharacterManager : MonoBehaviour
     public float stamina;
     public bool isDead = false;
 
+    public bool isPerformingAction = false;
+
+    public bool canRotate = true; 
+
+    public bool canMove = true;
+
+    public bool applyRootMotion = false;
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);

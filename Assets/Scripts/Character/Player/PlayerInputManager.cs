@@ -18,6 +18,8 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] Vector2 movementInput;
 
+    [SerializeField] bool dodgeInput = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -46,7 +48,13 @@ public class PlayerInputManager : MonoBehaviour
 
     private void Update() 
     {
+        HandleAllInputs();
+    }
+
+    private void HandleAllInputs() 
+    {
         HandleMovementInput();
+        HandleDodgeInput();
     }
 
 
@@ -74,6 +82,16 @@ public class PlayerInputManager : MonoBehaviour
         player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined);
     }
 
+    private void HandleDodgeInput() 
+    {
+        if(dodgeInput) 
+        {
+            dodgeInput = false;
+
+            player.playerLocomotionManager.AttemptToPerformDodge();
+        }
+
+    }
     private void OnSceneChange(Scene current, Scene next)
     {
         // TODO: CHANGE THIS TO USE SCENE NUMBERS DEFINED ELSEWHERE
@@ -92,6 +110,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls = new PlayerControls();
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
+            playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
         }
 
         playerControls.Enable();
