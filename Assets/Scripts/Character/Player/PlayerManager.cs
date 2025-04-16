@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerManager : CharacterManager
 {
     //TODO: handles animations and stats
+    [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
 
@@ -12,6 +15,7 @@ public class PlayerManager : CharacterManager
 
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
     }
 
     protected override void Update()

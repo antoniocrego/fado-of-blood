@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
 {
+
+    public CharacterController characterController;
+
+    [HideInInspector] public Animator animator;
     public CharacterInventoryManager inventoryManager;
     public CharacterEquipmentManager equipmentManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
@@ -11,6 +15,9 @@ public class CharacterManager : MonoBehaviour
 
     protected virtual void Awake()
     {
+        DontDestroyOnLoad(this);
+        characterController = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
         inventoryManager = GetComponent<CharacterInventoryManager>();
         equipmentManager = GetComponent<CharacterEquipmentManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();

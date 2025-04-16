@@ -308,9 +308,9 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: ea9285ea89bfa1449acc379a399b49e7, type: 3}
   m_Controller: {fileID: 9100000, guid: 9bca3db8a415c0449ba6893cd0c6327b, type: 2}
-  m_CullingMode: 0
+  m_CullingMode: 2
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -373,13 +373,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797546fba2ec77e449bcc7fe4ea2774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 0}
+  animator: {fileID: 0}
   inventoryManager: {fileID: 0}
   equipmentManager: {fileID: 0}
   characterEffectsManager: {fileID: 0}
   health: 0
   stamina: 0
   isDead: 0
+  playerAnimatorManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
+  playerLocomotionManager: {fileID: 0}
 --- !u!114 &2931473718204174979
 MonoBehaviour:
   m_ObjectHideFlags: 0

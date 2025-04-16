@@ -928,6 +928,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1369403817288162229, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369403817288162229, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 330585546}
@@ -959,6 +963,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2656330275641653131, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'cameras.Array.data[0]'
+      value: 
+      objectReference: {fileID: 330585545}
+    - target: {fileID: 2656330275641653131, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'cameras.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1551476532}
     - target: {fileID: 2656664479566903884, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1014,6 +1026,22 @@ PrefabInstance:
     - target: {fileID: 4077110503387259691, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092422953920282636, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092422953920282636, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 61bd3a4bb0c1a524891d707be010270b, type: 2}
+    - target: {fileID: 4092422953920282636, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_CullingMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092422953920282636, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4175698415943997719, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Layer
@@ -1195,16 +1223,20 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 626443189428484444, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 749865201942795662, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1997201078}
+      addedObject: {fileID: 1997201088}
     - targetCorrespondingSourceObject: {fileID: 749865201942795662, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1997201088}
+      addedObject: {fileID: 1997201099}
+    - targetCorrespondingSourceObject: {fileID: 749865201942795662, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1997201098}
   m_SourcePrefab: {fileID: 100100000, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
 --- !u!1 &1551476529
 GameObject:
@@ -1356,6 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43170d7a571fc714c8dcfcbfeb470ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraObject: {fileID: 1551476532}
   distance: 5
   height: 2
   rotationSpeed: 5
@@ -1392,6 +1425,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fdf66e832abf774ca3e00684132b972, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  verticalInput: 0
+  horizontalInput: 0
+  movementCombined: 0
   movementInput: {x: 0, y: 0}
 --- !u!4 &1986336940
 Transform:
@@ -1413,8 +1450,38 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 749865201942795662, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
   m_PrefabInstance: {fileID: 1255460840}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &1997201078
-CapsuleCollider:
+--- !u!114 &1997201088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997201068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b8f936c3349fd94eb845c16ae02dcb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1997201093}
+  verticalMovement: 0
+  horizontalMovement: 0
+  movementCombined: 0
+  rotationSpeed: 15
+  runningSpeed: 5
+  walkingSpeed: 2
+--- !u!114 &1997201093 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+  m_PrefabInstance: {fileID: 1255460840}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1997201068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797546fba2ec77e449bcc7fe4ea2774b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!143 &1997201098
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1428,15 +1495,17 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.9101963
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.8994336, z: 0}
---- !u!114 &1997201088
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.22
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1.08, z: 0}
+--- !u!114 &1997201099
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1445,7 +1514,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1997201068}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b8f936c3349fd94eb845c16ae02dcb6, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f92890d248fee943998cc64978a6807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &3181484045592509143

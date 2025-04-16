@@ -6,6 +6,14 @@ using UnityEngine.SceneManagement;
 public class PlayerInputManager : MonoBehaviour
 {
     public static PlayerInputManager instance;
+
+    public PlayerManager player;
+
+    public float verticalInput;
+
+    public float horizontalInput;
+
+    public float movementCombined; 
     PlayerControls playerControls;
 
     [SerializeField] Vector2 movementInput;
@@ -15,10 +23,15 @@ public class PlayerInputManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            if(player == null) 
+            {
+                player = FindObjectOfType<PlayerManager>();
+            }
         }
         else
         {
             Destroy(gameObject);
+            
         }
     }
 
@@ -29,6 +42,36 @@ public class PlayerInputManager : MonoBehaviour
         SceneManager.activeSceneChanged += OnSceneChange;   
         
         instance.enabled = true;
+    }
+
+    private void Update() 
+    {
+        HandleMovementInput();
+    }
+
+
+    private void HandleMovementInput() 
+    {
+        verticalInput = movementInput.y;
+        horizontalInput = movementInput.x; 
+
+
+        movementCombined = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
+
+        if(movementCombined <= 0.5 && movementCombined > 0) 
+        {
+            movementCombined = 0.5f;
+        }
+        else if(movementCombined > 0.5 && movementCombined < 1) 
+        {
+            movementCombined = 1f;
+        }
+        Debug.Log("Player is ", player);
+        if(player == null) 
+        {
+            return;
+        }
+        player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined);
     }
 
     private void OnSceneChange(Scene current, Scene next)

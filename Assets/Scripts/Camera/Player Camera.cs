@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
+
+    public static PlayerCamera instance;
+
+    public Camera cameraObject;
     private GameObject player; // Reference to the player transform
     [SerializeField] private float distance = 5f; // Distance from the player
     [SerializeField] private float height = 2f; // Height above the player
@@ -54,5 +58,17 @@ public class PlayerCamera : MonoBehaviour
         // Look at the player
         transform.LookAt(player.transform.position);
 
+    }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }
