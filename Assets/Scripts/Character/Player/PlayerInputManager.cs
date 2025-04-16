@@ -77,7 +77,6 @@ public class PlayerInputManager : MonoBehaviour
         {
             movementCombined = 1f;
         }
-        Debug.Log("Player is ", player);
         if(player == null) 
         {
             return;

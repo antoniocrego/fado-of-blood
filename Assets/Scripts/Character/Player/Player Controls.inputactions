@@ -136,7 +136,7 @@
                     "name": "Dodge",
                     "type": "PassThrough",
                     "id": "1040f821-8185-4b63-ad36-d1ed08e72378",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap",
                     "initialStateCheck": false
@@ -147,82 +147,16 @@
                     "id": "0d78a99b-cac6-40d3-9265-5114e9580583",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "Keyboard",
-                    "id": "c7373f64-ba76-4d2d-a03c-aaa419903929",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "79287f49-f36f-4654-8513-b202cd1c8841",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "16fd36a5-55a9-4bae-8ba4-561710e21517",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Gamepad",
-                    "id": "3050c375-e573-454a-85a4-d886ba714938",
-                    "path": "OneModifier",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "modifier",
-                    "id": "637dcaea-15f5-4beb-8c5c-6a389cb618c7",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "binding",
-                    "id": "7f2bace8-749b-46ca-a7bf-2ea9e88eba19",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dodge",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "13284293-3d54-477f-8cee-83ae07c5ff25",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
@@ -232,11 +166,33 @@
                 {
                     "name": "",
                     "id": "69742c19-96b1-4e88-b4df-58fccdfc6c90",
-                    "path": "<Keyboard>/ctrl",
-                    "interactions": "Hold",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9c49cb48-08b9-4255-9a34-2060cfaa37f8",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7dd924bc-d80a-4337-991a-7aebcf174667",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
