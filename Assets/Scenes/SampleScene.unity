@@ -1431,6 +1431,7 @@ MonoBehaviour:
   movementCombined: 0
   movementInput: {x: 0, y: 0}
   dodgeInput: 0
+  sprintInput: 0
 --- !u!4 &1986336940
 Transform:
   m_ObjectHideFlags: 0
@@ -1470,6 +1471,7 @@ MonoBehaviour:
   rotationSpeed: 15
   runningSpeed: 5
   walkingSpeed: 2
+  sprintSpeed: 7
 --- !u!114 &1997201093 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}

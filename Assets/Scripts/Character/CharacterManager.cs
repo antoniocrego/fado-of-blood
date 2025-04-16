@@ -21,6 +21,8 @@ public class CharacterManager : MonoBehaviour
 
     public bool applyRootMotion = false;
 
+    public bool isSprinting = false;
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);

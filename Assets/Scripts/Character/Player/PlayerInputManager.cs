@@ -20,6 +20,8 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] bool dodgeInput = false;
 
+    [SerializeField] bool sprintInput = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -55,6 +57,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         HandleMovementInput();
         HandleDodgeInput();
+        HandleSprintInput();
     }
 
 
@@ -79,7 +82,7 @@ public class PlayerInputManager : MonoBehaviour
         {
             return;
         }
-        player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined);
+        player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined, player.isSprinting);
     }
 
     private void HandleDodgeInput() 
@@ -90,7 +93,18 @@ public class PlayerInputManager : MonoBehaviour
 
             player.playerLocomotionManager.AttemptToPerformDodge();
         }
+    }
 
+    private void HandleSprintInput() 
+    {
+        if(sprintInput) 
+        {
+            player.playerLocomotionManager.HandleSprint(); 
+        }
+        else 
+        {
+            player.isSprinting = false;
+        }
     }
     private void OnSceneChange(Scene current, Scene next)
     {
@@ -111,6 +125,10 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+            
+            playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
+            playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+
         }
 
         playerControls.Enable();

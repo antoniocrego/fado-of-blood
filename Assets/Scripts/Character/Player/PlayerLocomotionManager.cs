@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UIElements;
 
 public class PlayerLocomotionManager : CharacterLocomotionManager
@@ -19,6 +20,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] private float runningSpeed = 5f; 
 
     [SerializeField] private float walkingSpeed = 2f;
+
+    [SerializeField] private float sprintSpeed = 7f;
 
     private Vector3 rollDirection;
     override protected void Awake() 
@@ -61,15 +64,22 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         movementDirection = movementDirection + PlayerCamera.instance.transform.right * horizontalMovement;
         movementDirection.Normalize();
         movementDirection.y = 0;
-
-        if(PlayerInputManager.instance.movementCombined > 0.5f)
+        if(player.isSprinting) 
         {
-            player.characterController.Move(movementDirection * runningSpeed  * Time.deltaTime);
+            player.characterController.Move(movementDirection * sprintSpeed * Time.deltaTime);
         }
-        else if(PlayerInputManager.instance.movementCombined <= 0.5f)
+        else 
         {
-            player.characterController.Move(movementDirection * walkingSpeed * Time.deltaTime);
+            if(PlayerInputManager.instance.movementCombined > 0.5f)
+            {
+                player.characterController.Move(movementDirection * runningSpeed  * Time.deltaTime);
+            }
+            else if(PlayerInputManager.instance.movementCombined <= 0.5f)
+            {
+                player.characterController.Move(movementDirection * walkingSpeed * Time.deltaTime);
+            }
         }
+        
     }
 
     private void HandleRotation() 
@@ -89,6 +99,23 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         Quaternion newRotation = Quaternion.LookRotation(targetDirection);
         Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
         transform.rotation = targetRotation;
+    }
+
+    public void HandleSprint() 
+    {
+        if(player.isPerformingAction) 
+        {
+            player.isSprinting = false;
+        }
+
+        if(movementCombined > 0.5) 
+        {
+            player.isSprinting = true; 
+        }
+        else 
+        {
+            player.isSprinting = false;
+        }
     }
 
     public void AttemptToPerformDodge() 
