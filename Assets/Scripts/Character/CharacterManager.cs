@@ -23,6 +23,9 @@ public class CharacterManager : MonoBehaviour
 
     public bool isSprinting = false;
 
+    public int endurance = 1; 
+    public int maxStamina = 0;
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);
@@ -32,7 +35,7 @@ public class CharacterManager : MonoBehaviour
         equipmentManager = GetComponent<CharacterEquipmentManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         health = 100;
-        stamina = 100;
+        stamina = 10;
     }
 
     protected virtual void Update(){

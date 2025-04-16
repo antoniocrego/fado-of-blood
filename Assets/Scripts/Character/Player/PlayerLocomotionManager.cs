@@ -23,6 +23,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [SerializeField] private float sprintSpeed = 7f;
 
+    [SerializeField] private float spritingStaminaCost = 1f;
+
+    [SerializeField] private float sprintingRecovery = 1f;
+
     private Vector3 rollDirection;
     override protected void Awake() 
     {
@@ -70,6 +74,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
         else 
         {
+            if(player.stamina < player.maxStamina) 
+            {
+                player.stamina += sprintingRecovery * Time.deltaTime;
+            }
             if(PlayerInputManager.instance.movementCombined > 0.5f)
             {
                 player.characterController.Move(movementDirection * runningSpeed  * Time.deltaTime);
@@ -107,6 +115,11 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             player.isSprinting = false;
         }
+        if(player.stamina <= 0) 
+        {
+            player.isSprinting = false;
+            return;
+        }
 
         if(movementCombined > 0.5) 
         {
@@ -115,6 +128,11 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         else 
         {
             player.isSprinting = false;
+        }
+
+        if(player.isSprinting) 
+        {
+            player.stamina -= spritingStaminaCost * Time.deltaTime;
         }
     }
 

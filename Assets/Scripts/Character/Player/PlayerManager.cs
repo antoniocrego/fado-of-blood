@@ -9,6 +9,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
 
+    [HideInInspector] public PlayerStatsManager playerStatsManager;
     protected override void Awake()
     {
         base.Awake();
@@ -16,6 +17,8 @@ public class PlayerManager : CharacterManager
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
+
     }
 
     protected override void Update()
@@ -23,5 +26,11 @@ public class PlayerManager : CharacterManager
         base.Update();
 
         playerLocomotionManager.HandleAllMovement();
+
+        // NEED A NEW WAY TO CHANGE STAMINA VALUE
+        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina); 
+        PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
+
     }
 }
