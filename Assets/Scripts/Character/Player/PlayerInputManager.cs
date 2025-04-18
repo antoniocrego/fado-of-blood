@@ -22,6 +22,10 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] bool sprintInput = false;
 
+    [SerializeField] bool jumpInput = false;
+
+    [SerializeField] bool lockedOn_input = false;
+
     private void Awake()
     {
         if (instance == null)
@@ -58,6 +62,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
+        HandleJumpInput();
+        HandleLockOnInput();
     }
 
 
@@ -81,7 +87,14 @@ public class PlayerInputManager : MonoBehaviour
         {
             return;
         }
-        player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined, player.isSprinting);
+        if(!lockedOn_input) 
+        {
+            player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined, player.isSprinting);
+        }
+        else if(lockedOn_input)
+        {
+            player.playerAnimatorManager.updateAnimatorMovementParameters(horizontalInput, verticalInput, player.isSprinting);
+        }
     }
 
     private void HandleDodgeInput() 
@@ -91,6 +104,17 @@ public class PlayerInputManager : MonoBehaviour
             dodgeInput = false;
 
             player.playerLocomotionManager.AttemptToPerformDodge();
+        }
+    }
+
+    private void HandleJumpInput() 
+    {
+        if(jumpInput) 
+        {
+            jumpInput = false; 
+
+            player.playerLocomotionManager.AttemptToPerformJump();
+            
         }
     }
 
@@ -104,6 +128,15 @@ public class PlayerInputManager : MonoBehaviour
         {
             player.isSprinting = false;
         }
+    }
+
+    private void HandleLockOnInput() 
+    {
+        if(lockedOn_input)
+        {
+            player.isLockedOn = true;
+        }
+        
     }
     private void OnSceneChange(Scene current, Scene next)
     {
@@ -124,6 +157,8 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+            playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
             
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;

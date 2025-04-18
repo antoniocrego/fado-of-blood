@@ -22,7 +22,30 @@ public class CharacterAnimatorManager : MonoBehaviour{
         float verticalAmount = verticalValue;
         if(isSpriting) 
         {
-            verticalAmount = 2; 
+            if(character.isLockedOn)
+            {
+                if (horizontalValue > 0) 
+                {
+                    horizontalAmount = 2; 
+                }
+                else if (horizontalValue < 0) 
+                {
+                    horizontalAmount = -2; 
+                }
+                if (verticalValue > 0) 
+                {
+                    verticalAmount = 2; 
+                }
+                else if (verticalValue < 0) 
+                {
+                    verticalAmount = -2; 
+                }
+            }
+            else 
+            {
+                verticalAmount = 2;
+            }
+            
         }
         character.animator.SetFloat(horizontal, horizontalAmount, 0.1f, Time.deltaTime); 
         character.animator.SetFloat(vertical, verticalAmount, 0.1f, Time.deltaTime);

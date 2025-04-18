@@ -26,6 +26,12 @@ public class CharacterManager : MonoBehaviour
     public int endurance = 1; 
     public int maxStamina = 0;
 
+    public bool isJumping = false;
+
+    public bool isGrounded = true;
+
+    public bool isLockedOn = false; 
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);

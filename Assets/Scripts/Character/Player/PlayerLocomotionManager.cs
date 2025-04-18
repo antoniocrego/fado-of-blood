@@ -14,6 +14,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private Vector3 movementDirection;
 
+    private Vector3 freeFallDirection;
+
+
     private Vector3 targetDirection;
 
     [SerializeField] private float rotationSpeed = 15f;
@@ -26,6 +29,16 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     [SerializeField] private float spritingStaminaCost = 1f;
 
     [SerializeField] private float sprintingRecovery = 1f;
+
+    [SerializeField] private float jumpHeight = 1f;
+
+    [SerializeField] float jumpForwardSpeed = 5; 
+
+    [SerializeField] float freeFallSpeed = 2;
+
+    private Vector3 jumpDirection; 
+
+
 
     private Vector3 rollDirection;
     override protected void Awake() 
@@ -42,6 +55,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     // Update is called once per frame
     void Update()
     {
+        base.Update();
         // HandleAllMovement();
     }
 
@@ -49,6 +63,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         HandleMovement(); 
         HandleRotation();
+        HandleJumpingMovement();
+        HandleFreeFallMovement();
     }
 
     private void GetVerticalAndHorizontalInputs()
@@ -60,7 +76,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleMovement() 
     {
-
         GetVerticalAndHorizontalInputs();
         if(!player.canMove)
             return;
@@ -104,9 +119,12 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             targetDirection = transform.forward;
         }
-        Quaternion newRotation = Quaternion.LookRotation(targetDirection);
-        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
-        transform.rotation = targetRotation;
+        if(!player.isLockedOn)
+        {
+            Quaternion newRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = targetRotation;
+        }
     }
 
     public void HandleSprint() 
@@ -136,9 +154,75 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         }
     }
 
+    public void AttemptToPerformJump() 
+    {
+        if(player.isPerformingAction) 
+        {
+            return;
+        }
+
+        player.playerAnimatorManager.PlayTargetActionAnimation("Jumping", false);
+
+        player.isJumping = true;
+
+        jumpDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
+        jumpDirection += PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
+        jumpDirection.Normalize();
+        jumpDirection.y = 0;
+
+        if(jumpDirection != Vector3.zero) 
+        {
+            if(player.isSprinting) 
+            {
+                jumpDirection *= 1;
+            }
+            else if(PlayerInputManager.instance.movementCombined > 0.5f) 
+            {
+                jumpDirection *= 0.5f;
+            }
+            else if(PlayerInputManager.instance.movementCombined <= 0.5f) 
+            {
+                jumpDirection *= 0.25f;
+            }
+        }
+    }
+
+    public void HandleJumpingMovement() 
+    {
+        if(player.isJumping)
+        {
+            player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
+        }
+    }
+
+    private void HandleFreeFallMovement() 
+    {
+        if(!player.isGrounded) 
+        {
+            freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
+            freeFallDirection = freeFallDirection + PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
+            freeFallDirection.Normalize();
+            freeFallDirection.y = 0;
+
+            player.characterController.Move(freeFallDirection * freeFallSpeed * Time.deltaTime);
+
+            
+        }
+    }
+
+    public void ApplyJumpVelocity() 
+    {
+        yVelocity.y = Mathf.Sqrt(jumpHeight * -2f * gravityForce);
+
+    }
+
     public void AttemptToPerformDodge() 
     {
         if(player.isPerformingAction) 
+        {
+            return;
+        }
+        if(!player.isGrounded) 
         {
             return;
         }
