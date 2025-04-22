@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    private GameObject player; // Reference to the player transform
+    [SerializeField] private GameObject target; // Reference to the player transform
     [SerializeField] private float distance = 5f; // Distance from the player
     [SerializeField] private float height = 2f; // Height above the player
     [SerializeField] private float rotationSpeed = 5f; // Speed of camera rotation
@@ -14,45 +14,67 @@ public class PlayerCamera : MonoBehaviour
     private float currentXRotation; // Current X rotation of the camera
     private float currentYRotation; // Current Y rotation of the camera
 
+    private bool reset = true; // Last camera movement time
+
+    private float cameraResetTime = 1f; // Time for camera reset
+
+    private float cameraTimer = 0f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Find the player object in the scene
-        player = GameObject.FindGameObjectWithTag("Player");
-        if (player == null)
+        if (target == null)
         {
-            Debug.LogError("Player not found! Make sure the player has the 'Player' tag.");
+            Debug.LogError("Target object not found. Please assign the target object in the inspector or ensure it has the 'Player' tag.");
+            return;
         }
-
-        // Set the initial position of the camera
-        Vector3 initialPosition = player.transform.position - transform.forward * distance + Vector3.up * height;
-        transform.position = initialPosition;
-        transform.LookAt(player.transform.position);
-
     }
+
 
     // Update is called once per frame
     void LateUpdate()
     {
         // Get mouse input for rotation
-        currentXRotation += Input.GetAxis("Mouse X") * rotationSpeed;
-        currentYRotation -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
+        float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
+
+        currentYRotation += mouseX; // Update the X rotation based on mouse input
+        currentXRotation -= mouseY; // Update the Y rotation based on mouse input
+
+        if (mouseX == 0 && mouseY == 0)
+        {
+            cameraTimer += Time.deltaTime; // Increment the timer if no mouse movement
+        }
+        else
+        {
+            reset = false; // Reset the camera position if there is mouse movement
+            cameraTimer = 0f; // Reset the timer if there is mouse movement
+        }
+
+        if (cameraTimer >= cameraResetTime)
+        {
+            reset = true; // Set the reset flag if the timer exceeds the reset time
+        }
 
         // Clamp the vertical rotation to prevent flipping
-        currentYRotation = Mathf.Clamp(currentYRotation, -30f, 60f);
+        currentXRotation = Mathf.Clamp(currentXRotation, -30f, 60f);
 
         // Get keyboard input for zooming
         float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
         distance = Mathf.Clamp(distance - scroll, minDistance, maxDistance);    
 
-        Quaternion rotation = Quaternion.Euler(currentYRotation, currentXRotation, 0);
-        Vector3 direction = new Vector3(0, 0, -distance);
-        Vector3 targetPosition = player.transform.position + rotation * direction;
+        Quaternion rotation = Quaternion.Euler(currentXRotation, currentYRotation, 0);
+        if(reset)
+        {
+            rotation = Quaternion.Euler(target.transform.parent.rotation.eulerAngles.x, target.transform.parent.rotation.eulerAngles.y, 0);
+            currentXRotation = 0;
+            currentYRotation = 0;
+        }
+
+        Vector3 direction = new Vector3(0, 0, distance); // Calculate the direction from the player to the camera
+        Vector3 targetPosition = target.transform.position - rotation * direction;
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
 
-
-        // Look at the player
-        transform.LookAt(player.transform.position);
-
+        transform.LookAt(target.transform.position);
     }
 }
