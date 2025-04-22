@@ -4,7 +4,6 @@ public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private GameObject target; // Reference to the player transform
     [SerializeField] private float distance = 5f; // Distance from the player
-    [SerializeField] private float height = 2f; // Height above the player
     [SerializeField] private float rotationSpeed = 5f; // Speed of camera rotation
     [SerializeField] private float followSpeed = 10f; // Speed of camera following the player
     [SerializeField] private float minDistance = 2f; // Minimum distance from the player
@@ -13,6 +12,7 @@ public class PlayerCamera : MonoBehaviour
 
     private float currentXRotation; // Current X rotation of the camera
     private float currentYRotation; // Current Y rotation of the camera
+    private float currentDistance; // Current distance from the player
 
     private bool reset = true; // Last camera movement time
 
@@ -61,17 +61,18 @@ public class PlayerCamera : MonoBehaviour
 
         // Get keyboard input for zooming
         float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        distance = Mathf.Clamp(distance - scroll, minDistance, maxDistance);    
+        currentDistance = Mathf.Clamp(currentDistance - scroll, minDistance, maxDistance);    
 
         Quaternion rotation = Quaternion.Euler(currentXRotation, currentYRotation, 0);
         if(reset)
         {
             rotation = Quaternion.Euler(target.transform.parent.rotation.eulerAngles.x, target.transform.parent.rotation.eulerAngles.y, 0);
-            currentXRotation = 0;
-            currentYRotation = 0;
+            currentXRotation = target.transform.parent.rotation.eulerAngles.x;
+            currentYRotation = target.transform.parent.rotation.eulerAngles.y;
+            currentDistance = distance;
         }
 
-        Vector3 direction = new Vector3(0, 0, distance); // Calculate the direction from the player to the camera
+        Vector3 direction = new Vector3(0, 0, currentDistance); // Calculate the direction from the player to the camera
         Vector3 targetPosition = target.transform.position - rotation * direction;
         transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
 
