@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
@@ -6,6 +7,8 @@ using UnityEngine.UIElements;
 public class PlayerLocomotionManager : CharacterLocomotionManager
 {
     public PlayerManager player;
+
+    public Vector3 targetPosition; 
     public float verticalMovement; 
 
     public float horizontalMovement;
@@ -125,6 +128,25 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
         }
+        if(player.isLockedOn)
+        {
+            if(player.playerTarget != null) 
+            {
+                Vector3 directionToTarget = player.playerTarget.transform.position - transform.position;
+                directionToTarget.y = 0; 
+                if(directionToTarget != Vector3.zero)
+                {
+                    Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+                }
+            }
+            else 
+            {
+                player.isLockedOn = false; 
+                PlayerCamera.instance.isCameraLocked = false;
+                player.playerTarget = null;
+            }
+        }
     }
 
     public void HandleSprint() 
@@ -241,8 +263,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             player.playerAnimatorManager.PlayTargetActionAnimation("StepBack", true); 
         }
-       
-
     }
     
 }

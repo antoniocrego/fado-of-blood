@@ -18,6 +18,8 @@ public class PlayerCamera : MonoBehaviour
     private float currentXRotation; // Current X rotation of the camera
     private float currentYRotation; // Current Y rotation of the camera
 
+    public bool isCameraLocked = false; // Flag to check if the camera is locked to a target
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,25 +40,46 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        // Get mouse input for rotation
-        currentXRotation += Input.GetAxis("Mouse X") * rotationSpeed;
-        currentYRotation -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        if(!isCameraLocked)
+        {
+             // Get mouse input for rotation
+            currentXRotation += Input.GetAxis("Mouse X") * rotationSpeed;
+            currentYRotation -= Input.GetAxis("Mouse Y") * rotationSpeed;
 
-        // Clamp the vertical rotation to prevent flipping
-        currentYRotation = Mathf.Clamp(currentYRotation, -30f, 60f);
+            // Clamp the vertical rotation to prevent flipping
+            currentYRotation = Mathf.Clamp(currentYRotation, -30f, 60f);
 
-        // Get keyboard input for zooming
-        float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-        distance = Mathf.Clamp(distance - scroll, minDistance, maxDistance);    
+            // Get keyboard input for zooming
+            float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
+            distance = Mathf.Clamp(distance - scroll, minDistance, maxDistance);    
 
-        Quaternion rotation = Quaternion.Euler(currentYRotation, currentXRotation, 0);
-        Vector3 direction = new Vector3(0, 0, -distance);
-        Vector3 targetPosition = player.transform.position + rotation * direction;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
+            Quaternion rotation = Quaternion.Euler(currentYRotation, currentXRotation, 0);
+            Vector3 direction = new Vector3(0, 0, -distance);
+            Vector3 targetPosition = player.transform.position + rotation * direction;
+            transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
+            
+            // Look at the player
+            transform.LookAt(player.transform.position);
+        } 
+        else 
+        {
+            GameObject boss = GameObject.FindGameObjectWithTag("Boss");
+            if (boss != null)
+            {
+                currentXRotation += Input.GetAxis("Mouse X") * rotationSpeed;
 
+                Vector3 directionToBoss = (boss.transform.position - player.transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(directionToBoss);
 
-        // Look at the player
-        transform.LookAt(player.transform.position);
+                Vector3 offset = -directionToBoss * distance + Vector3.up * height;
+                Vector3 targetPosition = player.transform.position + offset;
+
+                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
+                transform.LookAt(boss.transform.position);
+            }
+        }
+           
+        
 
     }
 

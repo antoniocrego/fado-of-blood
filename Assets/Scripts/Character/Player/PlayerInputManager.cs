@@ -130,11 +130,51 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    private void HandleLockOnTarget() 
+    {
+        // Define the target of the camera to be the boss
+        GameObject target = GameObject.FindGameObjectWithTag("Boss");
+        if(target != null) 
+        {
+            player.isLockedOn = true;
+            PlayerCamera.instance.isCameraLocked = true;
+            player.playerTarget = target; 
+        }
+        else 
+        {
+            ClearLockOnTargets();
+        }
+
+    }
+
+    private void ClearLockOnTargets() 
+    {
+        // Clear the lock on targets
+        player.isLockedOn = false;
+        lockedOn_input = false;
+        player.playerTarget = null;
+        PlayerCamera.instance.isCameraLocked = false;
+    }
+
     private void HandleLockOnInput() 
     {
         if(lockedOn_input)
         {
-            player.isLockedOn = true;
+            if(GameObject.FindGameObjectWithTag("Boss") != null) 
+            {
+                HandleLockOnTarget();
+            }
+            else 
+            {
+                ClearLockOnTargets();
+            }
+        }
+        else 
+        {
+            if(player.isLockedOn) 
+            {
+                ClearLockOnTargets();
+            }
         }
         
     }
@@ -158,8 +198,9 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
-            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
-            
+            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = !lockedOn_input;
+
+
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
 

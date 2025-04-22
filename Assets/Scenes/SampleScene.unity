@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 1531025219}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1507,6 +1507,7 @@ MonoBehaviour:
   minDistance: 2
   maxDistance: 10
   zoomSpeed: 2
+  isCameraLocked: 0
 --- !u!1 &1986336938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1586,6 +1587,7 @@ MonoBehaviour:
   groundedYVelocity: -20
   fallStartYVelocity: -5
   player: {fileID: 1997201093}
+  targetPosition: {x: 0, y: 0, z: 0}
   verticalMovement: 0
   horizontalMovement: 0
   movementCombined: 0

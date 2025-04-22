@@ -10,6 +10,10 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
 
     [HideInInspector] public PlayerStatsManager playerStatsManager;
+
+    [HideInInspector] public GameObject playerTarget; 
+
+    [HideInInspector] public PlayerCamera playerCameraManager;
     protected override void Awake()
     {
         base.Awake();
@@ -18,6 +22,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerCameraManager = GetComponent<PlayerCamera>();
 
     }
 
