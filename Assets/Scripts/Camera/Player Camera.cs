@@ -6,7 +6,6 @@ public class PlayerCamera : MonoBehaviour
     public static PlayerCamera instance;
 
     public Camera cameraObject;
-    private GameObject player; // Reference to the player transform
     [SerializeField] private GameObject target; // Reference to the player transform
     [SerializeField] private float distance = 5f; // Distance from the player
     [SerializeField] private float rotationSpeed = 5f; // Speed of camera rotation
@@ -14,6 +13,7 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] private float minDistance = 2f; // Minimum distance from the player
     [SerializeField] private float maxDistance = 10f; // Maximum distance from the player
     [SerializeField] private float zoomSpeed = 2f; // Speed of zooming in and out
+    [SerializeField] private float height = 2f;
 
     private float currentXRotation; // Current X rotation of the camera
     private float currentYRotation; // Current Y rotation of the camera
@@ -94,11 +94,11 @@ public class PlayerCamera : MonoBehaviour
             {
                 currentXRotation += Input.GetAxis("Mouse X") * rotationSpeed;
 
-                Vector3 directionToBoss = (boss.transform.position - player.transform.position).normalized;
+                Vector3 directionToBoss = (boss.transform.position - target.transform.position).normalized;
                 Quaternion lookRotation = Quaternion.LookRotation(directionToBoss);
 
                 Vector3 offset = -directionToBoss * distance + Vector3.up * height;
-                Vector3 targetPosition = player.transform.position + offset;
+                Vector3 targetPosition = target.transform.position + offset;
 
                 transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
                 transform.LookAt(boss.transform.position);
