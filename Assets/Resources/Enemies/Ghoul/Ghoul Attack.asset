@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95f3c731269094b42af76a5497b75d84, type: 3}
-  m_Name: GhoulAttack1
+  m_Name: Ghoul Attack
   m_EditorClassIdentifier: 
-  damage: 0
-  attackRange: 0
-  attackCooldown: 0
-  animationClip: {fileID: 0}
+  damage: 50
+  attackRangeMin: 0
+  attackRangeMax: 1
+  attackAngleMin: -20
+  attackAngleMax: 20
+  animationClip: {fileID: -203655887218126122, guid: ed5f7aec68ab3f84bb39d7050e4496c2, type: 3}
   audioClip: {fileID: 0}
