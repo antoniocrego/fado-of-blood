@@ -1,17 +1,29 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class PlayerManager : CharacterManager
 {
     //TODO: handles animations and stats
+    [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
 
+    [HideInInspector] public PlayerStatsManager playerStatsManager;
+
+    [HideInInspector] public GameObject playerTarget; 
+
+    [HideInInspector] public PlayerCamera playerCameraManager;
     protected override void Awake()
     {
         base.Awake();
 
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerCameraManager = GetComponent<PlayerCamera>();
+
     }
 
     protected override void Update()
@@ -19,5 +31,11 @@ public class PlayerManager : CharacterManager
         base.Update();
 
         playerLocomotionManager.HandleAllMovement();
+
+        // NEED A NEW WAY TO CHANGE STAMINA VALUE
+        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina); 
+        PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
+
     }
 }
