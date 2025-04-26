@@ -4,9 +4,13 @@ using System.Collections;
 
 public class PlayerManager : CharacterManager
 {
+    [Header("Debug Menu")]
+    [SerializeField] bool switchRightWeapon = false;
+
     //TODO: handles animations and stats
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+    [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
 
     [HideInInspector] public PlayerStatsManager playerStatsManager;
@@ -19,6 +23,7 @@ public class PlayerManager : CharacterManager
         base.Awake();
 
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
@@ -37,5 +42,13 @@ public class PlayerManager : CharacterManager
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina); 
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
 
+        DebugMenu();
+    }
+
+    private void DebugMenu(){
+        if(switchRightWeapon){
+            switchRightWeapon = false;
+            playerEquipmentManager.SwitchRightWeapon();
+        }
     }
 }
