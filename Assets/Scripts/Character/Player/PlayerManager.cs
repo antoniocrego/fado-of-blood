@@ -22,10 +22,12 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
-        playerCameraManager = GetComponent<PlayerCamera>();
+        if (playerCameraManager == null)
+        {
+            playerCameraManager = FindAnyObjectByType<PlayerCamera>();
+        }
 
     }
-
     protected override void Update()
     {
         base.Update();
@@ -37,5 +39,12 @@ public class PlayerManager : CharacterManager
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina); 
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
 
+    }
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate();
+
+        playerCameraManager.HandleCamera();
     }
 }

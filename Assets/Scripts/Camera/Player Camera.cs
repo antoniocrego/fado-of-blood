@@ -1,120 +1,91 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-
     public static PlayerCamera instance;
+    public PlayerManager player;
+    public bool isCameraLocked = false;
+    private Vector3 cameraVelocity = Vector3.zero;
+    private float rotationAngle = 0f;
+    private float pivotAngle = 0f;
 
     public Camera cameraObject;
-    [SerializeField] private GameObject target; // Reference to the player transform
-    [SerializeField] private float distance = 5f; // Distance from the player
-    [SerializeField] private float rotationSpeed = 5f; // Speed of camera rotation
-    [SerializeField] private float followSpeed = 10f; // Speed of camera following the player
-    [SerializeField] private float minDistance = 2f; // Minimum distance from the player
-    [SerializeField] private float maxDistance = 10f; // Maximum distance from the player
-    [SerializeField] private float zoomSpeed = 2f; // Speed of zooming in and out
-    [SerializeField] private float height = 2f;
 
-    private float currentXRotation; // Current X rotation of the camera
-    private float currentYRotation; // Current Y rotation of the camera
-    private float currentDistance; // Current distance from the player
-
-    private bool reset = true; // Last camera movement time
-
-    private float cameraResetTime = 1f; // Time for camera reset
-
-    private float cameraTimer = 0f;
-
-    public bool isCameraLocked = false; // Flag to check if the camera is locked to a target
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        if (target == null)
-        {
-            Debug.LogError("Target object not found. Please assign the target object in the inspector or ensure it has the 'Player' tag.");
-            return;
-        }
-    }
-
-
-    // Update is called once per frame
-    void LateUpdate()
-    {
-        if(!isCameraLocked)
-        {
-             // Get mouse input for rotation
-          float mouseX = Input.GetAxis("Mouse X") * rotationSpeed;
-          float mouseY = Input.GetAxis("Mouse Y") * rotationSpeed;
-
-          currentYRotation += mouseX; // Update the X rotation based on mouse input
-          currentXRotation -= mouseY; // Update the Y rotation based on mouse input
-
-          if (mouseX == 0 && mouseY == 0)
-          {
-              cameraTimer += Time.deltaTime; // Increment the timer if no mouse movement
-          }
-          else
-          {
-              reset = false; // Reset the camera position if there is mouse movement
-              cameraTimer = 0f; // Reset the timer if there is mouse movement
-          }
-
-          if (cameraTimer >= cameraResetTime)
-          {
-              reset = true; // Set the reset flag if the timer exceeds the reset time
-          }
-
-          // Clamp the vertical rotation to prevent flipping
-          currentXRotation = Mathf.Clamp(currentXRotation, -30f, 60f);
-
-          // Get keyboard input for zooming
-          float scroll = Input.GetAxis("Mouse ScrollWheel") * zoomSpeed;
-          currentDistance = Mathf.Clamp(currentDistance - scroll, minDistance, maxDistance);    
-
-          Quaternion rotation = Quaternion.Euler(currentXRotation, currentYRotation, 0);
-          if(reset)
-          {
-              rotation = Quaternion.Euler(target.transform.parent.rotation.eulerAngles.x, target.transform.parent.rotation.eulerAngles.y, 0);
-              currentXRotation = target.transform.parent.rotation.eulerAngles.x;
-              currentYRotation = target.transform.parent.rotation.eulerAngles.y;
-              currentDistance = distance;
-          }
-
-          Vector3 direction = new Vector3(0, 0, currentDistance); // Calculate the direction from the player to the camera
-          Vector3 targetPosition = target.transform.position - rotation * direction;
-          transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
-
-          transform.LookAt(target.transform.position);
-        } 
-        else 
-        {
-            GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-            if (boss != null)
-            {
-                currentXRotation += Input.GetAxis("Mouse X") * rotationSpeed;
-
-                Vector3 directionToBoss = (boss.transform.position - target.transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(directionToBoss);
-
-                Vector3 offset = -directionToBoss * distance + Vector3.up * height;
-                Vector3 targetPosition = target.transform.position + offset;
-
-                transform.position = Vector3.Lerp(transform.position, targetPosition, Time.deltaTime * followSpeed);
-                transform.LookAt(boss.transform.position);
-            }
-        }
-    }
+    [SerializeField] Transform cameraPivotTransform;
+    [SerializeField] float cameraFollowSpeed = 1f;
+    [SerializeField] float cameraRotationSpeed = 1f;
+    [SerializeField] float cameraPivotSpeed = 1f;
+    [SerializeField] float minPivot = -30f;
+    [SerializeField] float maxPivot = 60f;
 
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            if (player == null)
+            {
+                player = FindAnyObjectByType<PlayerManager>();
+                cameraObject = GetComponentInChildren<Camera>();
+            }
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void HandleCamera()
+    {
+        HandleFollow();
+        HandleRotation();
+        HandleCollision();
+    }
+
+    private void HandleFollow()
+    {
+        Vector3 targetPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity, cameraFollowSpeed * Time.deltaTime);
+        transform.position = targetPosition;
+    }
+
+    private void HandleRotation()
+    {
+        if (isCameraLocked)
+        {
+            return;
+        }
+        else
+        {
+            rotationAngle += PlayerInputManager.instance.cameraHorizontalInput * cameraRotationSpeed * Time.deltaTime;
+            pivotAngle -= PlayerInputManager.instance.cameraVerticalInput * cameraPivotSpeed * Time.deltaTime;
+            pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);
+
+            Vector3 cameraRotation = Vector3.zero;
+            cameraRotation.y = rotationAngle;
+            Quaternion targetRotation = Quaternion.Euler(cameraRotation);
+            transform.rotation = targetRotation;
+
+            Vector3 cameraPivot = Vector3.zero;
+            cameraPivot.x = pivotAngle;
+            Quaternion pivotRotation = Quaternion.Euler(cameraPivot);
+            cameraPivotTransform.localRotation = pivotRotation;
+            
+        }
+        
+    }
+
+    private void HandleCollision()
+    {
+
+    }
+
+
 }

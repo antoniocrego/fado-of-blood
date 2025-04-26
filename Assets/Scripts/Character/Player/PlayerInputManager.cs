@@ -12,11 +12,14 @@ public class PlayerInputManager : MonoBehaviour
     public float verticalInput;
 
     public float horizontalInput;
+    public float cameraVerticalInput;
+    public float cameraHorizontalInput;
 
     public float movementCombined; 
     PlayerControls playerControls;
 
     [SerializeField] Vector2 movementInput;
+    [SerializeField] Vector2 cameraInput;
 
     [SerializeField] bool dodgeInput = false;
 
@@ -33,7 +36,7 @@ public class PlayerInputManager : MonoBehaviour
             instance = this;
             if(player == null) 
             {
-                player = FindObjectOfType<PlayerManager>();
+                player = FindAnyObjectByType<PlayerManager>();
             }
         }
         else
@@ -64,6 +67,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleJumpInput();
         HandleLockOnInput();
+        HandleCameraInput();
     }
 
 
@@ -178,6 +182,17 @@ public class PlayerInputManager : MonoBehaviour
         }
         
     }
+
+    private void HandleCameraInput() 
+    {
+        if(player == null) 
+        {
+            return;
+        }
+
+        cameraVerticalInput = cameraInput.y;
+        cameraHorizontalInput = cameraInput.x; 
+    }
     private void OnSceneChange(Scene current, Scene next)
     {
         // TODO: CHANGE THIS TO USE SCENE NUMBERS DEFINED ELSEWHERE
@@ -203,6 +218,9 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+            playerControls.CameraMovement.Look.performed += i => cameraInput = i.ReadValue<Vector2>();
+
+
 
         }
 
