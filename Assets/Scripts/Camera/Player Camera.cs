@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -7,8 +8,8 @@ public class PlayerCamera : MonoBehaviour
     public PlayerManager player;
     public bool isCameraLocked = false;
     private Vector3 cameraVelocity = Vector3.zero;
-    private float rotationAngle = 0f;
-    private float pivotAngle = 0f;
+    private float rotationAngle;
+    private float pivotAngle;
 
     public Camera cameraObject;
 
@@ -18,6 +19,14 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float cameraPivotSpeed = 1f;
     [SerializeField] float minPivot = -30f;
     [SerializeField] float maxPivot = 60f;
+
+    [SerializeField] float cameraCollisionRadius = 0.2f;
+
+    [SerializeField] LayerMask cameraCollisionLayerMask;
+    private float defaultZPosition;
+    private float targetZPosition;
+
+    Vector3 cameraPosition;
 
     private void Awake()
     {
@@ -41,6 +50,7 @@ public class PlayerCamera : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        defaultZPosition = cameraObject.transform.localPosition.z;
     }
 
     public void HandleCamera()
@@ -69,14 +79,16 @@ public class PlayerCamera : MonoBehaviour
             pivotAngle = Mathf.Clamp(pivotAngle, minPivot, maxPivot);
 
             Vector3 cameraRotation = Vector3.zero;
+            Quaternion targetRotation;
+            
             cameraRotation.y = rotationAngle;
-            Quaternion targetRotation = Quaternion.Euler(cameraRotation);
-            transform.rotation = targetRotation;
+            targetRotation = Quaternion.Euler(cameraRotation);
+            transform.localRotation = targetRotation;
 
-            Vector3 cameraPivot = Vector3.zero;
-            cameraPivot.x = pivotAngle;
-            Quaternion pivotRotation = Quaternion.Euler(cameraPivot);
-            cameraPivotTransform.localRotation = pivotRotation;
+            cameraRotation = Vector3.zero;
+            cameraRotation.x = pivotAngle;
+            targetRotation = Quaternion.Euler(cameraRotation);
+            cameraPivotTransform.localRotation = targetRotation;
             
         }
         
@@ -84,7 +96,28 @@ public class PlayerCamera : MonoBehaviour
 
     private void HandleCollision()
     {
+        
+        RaycastHit hit;
+        Vector3 direction = cameraObject.transform.position - cameraPivotTransform.position;
+        direction.Normalize();
+        
+        targetZPosition = defaultZPosition;
 
+        if (Physics.SphereCast(cameraPivotTransform.position, cameraCollisionRadius, direction, out hit, Mathf.Abs(targetZPosition), cameraCollisionLayerMask))
+        {
+            float hitDistance = Vector3.Distance(cameraPivotTransform.position, hit.point);
+            targetZPosition = -(hitDistance - cameraCollisionRadius);
+        }
+
+        if (Mathf.Abs(targetZPosition) < cameraCollisionRadius)
+        {
+            targetZPosition = -cameraCollisionRadius;
+
+        }
+
+        cameraPosition.z = Mathf.Lerp(cameraObject.transform.localPosition.z, targetZPosition, 0.2f);
+        cameraObject.transform.localPosition = cameraPosition;
+        
     }
 
 
