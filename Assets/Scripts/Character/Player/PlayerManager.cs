@@ -6,6 +6,7 @@ public class PlayerManager : CharacterManager
 {
     [Header("Debug Menu")]
     [SerializeField] bool switchRightWeapon = false;
+    [SerializeField] bool switchLeftWeapon = false;
 
     //TODO: handles animations and stats
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
@@ -49,6 +50,11 @@ public class PlayerManager : CharacterManager
         if(switchRightWeapon){
             switchRightWeapon = false;
             playerEquipmentManager.SwitchRightWeapon();
+        }
+
+        if(switchLeftWeapon){
+            switchLeftWeapon = false;
+            playerEquipmentManager.SwitchLeftWeapon();
         }
     }
 }

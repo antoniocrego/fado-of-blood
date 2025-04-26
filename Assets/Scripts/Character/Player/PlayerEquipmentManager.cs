@@ -133,6 +133,61 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     }
 
     public void SwitchLeftWeapon(){
-       
+       player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Left_Weapon_01", false, true, true, true);
+
+        WeaponItem selectedWeapon = null;
+
+        // ADD ONE TO OUR INDEX TO SWITCH TO THE NEXT POTENTIAL WEAPON
+        player.playerInventoryManager.leftHandWeaponIndex += 1;
+
+        // IF OUR INDEX IS OUT OF BOUNDS, RESET IT TO 0
+        if(player.playerInventoryManager.leftHandWeaponIndex < 0 || player.playerInventoryManager.leftHandWeaponIndex > 2){
+            player.playerInventoryManager.leftHandWeaponIndex = 0;
+
+            float weaponCount = 0;
+            WeaponItem firstWeapon = null;
+            int firstWeaponPosition = 0;
+
+            for(int i = 0; i < player.playerInventoryManager.weaponsInLeftHandSlots.Length; i++){
+                if(player.playerInventoryManager.weaponsInLeftHandSlots[i].itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                {
+                    weaponCount += 1;
+
+                    if(firstWeapon == null){
+                        firstWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[i];
+                        firstWeaponPosition = i;
+                    }
+                }
+            }
+
+
+            if(weaponCount <= 1){
+                player.playerInventoryManager.leftHandWeaponIndex = -1;
+                selectedWeapon = WorldItemDatabase.Instance.unarmedWeapon;
+                player.playerInventoryManager.currentLeftHandWeapon = selectedWeapon;
+                LoadLeftWeapon();
+            }
+            else{
+                player.playerInventoryManager.leftHandWeaponIndex = firstWeaponPosition;
+                selectedWeapon = firstWeapon;
+                player.playerInventoryManager.currentLeftHandWeapon = selectedWeapon;
+                LoadLeftWeapon();
+            }
+
+            return;
+        }
+
+        foreach(WeaponItem weapon in player.playerInventoryManager.weaponsInLeftHandSlots){
+            // IF THE NEXT POTENTIAL WEAPON DOES NOT EQUAL THE UNARMED WEAPON, SELECT IT
+            if(player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex].itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID){
+                selectedWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex];
+                player.playerInventoryManager.currentLeftHandWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex];
+                LoadLeftWeapon();
+            }
+        }
+
+        if(selectedWeapon == null && player.playerInventoryManager.leftHandWeaponIndex <= 2){
+            SwitchLeftWeapon();
+        }
     }
 }
