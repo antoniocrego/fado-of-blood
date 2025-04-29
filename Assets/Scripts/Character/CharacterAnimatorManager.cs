@@ -59,7 +59,15 @@ public class CharacterAnimatorManager : MonoBehaviour{
 
         character.canMove = canMove; 
         character.canRotate = canRotate; 
+    }
 
+    public virtual void PlayTargetAttackActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
+    {
+        character.applyRootMotion = applyRootMotion;
+        character.animator.CrossFade(targetAnimation, 0.2f);
+        character.isPerformingAction = isPerformingAction;
 
+        character.canMove = canMove; 
+        character.canRotate = canRotate; 
     }
 }

@@ -269,6 +269,7 @@ GameObject:
   - component: {fileID: 1369403817288162229}
   - component: {fileID: 5948118211449343234}
   - component: {fileID: 4168413056940886147}
+  - component: {fileID: -2959177603621293489}
   - component: {fileID: 2931473718204174979}
   - component: {fileID: 2656330275641653131}
   - component: {fileID: -3666868536411148229}
@@ -361,6 +362,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentRightHandWeapon: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
+  weaponsInRightHandSlots:
+  - {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  rightHandWeaponIndex: 0
+  weaponsInLeftHandSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  leftHandWeaponIndex: 0
 --- !u!114 &4168413056940886147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,9 +392,42 @@ MonoBehaviour:
   health: 0
   stamina: 0
   isDead: 0
+  isPerformingAction: 0
+  canRotate: 1
+  canMove: 1
+  applyRootMotion: 0
+  isSprinting: 0
+  endurance: 1
+  maxStamina: 0
+  isJumping: 0
+  isGrounded: 1
+  isLockedOn: 0
+  switchRightWeapon: 0
+  switchLeftWeapon: 0
   playerAnimatorManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
+  playerEquipmentManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
+  playerStatsManager: {fileID: 0}
+  playerTarget: {fileID: 0}
+  playerCameraManager: {fileID: 0}
+  playerCombatManager: {fileID: 0}
+  currentWeaponBeingUsed: {fileID: 0}
+  isUsingRightHand: 0
+  isUsingLeftHand: 0
+--- !u!114 &-2959177603621293489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749865201942795662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43824afc06fd87c4c9bb38f0b680f0c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &2931473718204174979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -398,6 +442,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandSlot: {fileID: 0}
   leftHandSlot: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
 --- !u!114 &2656330275641653131

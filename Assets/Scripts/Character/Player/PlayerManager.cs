@@ -13,12 +13,15 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
-
     [HideInInspector] public PlayerStatsManager playerStatsManager;
-
     [HideInInspector] public GameObject playerTarget; 
-
     [HideInInspector] public PlayerCamera playerCameraManager;
+    [HideInInspector] public PlayerCombatManager playerCombatManager;
+
+    public WeaponItem currentWeaponBeingUsed;
+    public bool isUsingRightHand = false;
+    public bool isUsingLeftHand = false;
+
     protected override void Awake()
     {
         base.Awake();
@@ -29,6 +32,7 @@ public class PlayerManager : CharacterManager
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerCameraManager = GetComponent<PlayerCamera>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
 
     }
 
@@ -55,6 +59,20 @@ public class PlayerManager : CharacterManager
         if(switchLeftWeapon){
             switchLeftWeapon = false;
             playerEquipmentManager.SwitchLeftWeapon();
+        }
+    }
+
+    public void SetCharacterActionHand(bool rightHandedAction)
+    {
+        if(rightHandedAction)
+        {
+            isUsingLeftHand = false;
+            isUsingRightHand = true;
+        }
+        else
+        {
+            isUsingLeftHand = true;
+            isUsingRightHand = false;
         }
     }
 }

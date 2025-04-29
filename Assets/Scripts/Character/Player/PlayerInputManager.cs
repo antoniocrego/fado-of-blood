@@ -16,15 +16,14 @@ public class PlayerInputManager : MonoBehaviour
     public float movementCombined; 
     PlayerControls playerControls;
 
+    [Header("Player Action Input")]
     [SerializeField] Vector2 movementInput;
-
     [SerializeField] bool dodgeInput = false;
-
     [SerializeField] bool sprintInput = false;
-
     [SerializeField] bool jumpInput = false;
-
     [SerializeField] bool lockedOn_input = false;
+    [SerializeField] bool RB_Input = false;
+
 
     private void Awake()
     {
@@ -64,6 +63,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleJumpInput();
         HandleLockOnInput();
+        HandleRBInput();
     }
 
 
@@ -178,6 +178,23 @@ public class PlayerInputManager : MonoBehaviour
         }
         
     }
+
+    private void HandleRBInput()
+    {
+        if(RB_Input)
+        {
+            RB_Input = false;
+
+            // TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.SetCharacterActionHand(true);
+
+            // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action, player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
     private void OnSceneChange(Scene current, Scene next)
     {
         // TODO: CHANGE THIS TO USE SCENE NUMBERS DEFINED ELSEWHERE
@@ -199,6 +216,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = !lockedOn_input;
+            playerControls.PlayerActions.RB.performed += instance => RB_Input = true;
 
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
