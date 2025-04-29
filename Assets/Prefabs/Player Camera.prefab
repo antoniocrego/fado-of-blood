@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 6240576310380211707}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.7, z: -3}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 6277902752811421075}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,7 +60,7 @@ Transform:
   m_GameObject: {fileID: 6645919754837455687}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -216,10 +216,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   isCameraLocked: 0
-  cameraObject: {fileID: 0}
+  cameraObject: {fileID: 8776898544826242700}
   cameraPivotTransform: {fileID: 5926826029895648821}
   cameraFollowSpeed: 1
   cameraRotationSpeed: 30
   cameraPivotSpeed: 30
-  minPivot: -10
-  maxPivot: 30
+  minPivot: -30
+  maxPivot: 60
+  cameraCollisionRadius: 0.2
+  cameraCollisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  currentLockOnTarget: {fileID: 0}

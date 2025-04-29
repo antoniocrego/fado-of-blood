@@ -14,6 +14,10 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public GameObject playerTarget; 
 
     [HideInInspector] public PlayerCamera playerCameraManager;
+
+    public float lockOnRange = 20f;
+    public LayerMask lockOnLayerMask;
+    public float fieldOfView = 60f;
     protected override void Awake()
     {
         base.Awake();

@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -134,21 +132,19 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleLockOnTarget() 
+    private void HandleLockOnTargets() 
     {
-        // Define the target of the camera to be the boss
-        GameObject target = GameObject.FindGameObjectWithTag("Boss");
+        GameObject target = player.playerCameraManager.FindLockOnTarget();
         if(target != null) 
         {
+            player.playerTarget = target;
             player.isLockedOn = true;
             PlayerCamera.instance.isCameraLocked = true;
-            player.playerTarget = target; 
         }
         else 
         {
             ClearLockOnTargets();
         }
-
     }
 
     private void ClearLockOnTargets() 
@@ -162,23 +158,18 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleLockOnInput() 
     {
-        if(lockedOn_input)
+        if(lockedOn_input) 
         {
-            if(GameObject.FindGameObjectWithTag("Boss") != null) 
-            {
-                HandleLockOnTarget();
-            }
-            else 
+            lockedOn_input = false;
+            
+            if(player.isLockedOn)
             {
                 ClearLockOnTargets();
+                return;
             }
-        }
-        else 
-        {
-            if(player.isLockedOn) 
-            {
-                ClearLockOnTargets();
-            }
+            Debug.Log("Attempting to lock on to target");
+
+            HandleLockOnTargets();
         }
         
     }
@@ -213,14 +204,12 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
-            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = !lockedOn_input;
+            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
 
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
             playerControls.CameraMovement.Look.performed += i => cameraInput = i.ReadValue<Vector2>();
-
-
 
         }
 
