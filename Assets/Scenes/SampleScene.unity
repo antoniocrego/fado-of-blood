@@ -1115,6 +1115,18 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: isUsingLeftHand
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: isUsingRightHand
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: currentWeaponBeingUsed
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4175698415943997719, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Layer
       value: 6
