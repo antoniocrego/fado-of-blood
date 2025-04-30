@@ -190,4 +190,23 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             SwitchLeftWeapon();
         }
     }
+
+    // DAMAGE COLLIDERS
+    public void OpenDamageCollider(){
+        if (player.isUsingRightHand){
+            rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
+        }
+        else if (player.isUsingLeftHand){
+            leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
+        }
+    }
+
+    public void CloseDamageCollider(){
+        if (player.isUsingRightHand){
+            rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+        }
+        else if (player.isUsingLeftHand){
+            leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
+        }
+    }
 }

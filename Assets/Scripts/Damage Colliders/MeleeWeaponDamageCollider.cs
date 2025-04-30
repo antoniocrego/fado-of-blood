@@ -6,4 +6,63 @@ public class MeleeWeaponDamageCollider : DamageCollider
 {
     [Header("Attacking Character")]
     public CharacterManager characterCausingDamage;
+
+    [Header("Weapon Attack Modifiers")]
+    public float lightAttack01Modifier;
+
+    protected override void Awake()
+    {
+        base.Awake();
+
+        if (damageCollider == null)
+        {
+            damageCollider = GetComponent<Collider>();
+        }
+        damageCollider.enabled = false;
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger entered: " + other.gameObject.name);
+        CharacterManager damageTarget = other.GetComponent<CharacterManager>();
+        Debug.Log("Damage target: " + damageTarget);
+        if (damageTarget != null)
+        {
+            if (damageTarget == characterCausingDamage)
+            {
+                return; // Ignore self-damage
+            }
+            contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
+
+            DamageTarget(damageTarget);
+        }
+    }
+
+    protected override void DamageTarget(CharacterManager damageTarget)
+    {
+        if(charactersDamaged.Contains(damageTarget)){
+            return;
+        }
+
+        charactersDamaged.Add(damageTarget);
+
+        TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
+        damageEffect.damage = damage;
+
+        switch (characterCausingDamage.characterCombatManager.currentAttackType)
+        {
+            case AttackType.LightAttack01:
+                ApplyAttackDamageModifiers(lightAttack01Modifier, damageEffect);
+                break;
+            default:
+                break;
+        }
+
+        damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
+    }
+
+    private void ApplyAttackDamageModifiers(float modifier, TakeDamageEffect damage)
+    {
+        damage.damage *= modifier;
+    }
 }

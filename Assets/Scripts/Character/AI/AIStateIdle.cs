@@ -5,12 +5,14 @@
 // {
 //     public override AIState Tick(AICharacterManager aiCharacterManager)
 //     {
-//         if (aiCharacterManager.characterCombatManger.currentTarget != null)
+//         if (aiCharacterManager.characterCombatManager.currentTarget != null)
 //         {
 
 //         }
 //         else{
 //             return this;
 //         }
+
+//         return this;
 //     }
 // }

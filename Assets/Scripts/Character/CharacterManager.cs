@@ -8,6 +8,7 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public Animator animator;
     public CharacterInventoryManager inventoryManager;
     public CharacterEquipmentManager equipmentManager;
+    [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     public float health;
     public float stamina;
@@ -42,9 +43,14 @@ public class CharacterManager : MonoBehaviour
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         health = 100;
         stamina = 10;
+        characterCombatManager = GetComponent<CharacterCombatManager>();
     }
 
     protected virtual void Update(){
         
+    }
+
+    protected virtual void FixedUpdate(){
+
     }
 }

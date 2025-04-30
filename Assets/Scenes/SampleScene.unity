@@ -1619,6 +1619,55 @@ MonoBehaviour:
   zoomSpeed: 2
   height: 2
   isCameraLocked: 0
+--- !u!1 &1574661660
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1574661662}
+  - component: {fileID: 1574661661}
+  m_Layer: 0
+  m_Name: World AI Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1574661661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574661660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d1d19d2bc2c141b22f4e3680d5110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  despawnCharacters: 0
+  respawnCharacters: 0
+  worldAIs:
+  - {fileID: 5629532297250181197, guid: d32d91fb9fd5a5943a21e772f55e7c98, type: 3}
+  spawnedAIs: []
+--- !u!4 &1574661662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574661660}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6831888, y: 0.5200501, z: -3.880669}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986336938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1706,7 @@ MonoBehaviour:
   sprintInput: 0
   jumpInput: 0
   lockedOn_input: 0
+  RB_Input: 0
 --- !u!4 &1986336940
 Transform:
   m_ObjectHideFlags: 0
@@ -2073,3 +2123,4 @@ SceneRoots:
   - {fileID: 80351228}
   - {fileID: 5519114357268749550}
   - {fileID: 1531025222}
+  - {fileID: 1574661662}

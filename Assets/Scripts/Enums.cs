@@ -8,3 +8,7 @@ public enum WeaponModelSlot{
     RightHand,
     LeftHand,
 }
+
+public enum AttackType{
+    LightAttack01,
+}

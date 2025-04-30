@@ -1,12 +1,14 @@
 using UnityEngine;
 
-public class AICharacterManager : MonoBehaviour
+public class AICharacterManager : CharacterManager
 {
     [Header("Current State")]
     [SerializeField] private AIState currentState;
 
-    void FixedUpdate()
+    protected override void FixedUpdate()
     {
+        base.FixedUpdate();
+        
         ProcessStateMachine();
     }
 

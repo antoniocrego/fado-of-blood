@@ -12,12 +12,12 @@ public class WeaponItem : Item
     public float dex = 0f;
     public float magic = 0f;
 
-    //WEAPON MODIFIERS
-    //LIGHT ATTACK MODIFIER
-    //HEAVY ATTACK MODIFIER
+    [Header("Attack Modifiers")]
+    public float lightAttack01Modifier = 1f;
 
     [Header("Stamina Costs")]
-    public float baseStaminaCost = 10f;
+    public float baseStaminaCost = 2f;
+    public float lightAttack01StaminaModifier = 1f;
 
     [Header("Actions")]
     public WeaponItemAction oh_RB_Action; // ONE HAND RIGHT BUMPER ACTION
