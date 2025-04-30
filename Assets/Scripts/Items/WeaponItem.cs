@@ -18,4 +18,7 @@ public class WeaponItem : Item
 
     [Header("Stamina Costs")]
     public float baseStaminaCost = 10f;
+
+    [Header("Actions")]
+    public WeaponItemAction oh_RB_Action; // ONE HAND RIGHT BUMPER ACTION
 }
