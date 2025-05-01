@@ -22,6 +22,10 @@ public class PlayerManager : CharacterManager
     public bool isUsingRightHand = false;
     public bool isUsingLeftHand = false;
 
+
+    public float lockOnRange = 20f;
+    public LayerMask lockOnLayerMask;
+    public float fieldOfView = 60f;
     protected override void Awake()
     {
         base.Awake();
@@ -31,11 +35,13 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
-        playerCameraManager = GetComponent<PlayerCamera>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        if (playerCameraManager == null)
+        {
+            playerCameraManager = FindAnyObjectByType<PlayerCamera>();
+        }
 
     }
-
     protected override void Update()
     {
         base.Update();
@@ -74,5 +80,12 @@ public class PlayerManager : CharacterManager
             isUsingLeftHand = true;
             isUsingRightHand = false;
         }
+    }
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate();
+
+        playerCameraManager.HandleCamera();
     }
 }

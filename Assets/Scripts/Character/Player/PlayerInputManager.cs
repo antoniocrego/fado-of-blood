@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,18 +10,22 @@ public class PlayerInputManager : MonoBehaviour
     public float verticalInput;
 
     public float horizontalInput;
+    public float cameraVerticalInput;
+    public float cameraHorizontalInput;
 
     public float movementCombined; 
     PlayerControls playerControls;
 
     [Header("Player Action Input")]
     [SerializeField] Vector2 movementInput;
+    [SerializeField] Vector2 cameraInput;
     [SerializeField] bool dodgeInput = false;
     [SerializeField] bool sprintInput = false;
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool lockedOn_input = false;
     [SerializeField] bool RB_Input = false;
-
+    [SerializeField] bool lockOnLeft_input = false;
+    [SerializeField] bool lockOnRight_input = false;
 
     private void Awake()
     {
@@ -32,7 +34,7 @@ public class PlayerInputManager : MonoBehaviour
             instance = this;
             if(player == null) 
             {
-                player = FindObjectOfType<PlayerManager>();
+                player = FindAnyObjectByType<PlayerManager>();
             }
         }
         else
@@ -64,6 +66,9 @@ public class PlayerInputManager : MonoBehaviour
         HandleJumpInput();
         HandleLockOnInput();
         HandleRBInput();
+        HandleLockOnLeftInput();
+        HandleLockOnRightInput();
+        HandleCameraInput();
     }
 
 
@@ -130,21 +135,20 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleLockOnTarget() 
+    private void HandleLockOnTargets() 
     {
-        // Define the target of the camera to be the boss
-        GameObject target = GameObject.FindGameObjectWithTag("Boss");
+        player.playerCameraManager.HandleLockOnTarget();
+        GameObject target = player.playerCameraManager.currentLockOnTarget;
         if(target != null) 
         {
+            player.playerTarget = target;
             player.isLockedOn = true;
             PlayerCamera.instance.isCameraLocked = true;
-            player.playerTarget = target; 
         }
         else 
         {
             ClearLockOnTargets();
         }
-
     }
 
     private void ClearLockOnTargets() 
@@ -153,28 +157,22 @@ public class PlayerInputManager : MonoBehaviour
         player.isLockedOn = false;
         lockedOn_input = false;
         player.playerTarget = null;
-        PlayerCamera.instance.isCameraLocked = false;
+        player.playerCameraManager.ClearLockOnTargets();
     }
 
     private void HandleLockOnInput() 
     {
-        if(lockedOn_input)
+        if(lockedOn_input) 
         {
-            if(GameObject.FindGameObjectWithTag("Boss") != null) 
-            {
-                HandleLockOnTarget();
-            }
-            else 
+            lockedOn_input = false;
+            
+            if(player.isLockedOn)
             {
                 ClearLockOnTargets();
+                return;
             }
-        }
-        else 
-        {
-            if(player.isLockedOn) 
-            {
-                ClearLockOnTargets();
-            }
+
+            HandleLockOnTargets();
         }
         
     }
@@ -195,6 +193,57 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    private void HandleLockOnLeftInput() 
+    {
+        if(lockOnLeft_input) 
+        {
+            lockOnLeft_input = false;
+            if(player.isLockedOn)
+            {
+                player.playerCameraManager.HandleLockOnLeft();
+                GameObject target = player.playerCameraManager.currentLockOnTarget;
+                if(target != null) 
+                {
+                    player.playerTarget = target;
+                }
+                else 
+                {
+                    ClearLockOnTargets();
+                }          
+            }
+        }
+    }
+    private void HandleLockOnRightInput() 
+    {
+        if(lockOnRight_input) 
+        {
+            lockOnRight_input = false;
+            if(player.isLockedOn)
+            {
+                player.playerCameraManager.HandleLockOnRight();   
+                GameObject target = player.playerCameraManager.currentLockOnTarget;
+                if(target != null) 
+                {
+                    player.playerTarget = target;
+                }
+                else 
+                {
+                    ClearLockOnTargets();
+                }             
+            }
+        }
+    }
+
+    private void HandleCameraInput() 
+    {
+        if(player == null) 
+        {
+            return;
+        }
+
+        cameraVerticalInput = cameraInput.y;
+        cameraHorizontalInput = cameraInput.x; 
+    }
     private void OnSceneChange(Scene current, Scene next)
     {
         // TODO: CHANGE THIS TO USE SCENE NUMBERS DEFINED ELSEWHERE
@@ -215,12 +264,14 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
-            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = !lockedOn_input;
             playerControls.PlayerActions.RB.performed += instance => RB_Input = true;
-
+            playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
+            playerControls.PlayerActions.LockOnLeft.performed += i => lockOnLeft_input = true;
+            playerControls.PlayerActions.LockOnRight.performed += i => lockOnRight_input = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+            playerControls.CameraMovement.Look.performed += i => cameraInput = i.ReadValue<Vector2>();
 
         }
 
