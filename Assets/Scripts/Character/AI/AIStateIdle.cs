@@ -7,7 +7,7 @@ public class AIStateIdle : AIState
     {
         if (aiCharacter.characterCombatManager.currentTarget != null)
         {
-            return this;
+            return SwitchState(aiCharacter, aiCharacter.pursueState);
         }
         else{
             aiCharacter.aiCharacterCombatManager.FindATargetViaLineOfSight(aiCharacter);

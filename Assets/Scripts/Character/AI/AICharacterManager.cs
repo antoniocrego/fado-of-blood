@@ -1,15 +1,36 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AICharacterManager : CharacterManager
 {
-    public AICharacterCombatManager aiCharacterCombatManager;
+    [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
+    [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
+
+    [Header("Navmesh Agent")]
+    public NavMeshAgent navMeshAgent;
+
     [Header("Current State")]
     [SerializeField] private AIState currentState;
+
+    [Header("States")]
+    public AIStateIdle idleState;
+    public AIStatePursue pursueState;
+    // COMBAT STATE
+    // ATTACK STATE
 
     protected override void Awake()
     {
         base.Awake();
         aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
+        aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
+
+        navMeshAgent = GetComponentInChildren<NavMeshAgent>();
+
+        // SOs must be copied to the instance of the object, otherwise they will be shared between all instances.
+        idleState = Instantiate(idleState);
+        pursueState = Instantiate(pursueState);
+
+        currentState = idleState; // Set the initial state to idle.
     }
 
     protected override void FixedUpdate()
@@ -25,5 +46,24 @@ public class AICharacterManager : CharacterManager
         if (nextState != null){
             currentState = nextState;
         }
+
+        navMeshAgent.transform.localPosition = Vector3.zero;
+        navMeshAgent.transform.localRotation = Quaternion.identity;
+
+        if (navMeshAgent.enabled){
+            Vector3 agentDestination = navMeshAgent.destination;
+            float remainingDistance = Vector3.Distance(agentDestination, transform.position);
+
+            if (remainingDistance > navMeshAgent.stoppingDistance){
+                isMoving = true;
+            }
+            else{
+                isMoving = false;
+            }
+        }
+        else{
+            isMoving = false;
+        }
+        animator.SetBool("isMoving", isMoving);
     }
 }

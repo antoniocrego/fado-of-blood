@@ -92,13 +92,19 @@ public class PlayerInputManager : MonoBehaviour
         {
             return;
         }
+        if(movementCombined!=0){
+            player.isMoving = true;
+        }
+        else{
+            player.isMoving = false;
+        }
         if(!lockedOn_input) 
         {
-            player.playerAnimatorManager.updateAnimatorMovementParameters(0, movementCombined, player.isSprinting);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, movementCombined, player.isMoving, player.isSprinting);
         }
         else if(lockedOn_input)
         {
-            player.playerAnimatorManager.updateAnimatorMovementParameters(horizontalInput, verticalInput, player.isSprinting);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.isMoving, player.isSprinting);
         }
     }
 

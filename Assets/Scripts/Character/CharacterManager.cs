@@ -34,6 +34,8 @@ public class CharacterManager : MonoBehaviour
 
     public bool isLockedOn = false; 
 
+    public bool isMoving = false;
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);

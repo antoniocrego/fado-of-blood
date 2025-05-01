@@ -26,9 +26,11 @@ public class AICharacterCombatManager : CharacterCombatManager
                 if (angle < maximumDetectionAngle && angle > minimumDetectionAngle)
                 {
                     // TODO: voltar aqui e mudar targetCharacter para o lockOnTransform
-                    if (!Physics.Linecast(aiCharacter.transform.position, targetCharacter.transform.position, LayerMask.GetMask("Default")))
+                    Vector3 increasedYAICharacterPosition = new Vector3(aiCharacter.transform.position.x, aiCharacter.transform.position.y + 0.8f, aiCharacter.transform.position.z);
+                    Vector3 increasedYTargetCharacterPosition = new Vector3(targetCharacter.transform.position.x, targetCharacter.transform.position.y + 0.8f, targetCharacter.transform.position.z);
+                    if (!Physics.Linecast(increasedYAICharacterPosition, increasedYTargetCharacterPosition, LayerMask.GetMask("Default")))
                     {
-                        Debug.DrawLine(aiCharacter.transform.position, targetCharacter.transform.position, Color.red);
+                        Debug.DrawLine(increasedYAICharacterPosition, increasedYTargetCharacterPosition, Color.red);
                         aiCharacter.characterCombatManager.currentTarget = targetCharacter;
                     }
                 }
