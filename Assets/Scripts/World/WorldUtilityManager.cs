@@ -31,4 +31,15 @@ public class WorldUtilityManager : MonoBehaviour
 
         return false;
     }
+    
+    public float GetAngleOfTarget(Transform transform, Vector3 targetDirection)
+    {
+        targetDirection.y = 0;
+        float angle = Vector3.Angle(transform.forward, targetDirection);
+        Vector3 cross = Vector3.Cross(transform.forward, targetDirection);
+
+        if (cross.y < 0) angle = -angle;
+        
+        return angle;
+    }
 }

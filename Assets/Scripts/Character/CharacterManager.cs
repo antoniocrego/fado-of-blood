@@ -10,6 +10,7 @@ public class CharacterManager : MonoBehaviour
     public CharacterEquipmentManager equipmentManager;
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+    [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     public CharacterGroup characterGroup;
     public float health;
     public float stamina;
@@ -44,6 +45,7 @@ public class CharacterManager : MonoBehaviour
         inventoryManager = GetComponent<CharacterInventoryManager>();
         equipmentManager = GetComponent<CharacterEquipmentManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
+        characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         health = 100;
         stamina = 10;
         characterCombatManager = GetComponent<CharacterCombatManager>();

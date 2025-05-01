@@ -1332,8 +1332,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5629532297250181197}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f9a03774a390fc74e8a77a08f81a894f, type: 3}
-  m_Controller: {fileID: 9100000, guid: 61bd3a4bb0c1a524891d707be010270b, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 9fb7712693667b44a89a6a6ea9796fe4, type: 3}
+  m_Controller: {fileID: 9100000, guid: 4f4345f596b19ea45bd14f62dff34bed, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1363,6 +1363,7 @@ MonoBehaviour:
   equipmentManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterEffectsManager: {fileID: 0}
+  characterAnimatorManager: {fileID: 0}
   characterGroup: 2
   health: 0
   stamina: 0
@@ -1398,6 +1399,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
+  viewableAngle: 35
+  targetDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 10
   minimumDetectionAngle: -35
   maximumDetectionAngle: 35

@@ -12,6 +12,12 @@ public class AIStatePursue : AIState
 
         if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
+        // target is outside of fov, turn towards it
+        if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumFOV || aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumFOV)
+        {
+            aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+        }
+
         aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
         // TRY THIS OUT LATER ON
