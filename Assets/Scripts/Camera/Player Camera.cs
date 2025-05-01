@@ -32,6 +32,8 @@ public class PlayerCamera : MonoBehaviour
 
     private List<GameObject> availableTargets = new List<GameObject>();
     public GameObject currentLockOnTarget;
+    [SerializeField] GameObject leftLockOnTarget;
+    [SerializeField] GameObject rightLockOnTarget;
 
 
 
@@ -92,7 +94,7 @@ public class PlayerCamera : MonoBehaviour
             {
                 Vector3 pivotPos = cameraPivotTransform.localPosition;
                 float targetY = player.transform.position.y - currentLockOnTarget.transform.position.y;
-                pivotPos.y = Mathf.Lerp(pivotPos.y, targetY+defaultYPosition, 0.2f);
+                pivotPos.y = Mathf.Lerp(pivotPos.y, targetY+defaultYPosition+0.2f, 0.2f);
                 cameraPivotTransform.localPosition = pivotPos;
 
                 Vector3 direction = currentLockOnTarget.transform.position - player.transform.position;
@@ -174,53 +176,83 @@ public class PlayerCamera : MonoBehaviour
         
     }
 
-    public GameObject FindLockOnTarget()
+    public void HandleLockOnTarget()
     {
         availableTargets.Clear();
         Collider[] colliders = Physics.OverlapSphere(player.transform.position, player.lockOnRange, player.lockOnLayerMask);
         for (int i = 0; i < colliders.Length; i++)
         {
-            Debug.Log("Found "+colliders.Length+" colliders ");
             if (colliders[i].transform == player.transform || colliders[i].transform.IsChildOf(player.transform))
             {
-                Debug.Log("Found player: ");
-                continue;
-            }
-            availableTargets.Add(colliders[i].gameObject);
-
-            
-            /*
-            CharacterManager character = colliders[i].GetComponent<CharacterManager>();
-            
-            if (character == null || character == player || character.isDead)
-            {
                 continue;
             }
 
-            float currentAngle = Vector3.Angle(player.transform.forward, (character.transform.position - player.transform.position).normalized);
-            if (currentAngle <= player.fieldOfView / 2)
+            float currentAngle = Vector3.Angle(cameraObject.transform.forward, (colliders[i].gameObject.transform.position - cameraObject.transform.position).normalized);
+            if (currentAngle <= player.fieldOfView)
             {
                 RaycastHit hit;
-                if (Physics.Linecast(player.transform.position, character.transform.position, out hit, 0))
+                if (Physics.Linecast(player.transform.position, colliders[i].gameObject.transform.position, out hit, 0))
                 {
                     continue;
                 }
-                availableTargets.Add(character);
+                availableTargets.Add(colliders[i].gameObject);
             }
-            */
         }
         availableTargets.Sort((x, y) => Vector3.Distance(player.transform.position, x.transform.position).CompareTo(Vector3.Distance(player.transform.position, y.transform.position)));
-        if (availableTargets.Count > 0)
+        float closestLeft = -Mathf.Infinity;
+        float closestRight = Mathf.Infinity;
+        for (int i = 0; i < availableTargets.Count; i++)
         {
-            currentLockOnTarget = availableTargets[0];
+            if (currentLockOnTarget == null)
+            {
+                currentLockOnTarget = availableTargets[i];
+            }
+            if (currentLockOnTarget == availableTargets[i])
+            {
+                continue;
+            }
+            Vector3 relativePos = player.transform.InverseTransformPoint(availableTargets[i].transform.position);
+            if (relativePos.x < 0 && relativePos.x > closestLeft)
+            {
+                leftLockOnTarget = availableTargets[i];
+                closestLeft = relativePos.x;
+            }
+            else if (relativePos.x > 0 && relativePos.x < closestRight)
+            {
+                rightLockOnTarget = availableTargets[i];
+                closestRight = relativePos.x;
+            }
         }
-        else
-        {
-            currentLockOnTarget = null;
-        }
-        return currentLockOnTarget;
-
     }
 
+    public void HandleLockOnLeft()
+    {
+        if(isCameraLocked && leftLockOnTarget != null)
+        {
+            currentLockOnTarget = leftLockOnTarget;
+            rightLockOnTarget = null;
+            leftLockOnTarget = null;
+            HandleLockOnTarget();
+        }
+    }
+    public void HandleLockOnRight()
+    {
+        if(isCameraLocked && rightLockOnTarget != null)
+        {
+            currentLockOnTarget = rightLockOnTarget;
+            rightLockOnTarget = null;
+            leftLockOnTarget = null;
+            HandleLockOnTarget();
+        }
+    }
+
+    public void ClearLockOnTargets()
+    {
+        currentLockOnTarget = null;
+        isCameraLocked = false;
+        availableTargets.Clear();
+        leftLockOnTarget = null;
+        rightLockOnTarget = null;
+    }
 
 }

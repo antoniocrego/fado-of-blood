@@ -132,7 +132,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             if(player.playerTarget != null) 
             {
-                Debug.Log("Locked on to target: " + player.playerTarget.name);
                 Vector3 directionToTarget = player.playerTarget.transform.position - transform.position;
                 directionToTarget.y = 0; 
                 if(directionToTarget != Vector3.zero)

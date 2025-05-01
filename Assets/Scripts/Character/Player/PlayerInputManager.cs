@@ -26,6 +26,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool jumpInput = false;
 
     [SerializeField] bool lockedOn_input = false;
+    [SerializeField] bool lockOnLeft_input = false;
+    [SerializeField] bool lockOnRight_input = false;
 
     private void Awake()
     {
@@ -65,6 +67,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleJumpInput();
         HandleLockOnInput();
+        HandleLockOnLeftInput();
+        HandleLockOnRightInput();
         HandleCameraInput();
     }
 
@@ -134,7 +138,8 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleLockOnTargets() 
     {
-        GameObject target = player.playerCameraManager.FindLockOnTarget();
+        player.playerCameraManager.HandleLockOnTarget();
+        GameObject target = player.playerCameraManager.currentLockOnTarget;
         if(target != null) 
         {
             player.playerTarget = target;
@@ -153,7 +158,7 @@ public class PlayerInputManager : MonoBehaviour
         player.isLockedOn = false;
         lockedOn_input = false;
         player.playerTarget = null;
-        PlayerCamera.instance.isCameraLocked = false;
+        player.playerCameraManager.ClearLockOnTargets();
     }
 
     private void HandleLockOnInput() 
@@ -167,11 +172,51 @@ public class PlayerInputManager : MonoBehaviour
                 ClearLockOnTargets();
                 return;
             }
-            Debug.Log("Attempting to lock on to target");
 
             HandleLockOnTargets();
         }
         
+    }
+
+    private void HandleLockOnLeftInput() 
+    {
+        if(lockOnLeft_input) 
+        {
+            lockOnLeft_input = false;
+            if(player.isLockedOn)
+            {
+                player.playerCameraManager.HandleLockOnLeft();
+                GameObject target = player.playerCameraManager.currentLockOnTarget;
+                if(target != null) 
+                {
+                    player.playerTarget = target;
+                }
+                else 
+                {
+                    ClearLockOnTargets();
+                }          
+            }
+        }
+    }
+    private void HandleLockOnRightInput() 
+    {
+        if(lockOnRight_input) 
+        {
+            lockOnRight_input = false;
+            if(player.isLockedOn)
+            {
+                player.playerCameraManager.HandleLockOnRight();   
+                GameObject target = player.playerCameraManager.currentLockOnTarget;
+                if(target != null) 
+                {
+                    player.playerTarget = target;
+                }
+                else 
+                {
+                    ClearLockOnTargets();
+                }             
+            }
+        }
     }
 
     private void HandleCameraInput() 
@@ -205,6 +250,8 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
             playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
+            playerControls.PlayerActions.LockOnLeft.performed += i => lockOnLeft_input = true;
+            playerControls.PlayerActions.LockOnRight.performed += i => lockOnRight_input = true;
 
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
