@@ -10,6 +10,7 @@ public class CharacterManager : MonoBehaviour
     public CharacterEquipmentManager equipmentManager;
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
+    public CharacterGroup characterGroup;
     public float health;
     public float stamina;
     public bool isDead = false;
