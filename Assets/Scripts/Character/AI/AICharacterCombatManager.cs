@@ -2,14 +2,22 @@ using UnityEngine;
 
 public class AICharacterCombatManager : CharacterCombatManager
 {
-    [Header("Viewable Angle")]
-    public float viewableAngle = 35f;
+    [Header("Action Recovery")]
+    public float actionRecoveryTimer = 0f;
+
+
+    [Header("Target Information")]
+    public float distanceFromTarget;
+    public float viewableAngle;
     public Vector3 targetDirection;
 
     [Header("Detection")]
     [SerializeField] private float detectionRadius = 10f;
     public float minimumFOV = -35f;
     public float maximumFOV = 35f;
+
+    [Header("Attack Rotation Speed")]
+    public float attackRotationSpeed = 25f;
 
     public void FindATargetViaLineOfSight(AICharacterManager aiCharacter){
         if (currentTarget != null) return;
@@ -54,6 +62,47 @@ public class AICharacterCombatManager : CharacterCombatManager
         }
         else if (viewableAngle <= -60 && viewableAngle >= -110){
             aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 R", true);
+        }
+    }
+
+    public void RotateTowardsAgent(AICharacterManager aiCharacter)
+    {
+        if (aiCharacter.isMoving){
+            aiCharacter.transform.rotation = aiCharacter.navMeshAgent.transform.rotation;
+        }
+    }
+
+    public void RotateTowardsTargetWhileAttacking(AICharacterManager aiCharacter)
+    {
+        if (currentTarget == null) return;
+
+        if (!aiCharacter.canRotate) return;
+
+        if (!aiCharacter.isPerformingAction) return;
+
+        Vector3 targetDirection = currentTarget.transform.position - aiCharacter.transform.position;
+        targetDirection.y = 0;
+        targetDirection.Normalize();
+
+        if (targetDirection == Vector3.zero)
+            targetDirection = aiCharacter.transform.forward;
+
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        aiCharacter.transform.rotation = Quaternion.Slerp(aiCharacter.transform.rotation, targetRotation, attackRotationSpeed * Time.deltaTime);
+    }
+
+    public void HandleActionRecovery(AICharacterManager aiCharacter){
+        if (actionRecoveryTimer > 0)
+        {
+            if (!aiCharacter.isPerformingAction)
+            {
+                actionRecoveryTimer -= Time.deltaTime;
+            }
+        }
+        else if (actionRecoveryTimer < 0)
+        {
+            actionRecoveryTimer = 0;
         }
     }
 }

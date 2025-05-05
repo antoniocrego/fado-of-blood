@@ -20,6 +20,18 @@ public class AIStatePursue : AIState
 
         aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
+        // OPTION 01 (GOOD FOR ALL ENEMIES BUT CAN BE JANKY)
+        // if (aiCharacter.aiCharacterCombatManager.distanceFromTarget <= aiCharacter.combatState.maximumEngagementDistance)
+        // {
+        //     return SwitchState(aiCharacter, aiCharacter.combatState);
+        // }
+
+        // OPTION 02 (GOOD FOR ENEMIES WHICH ARENT RANGED, DEPENDS ON NAVMESH STOPPING DISTANCE)
+        if (aiCharacter.aiCharacterCombatManager.distanceFromTarget <= aiCharacter.navMeshAgent.stoppingDistance)
+        {
+            return SwitchState(aiCharacter, aiCharacter.combatState);
+        }
+
         // TRY THIS OUT LATER ON
         aiCharacter.navMeshAgent.SetDestination(aiCharacter.characterCombatManager.currentTarget.transform.position);
 

@@ -15,8 +15,8 @@ public class AICharacterManager : CharacterManager
     [Header("States")]
     public AIStateIdle idleState;
     public AIStatePursue pursueState;
-    // COMBAT STATE
-    // ATTACK STATE
+    public AIStateCombat combatState;
+    public AIStateAttack attackState;
 
     protected override void Awake()
     {
@@ -31,6 +31,13 @@ public class AICharacterManager : CharacterManager
         pursueState = Instantiate(pursueState);
 
         currentState = idleState; // Set the initial state to idle.
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        aiCharacterCombatManager.HandleActionRecovery(this);
     }
 
     protected override void FixedUpdate()
@@ -53,6 +60,7 @@ public class AICharacterManager : CharacterManager
         if (aiCharacterCombatManager.currentTarget != null){
             aiCharacterCombatManager.targetDirection = aiCharacterCombatManager.currentTarget.transform.position - transform.position;
             aiCharacterCombatManager.viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, aiCharacterCombatManager.targetDirection);
+            aiCharacterCombatManager.distanceFromTarget = Vector3.Distance(transform.position, aiCharacterCombatManager.currentTarget.transform.position);
         }
 
         if (navMeshAgent.enabled){
