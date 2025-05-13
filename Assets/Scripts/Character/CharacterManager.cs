@@ -11,6 +11,7 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterCombatManager characterCombatManager;
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
+    [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
     public CharacterGroup characterGroup;
     public float health;
     public float stamina;
@@ -18,20 +19,12 @@ public class CharacterManager : MonoBehaviour
 
     public bool isPerformingAction = false;
 
-    public bool canRotate = true; 
-
-    public bool canMove = true;
-
-    public bool applyRootMotion = false;
-
     public bool isSprinting = false;
 
     public int endurance = 1; 
     public int maxStamina = 0;
 
     public bool isJumping = false;
-
-    public bool isGrounded = true;
 
     public bool isLockedOn = false; 
 
@@ -46,6 +39,7 @@ public class CharacterManager : MonoBehaviour
         equipmentManager = GetComponent<CharacterEquipmentManager>();
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+        characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
         health = 100;
         stamina = 10;
         characterCombatManager = GetComponent<CharacterCombatManager>();

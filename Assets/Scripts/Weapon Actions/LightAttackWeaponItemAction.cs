@@ -12,7 +12,7 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
 
         if(playerPerformingAction.stamina <= 0) return;
 
-        if(!playerPerformingAction.isGrounded) return;
+        if(!playerPerformingAction.characterLocomotionManager.isGrounded) return;
 
         PerformLightAttack(playerPerformingAction, weaponPerformingAction);
     }
