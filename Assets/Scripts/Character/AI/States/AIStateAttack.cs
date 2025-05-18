@@ -20,6 +20,8 @@ public class AIStateAttack : AIState
 
         if (aiCharacter.aiCharacterCombatManager.currentTarget.isDead) return SwitchState(aiCharacter, aiCharacter.idleState);
 
+        aiCharacter.aiCharacterCombatManager.RotateTowardsTargetWhileAttacking(aiCharacter);
+        
         aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0,0,false,false);
 
         // perform combo if applicable
@@ -32,11 +34,11 @@ public class AIStateAttack : AIState
             }
         }
 
+        if (aiCharacter.isPerformingAction) return this;
+
         if (!hasPerformedAttack)
         {
             if (aiCharacter.aiCharacterCombatManager.actionRecoveryTimer > 0) return this;
-
-            if (aiCharacter.isPerformingAction) return this;
 
             PerformAttack(aiCharacter);
 

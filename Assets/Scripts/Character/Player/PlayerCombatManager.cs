@@ -42,10 +42,12 @@ public class PlayerCombatManager : CharacterCombatManager
             player.stamina = 0;
         }
     }
-    
+
     public override void SetTarget(CharacterManager newTarget)
     {
         base.SetTarget(newTarget);
+        if (player == null)
+            Debug.Log("Player is null");
         player.playerCameraManager.SetLockCameraHeight();
     }
 }

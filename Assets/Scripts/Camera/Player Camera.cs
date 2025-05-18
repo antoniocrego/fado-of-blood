@@ -235,7 +235,7 @@ public class PlayerCamera : MonoBehaviour
 
             if (player.isLockedOn)
             {
-                if (availableTargets[i] == currentLockOnTarget)
+                if (availableTargets[i] == currentLockOnTarget || availableTargets[i] == player.playerCombatManager.currentTarget)
                 {
                     continue;
                 }
@@ -278,6 +278,7 @@ public class PlayerCamera : MonoBehaviour
 
         if (currentLockOnTarget != null)
         {
+            Debug.Log("changing target");
             player.playerCombatManager.SetTarget(currentLockOnTarget);
             player.isLockedOn = true;
         }

@@ -12,7 +12,7 @@ public class WorldAIManager : MonoBehaviour
     [SerializeField] bool respawnCharacters = false;
 
     [Header("AIs")]
-    [SerializeField] GameObject[] worldAIs;
+    [SerializeField] List<AICharacterSpawner> aiCharacterSpawners;
     [SerializeField] List<GameObject> spawnedAIs;
 
     private void Awake()
@@ -29,50 +29,23 @@ public class WorldAIManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(WaitForSceneToLoadThenSpawnCharacters());
+        
     }
 
-    private IEnumerator WaitForSceneToLoadThenSpawnCharacters()
+    public void SpawnCharacter(AICharacterSpawner spawner)
     {
-        while (!SceneManager.GetActiveScene().isLoaded)
-        {
-            yield return null;
-        }
-        SpawnAllCharacters();
-    }
-
-    private void SpawnAllCharacters()
-    {
-        foreach (GameObject ai in worldAIs)
-        {
-            GameObject spawnedAI = Instantiate(ai, ai.transform.position, Quaternion.identity);
-            spawnedAI.transform.SetParent(transform);
-            spawnedAIs.Add(spawnedAI);
-        }
+        aiCharacterSpawners.Add(spawner);
+        spawner.AttemptToSpawnCharacter();
     }
 
     private void DespawnAllCharacters()
     {
+        // TODO: Need to change this to work with spawner
         foreach (GameObject ai in spawnedAIs)
         {
             Destroy(ai);
         }
         spawnedAIs.Clear();
-    }
-
-    private void Update()
-    {
-        if (despawnCharacters)
-        {
-            DespawnAllCharacters();
-            despawnCharacters = false;
-        }
-
-        if (respawnCharacters)
-        {
-            SpawnAllCharacters();
-            respawnCharacters = false;
-        }
     }
 
     private void DisableAllCharacters()

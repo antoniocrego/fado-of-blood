@@ -153,13 +153,13 @@ public class PlayerInputManager : MonoBehaviour
             if (player.playerCombatManager.currentTarget.isDead)
             {
                 player.isLockedOn = false;
+                if (lockOnCoroutine != null)
+                {
+                    StopCoroutine(lockOnCoroutine);
+                }
+                lockOnCoroutine = StartCoroutine(player.playerCameraManager.WaitThenFindNewTarget());
             }
 
-            if (lockOnCoroutine != null)
-            {
-                StopCoroutine(lockOnCoroutine);
-            }
-            lockOnCoroutine = StartCoroutine(player.playerCameraManager.WaitThenFindNewTarget());
         }
         if(lockedOn_input && player.isLockedOn)
         {
@@ -225,7 +225,7 @@ public class PlayerInputManager : MonoBehaviour
                 player.playerCameraManager.HandleLocatingLockOnTargets();
 
                 if (player.playerCameraManager.rightLockOnTarget != null)
-                {
+                {   
                     player.playerCombatManager.SetTarget(player.playerCameraManager.rightLockOnTarget);
                 }
             }

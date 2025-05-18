@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class UndeadHandDamageCollider : DamageCollider
 {
-    public AICharacterManager undeadCharacter;
+    [SerializeField] AICharacterManager undeadCharacter;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        damageCollider = GetComponent<Collider>();
+        undeadCharacter = GetComponentInParent<AICharacterManager>();
+    }
+
     protected override void DamageTarget(CharacterManager damageTarget)
     {
         if(charactersDamaged.Contains(damageTarget)){

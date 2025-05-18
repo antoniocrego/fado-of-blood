@@ -9,6 +9,8 @@ public class CharacterAnimatorManager : MonoBehaviour{
     int vertical; 
     int horizontal; 
 
+    public bool applyRootMotion = false;
+
     protected virtual void Awake() 
     {
         character = GetComponent<CharacterManager>();
@@ -54,21 +56,21 @@ public class CharacterAnimatorManager : MonoBehaviour{
 
     public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
     {
-        character.applyRootMotion = applyRootMotion;
+        this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
 
-        character.canMove = canMove; 
-        character.canRotate = canRotate; 
+        character.characterLocomotionManager.canMove = canMove; 
+        character.characterLocomotionManager.canRotate = canRotate; 
     }
 
     public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
     {
-        character.applyRootMotion = applyRootMotion;
+        this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
         character.characterCombatManager.currentAttackType = attackType;
-        character.canMove = canMove; 
-        character.canRotate = canRotate; 
+        character.characterLocomotionManager.canMove = canMove; 
+        character.characterLocomotionManager.canRotate = canRotate; 
     }
 }

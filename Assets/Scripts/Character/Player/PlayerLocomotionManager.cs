@@ -49,18 +49,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         base.Awake();
         player = GetComponent<PlayerManager>();
     }   
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        base.Update();
-        // HandleAllMovement();
-    }
 
     public void HandleAllMovement() 
     {
@@ -80,7 +68,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private void HandleMovement() 
     {
         GetVerticalAndHorizontalInputs();
-        if(!player.canMove)
+        if(!player.characterLocomotionManager.canMove)
             return;
         movementDirection = PlayerCamera.instance.transform.forward * verticalMovement; 
         movementDirection = movementDirection + PlayerCamera.instance.transform.right * horizontalMovement;
@@ -112,7 +100,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         if (player.isDead)
             return;
-        if (!player.canRotate)
+        if(!player.characterLocomotionManager.canRotate)
             return;
         targetDirection = Vector3.zero; 
         targetDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
@@ -222,7 +210,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleFreeFallMovement() 
     {
-        if(!player.isGrounded) 
+        if(!player.characterLocomotionManager.isGrounded) 
         {
             freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
             freeFallDirection = freeFallDirection + PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
@@ -247,7 +235,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             return;
         }
-        if(!player.isGrounded) 
+        if(!player.characterLocomotionManager.isGrounded) 
         {
             return;
         }

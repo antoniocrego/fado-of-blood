@@ -17,7 +17,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     public float maximumFOV = 35f;
 
     [Header("Attack Rotation Speed")]
-    public float attackRotationSpeed = 25f;
+    public float attackRotationSpeed = 5f;
 
     public void FindATargetViaLineOfSight(AICharacterManager aiCharacter){
         if (currentTarget != null) return;
@@ -76,7 +76,7 @@ public class AICharacterCombatManager : CharacterCombatManager
     {
         if (currentTarget == null) return;
 
-        if (!aiCharacter.canRotate) return;
+        if (!aiCharacter.aiCharacterLocomotionManager.canRotate) return;
 
         if (!aiCharacter.isPerformingAction) return;
 

@@ -20,10 +20,16 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected float inAirTime = 0;
 
+    public bool isGrounded = true;
+
+    public bool canRotate = true; 
+
+    public bool canMove = true;
+
     public void Update() 
     {
         HandleGroundCheck(); 
-        if(character.isGrounded) 
+        if(character.characterLocomotionManager.isGrounded) 
         {
             if(yVelocity.y < 0) 
             {
@@ -59,7 +65,7 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void HandleGroundCheck() 
     {
-        character.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
+        character.characterLocomotionManager.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
     }
 
     protected void OnDrawGizmosSelected()
@@ -68,5 +74,13 @@ public class CharacterLocomotionManager : MonoBehaviour
         {
             Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
         }
+    }
+
+    public void EnableCanRotate(){
+        canRotate = true;
+    }
+
+    public void DisableCanRotate(){
+        canRotate = false;
     }
 }
