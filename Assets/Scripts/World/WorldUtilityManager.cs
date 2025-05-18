@@ -3,6 +3,9 @@ using UnityEngine;
 public class WorldUtilityManager : MonoBehaviour
 {
     public static WorldUtilityManager Instance;
+
+    [SerializeField] LayerMask characterLayer;
+    [SerializeField] LayerMask enviroLayer;
     private void Awake()
     {
         if (Instance == null)
@@ -41,5 +44,14 @@ public class WorldUtilityManager : MonoBehaviour
         if (cross.y < 0) angle = -angle;
         
         return angle;
+    }
+
+    public LayerMask GetCharacterLayer()
+    {
+        return characterLayer;
+    }
+    public LayerMask GetEnviroLayer()
+    {
+        return enviroLayer;
     }
 }

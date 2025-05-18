@@ -228,3 +228,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   currentLockOnTarget: {fileID: 0}
+  leftLockOnTarget: {fileID: 0}
+  rightLockOnTarget: {fileID: 0}
+  lockOnTargetFollowSpeed: 0.9
+  setHeightSpeed: 0.07

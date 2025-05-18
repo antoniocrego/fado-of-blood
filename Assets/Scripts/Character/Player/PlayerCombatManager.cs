@@ -19,13 +19,16 @@ public class PlayerCombatManager : CharacterCombatManager
         weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
     }
 
-    public virtual void DrainStaminaBasedOnAttack(){
-        if (currentWeaponBeingUsed == null){
+    public virtual void DrainStaminaBasedOnAttack()
+    {
+        if (currentWeaponBeingUsed == null)
+        {
             return;
         }
         float staminaDeducted = 0;
 
-        switch (currentAttackType){
+        switch (currentAttackType)
+        {
             case AttackType.LightAttack01:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack01StaminaModifier;
                 break;
@@ -34,8 +37,15 @@ public class PlayerCombatManager : CharacterCombatManager
         }
 
         player.stamina -= staminaDeducted;
-        if (player.stamina <= 0){
+        if (player.stamina <= 0)
+        {
             player.stamina = 0;
         }
+    }
+    
+    public override void SetTarget(CharacterManager newTarget)
+    {
+        base.SetTarget(newTarget);
+        player.playerCameraManager.SetLockCameraHeight();
     }
 }

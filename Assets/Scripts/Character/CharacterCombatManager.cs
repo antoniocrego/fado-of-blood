@@ -12,6 +12,9 @@ public class CharacterCombatManager : MonoBehaviour
     [Header("Attack Type")]
     public AttackType currentAttackType;
 
+    [Header("Lock On Transform")]
+    public Transform lockOnTransform;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();

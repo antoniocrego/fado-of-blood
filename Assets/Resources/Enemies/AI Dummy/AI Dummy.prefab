@@ -512,6 +512,37 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!1 &2005268812636975575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6838624073039498138}
+  m_Layer: 11
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6838624073039498138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2005268812636975575}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.402, z: 0.053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2890524705403633649}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2104347447427738328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1297,7 +1328,7 @@ GameObject:
   - component: {fileID: 583765409722493554}
   - component: {fileID: 33938371628675613}
   - component: {fileID: 3455852010164073040}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AI Dummy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1321,6 +1352,7 @@ Transform:
   - {fileID: 7289743384488037456}
   - {fileID: 903482942696763371}
   - {fileID: 3671414698360965051}
+  - {fileID: 6838624073039498138}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7391068081281175589
@@ -1401,6 +1433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
+  lockOnTransform: {fileID: 6838624073039498138}
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 35

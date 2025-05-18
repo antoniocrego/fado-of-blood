@@ -21,10 +21,7 @@ public class PlayerManager : CharacterManager
     public WeaponItem currentWeaponBeingUsed;
     public bool isUsingRightHand = false;
     public bool isUsingLeftHand = false;
-
-
     public float lockOnRange = 20f;
-    public LayerMask lockOnLayerMask;
     public float fieldOfView = 60f;
     protected override void Awake()
     {

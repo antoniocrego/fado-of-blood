@@ -27,12 +27,14 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool lockOnLeft_input = false;
     [SerializeField] bool lockOnRight_input = false;
 
+    private Coroutine lockOnCoroutine;
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
-            if(player == null) 
+            if (player == null)
             {
                 player = FindAnyObjectByType<PlayerManager>();
             }
@@ -40,7 +42,7 @@ public class PlayerInputManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
-            
+
         }
     }
 
@@ -64,10 +66,9 @@ public class PlayerInputManager : MonoBehaviour
         HandleDodgeInput();
         HandleSprintInput();
         HandleJumpInput();
-        HandleLockOnInput();
+        HandleLockOnInput();  
         HandleRBInput();
-        HandleLockOnLeftInput();
-        HandleLockOnRightInput();
+        HandleLockOnSwitchTargetInput();
         HandleCameraInput();
     }
 
@@ -98,7 +99,7 @@ public class PlayerInputManager : MonoBehaviour
         else{
             player.isMoving = false;
         }
-        if(!lockedOn_input) 
+        if(!lockedOn_input || player.isSprinting) 
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, movementCombined, player.isMoving, player.isSprinting);
         }
@@ -141,46 +142,47 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleLockOnTargets() 
-    {
-        player.playerCameraManager.HandleLockOnTarget();
-        GameObject target = player.playerCameraManager.currentLockOnTarget;
-        if(target != null) 
-        {
-            player.playerTarget = target;
-            player.isLockedOn = true;
-            PlayerCamera.instance.isCameraLocked = true;
-        }
-        else 
-        {
-            ClearLockOnTargets();
-        }
-    }
-
-    private void ClearLockOnTargets() 
-    {
-        // Clear the lock on targets
-        player.isLockedOn = false;
-        lockedOn_input = false;
-        player.playerTarget = null;
-        player.playerCameraManager.ClearLockOnTargets();
-    }
-
     private void HandleLockOnInput() 
     {
-        if(lockedOn_input) 
+        if (player.isLockedOn)
         {
-            lockedOn_input = false;
-            
-            if(player.isLockedOn)
+            if (player.playerCombatManager.currentTarget == null)
             {
-                ClearLockOnTargets();
                 return;
             }
+            if (player.playerCombatManager.currentTarget.isDead)
+            {
+                player.isLockedOn = false;
+            }
 
-            HandleLockOnTargets();
+            if (lockOnCoroutine != null)
+            {
+                StopCoroutine(lockOnCoroutine);
+            }
+            lockOnCoroutine = StartCoroutine(player.playerCameraManager.WaitThenFindNewTarget());
         }
-        
+        if(lockedOn_input && player.isLockedOn)
+        {
+            lockedOn_input = false;
+            player.playerCameraManager.ClearLockOnTargets();
+            player.playerCombatManager.currentTarget = null;
+            player.isLockedOn = false;
+            //Disable the lock on
+            return;
+        }
+
+        if(lockedOn_input && !player.isLockedOn)
+        {
+            lockedOn_input = false;
+            player.playerCameraManager.HandleLocatingLockOnTargets();
+            if(player.playerCameraManager.currentLockOnTarget != null)
+            {
+                player.isLockedOn = true;
+                player.playerCombatManager.SetTarget(player.playerCameraManager.currentLockOnTarget);
+            }
+                
+            return;
+        }
     }
 
     private void HandleRBInput()
@@ -199,43 +201,33 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleLockOnLeftInput() 
+    private void HandleLockOnSwitchTargetInput()
     {
-        if(lockOnLeft_input) 
+        if (lockOnLeft_input)
         {
             lockOnLeft_input = false;
-            if(player.isLockedOn)
+            if (player.isLockedOn)
             {
-                player.playerCameraManager.HandleLockOnLeft();
-                GameObject target = player.playerCameraManager.currentLockOnTarget;
-                if(target != null) 
+                player.playerCameraManager.HandleLocatingLockOnTargets();
+
+                if (player.playerCameraManager.leftLockOnTarget != null)
                 {
-                    player.playerTarget = target;
+                    player.playerCombatManager.SetTarget(player.playerCameraManager.leftLockOnTarget);
                 }
-                else 
-                {
-                    ClearLockOnTargets();
-                }          
             }
         }
-    }
-    private void HandleLockOnRightInput() 
-    {
-        if(lockOnRight_input) 
+        
+        if (lockOnRight_input)
         {
             lockOnRight_input = false;
-            if(player.isLockedOn)
+            if (player.isLockedOn)
             {
-                player.playerCameraManager.HandleLockOnRight();   
-                GameObject target = player.playerCameraManager.currentLockOnTarget;
-                if(target != null) 
+                player.playerCameraManager.HandleLocatingLockOnTargets();
+
+                if (player.playerCameraManager.rightLockOnTarget != null)
                 {
-                    player.playerTarget = target;
+                    player.playerCombatManager.SetTarget(player.playerCameraManager.rightLockOnTarget);
                 }
-                else 
-                {
-                    ClearLockOnTargets();
-                }             
             }
         }
     }

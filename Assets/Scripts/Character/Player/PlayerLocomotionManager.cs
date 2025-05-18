@@ -110,7 +110,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleRotation() 
     {
-        if(!player.canRotate)
+        if (player.isDead)
+            return;
+        if (!player.canRotate)
             return;
         targetDirection = Vector3.zero; 
         targetDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
@@ -122,19 +124,20 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             targetDirection = transform.forward;
         }
-        if(!player.isLockedOn)
+        if(!player.isLockedOn || player.isSprinting)
         {
             Quaternion newRotation = Quaternion.LookRotation(targetDirection);
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
         }
-        if(player.isLockedOn)
+        else if(player.isLockedOn)
         {
-            if(player.playerTarget != null) 
+            if(player.playerCombatManager.currentTarget != null) 
             {
-                Vector3 directionToTarget = player.playerTarget.transform.position - transform.position;
-                directionToTarget.y = 0; 
-                if(directionToTarget != Vector3.zero)
+                Vector3 directionToTarget = player.playerCombatManager.currentTarget.transform.position - transform.position;
+                directionToTarget.y = 0;
+                directionToTarget.Normalize();
+                if (directionToTarget != Vector3.zero)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -144,7 +147,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             {
                 player.isLockedOn = false; 
                 PlayerCamera.instance.isCameraLocked = false;
-                player.playerTarget = null;
+                player.playerCombatManager.currentTarget = null;
             }
         }
     }

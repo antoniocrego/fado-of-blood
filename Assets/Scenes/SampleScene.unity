@@ -11128,6 +11128,37 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &689547490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 689547491}
+  m_Layer: 6
+  m_Name: Lock On target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &689547491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689547490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: -0.021}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1255460841}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &699039054
 GameObject:
   m_ObjectHideFlags: 0
@@ -12896,6 +12927,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf66813638ab6ec48a4a9aabc142bdc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enviroLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &784649659
 Transform:
   m_ObjectHideFlags: 0
@@ -26532,7 +26569,10 @@ PrefabInstance:
     - {fileID: 626443189428484444, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
     - {fileID: 1369403817288162229, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7383971215593331069, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 689547491}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 749865201942795662, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       insertIndex: -1
@@ -26547,6 +26587,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1997201098}
   m_SourcePrefab: {fileID: 100100000, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+--- !u!4 &1255460841 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7383971215593331069, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+  m_PrefabInstance: {fileID: 1255460840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1260406003
 GameObject:
   m_ObjectHideFlags: 0
