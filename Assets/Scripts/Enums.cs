@@ -1,19 +1,32 @@
 using UnityEngine;
 
-public class Enums : MonoBehaviour{
+public class Enums : MonoBehaviour
+{
 
 }
 
-public enum WeaponModelSlot{
+public enum CharacterSlot
+{
+    CharacterSlot01,
+    CharacterSlot02,
+    CharacterSlot03,
+    CharacterSlot04,
+    CharacterSlot05
+}
+
+public enum WeaponModelSlot
+{
     RightHand,
     LeftHand,
 }
 
-public enum AttackType{
+public enum AttackType
+{
     LightAttack01,
 }
 
-public enum CharacterGroup{
+public enum CharacterGroup
+{
     Player, // player controlled character
     Friendly, // won't attack, can't be attacked - possibly changed to attackable by enemies
     Enemy, // will attack, can be attacked
