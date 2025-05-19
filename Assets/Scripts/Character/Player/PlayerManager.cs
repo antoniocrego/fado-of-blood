@@ -22,7 +22,8 @@ public class PlayerManager : CharacterManager
     public bool isUsingRightHand = false;
     public bool isUsingLeftHand = false;
     public float lockOnRange = 20f;
-    public float fieldOfView = 60f;
+    public float minFov = -60f;
+    public float maxFov = 60f;
     protected override void Awake()
     {
         base.Awake();

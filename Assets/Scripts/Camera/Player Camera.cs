@@ -193,7 +193,7 @@ public class PlayerCamera : MonoBehaviour
                 continue;
             }
             Vector3 lockOnTargetDirection = lockOnTarget.transform.position - player.transform.position;
-            float angle = Vector3.Angle(lockOnTargetDirection, cameraObject.transform.forward);
+            float angle = Vector3.SignedAngle(player.transform.forward, lockOnTargetDirection, Vector3.up);
 
             if (lockOnTarget.isDead)
             {
@@ -205,7 +205,7 @@ public class PlayerCamera : MonoBehaviour
                 continue;
             }
 
-            if (angle > player.fieldOfView)
+            if (player.minFov > angle || player.maxFov < angle)
             {
                 continue;
             }
