@@ -11101,17 +11101,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9e611bf1dbf5cf4fa542ec4437fbeb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentTarget: {fileID: 0}
-  lockOnTransform: {fileID: 0}
-  currentAttackType: 0
-  actionRecoveryTimer: 0
-  distanceFromTarget: 0
-  viewableAngle: 0
-  targetDirection: {x: 0, y: 0, z: 0}
-  detectionRadius: 10
-  minimumFOV: -35
-  maximumFOV: 35
-  attackRotationSpeed: 5
+  characterController: {fileID: 0}
+  animator: {fileID: 0}
+  inventoryManager: {fileID: 0}
+  equipmentManager: {fileID: 0}
+  characterCombatManager: {fileID: 0}
+  characterEffectsManager: {fileID: 0}
+  characterAnimatorManager: {fileID: 0}
+  characterLocomotionManager: {fileID: 0}
+  characterGroup: 0
+  health: 0
+  stamina: 0
+  isDead: 0
+  isPerformingAction: 0
+  isSprinting: 0
+  endurance: 1
+  maxStamina: 0
+  isJumping: 0
+  isLockedOn: 0
+  isMoving: 0
+  aiCharacterCombatManager: {fileID: 0}
+  aiCharacterLocomotionManager: {fileID: 0}
+  navMeshAgent: {fileID: 0}
+  currentState: {fileID: 0}
+  idleState: {fileID: 0}
+  pursueState: {fileID: 0}
+  combatState: {fileID: 0}
+  attackState: {fileID: 0}
 --- !u!43 &659622919
 Mesh:
   m_ObjectHideFlags: 0
@@ -13243,10 +13259,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   enviroLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1025
 --- !u!4 &784649659
 Transform:
   m_ObjectHideFlags: 0

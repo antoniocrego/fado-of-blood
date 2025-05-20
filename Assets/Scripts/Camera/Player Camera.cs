@@ -102,7 +102,6 @@ public class PlayerCamera : MonoBehaviour
 
             rotationAngle = transform.eulerAngles.y;
             pivotAngle = transform.eulerAngles.x;
-
         }
         else
         {

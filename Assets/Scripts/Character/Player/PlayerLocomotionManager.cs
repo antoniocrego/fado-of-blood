@@ -70,8 +70,20 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         GetVerticalAndHorizontalInputs();
         if(!player.characterLocomotionManager.canMove)
             return;
-        movementDirection = PlayerCamera.instance.transform.forward * verticalMovement; 
-        movementDirection = movementDirection + PlayerCamera.instance.transform.right * horizontalMovement;
+
+         if (player.isLockedOn && player.playerCombatManager.currentTarget != null)
+        {
+            Vector3 playerForward = player.transform.forward;
+            Vector3 playerRight = player.transform.right;
+            movementDirection = playerForward * verticalMovement + playerRight * horizontalMovement;
+        }
+        else
+        {
+            Vector3 camForward = PlayerCamera.instance.transform.forward;
+            Vector3 camRight = PlayerCamera.instance.transform.right;
+            movementDirection = camForward * verticalMovement + camRight * horizontalMovement;
+        }
+
         movementDirection.Normalize();
         movementDirection.y = 0;
         if(player.isSprinting) 
@@ -88,7 +100,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             {
                 player.characterController.Move(movementDirection * runningSpeed  * Time.deltaTime);
             }
-            else if(PlayerInputManager.instance.movementCombined <= 0.5f)
+            else if(PlayerInputManager.instance.movementCombined > 0f && PlayerInputManager.instance.movementCombined <= 0.5f)
             {
                 player.characterController.Move(movementDirection * walkingSpeed * Time.deltaTime);
             }
