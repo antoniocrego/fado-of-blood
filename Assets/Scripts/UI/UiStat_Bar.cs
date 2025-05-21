@@ -4,10 +4,9 @@ using UnityEngine.UI;
 
 public class UiStat_Bar : MonoBehaviour
 {
-    private Slider slider; 
+    private Slider slider;
 
-
-    protected virtual void Awake() 
+    protected virtual void Awake()
     {
         slider = GetComponent<Slider>();
     }
@@ -23,5 +22,4 @@ public class UiStat_Bar : MonoBehaviour
         slider.maxValue = maxValue;
         slider.value = maxValue;
     }
-
 }

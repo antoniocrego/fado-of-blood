@@ -11109,6 +11109,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  playerUIHudManager: {fileID: 0}
   characterGroup: 0
   health: 0
   stamina: 0
@@ -11116,7 +11117,9 @@ MonoBehaviour:
   isPerformingAction: 0
   isSprinting: 0
   endurance: 1
+  vitality: 1
   maxStamina: 0
+  maxHealth: 0
   isJumping: 0
   isLockedOn: 0
   isMoving: 0
@@ -12893,6 +12896,17 @@ Transform:
   - {fileID: 953590283}
   m_Father: {fileID: 1013273477}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &739528468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1547312466073121383, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+  m_PrefabInstance: {fileID: 5519114357268749550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec5c847b0c2a344f8316c394e6fe37d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &753050415
 Mesh:
   m_ObjectHideFlags: 0
@@ -40123,6 +40137,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 511788369464202588, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 6.9099994
+      objectReference: {fileID: 0}
+    - target: {fileID: 511788369464202588, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.05499935
+      objectReference: {fileID: 0}
+    - target: {fileID: 726187962449596713, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431114669787492816, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1431114669787492816, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2258393894705752163, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -40175,13 +40209,69 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3804771889759755412, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117442524894156347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117442524894156347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117442524894156347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 206.0154
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117442524894156347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 32.4274
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117442524894156347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117442524894156347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4248928868370760982, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_Name
       value: PlayerUI Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4534850160569640556, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -17.439453
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887934127633075459, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887934127633075459, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887934127633075459, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4971730769023103741, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -40223,7 +40313,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 751049900202212222, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -40280,6 +40371,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc3541cec7d8b240b64aa1116dc9aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 739528468}
   staminaBar: {fileID: 5519114357268749552}
 --- !u!1001 &6939146002440316075
 PrefabInstance:

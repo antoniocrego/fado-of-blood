@@ -17,6 +17,8 @@ public class UndeadHandDamageCollider : DamageCollider
             return;
         }
 
+        Debug.Log("Damage target: " + damageTarget);
+
         charactersDamaged.Add(damageTarget);
 
         TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);

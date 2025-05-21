@@ -24,6 +24,13 @@ public class PlayerManager : CharacterManager
     public float lockOnRange = 20f;
     public float minFov = -60f;
     public float maxFov = 60f;
+
+    public void Start()
+    {
+        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);   
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -38,7 +45,6 @@ public class PlayerManager : CharacterManager
         {
             playerCameraManager = FindAnyObjectByType<PlayerCamera>();
         }
-
     }
     protected override void Update()
     {

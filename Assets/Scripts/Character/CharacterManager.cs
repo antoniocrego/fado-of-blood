@@ -12,6 +12,8 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+
+    [HideInInspector] public PlayerUIHudManager playerUIHudManager;
     public CharacterGroup characterGroup;
     public float health;
     public float stamina;
@@ -21,8 +23,12 @@ public class CharacterManager : MonoBehaviour
 
     public bool isSprinting = false;
 
-    public int endurance = 1; 
+    public int endurance = 1;
+
+    public int vitality = 1;
     public int maxStamina = 0;
+
+    public int maxHealth = 0;
 
     public bool isJumping = false;
 
@@ -43,6 +49,7 @@ public class CharacterManager : MonoBehaviour
         health = 100;
         stamina = 10;
         characterCombatManager = GetComponent<CharacterCombatManager>();
+        playerUIHudManager = FindObjectOfType<PlayerUIHudManager>();
     }
 
     protected virtual void Update(){
