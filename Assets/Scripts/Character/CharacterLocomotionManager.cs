@@ -29,7 +29,7 @@ public class CharacterLocomotionManager : MonoBehaviour
     public void Update() 
     {
         HandleGroundCheck(); 
-        if(character.characterLocomotionManager.isGrounded) 
+        if(isGrounded) 
         {
             if(yVelocity.y < 0) 
             {
@@ -65,7 +65,7 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     protected void HandleGroundCheck() 
     {
-        character.characterLocomotionManager.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
+        isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
     }
 
     protected void OnDrawGizmosSelected()
