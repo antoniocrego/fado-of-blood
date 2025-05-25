@@ -4,13 +4,13 @@ using UnityEngine;
 public class CharacterSaveData
 {
     [Header("Character Name")]
-    public string characterName;
+    public string characterName = "Lowly Husk";
 
     [Header("Time Played")]
-    public float secondsPlayed;
+    public float secondsPlayed = 0f;
 
     [Header("World Position")]
-    public float worldPositionX;
-    public float worldPositionY;
-    public float worldPositionZ;
+    public float worldPositionX = 0;
+    public float worldPositionY = 0;
+    public float worldPositionZ = 0;
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AIBossCharacterManager : AICharacterCombatManager
+public class AIBossCharacterManager : AICharacterManager
 {
     
 }

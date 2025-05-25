@@ -44,6 +44,7 @@ public class PlayerManager : CharacterManager
         {
             playerCameraManager = FindAnyObjectByType<PlayerCamera>();
         }
+        WorldSaveGameManager.instance.player = this;
 
     }
     protected override void Update()

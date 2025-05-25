@@ -1,14 +1,14 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class WorldSaveGameManager : MonoBehaviour
 {
     public static WorldSaveGameManager instance;
 
-    // 90% sure i'll have to ask the player to assign itself
-    private PlayerManager player;
+    public PlayerManager player;
 
     [Header("World Scene Index")]
     [SerializeField] int worldSceneIndex = 1;
@@ -43,11 +43,13 @@ public class WorldSaveGameManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
+        LoadAllCharacterSlots();
     }
 
-    private void DecideCharacterFileName()
+    public string DecideCharacterFileName(CharacterSlot characterSlot)
     {
-        switch (currentCharacterSlot)
+        string fileName = "";
+        switch (characterSlot)
         {
             case CharacterSlot.CharacterSlot01:
                 fileName = "CharacterSlot01";
@@ -65,18 +67,66 @@ public class WorldSaveGameManager : MonoBehaviour
                 fileName = "CharacterSlot05";
                 break;
         }
+
+        return fileName;
     }
 
-    public void NewGame()
+    public void AttemptToCreateNewGame()
     {
-        DecideCharacterFileName();
+        saveFileDataWriter = new SaveFileDataWriter();
+        saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
 
-        currentCharacterData = new CharacterSaveData();
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot01);
+        if (!saveFileDataWriter.CheckToSeeIfFileExists())
+        {
+            currentCharacterSlot = CharacterSlot.CharacterSlot01;
+            currentCharacterData = new CharacterSaveData();
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot02);
+        if (!saveFileDataWriter.CheckToSeeIfFileExists())
+        {
+            currentCharacterSlot = CharacterSlot.CharacterSlot02;
+            currentCharacterData = new CharacterSaveData();
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot03);
+        if (!saveFileDataWriter.CheckToSeeIfFileExists())
+        {
+            currentCharacterSlot = CharacterSlot.CharacterSlot03;
+            currentCharacterData = new CharacterSaveData();
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot04);
+        if (!saveFileDataWriter.CheckToSeeIfFileExists())
+        {
+            currentCharacterSlot = CharacterSlot.CharacterSlot04;
+            currentCharacterData = new CharacterSaveData();
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot05);
+        if (!saveFileDataWriter.CheckToSeeIfFileExists())
+        {
+            currentCharacterSlot = CharacterSlot.CharacterSlot05;
+            currentCharacterData = new CharacterSaveData();
+            StartCoroutine(LoadWorldScene());
+            return;
+        }
+
+        TitleScreenManager.instance.DisplayNoFreeCharactersPopUp();
     }
 
-    public void LoadPreviousGame()
+    public void LoadGame()
     {
-        DecideCharacterFileName();
+        fileName = DecideCharacterFileName(currentCharacterSlot);
 
         saveFileDataWriter = new SaveFileDataWriter();
         saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
@@ -88,7 +138,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public void SaveGame()
     {
-        DecideCharacterFileName();
+        fileName = DecideCharacterFileName(currentCharacterSlot);
 
         saveFileDataWriter = new SaveFileDataWriter();
         saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
@@ -99,15 +149,64 @@ public class WorldSaveGameManager : MonoBehaviour
         saveFileDataWriter.CreateNewSaveFile(currentCharacterData);
     }
 
+    public void DeleteGame(CharacterSlot characterSlot)
+    {
+        fileName = DecideCharacterFileName(characterSlot);
+
+        saveFileDataWriter = new SaveFileDataWriter();
+        saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+        saveFileDataWriter.saveFileName = fileName;
+        saveFileDataWriter.DeleteSaveFile();
+    }
+
+    private void LoadAllCharacterSlots()
+    {
+        saveFileDataWriter = new SaveFileDataWriter();
+        saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot01);
+        characterSlot01 = saveFileDataWriter.LoadSaveFile();
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot02);
+        characterSlot02 = saveFileDataWriter.LoadSaveFile();
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot03);
+        characterSlot03 = saveFileDataWriter.LoadSaveFile();
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot04);
+        characterSlot04 = saveFileDataWriter.LoadSaveFile();
+
+        saveFileDataWriter.saveFileName = DecideCharacterFileName(CharacterSlot.CharacterSlot05);
+        characterSlot05 = saveFileDataWriter.LoadSaveFile();
+    }
+
     public IEnumerator LoadWorldScene()
     {
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
 
-        yield return null;
+        while (!loadOperation.isDone)
+        {
+            yield return null;
+        }
+
+        player.LoadGame(ref currentCharacterData);
     }
 
     public int GetWorldSceneIndex()
     {
         return worldSceneIndex;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F5))
+        {
+            SaveGame();
+        }
+
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            LoadGame();
+        }   
     }
 }

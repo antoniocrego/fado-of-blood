@@ -11,7 +11,8 @@ public enum CharacterSlot
     CharacterSlot02,
     CharacterSlot03,
     CharacterSlot04,
-    CharacterSlot05
+    CharacterSlot05,
+    NoSlot
 }
 
 public enum WeaponModelSlot
