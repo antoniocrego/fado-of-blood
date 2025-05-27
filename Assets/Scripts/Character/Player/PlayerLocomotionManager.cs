@@ -49,18 +49,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         base.Awake();
         player = GetComponent<PlayerManager>();
     }   
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        base.Update();
-        // HandleAllMovement();
-    }
 
     public void HandleAllMovement() 
     {
@@ -80,10 +68,22 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private void HandleMovement() 
     {
         GetVerticalAndHorizontalInputs();
-        if(!player.canMove)
+        if(!player.characterLocomotionManager.canMove)
             return;
-        movementDirection = PlayerCamera.instance.transform.forward * verticalMovement; 
-        movementDirection = movementDirection + PlayerCamera.instance.transform.right * horizontalMovement;
+
+         if (player.isLockedOn && player.playerCombatManager.currentTarget != null)
+        {
+            Vector3 playerForward = player.transform.forward;
+            Vector3 playerRight = player.transform.right;
+            movementDirection = playerForward * verticalMovement + playerRight * horizontalMovement;
+        }
+        else
+        {
+            Vector3 camForward = PlayerCamera.instance.transform.forward;
+            Vector3 camRight = PlayerCamera.instance.transform.right;
+            movementDirection = camForward * verticalMovement + camRight * horizontalMovement;
+        }
+
         movementDirection.Normalize();
         movementDirection.y = 0;
         if(player.isSprinting) 
@@ -100,7 +100,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             {
                 player.characterController.Move(movementDirection * runningSpeed  * Time.deltaTime);
             }
-            else if(PlayerInputManager.instance.movementCombined <= 0.5f)
+            else if(PlayerInputManager.instance.movementCombined > 0f && PlayerInputManager.instance.movementCombined <= 0.5f)
             {
                 player.characterController.Move(movementDirection * walkingSpeed * Time.deltaTime);
             }
@@ -110,7 +110,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleRotation() 
     {
-        if(!player.canRotate)
+        if (player.isDead)
+            return;
+        if(!player.characterLocomotionManager.canRotate)
             return;
         targetDirection = Vector3.zero; 
         targetDirection = PlayerCamera.instance.cameraObject.transform.forward * verticalMovement;
@@ -122,19 +124,20 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             targetDirection = transform.forward;
         }
-        if(!player.isLockedOn)
+        if(!player.isLockedOn || player.isSprinting)
         {
             Quaternion newRotation = Quaternion.LookRotation(targetDirection);
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
         }
-        if(player.isLockedOn)
+        else if(player.isLockedOn)
         {
-            if(player.playerTarget != null) 
+            if(player.playerCombatManager.currentTarget != null) 
             {
-                Vector3 directionToTarget = player.playerTarget.transform.position - transform.position;
-                directionToTarget.y = 0; 
-                if(directionToTarget != Vector3.zero)
+                Vector3 directionToTarget = player.playerCombatManager.currentTarget.transform.position - transform.position;
+                directionToTarget.y = 0;
+                directionToTarget.Normalize();
+                if (directionToTarget != Vector3.zero)
                 {
                     Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
@@ -144,7 +147,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             {
                 player.isLockedOn = false; 
                 PlayerCamera.instance.isCameraLocked = false;
-                player.playerTarget = null;
+                player.playerCombatManager.currentTarget = null;
             }
         }
     }
@@ -219,7 +222,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     private void HandleFreeFallMovement() 
     {
-        if(!player.isGrounded) 
+        if(!player.characterLocomotionManager.isGrounded) 
         {
             freeFallDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
             freeFallDirection = freeFallDirection + PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
@@ -244,7 +247,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         {
             return;
         }
-        if(!player.isGrounded) 
+        if(!player.characterLocomotionManager.isGrounded) 
         {
             return;
         }

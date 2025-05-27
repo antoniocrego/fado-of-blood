@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.TextCore.Text;
 
 public class DamageCollider: MonoBehaviour{
+
+    [Header("Damage Collider")]
+    [SerializeField] protected Collider damageCollider;
+
     [Header("Damage")]
     public float damage = 0;
 
@@ -13,7 +17,7 @@ public class DamageCollider: MonoBehaviour{
     [Header("Characters Damaged")]
     protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger entered: " + other.gameObject.name);
         CharacterManager damageTarget = other.GetComponent<CharacterManager>();
@@ -37,5 +41,19 @@ public class DamageCollider: MonoBehaviour{
         damageEffect.damage = damage;
 
         damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
+    }
+
+    public virtual void EnableDamageCollider(){
+        damageCollider.enabled = true;
+    }
+
+    public virtual void DisableDamageCollider(){
+        damageCollider.enabled = false;
+        charactersDamaged.Clear(); // Reset the characters that have been hit, so they can be hit again in the next attack
+    }
+
+    protected virtual void Awake()
+    {
+        
     }
 }

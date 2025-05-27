@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class CharacterAnimatorManager : MonoBehaviour{
 
-    CharacterManager character;
+    protected CharacterManager character;
 
     int vertical; 
     int horizontal; 
+
+    public bool applyRootMotion = false;
 
     protected virtual void Awake() 
     {
@@ -16,7 +18,7 @@ public class CharacterAnimatorManager : MonoBehaviour{
         vertical = Animator.StringToHash("vertical");
         horizontal = Animator.StringToHash("horizontal");
     }
-    public void updateAnimatorMovementParameters(float horizontalValue, float verticalValue, bool isSpriting) 
+    public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue, bool isMoving, bool isSpriting) 
     {
         float horizontalAmount = horizontalValue; 
         float verticalAmount = verticalValue;
@@ -49,17 +51,26 @@ public class CharacterAnimatorManager : MonoBehaviour{
         }
         character.animator.SetFloat(horizontal, horizontalAmount, 0.1f, Time.deltaTime); 
         character.animator.SetFloat(vertical, verticalAmount, 0.1f, Time.deltaTime);
+        character.animator.SetBool("isMoving", isMoving);
     }
 
     public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
     {
-        character.applyRootMotion = applyRootMotion;
+        this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
 
-        character.canMove = canMove; 
-        character.canRotate = canRotate; 
+        character.characterLocomotionManager.canMove = canMove; 
+        character.characterLocomotionManager.canRotate = canRotate; 
+    }
 
-
+    public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
+    {
+        this.applyRootMotion = applyRootMotion;
+        character.animator.CrossFade(targetAnimation, 0.2f);
+        character.isPerformingAction = isPerformingAction;
+        character.characterCombatManager.currentAttackType = attackType;
+        character.characterLocomotionManager.canMove = canMove; 
+        character.characterLocomotionManager.canRotate = canRotate; 
     }
 }

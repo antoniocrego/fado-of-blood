@@ -44,6 +44,7 @@ public class TakeDamageEffect : InstantCharacterEffect
 
         Debug.Log("Character health before taking damage: " + character.health);
         character.health -= finalDamageDealt;
+        character.playerUIHudManager.SetNewHealthValue(character.health);
         Debug.Log("Character health after taking damage: " + character.health);
     }
 }

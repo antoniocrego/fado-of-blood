@@ -15,10 +15,13 @@ MonoBehaviour:
   itemName: Straight Sword
   itemIcon: {fileID: 21300000, guid: 0ef6a2bbca24b564bacf37aa8bdcfe6a, type: 3}
   itemDescription: A straight sword.
-  itemID: 0
+  itemID: 1
   weaponModel: {fileID: 8125302532151398992, guid: 90d19bbd1918a504ba39f990c73b5e8c, type: 3}
   baseDamage: 10
   strength: 0
   dex: 0
   magic: 0
+  lightAttack01Modifier: 1
   baseStaminaCost: 10
+  lightAttack01StaminaModifier: 1
+  oh_RB_Action: {fileID: 11400000, guid: 43d7da4c61ebf4a40b2fb3790e475243, type: 2}

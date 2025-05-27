@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 
 public class ResetActionFlag : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     CharacterManager character; 
+
+    public bool rootMotionDefault = false; 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if(character == null) 
@@ -12,9 +15,10 @@ public class ResetActionFlag : StateMachineBehaviour
         }
 
         character.isPerformingAction = false;
-        character.animator.applyRootMotion = false;
-        character.canMove =true; 
-        character.canRotate = true;
+        character.animator.applyRootMotion = rootMotionDefault;
+        character.characterAnimatorManager.applyRootMotion = rootMotionDefault;
+        character.characterLocomotionManager.canMove = true; 
+        character.characterLocomotionManager.canRotate = true;
         character.isJumping = false;
     }
 
@@ -25,10 +29,9 @@ public class ResetActionFlag : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+    // override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    // }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
