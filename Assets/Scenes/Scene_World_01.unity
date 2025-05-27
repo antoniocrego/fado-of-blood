@@ -11048,7 +11048,6 @@ MonoBehaviour:
   vitality: 1
   maxStamina: 0
   maxHealth: 0
-  isJumping: 0
   isLockedOn: 0
   isMoving: 0
   aiCharacterCombatManager: {fileID: 0}
@@ -11092,7 +11091,6 @@ MonoBehaviour:
   vitality: 1
   maxStamina: 0
   maxHealth: 0
-  isJumping: 0
   isLockedOn: 0
   isMoving: 0
   aiCharacterCombatManager: {fileID: 0}
@@ -26481,6 +26479,10 @@ PrefabInstance:
       propertyPath: effectToTest
       value: 
       objectReference: {fileID: 11400000, guid: 72a50702a5f8d674fa834b7a9ee14eab, type: 2}
+    - target: {fileID: -2959177603621293489, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: currentWeaponBeingUsed
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1590364354272130, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -26770,6 +26772,14 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: leftHandWeaponIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: rightHandWeaponIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: currentLeftHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
@@ -26780,7 +26790,7 @@ PrefabInstance:
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: 'weaponsInLeftHandSlots.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
+      objectReference: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: 'weaponsInLeftHandSlots.Array.data[1]'
       value: 
@@ -26792,7 +26802,7 @@ PrefabInstance:
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: 'weaponsInRightHandSlots.Array.data[0]'
       value: 
-      objectReference: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
+      objectReference: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: 'weaponsInRightHandSlots.Array.data[1]'
       value: 
@@ -30741,6 +30751,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1497735404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4897207631618448504, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+  m_PrefabInstance: {fileID: 5519114357268749550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1505305595 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6728577463625951474, guid: e8677bde30e06f341b0e897430988f1c, type: 3}
@@ -38032,6 +38053,8 @@ MonoBehaviour:
   RB_Input: 0
   lockOnLeft_input: 0
   lockOnRight_input: 0
+  switch_Right_hand_weapon: 0
+  switch_Left_hand_weapon: 0
 --- !u!4 &1986336940
 Transform:
   m_ObjectHideFlags: 0
@@ -39577,6 +39600,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &2141236999 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4358197763889186347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+  m_PrefabInstance: {fileID: 5519114357268749550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2146220826
 GameObject:
   m_ObjectHideFlags: 0
@@ -40277,6 +40311,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerUI Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4358197763889186347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_Value
       value: 0
@@ -40308,6 +40346,10 @@ PrefabInstance:
     - target: {fileID: 4887934127633075459, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4897207631618448504, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4971730769023103741, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -40461,8 +40503,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 739528468}
   staminaBar: {fileID: 5519114357268749552}
-  rightWeaponQuickSlotIcon: {fileID: 0}
-  leftWeaponQuickSlotIcon: {fileID: 0}
+  rightWeaponQuickSlotIcon: {fileID: 1497735404}
+  leftWeaponQuickSlotIcon: {fileID: 2141236999}
 --- !u!1001 &6939146002440316075
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -38,7 +38,6 @@ public class PlayerUIHudManager : MonoBehaviour
 
         if (weapon == null)
         {
-            Debug.Log("Weapon is null");
             rightWeaponQuickSlotIcon.enabled = false;
             rightWeaponQuickSlotIcon.sprite = null;
             return;
@@ -46,12 +45,10 @@ public class PlayerUIHudManager : MonoBehaviour
 
         if (weapon.itemIcon == null)
         {
-            Debug.Log("Weapon icon is null");
             rightWeaponQuickSlotIcon.enabled = false;
             rightWeaponQuickSlotIcon.sprite = null;
             return;
         }
-
         rightWeaponQuickSlotIcon.sprite = weapon.itemIcon;
         rightWeaponQuickSlotIcon.enabled = true;
     }
@@ -62,7 +59,6 @@ public class PlayerUIHudManager : MonoBehaviour
 
         if (weapon == null)
         {
-            Debug.Log("Weapon is null");
             leftWeaponQuickSlotIcon.enabled = false;
             leftWeaponQuickSlotIcon.sprite = null;
             return;
@@ -70,7 +66,6 @@ public class PlayerUIHudManager : MonoBehaviour
 
         if (weapon.itemIcon == null)
         {
-            Debug.Log("Weapon icon is null");
             leftWeaponQuickSlotIcon.enabled = false;
             leftWeaponQuickSlotIcon.sprite = null;
             return;
