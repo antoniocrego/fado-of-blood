@@ -27,6 +27,9 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool lockOnLeft_input = false;
     [SerializeField] bool lockOnRight_input = false;
 
+    [SerializeField] bool switch_Right_hand_weapon = false;
+    [SerializeField] bool switch_Left_hand_weapon = false;
+
     private Coroutine lockOnCoroutine;
 
     private void Awake()
@@ -60,15 +63,17 @@ public class PlayerInputManager : MonoBehaviour
         HandleAllInputs();
     }
 
-    private void HandleAllInputs() 
+    private void HandleAllInputs()
     {
         HandleMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
-        HandleLockOnInput();  
+        HandleLockOnInput();
         HandleRBInput();
         HandleLockOnSwitchTargetInput();
         HandleCameraInput();
+        HandleSwitchRightWeaponInput();
+        HandleSwitchLeftWeaponInput();
     }
 
 
@@ -260,9 +265,30 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
             playerControls.CameraMovement.Look.performed += i => cameraInput = i.ReadValue<Vector2>();
 
+            playerControls.PlayerActions.SwitchRightWeapon.performed += i => switch_Right_hand_weapon = true;
+            playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switch_Left_hand_weapon = true;
+
         }
 
         playerControls.Enable();
+    }
+
+    private void HandleSwitchRightWeaponInput()
+    {
+        if(switch_Right_hand_weapon)
+        {
+            switch_Right_hand_weapon = false;
+            player.playerEquipmentManager.SwitchRightWeapon();
+        }
+    }
+
+    private void HandleSwitchLeftWeaponInput()
+    {
+        if(switch_Left_hand_weapon)
+        {
+            switch_Left_hand_weapon = false;
+            player.playerEquipmentManager.SwitchLeftWeapon();
+        }
     }
 
     private void OnDestroy()

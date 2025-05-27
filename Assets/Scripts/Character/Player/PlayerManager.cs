@@ -22,6 +22,9 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerCamera playerCameraManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
 
+    public WeaponItem previousRightHandWeapon = null;
+
+    public WeaponItem previousLeftHandWeapon = null;
     public WeaponItem currentWeaponBeingUsed;
     public bool isUsingRightHand = false;
     public bool isUsingLeftHand = false;
@@ -64,6 +67,25 @@ public class PlayerManager : CharacterManager
         maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
+
+        if (playerInventoryManager.currentRightHandWeapon != previousRightHandWeapon)
+        {
+            WeaponItem newWeapon = playerInventoryManager.currentRightHandWeapon;
+            playerInventoryManager.currentRightHandWeapon = newWeapon;
+            playerEquipmentManager.LoadRightWeapon();
+            playerUIHudManager.SetRightWeaponQuickSlotIcon(newWeapon.itemID);
+        }
+
+        if (playerInventoryManager.currentLeftHandWeapon != previousLeftHandWeapon)
+        {
+            WeaponItem newWeapon = playerInventoryManager.currentLeftHandWeapon;
+            playerInventoryManager.currentLeftHandWeapon = newWeapon;
+            playerEquipmentManager.LoadLeftWeapon();
+            playerUIHudManager.SetLeftWeaponQuickSlotIcon(newWeapon.itemID);
+        }
+        
+        previousRightHandWeapon = playerInventoryManager.currentRightHandWeapon;
+        previousLeftHandWeapon = playerInventoryManager.currentLeftHandWeapon;
 
         DebugMenu();
     }
