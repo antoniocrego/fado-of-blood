@@ -13,4 +13,15 @@ public class CharacterSaveData
     public float worldPositionX = 0;
     public float worldPositionY = 0;
     public float worldPositionZ = 0;
+
+    [Header("Boss Statuses")]
+    public SerializableDictionary<int, bool> bossesAwakened;
+    public SerializableDictionary<int, bool> bossesDefeated;
+
+    public CharacterSaveData()
+    {
+        // Initialize the dictionaries to avoid null reference exceptions.
+        bossesAwakened = new SerializableDictionary<int, bool>();
+        bossesDefeated = new SerializableDictionary<int, bool>();   
+    }
 }
