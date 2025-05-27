@@ -40,7 +40,7 @@ public class CharacterLocomotionManager : MonoBehaviour
         }
         else 
         {
-            if(!character.isJumping && !fallingVelocityHasBeenSet) 
+            if(!fallingVelocityHasBeenSet) 
             {
                 fallingVelocityHasBeenSet = true; 
                 yVelocity.y = fallStartYVelocity;
