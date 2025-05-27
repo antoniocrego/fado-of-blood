@@ -30,8 +30,6 @@ public class CharacterManager : MonoBehaviour
 
     public int maxHealth = 0;
 
-    public bool isJumping = false;
-
     public bool isLockedOn = false; 
 
     public bool isMoving = false;

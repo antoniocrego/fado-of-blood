@@ -1,9 +1,13 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System;
 
 public class PlayerManager : CharacterManager
 {
+    [Header("Player Name")]
+    public string playerName = "Player";
+
     [Header("Debug Menu")]
     [SerializeField] bool switchRightWeapon = false;
     [SerializeField] bool switchLeftWeapon = false;
@@ -14,7 +18,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerStatsManager playerStatsManager;
-    [HideInInspector] public GameObject playerTarget; 
+    [HideInInspector] public GameObject playerTarget;
     [HideInInspector] public PlayerCamera playerCameraManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
 
@@ -45,6 +49,10 @@ public class PlayerManager : CharacterManager
         {
             playerCameraManager = FindAnyObjectByType<PlayerCamera>();
         }
+        if (WorldSaveGameManager.instance != null)
+        {
+            WorldSaveGameManager.instance.player = this;
+        }
     }
     protected override void Update()
     {
@@ -54,19 +62,22 @@ public class PlayerManager : CharacterManager
 
         // NEED A NEW WAY TO CHANGE STAMINA VALUE
         maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
-        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina); 
+        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
 
         DebugMenu();
     }
 
-    private void DebugMenu(){
-        if(switchRightWeapon){
+    private void DebugMenu()
+    {
+        if (switchRightWeapon)
+        {
             switchRightWeapon = false;
             playerEquipmentManager.SwitchRightWeapon();
         }
 
-        if(switchLeftWeapon){
+        if (switchLeftWeapon)
+        {
             switchLeftWeapon = false;
             playerEquipmentManager.SwitchLeftWeapon();
         }
@@ -74,7 +85,7 @@ public class PlayerManager : CharacterManager
 
     public void SetCharacterActionHand(bool rightHandedAction)
     {
-        if(rightHandedAction)
+        if (rightHandedAction)
         {
             isUsingLeftHand = false;
             isUsingRightHand = true;
@@ -92,4 +103,23 @@ public class PlayerManager : CharacterManager
 
         playerCameraManager.HandleCamera();
     }
+
+    public void SaveGame(ref CharacterSaveData currentCharacterData)
+    {
+        currentCharacterData.characterName = playerName;
+        currentCharacterData.worldPositionX = transform.position.x;
+        currentCharacterData.worldPositionY = transform.position.y;
+        currentCharacterData.worldPositionZ = transform.position.z;
+    }
+    
+    public void LoadGame(ref CharacterSaveData currentCharacterData)
+    {
+        playerName = currentCharacterData.characterName;
+        transform.position = new Vector3(
+            currentCharacterData.worldPositionX,
+            currentCharacterData.worldPositionY,
+            currentCharacterData.worldPositionZ
+        );
+    }
+
 }
