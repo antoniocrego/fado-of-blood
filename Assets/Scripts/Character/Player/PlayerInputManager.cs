@@ -65,7 +65,6 @@ public class PlayerInputManager : MonoBehaviour
         HandleMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
-        HandleJumpInput();
         HandleLockOnInput();  
         HandleRBInput();
         HandleLockOnSwitchTargetInput();
@@ -119,16 +118,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleJumpInput() 
-    {
-        if(jumpInput) 
-        {
-            jumpInput = false; 
-
-            player.playerLocomotionManager.AttemptToPerformJump();
-            
-        }
-    }
+   
 
     private void HandleSprintInput() 
     {
@@ -261,7 +251,6 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
-            playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
             playerControls.PlayerActions.RB.performed += instance => RB_Input = true;
             playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
             playerControls.PlayerActions.LockOnLeft.performed += i => lockOnLeft_input = true;
