@@ -34,6 +34,8 @@ public class CharacterManager : MonoBehaviour
 
     public bool isMoving = false;
 
+    public bool isActive = true;
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);
@@ -51,7 +53,11 @@ public class CharacterManager : MonoBehaviour
     }
 
     protected virtual void Update(){
-        
+        if (!isActive)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
     }
 
     protected virtual void FixedUpdate(){
