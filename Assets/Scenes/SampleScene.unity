@@ -26734,6 +26734,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: switchRightWeapon
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: currentWeaponBeingUsed
       value: 
       objectReference: {fileID: 0}
