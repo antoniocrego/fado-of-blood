@@ -16,6 +16,8 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)
     {
+        if (weaponAction == null || weaponPerformingAction == null) return;
+        
         weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
     }
 

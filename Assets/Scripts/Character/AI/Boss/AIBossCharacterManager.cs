@@ -65,43 +65,43 @@ public class AIBossCharacterManager : AICharacterManager
 
     }
 
-    // public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
-    // {
-    //     health = 0;
-    //     isDead = true;
+    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
+    {
+        health = 0;
+        isDead = true;
 
-    //     // reset any needed flags
+        // reset any needed flags
 
-    //     // if we are not grounded play an aerial death animation
+        // if we are not grounded play an aerial death animation
 
-    //     if (!manuallySelectDeathAnimation)
-    //     {
-    //         // characterAnimatorManager.PlayTargetActionAnimation("Dead_01", true);
-    //     }
+        if (!manuallySelectDeathAnimation)
+        {
+            // characterAnimatorManager.PlayTargetActionAnimation("Dead_01", true);
+        }
 
-    //     hasBeenDefeated = true;
+        hasBeenDefeated = true;
 
-    //     if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
-    //     {
-    //         WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, true);
-    //         WorldSaveGameManager.instance.currentCharacterData.bossesDefeated.Add(bossID, true);
-    //     }
-    //     else
-    //     {
-    //         WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Remove(bossID);
-    //         WorldSaveGameManager.instance.currentCharacterData.bossesDefeated.Remove(bossID);
-    //         WorldSaveGameManager.instance.currentCharacterData.bossesAwakened[bossID] = true;
-    //         WorldSaveGameManager.instance.currentCharacterData.bossesDefeated[bossID] = true;
-    //     }
+        if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
+        {
+            WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Add(bossID, true);
+            WorldSaveGameManager.instance.currentCharacterData.bossesDefeated.Add(bossID, true);
+        }
+        else
+        {
+            WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.Remove(bossID);
+            WorldSaveGameManager.instance.currentCharacterData.bossesDefeated.Remove(bossID);
+            WorldSaveGameManager.instance.currentCharacterData.bossesAwakened[bossID] = true;
+            WorldSaveGameManager.instance.currentCharacterData.bossesDefeated[bossID] = true;
+        }
 
-    //     // play death sfx
+        // play death sfx
 
-    //     yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(5);
 
-    //     // award players with souls
+        // award players with souls
 
-    //     // disable character
-    // }
+        // disable character
+    }
 
     public void WakeBoss()
     {

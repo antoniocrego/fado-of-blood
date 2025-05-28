@@ -1,13 +1,5 @@
 fileFormatVersion: 2
-guid: fedb7dae7bc89cc41adc2735984f2208
-AssetOrigin:
-  serializedVersion: 1
-  productId: 220752
-  packageName: Straight Sword Animation Set
-  packageVersion: 3.1
-  assetPath: Assets/Nephilite Studios/Straight Sword Animation Set/Animations/Straight
-    Sword Animations/Nephilim Animations (Remastered)/Straight Sword Main Hand/straight_sword_main_death_01.fbx
-  uploadId: 753941
+guid: 2d71f69eea70fbc4aa3c7634768d040a
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -25,12 +17,15 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: 
+    animationImportWarnings: "\nClip 'straight_sword_main_death_01' has import animation
+      warnings that might lower retargeting quality:\nNote: Activate translation
+      DOF on avatar to improve retargeting quality.\n\t'Hand_R' has translation animation
+      that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 3
+    animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -52,10 +47,10 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 0
-      keepOriginalOrientation: 1
+      keepOriginalOrientation: 0
       keepOriginalPositionY: 1
       keepOriginalPositionXZ: 0
       heightFromFeet: 0
