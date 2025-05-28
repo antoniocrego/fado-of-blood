@@ -26,6 +26,11 @@ public class DamageCollider: MonoBehaviour{
         {
             contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
+            if (damageTarget.isDead || damageTarget.isInvincible)
+            {
+                return;
+            }
+
             DamageTarget(damageTarget);
         }
     }

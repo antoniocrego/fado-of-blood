@@ -32,6 +32,11 @@ public class TakeDamageEffect : InstantCharacterEffect
             return;
         }
 
+        if (character.isInvincible)
+        {
+            return;
+        }
+
         CalculateDamage(character);
     }
 
