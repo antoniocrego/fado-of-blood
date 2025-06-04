@@ -30,6 +30,8 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool switch_Right_hand_weapon = false;
     [SerializeField] bool switch_Left_hand_weapon = false;
 
+    [SerializeField] bool interaction_input = false;
+
     private Coroutine lockOnCoroutine;
 
     private void Awake()
@@ -74,6 +76,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleCameraInput();
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
+        HandleInteractInput();
     }
 
 
@@ -122,16 +125,25 @@ public class PlayerInputManager : MonoBehaviour
             player.playerLocomotionManager.AttemptToPerformDodge();
         }
     }
+    
+    private void HandleInteractInput() 
+    {
+        if(interaction_input) 
+        {
+            interaction_input = false;
+            player.playerInteractionManager.Interact();
+        }
+    }
 
    
 
-    private void HandleSprintInput() 
+    private void HandleSprintInput()
     {
-        if(sprintInput) 
+        if (sprintInput)
         {
-            player.playerLocomotionManager.HandleSprint(); 
+            player.playerLocomotionManager.HandleSprint();
         }
-        else 
+        else
         {
             player.isSprinting = false;
         }
@@ -260,6 +272,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
             playerControls.PlayerActions.LockOnLeft.performed += i => lockOnLeft_input = true;
             playerControls.PlayerActions.LockOnRight.performed += i => lockOnRight_input = true;
+            playerControls.PlayerActions.Interact.performed += i => interaction_input = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;

@@ -33,3 +33,9 @@ public enum CharacterGroup
     Enemy, // will attack, can be attacked
     Neutral, // won't attack unless provoked, can be attacked
 }
+
+public enum ItemPickUpType
+{
+    WorldSpawn,
+    CharacterDrop
+}

@@ -8,17 +8,23 @@ public class PlayerUIManager : MonoBehaviour
 
     public PlayerUIHudManager playerUIHudManager;
 
+    public PlayerUIPopUpManager playerUIPopUpManager;
+    
+     public bool menuWindowIsOpen = false;       
+    public bool popUpWindowIsOpen = false;
+
     private void Awake()
     {
-        if(instance == null) 
+        if (instance == null)
         {
-            instance = this; 
+            instance = this;
         }
-        else 
+        else
         {
             Destroy(gameObject);
         }
         playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
+        playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
     }
     void Start()
     {
