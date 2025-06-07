@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -28,15 +29,21 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     public override void ProcessEffect(CharacterManager character)
     {
-        if(character.isDead){
+        if (character.isDead)
+        {
             return;
         }
 
         CalculateDamage(character);
+
+        PlayDamageSFX(character);
+        PlayDamageVFX(character);
     }
 
-    private void CalculateDamage(CharacterManager character){
-        if(characterCausingDamage != null){
+    private void CalculateDamage(CharacterManager character)
+    {
+        if (characterCausingDamage != null)
+        {
             //apply modifiers according to different characters
         }
 
@@ -46,5 +53,17 @@ public class TakeDamageEffect : InstantCharacterEffect
         character.health -= finalDamageDealt;
         character.playerUIHudManager.SetNewHealthValue(character.health);
         Debug.Log("Character health after taking damage: " + character.health);
+    }
+
+    private void PlayDamageVFX(CharacterManager character)
+    {
+        character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+    }
+
+    private void PlayDamageSFX(CharacterManager character)
+    {
+        AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
+
+        character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
     }
 }

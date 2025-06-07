@@ -10993,6 +10993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83cc303a55699c4fb781470d612be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatterVFX: {fileID: 0}
 --- !u!114 &659598295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11037,6 +11038,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
@@ -11080,6 +11082,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
@@ -40590,6 +40593,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0eab2d894d964f74eaeebf753e6a418e, type: 3}
+--- !u!1001 &8266296618825631425
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2305381196855923664, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_Name
+      value: World Sound FX Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470970949746214714, guid: 0396456454704f74ba900870b495d815, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 0396456454704f74ba900870b495d815, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -40599,13 +40659,14 @@ SceneRoots:
   - {fileID: 1255460840}
   - {fileID: 3181484045592509143}
   - {fileID: 1922130450068809802}
+  - {fileID: 8266296618825631425}
+  - {fileID: 784649659}
   - {fileID: 871887042}
   - {fileID: 1986336940}
   - {fileID: 5519114357268749550}
   - {fileID: 1531025222}
   - {fileID: 1574661662}
   - {fileID: 6939146002440316075}
-  - {fileID: 784649659}
   - {fileID: 217924502}
   - {fileID: 1106584460}
   - {fileID: 3745205154176190331}
