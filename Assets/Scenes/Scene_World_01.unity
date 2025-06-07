@@ -6971,6 +6971,17 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!114 &386884594 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4897207631618448504, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+  m_PrefabInstance: {fileID: 5519114357268749550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &397689010
 GameObject:
   m_ObjectHideFlags: 0
@@ -11156,6 +11167,7 @@ MonoBehaviour:
   health: 0
   stamina: 0
   isDead: 0
+  isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
   endurance: 1
@@ -11203,6 +11215,7 @@ MonoBehaviour:
   health: 0
   stamina: 0
   isDead: 0
+  isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
   endurance: 1
@@ -25473,6 +25486,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1146880504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4358197763889186347, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+  m_PrefabInstance: {fileID: 5519114357268749550}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1159810081
 GameObject:
   m_ObjectHideFlags: 0
@@ -27077,16 +27101,28 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 522.56995
       objectReference: {fileID: 0}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.81
+      value: 39.495
       objectReference: {fileID: 0}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 142.55
       objectReference: {fileID: 0}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38322,6 +38358,8 @@ MonoBehaviour:
   RB_Input: 0
   lockOnLeft_input: 0
   lockOnRight_input: 0
+  switch_Right_hand_weapon: 0
+  switch_Left_hand_weapon: 0
 --- !u!4 &1986336940
 Transform:
   m_ObjectHideFlags: 0
@@ -40769,6 +40807,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 739528468}
   staminaBar: {fileID: 5519114357268749552}
+  rightWeaponQuickSlotIcon: {fileID: 386884594}
+  leftWeaponQuickSlotIcon: {fileID: 1146880504}
 --- !u!1001 &6939146002440316075
 PrefabInstance:
   m_ObjectHideFlags: 0
