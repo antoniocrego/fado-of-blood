@@ -20,7 +20,21 @@ public class PlayerInventoryManager : CharacterInventoryManager
 
     public void AddItemToInventory(Item item)
     {
+        Debug.Log("Added item back to inventory: " + item.itemName);
         itemsInInventory.Add(item);
+    }
+
+    public void RemoveItemFromInventory(Item item)
+    {
+        itemsInInventory.Remove(item);
+
+        for (int i = itemsInInventory.Count - 1; i > -1; i--)
+        {
+            if (itemsInInventory[i] == null)
+            {
+                itemsInInventory.RemoveAt(i);
+            }
+        }
     }
 
 }

@@ -32,6 +32,10 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] bool interaction_input = false;
 
+    
+    [SerializeField] bool openCharacterMenuInput = false;
+    [SerializeField] bool closeMenuInput = false;
+
     private Coroutine lockOnCoroutine;
 
     private void Awake()
@@ -77,6 +81,8 @@ public class PlayerInputManager : MonoBehaviour
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
         HandleInteractInput();
+        HandleCloseUIInput();  
+        HandleOpenCharacterMenuInput();
     }
 
 
@@ -281,6 +287,10 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.SwitchRightWeapon.performed += i => switch_Right_hand_weapon = true;
             playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switch_Left_hand_weapon = true;
 
+            playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
+            playerControls.PlayerActions.OpenCharacterMenu.performed += i => openCharacterMenuInput = true;
+
+
         }
 
         playerControls.Enable();
@@ -291,6 +301,8 @@ public class PlayerInputManager : MonoBehaviour
         if(switch_Right_hand_weapon)
         {
             switch_Right_hand_weapon = false;
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+                return;
             player.playerEquipmentManager.SwitchRightWeapon();
         }
     }
@@ -300,7 +312,34 @@ public class PlayerInputManager : MonoBehaviour
         if(switch_Left_hand_weapon)
         {
             switch_Left_hand_weapon = false;
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+                return; 
             player.playerEquipmentManager.SwitchLeftWeapon();
+        }
+    }
+
+    private void HandleOpenCharacterMenuInput()
+    {
+        if (openCharacterMenuInput)
+        {
+            openCharacterMenuInput = false;
+
+            PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+            PlayerUIManager.instance.CloseAllMenuWindows();
+            PlayerUIManager.instance.playerUICharacterMenuManager.OpenCharacterMenu();
+        }
+    }
+
+    private void HandleCloseUIInput()
+    {
+        if (closeMenuInput)
+        {
+            closeMenuInput = false;
+
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+            {
+                PlayerUIManager.instance.CloseAllMenuWindows();
+            }
         }
     }
 

@@ -142,6 +142,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Open Character Menu",
+                    "type": "Button",
+                    "id": "536565af-577d-45df-b911-f233605e87c3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "PassThrough",
                     "id": "0d78a99b-cac6-40d3-9265-5114e9580583",
@@ -154,6 +163,15 @@
                     "name": "RB",
                     "type": "Button",
                     "id": "b733bddf-b461-4473-b8f4-a6dcdce08e39",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "X",
+                    "type": "Button",
+                    "id": "dcb13302-9504-45f4-99da-f55cf34aaa76",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -278,6 +296,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "add76705-e1ac-478f-bd02-2558e34a02bf",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd0bcaf9-6ff3-4718-9d4b-594dd1b293a9",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "915e4e68-863a-4523-b24a-69e33f5b5fde",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a49ad6b9-b852-4b3a-b4cf-457ec4119053",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

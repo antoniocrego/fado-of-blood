@@ -55,6 +55,8 @@ using UnityEngine;
             }
 
             Destroy(gameObject);
+
+            // Destroy the animation related to the item
         }
     }
 

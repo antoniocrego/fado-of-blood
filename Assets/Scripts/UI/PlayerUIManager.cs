@@ -9,9 +9,14 @@ public class PlayerUIManager : MonoBehaviour
     public PlayerUIHudManager playerUIHudManager;
 
     public PlayerUIPopUpManager playerUIPopUpManager;
-    
-     public bool menuWindowIsOpen = false;       
+
+    public PlayerUICharacterMenuManager playerUICharacterMenuManager;
+
+    public PlayerUIEquipmentManager playerUIEquipmentManager;
+
+    public bool menuWindowIsOpen = false;
     public bool popUpWindowIsOpen = false;
+
 
     private void Awake()
     {
@@ -25,6 +30,8 @@ public class PlayerUIManager : MonoBehaviour
         }
         playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
         playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
+        playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
+        playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
     }
     void Start()
     {
@@ -34,6 +41,12 @@ public class PlayerUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+    }
+    
+    public void CloseAllMenuWindows()
+    {
+        playerUICharacterMenuManager.CloseCharacterMenu();
+        playerUIEquipmentManager.CloseEquipmentManagerMenu();
     }
 }
