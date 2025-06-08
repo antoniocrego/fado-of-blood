@@ -1411,25 +1411,29 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
   stamina: 0
   isDead: 0
+  isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
   endurance: 1
+  vitality: 1
   maxStamina: 0
-  isJumping: 0
+  maxHealth: 0
   isLockedOn: 0
   isMoving: 0
+  isActive: 1
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 0}
-  idleState: {fileID: 11400000, guid: ff02bf20d074d00439c73b510eef9d69, type: 2}
-  pursueState: {fileID: 11400000, guid: c6a90ac900fc47642b048b17a10df159, type: 2}
-  combatState: {fileID: 11400000, guid: 386c30d7958363c4faec143759a51fc0, type: 2}
-  attackState: {fileID: 11400000, guid: 93e5c74ebc515fe408ad1699ca0a8575, type: 2}
+  idleState: {fileID: 11400000, guid: a0400a6c1c41c3a438231bf8921de1b8, type: 2}
+  pursueState: {fileID: 11400000, guid: e343e1ae04825394887e4757ab10bc4d, type: 2}
+  combatState: {fileID: 11400000, guid: 2e7953f711672534dabfbe8e79704182, type: 2}
+  attackState: {fileID: 11400000, guid: 6f10a2e97ebb111498c3fb8161a55ff5, type: 2}
 --- !u!114 &3570471759097901935
 MonoBehaviour:
   m_ObjectHideFlags: 0

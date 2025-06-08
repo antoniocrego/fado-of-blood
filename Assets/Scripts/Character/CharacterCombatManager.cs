@@ -5,13 +5,13 @@ using UnityEngine;
 public class CharacterCombatManager : MonoBehaviour
 {
     protected CharacterManager character;
-    
+
     [Header("Attack Target")]
     public CharacterManager currentTarget;
 
     [Header("Lock On Transform")]
     public Transform lockOnTransform;
-    
+
     [Header("Attack Type")]
     public AttackType currentAttackType;
 
@@ -23,12 +23,23 @@ public class CharacterCombatManager : MonoBehaviour
 
     public virtual void SetTarget(CharacterManager newTarget)
     {
-        if (newTarget != null){
+        if (newTarget != null)
+        {
             currentTarget = newTarget;
         }
         else
         {
             currentTarget = null;
         }
+    }
+
+    public void EnableIsInvulnerable()
+    {
+        character.isInvulnerable = true;
+    }
+    
+    public void DisableIsInvulnerable()
+    {
+        character.isInvulnerable = false;
     }
 }

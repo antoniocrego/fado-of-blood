@@ -40,6 +40,8 @@ public class CharacterManager : MonoBehaviour
 
     public bool isActive = true;
 
+    public bool isInvulnerable = false;
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);
@@ -104,7 +106,7 @@ public class CharacterManager : MonoBehaviour
         if (!manuallySelectDeathAnimation)
         {
             // Play death animation
-            characterAnimatorManager.PlayTargetActionAnimation("Dead_01", true);
+            characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
         }
 
 
