@@ -11125,6 +11125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b883fb8ec6d202e4887b2cc05204ae1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   lockOnTransform: {fileID: 0}
   currentAttackType: 0

@@ -13,10 +13,13 @@ public class WeaponItem : Item
     public float magic = 0f;
 
     [Header("Attack Modifiers")]
-    public float lightAttack01Modifier = 1f;
+    public float light_Attack_01_Modifier = 1.0f;
+    public float light_Attack_02_Modifier = 1.2f;
     public float heavy_Attack_01_Modifier = 1.4f;
+    public float heavy_Attack_02_Modifier = 1.6f;
     public float charge_Attack_01_Modifier = 2.0f;
-
+    public float charge_Attack_02_Modifier = 2.2f;
+    
     [Header("Stamina Costs Modifiers")]
     public float baseStaminaCost = 2f;
     public float lightAttack01StaminaModifier = 0.9f;
