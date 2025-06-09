@@ -15,7 +15,7 @@ public class WeaponItem : Item
     [Header("Attack Modifiers")]
     public float lightAttack01Modifier = 1f;
 
-    [Header("Stamina Costs")]
+    [Header("Stamina Costs Modifiers")]
     public float baseStaminaCost = 2f;
     public float lightAttack01StaminaModifier = 1f;
 
