@@ -21,4 +21,5 @@ public class WeaponItem : Item
 
     [Header("Actions")]
     public WeaponItemAction oh_RB_Action; // ONE HAND RIGHT BUMPER ACTION
+    public WeaponItemAction oh_RT_Action; // ONE HAND RIGHT TRIGGER ACTION
 }

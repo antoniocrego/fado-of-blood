@@ -18,7 +18,7 @@ public class CharacterManager : MonoBehaviour
     public float health;
     public float stamina;
     public bool isDead = false;
-
+    public bool isGrounded = true;
     public bool isPerformingAction = false;
 
     public bool isSprinting = false;
@@ -30,9 +30,11 @@ public class CharacterManager : MonoBehaviour
 
     public int maxHealth = 0;
 
-    public bool isLockedOn = false; 
+    public bool isLockedOn = false;
 
     public bool isMoving = false;
+
+    private bool isChargingAttack = false;
 
     protected virtual void Awake()
     {
@@ -50,15 +52,24 @@ public class CharacterManager : MonoBehaviour
         playerUIHudManager = FindObjectOfType<PlayerUIHudManager>();
     }
 
-    protected virtual void Update(){
-        
+    protected virtual void Update()
+    {
+
     }
 
-    protected virtual void FixedUpdate(){
+    protected virtual void FixedUpdate()
+    {
+
+    }
+
+    protected virtual void LateUpdate()
+    {
+
+    }
     
-    }
-
-    protected virtual void LateUpdate(){
-           
+    public virtual void SetIsChargingAttack(bool isCharging)
+    {
+        isChargingAttack = isCharging;
+        animator.SetBool("isChargingAttack", isCharging);
     }
 }
