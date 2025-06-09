@@ -5,7 +5,7 @@ public class CharacterStatsManager : MonoBehaviour
     public int CalculateStaminaBasedOnEnduranceLevel(int endurance)
     {
 
-        float stamina = endurance * 10;
+        float stamina = endurance * 100;
 
         return Mathf.RoundToInt(stamina);
     }

@@ -27093,13 +27093,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3998171614203972494}
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
-      propertyPath: leftHandWeaponIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
-      propertyPath: rightHandWeaponIndex
-      value: -1
-      objectReference: {fileID: 0}
+      propertyPath: currentRightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -40910,6 +40906,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 162320457714241060, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 162320457714241060, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 472742463649771101, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2
@@ -41234,9 +41238,33 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3231539042381479357, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231539042381479357, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3231539042381479357, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3297706769911010094, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_Name
       value: Right Hand Slot 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442363170690780072, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442363170690780072, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3442363170690780072, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3503966610453235704, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -41300,6 +41328,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3597115802549279612, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626152276356761863, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3626152276356761863, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3804771889759755412, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
@@ -41377,6 +41413,10 @@ PrefabInstance:
     - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_Value
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4533211197016371059, guid: 9b073495a1da2504bacefbd90ece50f5, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -41775,6 +41815,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 036457c417dd97c46b3c64df280dd2aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightWeaponQuickSlotIcon: {fileID: 0}
+  leftWeaponQuickSlotIcon: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   playerUIPopUpManager: {fileID: 0}
   playerUICharacterMenuManager: {fileID: 0}

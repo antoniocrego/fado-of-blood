@@ -338,7 +338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 935964432ff944845921b7ebfc1f56a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRightHandWeapon: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
+  currentRightHandWeapon: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
@@ -386,8 +386,6 @@ MonoBehaviour:
   isLockedOn: 0
   isMoving: 0
   playerName: Player
-  switchRightWeapon: 0
-  switchLeftWeapon: 0
   playerAnimatorManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}

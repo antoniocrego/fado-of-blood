@@ -44,6 +44,7 @@ public class PlayerCombatManager : CharacterCombatManager
 
         Debug.Log("Player stamina before attack: " + player.stamina);
         player.stamina -= staminaDeducted;
+        player.playerUIHudManager.SetNewStaminaValue(player.stamina);
         Debug.Log("Player stamina after attack: " + player.stamina);
         
         if (player.stamina <= 0)

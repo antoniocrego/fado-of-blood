@@ -1,7 +1,16 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerUIManager : MonoBehaviour
 {
+
+    [Header("STAT BARS")]
+    // [SerializeField] UI_StatBar healthBar;
+    // [SerializeField] UI_StatBar staminaBar;
+
+    [Header("QUICK SLOTS")]
+    [SerializeField] Image rightWeaponQuickSlotIcon;
+    [SerializeField] Image leftWeaponQuickSlotIcon;
 
     public static PlayerUIManager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,10 +52,62 @@ public class PlayerUIManager : MonoBehaviour
     {
 
     }
-    
+
     public void CloseAllMenuWindows()
     {
         playerUICharacterMenuManager.CloseCharacterMenu();
         playerUIEquipmentManager.CloseEquipmentManagerMenu();
+    }
+    
+    public void SetRightWeaponQuickSlotIcon(int weaponID)
+    {
+        WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
+
+        if (weapon == null)
+        {
+            Debug.Log("ITEM IS NULL");
+            rightWeaponQuickSlotIcon.enabled = false;
+            rightWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        if (weapon.itemIcon == null)
+        {
+            Debug.Log("ITEM HAS NO ICON");
+            rightWeaponQuickSlotIcon.enabled = false;
+            rightWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        //  THIS IS WHERE YOU WOULD CHECK TO SEE IF YOU MEET THE ITEMS REQUIREMENTS IF YOU WANT TO CREATE THE WARNING FOR NOT BEING ABLE TO WIELD IT IN THE UI
+
+        rightWeaponQuickSlotIcon.sprite = weapon.itemIcon;
+        rightWeaponQuickSlotIcon.enabled = true;
+    }
+
+    public void SetLeftWeaponQuickSlotIcon(int weaponID)
+    {
+        WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
+
+        if (weapon == null)
+        {
+            Debug.Log("ITEM IS NULL");
+            leftWeaponQuickSlotIcon.enabled = false;
+            leftWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        if (weapon.itemIcon == null)
+        {
+            Debug.Log("ITEM HAS NO ICON");
+            leftWeaponQuickSlotIcon.enabled = false;
+            leftWeaponQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        //  THIS IS WHERE YOU WOULD CHECK TO SEE IF YOU MEET THE ITEMS REQUIREMENTS IF YOU WANT TO CREATE THE WARNING FOR NOT BEING ABLE TO WIELD IT IN THE UI
+
+        leftWeaponQuickSlotIcon.sprite = weapon.itemIcon;
+        leftWeaponQuickSlotIcon.enabled = true;
     }
 }
