@@ -35,6 +35,8 @@ public class CharacterManager : MonoBehaviour
     public bool isMoving = false;
 
     private bool isChargingAttack = false;
+    public bool isInvulnerable = false;
+    public bool isJumping = false;
 
 
     protected virtual void Awake()

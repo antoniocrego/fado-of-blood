@@ -11129,6 +11129,8 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   lockOnTransform: {fileID: 0}
   currentAttackType: 0
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0
@@ -11255,6 +11257,8 @@ MonoBehaviour:
   maxHealth: 0
   isLockedOn: 0
   isMoving: 0
+  isInvulnerable: 0
+  isJumping: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -11299,6 +11303,8 @@ MonoBehaviour:
   maxHealth: 0
   isLockedOn: 0
   isMoving: 0
+  isInvulnerable: 0
+  isJumping: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}

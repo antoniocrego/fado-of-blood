@@ -26,30 +26,44 @@ public class PlayerCombatManager : CharacterCombatManager
     public virtual void DrainStaminaBasedOnAttack()
     {
         if (currentWeaponBeingUsed == null)
-        {
-            return;
-        }
-        float staminaDeducted = 0;
+                return;
 
-        switch (currentAttackType)
-        {
+            float staminaDeducted = 0;
+
+            switch (currentAttackType)
+            {
             case AttackType.LightAttack01:
-                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack01StaminaModifier;
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+                break;
+            case AttackType.LightAttack02:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
                 break;
             case AttackType.HeavyAttack01:
-                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttack01StaminaModifier;
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+                break;
+            case AttackType.HeavyAttack02:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
                 break;
             case AttackType.ChargedAttack01:
-                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttack01StaminaModifier;
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttackStaminaCostMultiplier;
+                break;
+            case AttackType.ChargedAttack02:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttackStaminaCostMultiplier;
+                break;
+            case AttackType.RunningAttack01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.runningAttackStaminaCostMultiplier;
+                break;
+            case AttackType.RollingAttack01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.rollingAttackStaminaCostMultiplier;
+                break;
+            case AttackType.BackstepAttack01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.backstepAttackStaminaCostMultiplier;
                 break;
             default:
                 break;
         }
 
-        Debug.Log("Player stamina before attack: " + player.stamina);
-        player.stamina -= staminaDeducted;
-        player.playerUIHudManager.SetNewStaminaValue(player.stamina);
-        Debug.Log("Player stamina after attack: " + player.stamina);
+        player.stamina -= Mathf.RoundToInt(staminaDeducted);
         
         if (player.stamina <= 0)
         {
