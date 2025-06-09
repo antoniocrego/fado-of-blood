@@ -54,7 +54,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     {
         HandleMovement(); 
         HandleRotation();
-        HandleJumpingMovement();
         HandleFreeFallMovement();
     }
 
@@ -176,47 +175,6 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         if(player.isSprinting) 
         {
             player.stamina -= spritingStaminaCost * Time.deltaTime;
-        }
-    }
-
-    public void AttemptToPerformJump() 
-    {
-        if(player.isPerformingAction) 
-        {
-            return;
-        }
-
-        player.playerAnimatorManager.PlayTargetActionAnimation("Jumping", false);
-
-        player.isJumping = true;
-
-        jumpDirection = PlayerCamera.instance.transform.forward * PlayerInputManager.instance.verticalInput;
-        jumpDirection += PlayerCamera.instance.transform.right * PlayerInputManager.instance.horizontalInput;
-        jumpDirection.Normalize();
-        jumpDirection.y = 0;
-
-        if(jumpDirection != Vector3.zero) 
-        {
-            if(player.isSprinting) 
-            {
-                jumpDirection *= 1;
-            }
-            else if(PlayerInputManager.instance.movementCombined > 0.5f) 
-            {
-                jumpDirection *= 0.5f;
-            }
-            else if(PlayerInputManager.instance.movementCombined <= 0.5f) 
-            {
-                jumpDirection *= 0.25f;
-            }
-        }
-    }
-
-    public void HandleJumpingMovement() 
-    {
-        if(player.isJumping)
-        {
-            player.characterController.Move(jumpDirection * jumpForwardSpeed * Time.deltaTime);
         }
     }
 

@@ -1021,36 +1021,72 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    bossesAwakened:
+      keys: 
+      values: 
+    bossesDefeated:
+      keys: 
+      values: 
   characterSlot01:
     characterName: 
     secondsPlayed: 0
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    bossesAwakened:
+      keys: 
+      values: 
+    bossesDefeated:
+      keys: 
+      values: 
   characterSlot02:
     characterName: 
     secondsPlayed: 0
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    bossesAwakened:
+      keys: 
+      values: 
+    bossesDefeated:
+      keys: 
+      values: 
   characterSlot03:
     characterName: 
     secondsPlayed: 0
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    bossesAwakened:
+      keys: 
+      values: 
+    bossesDefeated:
+      keys: 
+      values: 
   characterSlot04:
     characterName: 
     secondsPlayed: 0
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    bossesAwakened:
+      keys: 
+      values: 
+    bossesDefeated:
+      keys: 
+      values: 
   characterSlot05:
     characterName: 
     secondsPlayed: 0
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    bossesAwakened:
+      keys: 
+      values: 
+    bossesDefeated:
+      keys: 
+      values: 
 --- !u!4 &615428222
 Transform:
   m_ObjectHideFlags: 0

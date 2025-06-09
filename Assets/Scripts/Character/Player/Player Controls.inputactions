@@ -142,6 +142,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Open Character Menu",
+                    "type": "Button",
+                    "id": "536565af-577d-45df-b911-f233605e87c3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Sprint",
                     "type": "PassThrough",
                     "id": "0d78a99b-cac6-40d3-9265-5114e9580583",
@@ -151,18 +160,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Jump",
+                    "name": "RB",
                     "type": "Button",
-                    "id": "3da3c783-a44d-46f8-8de7-cde5800446bc",
+                    "id": "b733bddf-b461-4473-b8f4-a6dcdce08e39",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "RB",
+                    "name": "X",
                     "type": "Button",
-                    "id": "b733bddf-b461-4473-b8f4-a6dcdce08e39",
+                    "id": "dcb13302-9504-45f4-99da-f55cf34aaa76",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "0db62871-c96d-4e50-9726-360b9ae50ccf",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -190,6 +208,24 @@
                     "name": "LockOnRight",
                     "type": "Button",
                     "id": "e12f4e5b-bf02-48b7-9bac-9320ccd399c4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchRightWeapon",
+                    "type": "Button",
+                    "id": "8af99c1a-1608-4f18-8f70-a757d77f3a5c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchLeftWeapon",
+                    "type": "Button",
+                    "id": "040228c6-fab5-432b-b6b8-8f6c3f793e2f",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -243,28 +279,6 @@
                 },
                 {
                     "name": "",
-                    "id": "a806b329-7fc5-4dac-8384-c28c3422eeaf",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "f75f27e6-27d3-49e6-a5ca-1f37f0f80c12",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "c2b27929-24bd-48b7-96cd-3d4a8057ef51",
                     "path": "<Gamepad>/rightShoulder",
                     "interactions": "",
@@ -282,6 +296,116 @@
                     "processors": "",
                     "groups": "",
                     "action": "RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "add76705-e1ac-478f-bd02-2558e34a02bf",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fd0bcaf9-6ff3-4718-9d4b-594dd1b293a9",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "X",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "915e4e68-863a-4523-b24a-69e33f5b5fde",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a49ad6b9-b852-4b3a-b4cf-457ec4119053",
+                    "path": "<Keyboard>/m",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5bdb786e-b50d-44e1-a4b3-5cacbf8a65ab",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d7877d35-bb50-4ccb-99ea-2fd5e0c76e42",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e70785a7-4d96-4819-856f-b8a96443252b",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchRightWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "78943c51-ecd9-480a-b24b-25c83362d5be",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchRightWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e605e22-7949-4333-bf00-0e3b43d18afc",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchLeftWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a26edff7-98da-4737-abc7-3122c4b7e0c6",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchLeftWeapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

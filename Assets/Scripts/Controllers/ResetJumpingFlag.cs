@@ -28,7 +28,6 @@ public class ResetJumpingFlag : StateMachineBehaviour
         {
             character = animator.GetComponent<CharacterManager>();
         }    
-        character.isJumping = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
