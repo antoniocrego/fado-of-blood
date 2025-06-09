@@ -28,6 +28,11 @@ using UnityEngine;
 
     }
 
+    public virtual string GetInteractableText()
+    {
+        return interactableText;
+    }
+
     public virtual void OnTriggerEnter(Collider other)
     {
         PlayerManager player = other.GetComponent<PlayerManager>();
@@ -37,7 +42,7 @@ using UnityEngine;
             Debug.Log("PlayerManager found in Interactable");
             player.playerInteractionManager.AddInteractionToList(this);
         }
-        }
+    }
 
         public virtual void OnTriggerExit(Collider other)
         {

@@ -18,6 +18,17 @@ public class PlayerInventoryManager : CharacterInventoryManager
     [Header("Inventory")]
     public List<Item> itemsInInventory;
 
+
+    public bool HasItem(int itemID)
+    {
+        // Example: Iterate through your items list/dictionary
+        foreach (Item itemInInventory in itemsInInventory)
+        {
+            if (itemInInventory.itemID == itemID)
+                return true;
+        }
+        return false;
+    }
     public void AddItemToInventory(Item item)
     {
         Debug.Log("Added item back to inventory: " + item.itemName);
