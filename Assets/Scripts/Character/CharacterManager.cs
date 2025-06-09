@@ -36,6 +36,7 @@ public class CharacterManager : MonoBehaviour
 
     private bool isChargingAttack = false;
 
+
     protected virtual void Awake()
     {
         DontDestroyOnLoad(this);
@@ -47,7 +48,7 @@ public class CharacterManager : MonoBehaviour
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
         health = 100;
-        stamina = 10;
+        stamina = 100;
         characterCombatManager = GetComponent<CharacterCombatManager>();
         playerUIHudManager = FindObjectOfType<PlayerUIHudManager>();
     }

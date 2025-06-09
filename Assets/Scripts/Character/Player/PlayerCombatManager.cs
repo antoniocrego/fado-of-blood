@@ -32,11 +32,20 @@ public class PlayerCombatManager : CharacterCombatManager
             case AttackType.LightAttack01:
                 staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttack01StaminaModifier;
                 break;
+            case AttackType.HeavyAttack01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttack01StaminaModifier;
+                break;
+            case AttackType.ChargedAttack01:
+                staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.chargedAttack01StaminaModifier;
+                break;
             default:
                 break;
         }
 
+        Debug.Log("Player stamina before attack: " + player.stamina);
         player.stamina -= staminaDeducted;
+        Debug.Log("Player stamina after attack: " + player.stamina);
+        
         if (player.stamina <= 0)
         {
             player.stamina = 0;
