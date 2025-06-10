@@ -12,10 +12,10 @@ public class Door : Interactable
 
     [Header("Lock Settings")]
     [SerializeField] private bool isLockedByDefault = true;
-    [SerializeField] private bool requiresKeyToUnlock = true;
+    [SerializeField] private bool requiresKeyToUnlock = false;
     [SerializeField] private int requiredKeyID = 0; 
     [SerializeField] private string keyItemNameForMessage = "a specific key"; 
-    [SerializeField] private bool consumeKeyOnUnlock = true;
+    [SerializeField] private bool consumeKeyOnUnlock = false;
     
     [Header("Sounds")]
     [SerializeField] private AudioClip openSound;
@@ -63,8 +63,11 @@ public class Door : Interactable
 
     public void OperateByExternal()
     {
+        Debug.Log(gameObject.name + ": OperateByExternal called. isPermanentlyUnlockedByKey = " + isPermanentlyUnlockedByKey + ", currentLockState = " + currentLockState); 
         if (isPermanentlyUnlockedByKey || !currentLockState)
         {
+            // Deactivate the collider of the door 
+            interactableCollider.enabled = false;
             ToggleDoorState();
         }
         else
