@@ -65,15 +65,21 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.characterLocomotionManager.canRotate = canRotate;
     }
 
-    public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
+    public virtual void PlayTargetAttackActionAnimation(WeaponItem weapon, AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false)
     {
         this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
         character.characterCombatManager.currentAttackType = attackType;
         character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
+        UpdateAnimatorController(weapon.weaponAnimator);
         character.characterLocomotionManager.canMove = canMove;
         character.characterLocomotionManager.canRotate = canRotate;
+    }
+
+    public void UpdateAnimatorController(AnimatorOverrideController weaponController)
+    {
+        character.animator.runtimeAnimatorController = weaponController;
     }
     
     public virtual void EnableCanDoCombo()

@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class WeaponItem : Item
 {
-    //Change attack animation according to the weapon the player is currently using
+    [Header("Animations")]
+    public AnimatorOverrideController weaponAnimator;
+    
     [Header("Weapon Model")]
     public GameObject weaponModel;
 

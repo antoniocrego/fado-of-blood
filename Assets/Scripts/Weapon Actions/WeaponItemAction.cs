@@ -12,6 +12,9 @@ public class WeaponItemAction : ScriptableObject
         playerPerformingAction.currentWeaponBeingUsed = weaponPerformingAction;
         playerPerformingAction.playerCombatManager.currentWeaponBeingUsed = weaponPerformingAction;
 
-        Debug.Log("The action has fired");
+        if (playerPerformingAction.currentWeaponBeingUsed != null)
+        {
+            playerPerformingAction.playerAnimatorManager.UpdateAnimatorController(playerPerformingAction.currentWeaponBeingUsed.weaponAnimator);
+        }
     }
 }

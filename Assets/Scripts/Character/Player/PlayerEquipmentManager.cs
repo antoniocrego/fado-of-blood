@@ -47,7 +47,8 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
 
     // RIGHT WEAPON
     public void LoadRightWeapon(){
-        if(player.playerInventoryManager.currentRightHandWeapon != null){
+        if (player.playerInventoryManager.currentRightHandWeapon != null)
+        {
             //REMOVE THE OLD WEAPON
             rightHandSlot.UnloadWeapon();
 
@@ -56,6 +57,7 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             rightHandSlot.LoadWeapon(rightHandWeaponModel);
             rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
             rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator); 
         }
     }
 
