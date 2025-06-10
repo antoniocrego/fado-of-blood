@@ -12,7 +12,7 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
-
+    [HideInInspector] public CharacterStatsManager characterStatsManager;
     [HideInInspector] public PlayerUIHudManager playerUIHudManager;
     public CharacterGroup characterGroup;
     public float health;
@@ -37,6 +37,7 @@ public class CharacterManager : MonoBehaviour
     private bool isChargingAttack = false;
     public bool isInvulnerable = false;
     public bool isJumping = false;
+    public bool isBlocking = false;
 
 
     protected virtual void Awake()
@@ -52,6 +53,7 @@ public class CharacterManager : MonoBehaviour
         health = 100;
         stamina = 100;
         characterCombatManager = GetComponent<CharacterCombatManager>();
+        characterStatsManager = GetComponent<CharacterStatsManager>();
         playerUIHudManager = FindObjectOfType<PlayerUIHudManager>();
     }
 

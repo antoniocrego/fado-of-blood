@@ -84,3 +84,12 @@ public enum EquipmentType
     LeftWeapon02,
     LeftWeapon03,
 }
+
+public enum DamageIntensity
+{
+    Ping,
+    Light,
+    Medium,
+    Heavy,
+    Colossal
+}

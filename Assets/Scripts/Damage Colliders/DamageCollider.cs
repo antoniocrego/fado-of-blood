@@ -17,6 +17,10 @@ public class DamageCollider: MonoBehaviour{
     [Header("Characters Damaged")]
     protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
 
+    [Header("Block")]
+    protected Vector3 directionFromAttackToDamageTarget;
+    protected float dotValueFromAttackToDamageTarget;
+
     protected virtual void OnTriggerEnter(Collider other)
     {
         Debug.Log("Trigger entered: " + other.gameObject.name);
@@ -25,13 +29,45 @@ public class DamageCollider: MonoBehaviour{
         if (damageTarget != null)
         {
             contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-
+            CheckForBlock(damageTarget);
             DamageTarget(damageTarget);
         }
     }
+    
+    protected virtual void CheckForBlock(CharacterManager damageTarget)
+    {
+        //  IF THIS CHARACTER HAS ALREADY BEEN DAMAGED, DO NOT PROCEED
+        if (charactersDamaged.Contains(damageTarget))
+            return;
 
-    protected virtual void DamageTarget(CharacterManager damageTarget){
-        if(charactersDamaged.Contains(damageTarget)){
+        GetBlockingDotValues(damageTarget);
+
+        // 1. CHECK IF THE CHARACTER BEING DAMAGED IS BLOCKING
+        if (damageTarget.isBlocking && dotValueFromAttackToDamageTarget > 0.3f)
+        {
+            // 2. IF THE CHARACTER IS BLOCKING, CHECK IF THEY ARE FACING IN THE CORRECT DIRECTION TO BLOCK SUCCESSFULLY
+
+            charactersDamaged.Add(damageTarget);
+
+            TakeBlockedDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
+
+            damageEffect.damage = damage;
+
+            // 3. APPLY BLOCKED CHARACTER DAMAGE TO TARGET
+            damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
+        }
+    }
+
+    protected virtual void GetBlockingDotValues(CharacterManager damageTarget)
+    {
+        directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
+        dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+    }
+
+    protected virtual void DamageTarget(CharacterManager damageTarget)
+    {
+        if (charactersDamaged.Contains(damageTarget))
+        {
             return;
         }
 

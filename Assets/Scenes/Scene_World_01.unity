@@ -11223,6 +11223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92da2767eaf20f545bca505eb901f512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockingDamageAbsorption: 0
 --- !u!114 &659598297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11243,6 +11244,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
@@ -11259,6 +11261,7 @@ MonoBehaviour:
   isMoving: 0
   isInvulnerable: 0
   isJumping: 0
+  isBlocking: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -11289,6 +11292,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
@@ -11305,6 +11309,7 @@ MonoBehaviour:
   isMoving: 0
   isInvulnerable: 0
   isJumping: 0
+  isBlocking: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -27099,10 +27104,6 @@ PrefabInstance:
       propertyPath: 'cameras.Array.data[0]'
       value: 
       objectReference: {fileID: 3998171614203972494}
-    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
-      propertyPath: currentRightHandWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

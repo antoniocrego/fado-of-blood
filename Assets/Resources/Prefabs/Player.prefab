@@ -268,16 +268,15 @@ GameObject:
   - component: {fileID: 4092422953920282636}
   - component: {fileID: 5948118211449343234}
   - component: {fileID: 4168413056940886147}
+  - component: {fileID: 670603924712989498}
   - component: {fileID: -2959177603621293489}
   - component: {fileID: 2931473718204174979}
   - component: {fileID: 2656330275641653131}
   - component: {fileID: -3666868536411148229}
   - component: {fileID: 606250681969884045}
   - component: {fileID: 4530238051040815320}
-  - component: {fileID: 1350991937288706699}
   - component: {fileID: 7078476564494650866}
   - component: {fileID: 5604451340730710833}
-  - component: {fileID: 4708448287236820736}
   - component: {fileID: 2425388714013421464}
   - component: {fileID: 1877013756962932319}
   m_Layer: 6
@@ -371,6 +370,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 0
   health: 0
@@ -385,6 +385,9 @@ MonoBehaviour:
   maxHealth: 0
   isLockedOn: 0
   isMoving: 0
+  isInvulnerable: 0
+  isJumping: 0
+  isBlocking: 0
   playerName: Player
   playerAnimatorManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
@@ -403,6 +406,19 @@ MonoBehaviour:
   lockOnRange: 20
   minFov: -60
   maxFov: 60
+--- !u!114 &670603924712989498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 749865201942795662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7060b117ac006de438d01ee0dcf6a800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingPhysicalAbsorption: 0
 --- !u!114 &-2959177603621293489
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,10 +431,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43824afc06fd87c4c9bb38f0b680f0c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   lockOnTransform: {fileID: 0}
   currentAttackType: 0
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
   currentWeaponBeingUsed: {fileID: 0}
+  canComboWithMainHandWeapon: 0
 --- !u!114 &2931473718204174979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,18 +535,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyRootMotion: 0
---- !u!114 &1350991937288706699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749865201942795662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7060b117ac006de438d01ee0dcf6a800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &7078476564494650866
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,18 +585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   applyRootMotion: 0
---- !u!114 &4708448287236820736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 749865201942795662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7060b117ac006de438d01ee0dcf6a800, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!143 &2425388714013421464
 CharacterController:
   m_ObjectHideFlags: 0

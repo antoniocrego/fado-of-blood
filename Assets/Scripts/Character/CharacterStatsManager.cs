@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class CharacterStatsManager : MonoBehaviour
 {
+
+    [Header("Blocking Absorptions")]
+    public float blockingDamageAbsorption;
+
     public int CalculateStaminaBasedOnEnduranceLevel(int endurance)
     {
 

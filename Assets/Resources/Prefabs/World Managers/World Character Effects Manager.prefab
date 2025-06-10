@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeDamageEffect: {fileID: 11400000, guid: a3530a10906f1b54fb62ccd0dc64ef71, type: 2}
+  takeBlockedDamageEffect: {fileID: 11400000, guid: cbb4b90b438cea74fb19e761e3639387, type: 2}
   instantEffects:
   - {fileID: 11400000, guid: 72a50702a5f8d674fa834b7a9ee14eab, type: 2}
   - {fileID: 11400000, guid: a3530a10906f1b54fb62ccd0dc64ef71, type: 2}
+  - {fileID: 11400000, guid: cbb4b90b438cea74fb19e761e3639387, type: 2}
