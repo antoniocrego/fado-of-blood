@@ -169,9 +169,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Que RB",
+                    "type": "Button",
+                    "id": "055f908e-023e-416f-888f-67bf854c2edb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RT",
                     "type": "Button",
                     "id": "3027f1a8-e473-4d34-a7ed-421769ce0e22",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Que RT",
+                    "type": "Button",
+                    "id": "540af80b-b4a9-4798-8a5c-e81ff9719ad4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -319,6 +337,28 @@
                 },
                 {
                     "name": "",
+                    "id": "e6681064-5eb3-4b5e-af58-dcc3acaaf38c",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18aaf52b-d00f-4365-91fc-c6044fca8e0e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "0c5ccf2d-7b28-45d8-bffa-c5b1a0eb184a",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -336,6 +376,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43c38026-0bda-456f-96fe-d6ae32309019",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22447475-735b-4687-a9d8-2c7aaa0465b9",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

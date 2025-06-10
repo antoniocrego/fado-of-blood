@@ -38769,6 +38769,11 @@ MonoBehaviour:
   RB_Input: 0
   RT_Input: 0
   Hold_RT_Input: 0
+  input_Que_Is_Active: 0
+  default_Que_Input_Time: 0.35
+  que_Input_Timer: 0
+  que_RB_Input: 0
+  que_RT_Input: 0
   switch_Right_hand_weapon: 0
   switch_Left_hand_weapon: 0
   interaction_input: 0
