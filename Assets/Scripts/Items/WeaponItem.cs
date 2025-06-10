@@ -4,6 +4,9 @@ public class WeaponItem : Item
 {
     [Header("Animations")]
     public AnimatorOverrideController weaponAnimator;
+
+    [Header("Model Instantiation")]
+    public WeaponModelType weaponModelType;
     
     [Header("Weapon Model")]
     public GameObject weaponModel;
@@ -37,4 +40,5 @@ public class WeaponItem : Item
     [Header("Actions")]
     public WeaponItemAction oh_RB_Action; // ONE HAND RIGHT BUMPER ACTION
     public WeaponItemAction oh_RT_Action; // ONE HAND RIGHT TRIGGER ACTION
+    public WeaponItemAction oh_LB_Action;   // ONE HAND LEFT BUMPER ACTION
 }

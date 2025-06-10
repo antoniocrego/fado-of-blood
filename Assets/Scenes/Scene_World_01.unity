@@ -11131,6 +11131,7 @@ MonoBehaviour:
   currentAttackType: 0
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
+  canBlock: 1
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0
@@ -11262,6 +11263,7 @@ MonoBehaviour:
   isInvulnerable: 0
   isJumping: 0
   isBlocking: 0
+  isAttacking: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -11310,6 +11312,7 @@ MonoBehaviour:
   isInvulnerable: 0
   isJumping: 0
   isBlocking: 0
+  isAttacking: 0
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -27100,10 +27103,58 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.219
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.043
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.0035089476
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.9938663
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.045709964
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.10063835
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0.927
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -191.522
+      objectReference: {fileID: 0}
+    - target: {fileID: 2266870742011347536, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -174.827
+      objectReference: {fileID: 0}
     - target: {fileID: 2656330275641653131, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: 'cameras.Array.data[0]'
       value: 
       objectReference: {fileID: 3998171614203972494}
+    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: currentLeftHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: c960c3c6132fd6f448e543e65480834c, type: 2}
+    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: currentRightHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
     - target: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -38768,6 +38819,7 @@ MonoBehaviour:
   lockOnLeft_input: 0
   lockOnRight_input: 0
   RB_Input: 0
+  LB_Input: 0
   RT_Input: 0
   Hold_RT_Input: 0
   input_Que_Is_Active: 0

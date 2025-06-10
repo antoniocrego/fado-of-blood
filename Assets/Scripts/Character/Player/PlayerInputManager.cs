@@ -28,6 +28,7 @@ public class PlayerInputManager : MonoBehaviour
 
     [Header("BUMPER INPUTS")]
     [SerializeField] bool RB_Input = false;
+    [SerializeField] bool LB_Input = false;
 
     [Header("TRIGGER INPUTS")]
     [SerializeField] bool RT_Input = false;
@@ -89,6 +90,7 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleLockOnInput();
         HandleRBInput();
+        HandleLBInput();
         HandleRTInput();
         HandleChargeRTInput();
         HandleLockOnSwitchTargetInput();
@@ -232,6 +234,22 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
+    private void HandleLBInput()
+    {
+        if (LB_Input)
+        {
+            LB_Input = false;
+
+            //  TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.SetCharacterActionHand(false);
+
+            //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oh_LB_Action, player.playerInventoryManager.currentLeftHandWeapon);
+        }
+    }
+
     private void HandleRTInput()
     {
         if (RT_Input)
@@ -329,6 +347,8 @@ public class PlayerInputManager : MonoBehaviour
 
             //  BUMPERS
             playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+            playerControls.PlayerActions.LB.performed += i => LB_Input = true;
+            playerControls.PlayerActions.LB.canceled += i => player.isBlocking = false;
 
             //  TRIGGERS
             playerControls.PlayerActions.RT.performed += i => RT_Input = true;

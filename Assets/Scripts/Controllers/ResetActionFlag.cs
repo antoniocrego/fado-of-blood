@@ -24,6 +24,7 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterCombatManager.DisableCanDoBackstepAttack();
         character.isJumping = false;
         character.isInvulnerable = false;
+        character.isAttacking = false;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

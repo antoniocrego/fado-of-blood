@@ -15,6 +15,8 @@ using UnityEngine;
             if (!playerPerformingAction.isGrounded)
                 return;
 
+            playerPerformingAction.isAttacking = true;
+
             PerformHeavyAttack(playerPerformingAction, weaponPerformingAction);
         }
 

@@ -21,6 +21,7 @@ public class CharacterCombatManager : MonoBehaviour
     [Header("Attack Flags")]
     public bool canPerformRollingAttack = false;
     public bool canPerformBackstepAttack = false;
+    public bool canBlock = true;
 
     protected virtual void Awake()
     {

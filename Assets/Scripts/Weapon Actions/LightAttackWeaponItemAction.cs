@@ -26,6 +26,8 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
 
         if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;
 
+        playerPerformingAction.isAttacking = true;
+
         //  IF WE ARE SPRINTING, PERFORM A RUNNING ATTACK
         if (playerPerformingAction.isSprinting)
         {
