@@ -18,9 +18,9 @@ public class AICharacterManager : CharacterManager
     public AIStateCombat combatState;
     public AIStateAttack attackState;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
         aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
 

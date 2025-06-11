@@ -19,7 +19,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
 
     public void SetAttack02Damage()
     {
-        leftHandDamageCollider.damage = baseDamage * attack02DamageMultiplier;
+        rightHandDamageCollider.damage = baseDamage * attack02DamageMultiplier;
     }
 
     public void OpenRightHandDamageCollider()
@@ -42,4 +42,18 @@ public class AIUndeadCombatManager : AICharacterCombatManager
         leftHandDamageCollider.DisableDamageCollider();
     }
 
+    public override void PivotTowardsTarget(AICharacterManager aiCharacter)
+    {
+        if (aiCharacter.isPerformingAction) return;
+
+        if (viewableAngle >= 40 && viewableAngle <= 110)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 R", true);
+        }
+        else if (viewableAngle <= -40 && viewableAngle >= -110)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 L", true);
+        }
+
+    }
 }

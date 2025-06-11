@@ -28,6 +28,10 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     public void Update() 
     {
+        if (character == null || character.isDead)
+        {
+            return; 
+        }
         HandleGroundCheck(); 
         if(isGrounded) 
         {

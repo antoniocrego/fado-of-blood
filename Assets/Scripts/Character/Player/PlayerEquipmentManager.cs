@@ -60,7 +60,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     }
 
     public void SwitchRightWeapon(){
-        player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, true, true, true);
+        if (player.isDead) return;
+
+        player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true);
 
         WeaponItem selectedWeapon = null;
 
@@ -133,7 +135,9 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     }
 
     public void SwitchLeftWeapon(){
-       player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Left_Weapon_01", false, true, true, true);
+        if (player.isDead) return;
+
+        player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Left_Weapon_01", false, false, true, true);
 
         WeaponItem selectedWeapon = null;
 

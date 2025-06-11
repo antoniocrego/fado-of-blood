@@ -11,6 +11,9 @@ public class AICharacterCombatManager : CharacterCombatManager
     public float viewableAngle;
     public Vector3 targetDirection;
 
+    [Header("Pivot")]
+    public bool canPivot = true;
+
     [Header("Detection")]
     [SerializeField] private float detectionRadius = 10f;
     public float minimumFOV = -35f;
@@ -45,23 +48,50 @@ public class AICharacterCombatManager : CharacterCombatManager
                         targetDirection = targetCharacter.transform.position - transform.position;
                         viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetDirection);
                         aiCharacter.characterCombatManager.currentTarget = targetCharacter;
-                        PivotTowardsTarget(aiCharacter);
+
+                        if (canPivot)
+                            PivotTowardsTarget(aiCharacter);
                     }
                 }
             }
         }
     }
 
-    public void PivotTowardsTarget(AICharacterManager aiCharacter)
+    public virtual void PivotTowardsTarget(AICharacterManager aiCharacter)
     {
         if (aiCharacter.isPerformingAction) return;
 
-        // this should be working, but it is not working
-        if (viewableAngle >= 60 && viewableAngle <= 110){
+        if (viewableAngle >= 20 && viewableAngle <= 60)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 45 R", true);
+        }
+        else if (viewableAngle >= 60 && viewableAngle <= 110)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 R", true);
+        }
+        else if (viewableAngle >= 110 && viewableAngle <= 145)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 135 R", true);
+        }
+        else if (viewableAngle >= 145 && viewableAngle <= 180)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 180 R", true);
+        }
+        else if (viewableAngle <= -20 && viewableAngle >= -60)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 45 L", true);
+        }
+        else if (viewableAngle <= -60 && viewableAngle >= -110)
+        {
             aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 L", true);
         }
-        else if (viewableAngle <= -60 && viewableAngle >= -110){
-            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 R", true);
+        else if (viewableAngle <= -110 && viewableAngle >= -145)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 135 L", true);
+        }
+        else if (viewableAngle <= -145 && viewableAngle >= -180)
+        {
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 180 L", true);
         }
     }
 

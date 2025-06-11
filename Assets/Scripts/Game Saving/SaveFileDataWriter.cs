@@ -11,12 +11,12 @@ public class SaveFileDataWriter
     {
         if (File.Exists(Path.Combine(saveDataDirectoryPath, saveFileName)))
         {
-            Debug.Log("Save file exists.");
+            //Debug.Log("Save file exists.");
             return true;
         }
         else
         {
-            Debug.Log("Save file does not exist.");
+            //Debug.Log("Save file does not exist.");
             return false;
         }
     }
@@ -64,7 +64,7 @@ public class SaveFileDataWriter
                 using StreamReader reader = new StreamReader(fileStream);
                 dataToLoad = reader.ReadToEnd();
                 characterData = JsonUtility.FromJson<CharacterSaveData>(dataToLoad);
-                Debug.Log("Save file loaded successfully.");
+                //Debug.Log("Save file loaded successfully.");
             }
             catch (Exception e)
             {
@@ -73,7 +73,7 @@ public class SaveFileDataWriter
         }
         else
         {
-            Debug.LogWarning("Save file does not exist.");
+            //Debug.LogWarning("Save file does not exist.");
         }
 
         return characterData;

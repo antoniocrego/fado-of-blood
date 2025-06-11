@@ -168,7 +168,7 @@ public class Door : Interactable
             {
                 Debug.LogWarning(gameObject.name + ": Child 'DoorRotationObject' not found for manual rotation.");
             }
-            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, true, true, true);
+            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true);
             physicalBarrierCollider.enabled = false; 
         }
         else
