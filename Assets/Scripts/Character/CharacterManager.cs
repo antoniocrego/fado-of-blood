@@ -13,6 +13,8 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+    [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
+
 
     [HideInInspector] public PlayerUIHudManager playerUIHudManager;
     public CharacterGroup characterGroup;
@@ -52,6 +54,7 @@ public class CharacterManager : MonoBehaviour
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+        characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         health = 100;
         previousHealth = health;
         maxHealth = 100;

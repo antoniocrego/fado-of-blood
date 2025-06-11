@@ -9,6 +9,7 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
 
     private bool hasTouchedGround = false;
     private bool hasPlayedFootstepSFX = false;
+    [SerializeField] float distanceToGround = 0.05f; // Distance to check for ground
 
     private void Start()
     {
@@ -29,7 +30,7 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, character.transform.TransformDirection(Vector3.down), out hit, 0.05f, WorldUtilityManager.Instance.GetEnviroLayer()))
+        if (Physics.Raycast(transform.position, character.transform.TransformDirection(Vector3.down), out hit, distanceToGround, WorldUtilityManager.Instance.GetEnviroLayer()))
         {
             hasTouchedGround = true;
 
@@ -54,8 +55,6 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
 
     private void PlayFootstepSFX()
     {
-        // TODO: ADD LOGIC FOR PLAYING FOOTSTEP SFX BASED ON THE STEPPED ON OBJECT
-
-        //audioSource.PlayOneShot(WorldSoundFXManager.Instance.GetFootstepSFX(steppedOnObject));
+        audioSource.PlayOneShot(WorldSoundFXManager.instance.ChooseRandomFootstepSoundBasedOnSurface(steppedOnObject, character), 0.5f);
     }
 }

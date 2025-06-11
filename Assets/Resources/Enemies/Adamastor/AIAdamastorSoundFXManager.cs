@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AIAdamastorSoundFXManager : MonoBehaviour
+public class AIAdamastorSoundFXManager : CharacterSoundFXManager
 {
 
 }
