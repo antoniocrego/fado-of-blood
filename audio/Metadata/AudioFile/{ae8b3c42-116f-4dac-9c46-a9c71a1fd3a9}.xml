@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{ae8b3c42-116f-4dac-9c46-a9c71a1fd3a9}">
+		<property name="assetPath">
+			<value>Animals, Insect, Fly, Buzz Around, Close Up 01 SND14742 2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.0337291666666668</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0402de1f-0e62-4686-a543-a24fe43332e8}</destination>
+		</relationship>
+	</object>
+</objects>
