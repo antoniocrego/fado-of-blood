@@ -42,7 +42,7 @@ public class CharacterManager : MonoBehaviour
 
     public bool isInvulnerable = false;
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         DontDestroyOnLoad(this);
         characterController = GetComponent<CharacterController>();

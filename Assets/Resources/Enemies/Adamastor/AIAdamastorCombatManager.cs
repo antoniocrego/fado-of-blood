@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class AIAdamastorCombatManager : AICharacterCombatManager
 {
+    AIBossCharacterManager aiBossCharacterManager;
+
     [Header("Damage Colliders")]
     [SerializeField] AdamastorFistDamageCollider rightHandDamageCollider;
     [SerializeField] AdamastorFistDamageCollider leftHandDamageCollider;
@@ -12,6 +14,12 @@ public class AIAdamastorCombatManager : AICharacterCombatManager
     [SerializeField] float baseDamage = 10f;
     [SerializeField] float attack01DamageMultiplier = 1.5f;
     [SerializeField] float attack02DamageMultiplier = 3f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        aiBossCharacterManager = GetComponent<AIBossCharacterManager>();
+    }
 
     public void SetAttack01Damage()
     {

@@ -12,9 +12,9 @@ public class AIBossCharacterManager : AICharacterManager
     [Header("Debug")]
     [SerializeField] bool wakeBossUp = false;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
 
         // If boss was never put in the save data, he was never encountered, thus isnt awakened and much less defeated.
         if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))

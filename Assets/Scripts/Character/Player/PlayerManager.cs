@@ -32,15 +32,9 @@ public class PlayerManager : CharacterManager
     public float minFov = -60f;
     public float maxFov = 60f;
 
-    public void Start()
+    protected override void Start()
     {
-        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
-        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
-        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);   
-    }
-    protected override void Awake()
-    {
-        base.Awake();
+        base.Start();
 
         playerInventoryManager = GetComponent<PlayerInventoryManager>();
         playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
@@ -56,6 +50,10 @@ public class PlayerManager : CharacterManager
         {
             WorldSaveGameManager.instance.player = this;
         }
+
+        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);   
     }
     protected override void Update()
     {
