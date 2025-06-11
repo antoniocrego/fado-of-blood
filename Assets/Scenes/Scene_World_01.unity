@@ -11553,7 +11553,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1255460841}
+  m_Father: {fileID: 1997201130}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &699039054
 GameObject:
@@ -26967,6 +26967,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: footstepSFXs.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ef6ce3e1c9623424fbf201000bb01883, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8300000, guid: d319e671cf743cf43b6dc3625b6b1685, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 7e1bfcbcd410fdb4f8615d597b7b1a9c, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 28a2e72c61d31f443886c3b3c33ec622, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 8300000, guid: ef06ef08636893e40b81c78536a5e4c6, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[5]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 68e63877430ce9c4ea33b86b122099d9, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[6]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 186d7ca18d3a275469e6647f7db5d2eb, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[7]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 733d2deda2c4016458a37f5055ccfa9d, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[8]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 1747afc30099fd640b18342372f3c0d1, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[9]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 9098eabb2cf81ac4db45ed6428d4c9e6, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[10]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 272e8a0785e7bb84489edc89ad2135ab, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[11]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 223d5babb2c735c4c9f15961f9864755, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[12]'
+      value: 
+      objectReference: {fileID: 8300000, guid: e04733ae68c9c5b48b1b0e09067ea3e4, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[13]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 91831137b33a02d44a56d92c4f9dc2e8, type: 3}
+    - target: {fileID: -5256317076558561274, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: 'footstepSFXs.Array.data[14]'
+      value: 
+      objectReference: {fileID: 8300000, guid: 91831137b33a02d44a56d92c4f9dc2e8, type: 3}
     - target: {fileID: -3666868536411148229, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: effectToTest
       value: 
@@ -27171,6 +27235,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4092422953920282636, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 5be04fe8759018540b8cae7400f1b5c1, type: 3}
     - target: {fileID: 4092422953920282636, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -27444,7 +27512,7 @@ PrefabInstance:
     - {fileID: 1369403817288162229, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7383971215593331069, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 689547491}
     m_AddedComponents:
@@ -27463,12 +27531,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 749865201942795662, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1997201118}
+    - targetCorrespondingSourceObject: {fileID: 2357562746967660646, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2102534903}
   m_SourcePrefab: {fileID: 100100000, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
---- !u!4 &1255460841 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7383971215593331069, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
-  m_PrefabInstance: {fileID: 1255460840}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1260406003
 GameObject:
   m_ObjectHideFlags: 0
@@ -40143,6 +40209,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92852753c49d231478641c2fa76352bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &1997201130 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7778262785881429942, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+  m_PrefabInstance: {fileID: 1255460840}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2009822057
 Mesh:
   m_ObjectHideFlags: 0
@@ -41116,6 +41187,30 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2102534901 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2357562746967660646, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+  m_PrefabInstance: {fileID: 1255460840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2102534903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2102534901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms: []
 --- !u!1 &2124037514
 GameObject:
   m_ObjectHideFlags: 0
@@ -42893,11 +42988,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8942341094853907276, guid: 0eab2d894d964f74eaeebf753e6a418e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.616
+      value: 0.11
       objectReference: {fileID: 0}
     - target: {fileID: 8942341094853907276, guid: 0eab2d894d964f74eaeebf753e6a418e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.455
+      value: 0.93
       objectReference: {fileID: 0}
     - target: {fileID: 8942341094853907276, guid: 0eab2d894d964f74eaeebf753e6a418e, type: 3}
       propertyPath: m_LocalPosition.z

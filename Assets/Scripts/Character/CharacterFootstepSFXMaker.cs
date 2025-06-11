@@ -19,7 +19,9 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (character == null || audioSource == null) return;
 
+        CheckForFootSteps();
     }
 
     private void CheckForFootSteps()

@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class AIAdamastorCharacterManager : AIBossCharacterManager
 {
-    public AIAdamastorSoundFXManager aiAdamastorSoundFXManager;
+    [HideInInspector] public AIAdamastorSoundFXManager aiAdamastorSoundFXManager;
+    [HideInInspector] public AIAdamastorCombatManager aiAdamastorCombatManager;
 
     protected override void Start()
     {
