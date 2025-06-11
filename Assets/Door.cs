@@ -87,8 +87,8 @@ public class Door : Interactable
             Debug.Log(gameObject.name + " is locked.");
         }
     }
-    
-     private IEnumerator SmoothlyRotate(Transform objectToRotate, Quaternion endRotation, float duration)
+
+    private IEnumerator SmoothlyRotate(Transform objectToRotate, Quaternion endRotation, float duration)
     {
         if (objectToRotate == null) yield break;
 
@@ -97,13 +97,15 @@ public class Door : Interactable
 
         while (timeElapsed < duration)
         {
+            physicalBarrierCollider.transform.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
             objectToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
-
-        objectToRotate.rotation = endRotation; 
-        _activeRotationCoroutine = null; 
+        physicalBarrierCollider.transform.rotation = endRotation;
+        objectToRotate.rotation = endRotation;
+        _activeRotationCoroutine = null;
+        physicalBarrierCollider.enabled = true;
     }
 
     public override void Interact(PlayerManager player)

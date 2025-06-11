@@ -241,6 +241,7 @@ public class PlayerUIEquipmentManager : MonoBehaviour
 
     public void SelectEquipmentSlot(int equipmentSlot)
     {
+        RefreshMenu();
         currentSelectedEquipmentSlot = (EquipmentType)equipmentSlot;
     }
 

@@ -19,6 +19,7 @@ public class PlayerUICharacterMenuManager : MonoBehaviour
         menu.SetActive(false);
     }
 
+
     public void CloseCharacterMenuAfterFixedFrame()
     {
         StartCoroutine(WaitThenCloseMenu());
