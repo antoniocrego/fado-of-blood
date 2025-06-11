@@ -1,7 +1,10 @@
 using UnityEngine;
+using System.Collections;
 
 public class Door : Interactable
 {
+    PlayerManager player;
+
     [Header("Door Settings")]
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private string openAnimationName = "DoorOpen";
@@ -31,10 +34,17 @@ public class Door : Interactable
 
     private bool currentLockState; 
     private bool isPermanentlyUnlockedByKey = false; 
+    
+    private Coroutine _activeRotationCoroutine; 
+
+    [SerializeField] private float manualRotationDuration = 1.0f; 
 
     protected override void Awake()
     {
-        base.Awake(); 
+        base.Awake();
+        // Get the player from the scene 
+        player = FindObjectOfType<PlayerManager>(); 
+        
         if (doorAnimator == null)
         {
             doorAnimator = GetComponent<Animator>();
@@ -46,7 +56,7 @@ public class Door : Interactable
             Collider[] colliders = GetComponents<Collider>();
             foreach (Collider col in colliders)
             {
-                if (col != interactableCollider) 
+                if (col != interactableCollider)
                 {
                     physicalBarrierCollider = col;
                     break;
@@ -56,8 +66,8 @@ public class Door : Interactable
 
         if (physicalBarrierCollider != null)
         {
-            physicalBarrierCollider.isTrigger = false; 
-            physicalBarrierCollider.enabled = !isOpen; 
+            physicalBarrierCollider.isTrigger = false;
+            physicalBarrierCollider.enabled = !isOpen;
         }
     }
 
@@ -66,14 +76,34 @@ public class Door : Interactable
         Debug.Log(gameObject.name + ": OperateByExternal called. isPermanentlyUnlockedByKey = " + isPermanentlyUnlockedByKey + ", currentLockState = " + currentLockState); 
         if (isPermanentlyUnlockedByKey || !currentLockState)
         {
-            // Deactivate the collider of the door 
-            interactableCollider.enabled = false;
-            ToggleDoorState();
+            if (interactableCollider != null)
+            {
+                interactableCollider.enabled = false;
+            }
+            ToggleDoorState(); 
         }
         else
         {
             Debug.Log(gameObject.name + " is locked.");
         }
+    }
+    
+     private IEnumerator SmoothlyRotate(Transform objectToRotate, Quaternion endRotation, float duration)
+    {
+        if (objectToRotate == null) yield break;
+
+        Quaternion startRotation = objectToRotate.rotation;
+        float timeElapsed = 0f;
+
+        while (timeElapsed < duration)
+        {
+            objectToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
+            timeElapsed += Time.deltaTime;
+            yield return null; 
+        }
+
+        objectToRotate.rotation = endRotation; 
+        _activeRotationCoroutine = null; 
     }
 
     public override void Interact(PlayerManager player)
@@ -84,7 +114,7 @@ public class Door : Interactable
             base.Interact(player);
             ToggleDoorState();
         }
-        else if (currentLockState && requiresKeyToUnlock) 
+        else if (currentLockState && requiresKeyToUnlock)
         {
             if (player.playerInventoryManager == null || WorldItemDatabase.Instance == null)
             {
@@ -95,7 +125,7 @@ public class Door : Interactable
             if (player.playerInventoryManager.HasItem(requiredKeyID))
             {
                 isPermanentlyUnlockedByKey = true;
-                currentLockState = false; 
+                currentLockState = false;
 
                 if (consumeKeyOnUnlock)
                 {
@@ -108,7 +138,7 @@ public class Door : Interactable
                     }
                 }
                 base.Interact(player);
-                ToggleDoorState(); 
+                ToggleDoorState();
             }
         }
     }
@@ -119,7 +149,25 @@ public class Door : Interactable
         if (isOpen)
         {
             if (physicalBarrierCollider != null)
-                physicalBarrierCollider.enabled = false; 
+            {
+                Transform doorRotationObjectTransform = transform.Find("DoorRotationObject");
+                if (doorRotationObjectTransform != null)
+                { 
+                    if (_activeRotationCoroutine != null)
+                    {
+                        StopCoroutine(_activeRotationCoroutine);
+                    }
+                    Quaternion targetLocalRotation = Quaternion.Euler(doorRotationObjectTransform.transform.localEulerAngles.x, doorRotationObjectTransform.transform.localEulerAngles.y, doorRotationObjectTransform.transform.localEulerAngles.z + 90);
+                    Quaternion targetRotation = doorRotationObjectTransform.parent.rotation * targetLocalRotation;
+                    _activeRotationCoroutine = StartCoroutine(SmoothlyRotate(doorRotationObjectTransform, targetRotation, manualRotationDuration));
+                } 
+            }
+            else
+            {
+                Debug.LogWarning(gameObject.name + ": Child 'DoorRotationObject' not found for manual rotation.");
+            }
+            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, true, true, true);
+            physicalBarrierCollider.enabled = false; 
         }
         else
         {
