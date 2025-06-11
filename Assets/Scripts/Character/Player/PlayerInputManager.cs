@@ -30,6 +30,12 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool switch_Right_hand_weapon = false;
     [SerializeField] bool switch_Left_hand_weapon = false;
 
+    [SerializeField] bool interaction_input = false;
+
+    
+    [SerializeField] bool openCharacterMenuInput = false;
+    [SerializeField] bool closeMenuInput = false;
+
     private Coroutine lockOnCoroutine;
 
     private void Awake()
@@ -74,6 +80,9 @@ public class PlayerInputManager : MonoBehaviour
         HandleCameraInput();
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
+        HandleInteractInput();
+        HandleCloseUIInput();  
+        HandleOpenCharacterMenuInput();
     }
 
 
@@ -122,16 +131,25 @@ public class PlayerInputManager : MonoBehaviour
             player.playerLocomotionManager.AttemptToPerformDodge();
         }
     }
+    
+    private void HandleInteractInput() 
+    {
+        if(interaction_input) 
+        {
+            interaction_input = false;
+            player.playerInteractionManager.Interact();
+        }
+    }
 
    
 
-    private void HandleSprintInput() 
+    private void HandleSprintInput()
     {
-        if(sprintInput) 
+        if (sprintInput)
         {
-            player.playerLocomotionManager.HandleSprint(); 
+            player.playerLocomotionManager.HandleSprint();
         }
-        else 
+        else
         {
             player.isSprinting = false;
         }
@@ -260,6 +278,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
             playerControls.PlayerActions.LockOnLeft.performed += i => lockOnLeft_input = true;
             playerControls.PlayerActions.LockOnRight.performed += i => lockOnRight_input = true;
+            playerControls.PlayerActions.Interact.performed += i => interaction_input = true;
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
@@ -267,6 +286,10 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerActions.SwitchRightWeapon.performed += i => switch_Right_hand_weapon = true;
             playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switch_Left_hand_weapon = true;
+
+            playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
+            playerControls.PlayerActions.OpenCharacterMenu.performed += i => openCharacterMenuInput = true;
+
 
         }
 
@@ -278,6 +301,8 @@ public class PlayerInputManager : MonoBehaviour
         if(switch_Right_hand_weapon)
         {
             switch_Right_hand_weapon = false;
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+                return;
             player.playerEquipmentManager.SwitchRightWeapon();
         }
     }
@@ -287,7 +312,34 @@ public class PlayerInputManager : MonoBehaviour
         if(switch_Left_hand_weapon)
         {
             switch_Left_hand_weapon = false;
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+                return; 
             player.playerEquipmentManager.SwitchLeftWeapon();
+        }
+    }
+
+    private void HandleOpenCharacterMenuInput()
+    {
+        if (openCharacterMenuInput)
+        {
+            openCharacterMenuInput = false;
+
+            PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+            PlayerUIManager.instance.CloseAllMenuWindows();
+            PlayerUIManager.instance.playerUICharacterMenuManager.OpenCharacterMenu();
+        }
+    }
+
+    private void HandleCloseUIInput()
+    {
+        if (closeMenuInput)
+        {
+            closeMenuInput = false;
+
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+            {
+                PlayerUIManager.instance.CloseAllMenuWindows();
+            }
         }
     }
 

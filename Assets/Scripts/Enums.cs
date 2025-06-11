@@ -33,3 +33,46 @@ public enum CharacterGroup
     Enemy, // will attack, can be attacked
     Neutral, // won't attack unless provoked, can be attacked
 }
+
+public enum ItemPickUpType
+{
+    WorldSpawn,
+    CharacterDrop
+}
+
+public enum EquipmentModelType
+{
+    FullHelmet,     // WOULD ALWAYS HIDE FACE, HAIR ECT
+    Hat,     // WOULD ALWAYS HIDE HAIR
+    Hood,           // WOULD ALWAYS HIDE HAIR
+    HelmetAcessorie,
+    FaceCover,
+    Torso,
+    Back,
+    RightShoulder,
+    RightUpperArm,
+    RightElbow,
+    RightLowerArm,
+    RightHand,
+    LeftShoulder,
+    LeftUpperArm,
+    LeftElbow,
+    LeftLowerArm,
+    LeftHand,
+    Hips,
+    HipsAttachment,
+    RightLeg,
+    RightKnee,
+    LeftLeg,
+    LeftKnee
+}
+
+public enum EquipmentType
+{
+    RightWeapon01,
+    RightWeapon02,
+    RightWeapon03,
+    LeftWeapon01,
+    LeftWeapon02,
+    LeftWeapon03,
+}

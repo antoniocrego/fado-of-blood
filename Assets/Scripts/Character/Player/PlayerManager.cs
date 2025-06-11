@@ -22,6 +22,8 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerCamera playerCameraManager;
     [HideInInspector] public PlayerCombatManager playerCombatManager;
 
+    [HideInInspector] public PlayerInteractionManager playerInteractionManager;
+
     public WeaponItem previousRightHandWeapon = null;
 
     public WeaponItem previousLeftHandWeapon = null;
@@ -48,6 +50,7 @@ public class PlayerManager : CharacterManager
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerInteractionManager = GetComponent<PlayerInteractionManager>();
         if (playerCameraManager == null)
         {
             playerCameraManager = FindAnyObjectByType<PlayerCamera>();

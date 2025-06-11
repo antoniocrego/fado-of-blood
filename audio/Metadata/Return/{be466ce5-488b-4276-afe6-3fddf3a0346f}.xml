@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="MixerReturn" id="{be466ce5-488b-4276-afe6-3fddf3a0346f}">
+		<property name="name">
+			<value>Spell Impact Reverb</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{dd0c1b34-6b20-4608-a367-ab2f4d1465a4}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{499ba504-1920-4a3e-809a-86bc6e480899}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{6aac47f0-51cb-4401-ac71-04ff7e82faba}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{dd0c1b34-6b20-4608-a367-ab2f4d1465a4}">
+		<relationship name="effects">
+			<destination>{b5090de4-33e3-4c10-95e5-99c87049c059}</destination>
+			<destination>{14859ff3-6b50-4231-a464-1986323c33b2}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{499ba504-1920-4a3e-809a-86bc6e480899}" />
+	<object class="MixerBusFader" id="{b5090de4-33e3-4c10-95e5-99c87049c059}" />
+	<object class="SFXReverbEffect" id="{14859ff3-6b50-4231-a464-1986323c33b2}" />
+</objects>

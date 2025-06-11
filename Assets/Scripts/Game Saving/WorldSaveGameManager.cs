@@ -28,6 +28,7 @@ public class WorldSaveGameManager : MonoBehaviour
     public CharacterSaveData characterSlot04;
     public CharacterSaveData characterSlot05;
 
+
     private void Awake()
     {
         if (instance == null)

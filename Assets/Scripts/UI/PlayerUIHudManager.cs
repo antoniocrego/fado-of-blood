@@ -4,13 +4,39 @@ using UnityEngine.UI;
 public class PlayerUIHudManager : MonoBehaviour
 {
 
+    [SerializeField] CanvasGroup[] canvasGroup;
     [SerializeField] UiStat_Bar healthBar;
     [SerializeField] UiStat_Bar staminaBar;
 
     [SerializeField] Image rightWeaponQuickSlotIcon;
     [SerializeField] Image leftWeaponQuickSlotIcon;
 
+    public void ToggleHUD(bool status)
+    {
 
+        if (status)
+        {
+            foreach (var canvas in canvasGroup)
+            {
+                canvas.alpha = 1;
+            }
+        }
+        else
+        {
+            foreach (var canvas in canvasGroup)
+            {
+                canvas.alpha = 0;
+            }
+        }
+    }
+
+    public void RefreshHUD()
+    {
+        healthBar.gameObject.SetActive(false);
+        healthBar.gameObject.SetActive(true);
+        staminaBar.gameObject.SetActive(false);
+        staminaBar.gameObject.SetActive(true);
+    }
     public void SetNewHealthValue(float newValue)
     {
         healthBar.SetStat(newValue);
