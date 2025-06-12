@@ -19,10 +19,7 @@ public class CharacterSoundFXManager : MonoBehaviour
     [SerializeField] protected AudioClip deathSFX;
 
     [Header("Footstep SFX")]
-    [SerializeField] public AudioClip[] footstepSFXs;
-    [SerializeField] public AudioClip[] footstepsGrass;
-    [SerializeField] public AudioClip[] footstepsStone;
-    [SerializeField] public AudioClip[] footstepsMud;
+    [SerializeField] public string footstepFMODEvent = "event:/Footsteps/Footsteps";
 
     protected virtual void Awake()
     {

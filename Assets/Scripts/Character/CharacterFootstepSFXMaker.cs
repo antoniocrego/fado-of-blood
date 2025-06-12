@@ -1,25 +1,25 @@
 using UnityEngine;
+using FMODUnity;
+using Unity.VisualScripting;
 
 public class CharacterFootstepSFXMaker : MonoBehaviour
 {
     CharacterManager character;
 
-    AudioSource audioSource;
     GameObject steppedOnObject;
 
     private bool hasTouchedGround = false;
     private bool hasPlayedFootstepSFX = false;
-    [SerializeField] float distanceToGround = 0.05f; // Distance to check for ground
+    [SerializeField] float distanceToGround = 0.1f; // Distance to check for ground
 
     private void Start()
     {
         character = GetComponentInParent<CharacterManager>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
     {
-        if (character == null || audioSource == null) return;
+        if (character == null) return;
 
         CheckForFootSteps();
     }
@@ -57,6 +57,11 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
 
     private void PlayFootstepSFX()
     {
-        audioSource.PlayOneShot(WorldSoundFXManager.instance.ChooseRandomFootstepSoundBasedOnSurface(steppedOnObject, character), 0.5f);
+        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance("event:/Footsteps/Footsteps");
+        instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
+        // TODO: Add logic to choose the correct footstep sound based on the surface type
+        instance.setParameterByNameWithLabel("Footsteps", "Sand");
+        instance.start();
+        instance.release();
     }
 }
