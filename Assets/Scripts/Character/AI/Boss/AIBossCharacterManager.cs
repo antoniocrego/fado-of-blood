@@ -5,16 +5,22 @@ using System.Collections.Generic;
 public class AIBossCharacterManager : AICharacterManager
 {
     public int bossID = 0;
+
+    [Header("Status")]
+    public bool bossFightIsActive = false;
     [SerializeField] bool hasBeenDefeated = false;
     [SerializeField] bool hasBeenAwakened = false;
     [SerializeField] List<FogWallInteractable> fogWalls;
+    [SerializeField] string sleepAnimation;
+    [SerializeField] string wakeAnimation;
 
-    [Header("Debug")]
-    [SerializeField] bool wakeBossUp = false;
+    [Header("States")]
+    [SerializeField] AIState sleepState;
 
     protected override void Start()
     {
         base.Start();
+        sleepState = Instantiate(sleepState);
 
         // If boss was never put in the save data, he was never encountered, thus isnt awakened and much less defeated.
         if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
@@ -30,6 +36,12 @@ public class AIBossCharacterManager : AICharacterManager
         }
 
         StartCoroutine(GetFogWallsFromWorldObjectManager());
+
+        if (!hasBeenAwakened)
+        {
+            currentState = sleepState; // Set the initial state to sleep.
+            characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
+        }
     }
 
     private IEnumerator GetFogWallsFromWorldObjectManager()
@@ -45,7 +57,7 @@ public class AIBossCharacterManager : AICharacterManager
                 fogWalls.Add(fogWall);
             }
         }
-        
+
         if (hasBeenAwakened)
         {
             foreach (FogWallInteractable fogWall in fogWalls)
@@ -71,6 +83,7 @@ public class AIBossCharacterManager : AICharacterManager
         isDead = true;
 
         // reset any needed flags
+        DeactivateBossFight();
 
         // if we are not grounded play an aerial death animation
 
@@ -105,7 +118,14 @@ public class AIBossCharacterManager : AICharacterManager
 
     public void WakeBoss()
     {
+        if (!hasBeenAwakened)
+        {
+            characterAnimatorManager.PlayTargetActionAnimation(wakeAnimation, true);
+        }
+
+        ActivateBossFight();
         hasBeenAwakened = true;
+        currentState = idleState;
         // If boss was never put in the save data, he was never encountered, thus isnt awakened and much less defeated.
         if (!WorldSaveGameManager.instance.currentCharacterData.bossesAwakened.ContainsKey(bossID))
         {
@@ -123,14 +143,19 @@ public class AIBossCharacterManager : AICharacterManager
         }
     }
 
-    protected override void Update()
+    public void ActivateBossFight()
     {
-        base.Update();
+        if (bossFightIsActive) return;
+        bossFightIsActive = true;
+        GameObject bossHealthBar = Instantiate(PlayerUIManager.instance.playerUIHudManager.bossHealthBarPrefab, PlayerUIManager.instance.playerUIHudManager.bossHealthBarParent);
 
-        if (wakeBossUp)
-        {
-            wakeBossUp = false;
-            WakeBoss();
-        }
+        UI_Boss_HP_Bar bossHPBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
+        bossHPBar.EnableBossHPBar(this);
+    }
+
+    public void DeactivateBossFight()
+    {
+        bossFightIsActive = false;
+        // hp bar kills itself after 2.5 seconds
     }
 }

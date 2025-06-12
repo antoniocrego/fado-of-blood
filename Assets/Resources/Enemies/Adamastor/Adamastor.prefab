@@ -257,6 +257,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
@@ -285,8 +286,11 @@ MonoBehaviour:
   hasBeenDefeated: 0
   hasBeenAwakened: 0
   fogWalls: []
-  wakeBossUp: 0
+  sleepAnimation: Sleep_01
+  wakeAnimation: Wake_Up_01
+  sleepState: {fileID: 11400000, guid: 9bb57d6154a8195408bc3431a52b789c, type: 2}
   aiAdamastorSoundFXManager: {fileID: 0}
+  aiAdamastorCombatManager: {fileID: 0}
 --- !u!114 &8550011901467276321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83cc303a55699c4fb781470d612be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatterVFX: {fileID: 0}
 --- !u!114 &2890719425410541146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +396,7 @@ MonoBehaviour:
   viewableAngle: 0
   targetDirection: {x: 0, y: 0, z: 0}
   canPivot: 1
-  detectionRadius: 10
+  detectionRadius: 16
   minimumFOV: -35
   maximumFOV: 35
   attackRotationSpeed: 5
@@ -438,6 +443,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c865326e44c0dc4888d004b42122711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGrunts: []
+  attackGrunts: []
+  attackWhooshes: []
+  deathSFX: {fileID: 0}
+  footstepFMODEvent: event:/Footsteps/Footsteps
 --- !u!82 &7873097896308014776
 AudioSource:
   m_ObjectHideFlags: 0

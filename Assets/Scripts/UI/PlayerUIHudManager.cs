@@ -11,6 +11,10 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] Image rightWeaponQuickSlotIcon;
     [SerializeField] Image leftWeaponQuickSlotIcon;
 
+    [Header("Boss HUD")]
+    public Transform bossHealthBarParent;
+    public GameObject bossHealthBarPrefab;
+
     public void ToggleHUD(bool status)
     {
 
