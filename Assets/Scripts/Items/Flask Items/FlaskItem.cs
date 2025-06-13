@@ -81,6 +81,10 @@ public class FlaskItem : QuickSlotItem
             }
             if (player.health + flaskRestoration > player.maxHealth)
             {
+                Debug.Log("Player health is almost max, restoring only the remaining health.");
+                Debug.Log("Current Health: " + player.health);
+                Debug.Log("Max Health: " + player.maxHealth);
+                Debug.Log("Flask Restoration: " + flaskRestoration);
                 flaskRestoration = (int)(player.maxHealth - player.health);
             }
             player.health += flaskRestoration;

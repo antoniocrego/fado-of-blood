@@ -77,6 +77,10 @@ public class PlayerManager : CharacterManager
         maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
+        if (playerInventoryManager.currentQuickSlotItem == null)
+        {
+            PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(6);
+         }
         if (playerInventoryManager.currentQuickSlotItem != previousQuickSlotItem)
         {
             QuickSlotItem newQuickSlotItem = null;
@@ -85,7 +89,7 @@ public class PlayerManager : CharacterManager
             QuickSlotItem quickSlotItemFromDB = WorldItemDatabase.Instance.GetQuickSlotItemByID(newID);
             if (quickSlotItemFromDB != null)
                 newQuickSlotItem = Instantiate(quickSlotItemFromDB);
-                
+
             if (newQuickSlotItem != null)
             {
                 playerInventoryManager.currentQuickSlotItem = newQuickSlotItem;

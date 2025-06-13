@@ -830,6 +830,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
   leftHandWeaponIndex: 0
   itemsInInventory: []
+  currentQuickSlotItem: {fileID: 0}
 --- !u!114 &4168413056940886147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -853,14 +854,14 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 0
-  health: 0
+  health: 100
   stamina: 0
   isDead: 0
   isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
   endurance: 1
-  vitality: 1
+  vitality: 10
   maxStamina: 0
   maxHealth: 0
   isLockedOn: 0
@@ -879,7 +880,10 @@ MonoBehaviour:
   playerCameraManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
   playerInteractionManager: {fileID: 0}
+  playerEffectsManager: {fileID: 0}
   previousRightHandWeapon: {fileID: 0}
+  previousQuickSlotItem: {fileID: 0}
+  previousChuggingStatus: 0
   previousLeftHandWeapon: {fileID: 0}
   currentWeaponBeingUsed: {fileID: 0}
   isUsingRightHand: 0
@@ -903,6 +907,8 @@ MonoBehaviour:
   lockOnTransform: {fileID: 0}
   currentAttackType: 0
   currentWeaponBeingUsed: {fileID: 0}
+  isUsingItem: 0
+  isAttacking: 0
 --- !u!114 &2931473718204174979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -921,6 +927,10 @@ MonoBehaviour:
   leftWeaponManager: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
+  remainingHealthFlasks: 3
+  remainingFocusFlasks: 3
+  remainingFocusPointsFlasks: 3
+  isChugging: 0
 --- !u!114 &2656330275641653131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 0}
+  activeQuickSlotItemFX: {fileID: 0}
   effectToTest: {fileID: 11400000, guid: 72a50702a5f8d674fa834b7a9ee14eab, type: 2}
   processEffect: 0
 --- !u!114 &606250681969884045
@@ -973,6 +984,7 @@ MonoBehaviour:
   isGrounded: 1
   canRotate: 1
   canMove: 1
+  canRun: 1
   player: {fileID: 4168413056940886147}
   targetPosition: {x: 0, y: 0, z: 0}
   verticalMovement: 0

@@ -75,4 +75,6 @@ public enum EquipmentType
     LeftWeapon01,
     LeftWeapon02,
     LeftWeapon03,
+
+    QuickSlotConsumable01,
 }

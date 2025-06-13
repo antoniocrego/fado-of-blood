@@ -113,7 +113,6 @@ public class PlayerUIHudManager : MonoBehaviour
 
             if (quickSlotItem == null)
             {
-                Debug.Log("ITEM IS NULL");
                 quickSlotItemQuickSlotIcon.enabled = false;
                 quickSlotItemQuickSlotIcon.sprite = null;
                 return;
@@ -121,7 +120,6 @@ public class PlayerUIHudManager : MonoBehaviour
 
             if (quickSlotItem.itemIcon == null)
             {
-                Debug.Log("ITEM HAS NO ICON");
                 quickSlotItemQuickSlotIcon.enabled = false;
                 quickSlotItemQuickSlotIcon.sprite = null;
                 return;
