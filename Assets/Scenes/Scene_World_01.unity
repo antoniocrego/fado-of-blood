@@ -27108,6 +27108,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: previousQuickSlotItem
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4168413056940886147, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: currentWeaponBeingUsed
       value: 
       objectReference: {fileID: 0}
@@ -27172,6 +27176,10 @@ PrefabInstance:
       value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: currentQuickSlotItem
+      value: 
+      objectReference: {fileID: 11400000, guid: f5954c0067e5f2243b81924b8eeb6ad1, type: 2}
+    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: rightHandWeaponIndex
       value: -1
       objectReference: {fileID: 0}
@@ -27222,6 +27230,18 @@ PrefabInstance:
     - target: {fileID: 5977793518558770574, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Layer
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670655956943088455, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670655956943088455, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6670655956943088455, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6768105535536378996, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: m_Layer
@@ -39128,6 +39148,7 @@ MonoBehaviour:
   switch_Right_hand_weapon: 0
   switch_Left_hand_weapon: 0
   interaction_input: 0
+  use_Item_input: 0
   openCharacterMenuInput: 0
   closeMenuInput: 0
 --- !u!4 &1986336940

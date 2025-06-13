@@ -10,6 +10,8 @@ public class CharacterEffectsManager : MonoBehaviour
     [Header("VFX")]
     [SerializeField] GameObject bloodSplatterVFX;
 
+    public GameObject activeQuickSlotItemFX;
+
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();

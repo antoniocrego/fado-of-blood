@@ -24,7 +24,13 @@ public class PlayerManager : CharacterManager
 
     [HideInInspector] public PlayerInteractionManager playerInteractionManager;
 
+    [HideInInspector] public PlayerEffectsManager playerEffectsManager;
+
     public WeaponItem previousRightHandWeapon = null;
+
+    public QuickSlotItem previousQuickSlotItem = null;
+
+    public bool previousChuggingStatus = false;
 
     public WeaponItem previousLeftHandWeapon = null;
     public WeaponItem currentWeaponBeingUsed;
@@ -45,6 +51,7 @@ public class PlayerManager : CharacterManager
         playerStatsManager = GetComponent<PlayerStatsManager>();
         playerCombatManager = GetComponent<PlayerCombatManager>();
         playerInteractionManager = GetComponent<PlayerInteractionManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
         if (playerCameraManager == null)
         {
             playerCameraManager = FindAnyObjectByType<PlayerCamera>();
@@ -56,11 +63,13 @@ public class PlayerManager : CharacterManager
 
         maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
-        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);   
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);
     }
     protected override void Update()
     {
         base.Update();
+
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(health); 
 
         playerLocomotionManager.HandleAllMovement();
 
@@ -68,7 +77,21 @@ public class PlayerManager : CharacterManager
         maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
+        if (playerInventoryManager.currentQuickSlotItem != previousQuickSlotItem)
+        {
+            QuickSlotItem newQuickSlotItem = null;
+            int newID = playerInventoryManager.currentQuickSlotItem != null ? playerInventoryManager.currentQuickSlotItem.itemID : -1;
 
+            QuickSlotItem quickSlotItemFromDB = WorldItemDatabase.Instance.GetQuickSlotItemByID(newID);
+            if (quickSlotItemFromDB != null)
+                newQuickSlotItem = Instantiate(quickSlotItemFromDB);
+                
+            if (newQuickSlotItem != null)
+            {
+                playerInventoryManager.currentQuickSlotItem = newQuickSlotItem;
+                PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newQuickSlotItem.itemID);
+            }
+        }
         if (playerInventoryManager.currentRightHandWeapon != previousRightHandWeapon)
         {
             WeaponItem newWeapon = playerInventoryManager.currentRightHandWeapon;
@@ -87,6 +110,12 @@ public class PlayerManager : CharacterManager
         
         previousRightHandWeapon = playerInventoryManager.currentRightHandWeapon;
         previousLeftHandWeapon = playerInventoryManager.currentLeftHandWeapon;
+
+        if (previousChuggingStatus != playerEquipmentManager.isChugging)
+        {
+            animator.SetBool("isChuggingFlask", playerEquipmentManager.isChugging);
+            previousChuggingStatus = playerEquipmentManager.isChugging;
+        }
 
         DebugMenu();
     }

@@ -5747,7 +5747,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.00036621094, y: -0.0023804}
+  m_AnchoredPosition: {x: -0.00036621094, y: -0.002380371}
   m_SizeDelta: {x: 0.0007, y: -0.0046387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &4948413080965168671
@@ -5779,6 +5779,7 @@ MonoBehaviour:
   staminaBar: {fileID: 6051911086528322275}
   rightWeaponQuickSlotIcon: {fileID: 4897207631618448504}
   leftWeaponQuickSlotIcon: {fileID: 4358197763889186347}
+  quickSlotItemQuickSlotIcon: {fileID: 7926019166720870541}
   bossHealthBarParent: {fileID: 1947520107797884944}
   bossHealthBarPrefab: {fileID: 1507622207857617424, guid: 45cc9d212b899294ba23fd682577014d, type: 3}
 --- !u!1 &8410376589992702443
@@ -6445,6 +6446,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6200163424105480204, guid: 0f4212807f7582d41b4f8561357f3f5a, type: 3}
   m_PrefabInstance: {fileID: 1784240405847036552}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7926019166720870541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8447632782388926981, guid: 0f4212807f7582d41b4f8561357f3f5a, type: 3}
+  m_PrefabInstance: {fileID: 1784240405847036552}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3207426817153190586
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -51,3 +51,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e98c48870ac4c6e499fdb5af1b56b67d, type: 2}
   consumables:
   - {fileID: 11400000, guid: a8f4a7755eb10bd4582f41f6ea528819, type: 2}
+  quickSlotItems:
+  - {fileID: 11400000, guid: f5954c0067e5f2243b81924b8eeb6ad1, type: 2}
+  - {fileID: 11400000, guid: 6384f970e0c905f4487bf54172b05359, type: 2}

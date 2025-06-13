@@ -10,6 +10,8 @@ public class WorldSoundFXManager : MonoBehaviour
     [Header("Action Sounds")]
     public AudioClip rollSFX;
 
+    public AudioClip healingFlaskSFX;
+
     private void Awake()
     {
         if (instance == null)

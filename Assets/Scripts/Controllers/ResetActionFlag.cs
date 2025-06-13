@@ -20,6 +20,11 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterLocomotionManager.canMove = true;
         character.characterLocomotionManager.canRotate = true;
         character.isInvulnerable = false;
+
+        if(character.characterEffectsManager.activeQuickSlotItemFX != null)
+        {
+            Destroy(character.characterEffectsManager.activeQuickSlotItemFX);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

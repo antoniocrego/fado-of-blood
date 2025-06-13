@@ -18,6 +18,8 @@ public class PlayerInventoryManager : CharacterInventoryManager
     [Header("Inventory")]
     public List<Item> itemsInInventory;
 
+    public QuickSlotItem currentQuickSlotItem;
+
 
     public bool HasItem(int itemID)
     {

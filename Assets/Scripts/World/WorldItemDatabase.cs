@@ -16,6 +16,9 @@ public class WorldItemDatabase : MonoBehaviour
 
     [SerializeField] List<ConsumableItem> consumables = new List<ConsumableItem>();
 
+    [Header("Quick Slot")]
+    [SerializeField] List<QuickSlotItem> quickSlotItems = new List<QuickSlotItem>();
+
     [Header("Items")]
     private List<Item> items = new List<Item>();
 
@@ -40,6 +43,11 @@ public class WorldItemDatabase : MonoBehaviour
             items.Add(weapon);
         }
 
+        foreach (var item in quickSlotItems)
+        {
+            items.Add(item);
+        }
+
         for (int i = 0; i < items.Count; i++)
         {
             items[i].itemID = i;
@@ -55,5 +63,10 @@ public class WorldItemDatabase : MonoBehaviour
     {
         Debug.Log("The consumables.FirstOrDefault is" + consumables.FirstOrDefault(i => i.itemID == ID));
         return consumables.FirstOrDefault(i => i.itemID == ID);
+    }
+
+    public QuickSlotItem GetQuickSlotItemByID(int ID)
+    {
+        return quickSlotItems.FirstOrDefault(item => item.itemID == ID);
     }
 }
