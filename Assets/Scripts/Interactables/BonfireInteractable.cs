@@ -16,9 +16,14 @@ public class BonfireInteractable : Interactable
     [SerializeField] private string unactivatedText = "Light the Flame";
     [SerializeField] private string activatedText = "Rest";
 
+    [Header("Respawn")]
+    public Transform respawnPosition;
+
     protected override void Start()
     {
         base.Start();
+
+        WorldObjectManager.instance.AddBonfire(this);
 
         if (WorldSaveGameManager.instance.currentCharacterData.bonfiresLit.ContainsKey(bonfireID))
         {
@@ -44,6 +49,7 @@ public class BonfireInteractable : Interactable
     {
         isActivated = true;
         WorldSaveGameManager.instance.currentCharacterData.bonfiresLit[bonfireID] = isActivated;
+        WorldSaveGameManager.instance.currentCharacterData.lastBonfireRestedAt = bonfireID;
 
         // play sfx
 
@@ -63,6 +69,8 @@ public class BonfireInteractable : Interactable
 
     private void RestAtBonfire(PlayerManager player)
     {
+        WorldSaveGameManager.instance.currentCharacterData.lastBonfireRestedAt = bonfireID;
+
         // refill flasks
 
         interactableCollider.enabled = true; // temp

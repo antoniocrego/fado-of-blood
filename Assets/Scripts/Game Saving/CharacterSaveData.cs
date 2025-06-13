@@ -23,6 +23,7 @@ public class CharacterSaveData
 
     [Header("Bonfires")]
     public SerializableDictionary<int, bool> bonfiresLit;
+    public int lastBonfireRestedAt = -1;
 
     public CharacterSaveData()
     {
