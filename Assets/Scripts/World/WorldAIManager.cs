@@ -55,9 +55,22 @@ public class WorldAIManager : MonoBehaviour
         return spawnedBosses.FirstOrDefault(boss => boss.bossID == bossID);
     }
 
+    public void ResetAllCharacters()
+    {
+        DespawnAllCharacters();
+        SpawnAllCharacters();
+    }
+
+    private void SpawnAllCharacters()
+    {
+        foreach (AICharacterSpawner spawner in aiCharacterSpawners)
+        {
+            spawner.AttemptToSpawnCharacter();
+        }
+    }
+
     private void DespawnAllCharacters()
     {
-        // TODO: Need to change this to work with spawner
         foreach (AICharacterManager ai in spawnedAIs)
         {
             Destroy(ai.gameObject);

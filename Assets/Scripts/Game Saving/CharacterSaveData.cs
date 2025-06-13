@@ -19,12 +19,17 @@ public class CharacterSaveData
     public SerializableDictionary<int, bool> bossesDefeated;
     
     [Header("World Items")]
-    public SerializableDictionary<int, bool> worldItemsLooted; 
+    public SerializableDictionary<int, bool> worldItemsLooted;
+
+    [Header("Bonfires")]
+    public SerializableDictionary<int, bool> bonfiresLit;
 
     public CharacterSaveData()
     {
         // Initialize the dictionaries to avoid null reference exceptions.
+        worldItemsLooted = new SerializableDictionary<int, bool>();
         bossesAwakened = new SerializableDictionary<int, bool>();
         bossesDefeated = new SerializableDictionary<int, bool>();
+        bonfiresLit = new SerializableDictionary<int, bool>();
     }
 }
