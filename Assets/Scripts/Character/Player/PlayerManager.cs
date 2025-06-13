@@ -55,8 +55,8 @@ public class PlayerManager : CharacterManager
         }
 
         maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
-        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
-        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
     protected override void Update()
     {
@@ -143,11 +143,6 @@ public class PlayerManager : CharacterManager
             currentCharacterData.worldPositionY,
             currentCharacterData.worldPositionZ
         );
-    }
-
-    public void Respawn()
-    {
-        
     }
 
 }

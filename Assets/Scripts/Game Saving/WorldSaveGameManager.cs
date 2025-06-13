@@ -26,6 +26,9 @@ public class WorldSaveGameManager : MonoBehaviour
     public CharacterSaveData characterSlot04;
     public CharacterSaveData characterSlot05;
 
+    [Header("Coroutines")]
+    private Coroutine loadWorldSceneCoroutine;
+
 
     private void Awake()
     {
@@ -125,6 +128,11 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public void LoadGame()
     {
+        if (loadWorldSceneCoroutine != null)
+        {
+            return;
+        }
+
         fileName = DecideCharacterFileName(currentCharacterSlot);
 
         saveFileDataWriter = new SaveFileDataWriter();
@@ -132,7 +140,7 @@ public class WorldSaveGameManager : MonoBehaviour
         saveFileDataWriter.saveFileName = fileName;
         currentCharacterData = saveFileDataWriter.LoadSaveFile();
 
-        StartCoroutine(LoadWorldScene());
+        loadWorldSceneCoroutine = StartCoroutine(LoadWorldScene());
     }
 
     public void SaveGame()
@@ -181,6 +189,7 @@ public class WorldSaveGameManager : MonoBehaviour
 
     public IEnumerator LoadWorldScene()
     {
+        LoadingScreenManager.instance.ActivateLoadingScreen();
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
 
         while (!loadOperation.isDone)

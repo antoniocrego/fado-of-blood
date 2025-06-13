@@ -74,8 +74,10 @@ public class BonfireInteractable : Interactable
         // refill flasks
 
         interactableCollider.enabled = true; // temp
-        player.health = player.maxHealth;
-        player.stamina = player.maxStamina;
+        player.health = player.playerStatsManager.CalculateHealthBasedOnVitalityLevel(player.vitality);
+        player.stamina = player.playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(player.endurance);
+        player.playerUIHudManager.SetNewHealthValue(player.health);
+        player.playerUIHudManager.SetNewStaminaValue(player.stamina);
 
         WorldAIManager.instance.ResetAllCharacters();
 

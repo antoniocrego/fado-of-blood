@@ -36,6 +36,11 @@ public class AICharacterManager : CharacterManager
         currentState = idleState; // Set the initial state to idle.
     }
 
+    public virtual void SetToInitialState()
+    {
+        currentState = idleState;
+    }
+
     protected override void Update()
     {
         base.Update();

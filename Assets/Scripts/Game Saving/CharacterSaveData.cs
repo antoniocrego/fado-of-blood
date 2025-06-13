@@ -11,7 +11,7 @@ public class CharacterSaveData
 
     [Header("World Position")]
     public float worldPositionX = 0;
-    public float worldPositionY = 0;
+    public float worldPositionY = 0.81f;
     public float worldPositionZ = 0;
 
     [Header("Boss Statuses")]
