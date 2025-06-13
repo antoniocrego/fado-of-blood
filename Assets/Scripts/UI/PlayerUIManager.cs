@@ -14,6 +14,8 @@ public class PlayerUIManager : MonoBehaviour
 
     public PlayerUIEquipmentManager playerUIEquipmentManager;
 
+    public PlayerUIInventoryManager playerUIInventoryManager;
+
     public bool menuWindowIsOpen = false;
     public bool popUpWindowIsOpen = false;
 
@@ -32,6 +34,7 @@ public class PlayerUIManager : MonoBehaviour
         playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
         playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
         playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
+        playerUIInventoryManager = GetComponentInChildren<PlayerUIInventoryManager>();
     }
     void Start()
     {
@@ -43,10 +46,12 @@ public class PlayerUIManager : MonoBehaviour
     {
 
     }
-    
+
     public void CloseAllMenuWindows()
     {
         playerUICharacterMenuManager.CloseCharacterMenu();
         playerUIEquipmentManager.CloseEquipmentManagerMenu();
+        playerUIInventoryManager.CloseInventoryManagerMenu();
+        
     }
 }

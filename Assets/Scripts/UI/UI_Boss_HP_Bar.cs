@@ -12,7 +12,7 @@ public class UI_Boss_HP_Bar : UiStat_Bar
         bossCharacter = boss;
         gameObject.SetActive(true);
         SetMaxStat(bossCharacter.maxHealth);
-        GetComponentInChildren<TextMeshProUGUI>().text = bossCharacter.name;
+        GetComponentInChildren<TextMeshProUGUI>().text = bossCharacter.characterName;
     }
 
     private void OnBossHPChanged(float newHP)

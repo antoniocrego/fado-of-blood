@@ -7,10 +7,6 @@ public class WorldAIManager : MonoBehaviour
 {
     public static WorldAIManager instance;
 
-    [Header("Debug")]
-    [SerializeField] bool despawnCharacters = false;
-    [SerializeField] bool respawnCharacters = false;
-
     [Header("AIs")]
     [SerializeField] List<AICharacterSpawner> aiCharacterSpawners;
     [SerializeField] List<AICharacterManager> spawnedAIs;

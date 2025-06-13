@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 public class AICharacterManager : CharacterManager
 {
+    [Header("Character Name")]
+    public string characterName = "";
+
     [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
 

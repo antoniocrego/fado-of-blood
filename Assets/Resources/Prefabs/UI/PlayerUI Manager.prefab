@@ -3681,6 +3681,41 @@ MonoBehaviour:
   equipmentInventorySlotPrefab: {fileID: 8113422165522816196, guid: 050ddcebf2404e84a8bd8c86cb958535, type: 3}
   equipmentInventoryContentWindow: {fileID: 746455704279461846}
   currentSelectedItem: {fileID: 0}
+--- !u!1 &4981841465138395750
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1947520107797884944}
+  m_Layer: 0
+  m_Name: Boss HP Bar Placeholder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1947520107797884944
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981841465138395750}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7529480035902715927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.000028133, y: -0.00048828}
+  m_SizeDelta: {x: 989.5127, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5122631174498269642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5561,7 +5596,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 229.25977, y: -658}
+  m_AnchoredPosition: {x: 229.26, y: 204.38}
   m_SizeDelta: {x: 458.5125, y: 408.7668}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8315076246511414364
@@ -5707,12 +5742,13 @@ RectTransform:
   m_Children:
   - {fileID: 4534850160569640556}
   - {fileID: 7686658122657962169}
+  - {fileID: 1947520107797884944}
   m_Father: {fileID: 3597115802549279612}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -837.32, y: 433.86}
-  m_SizeDelta: {x: -1674.6385, y: -867.7289}
+  m_AnchoredPosition: {x: -0.00036621094, y: -0.0023804}
+  m_SizeDelta: {x: 0.0007, y: -0.0046387}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!225 &4948413080965168671
 CanvasGroup:
@@ -5743,6 +5779,8 @@ MonoBehaviour:
   staminaBar: {fileID: 6051911086528322275}
   rightWeaponQuickSlotIcon: {fileID: 4897207631618448504}
   leftWeaponQuickSlotIcon: {fileID: 4358197763889186347}
+  bossHealthBarParent: {fileID: 1947520107797884944}
+  bossHealthBarPrefab: {fileID: 1507622207857617424, guid: 45cc9d212b899294ba23fd682577014d, type: 3}
 --- !u!1 &8410376589992702443
 GameObject:
   m_ObjectHideFlags: 0

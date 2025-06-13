@@ -274,6 +274,7 @@ MonoBehaviour:
   isMoving: 0
   isActive: 1
   isInvulnerable: 0
+  characterName: Adamastor, the Root of the Plague
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
@@ -283,6 +284,7 @@ MonoBehaviour:
   combatState: {fileID: 11400000, guid: 386c30d7958363c4faec143759a51fc0, type: 2}
   attackState: {fileID: 11400000, guid: 93e5c74ebc515fe408ad1699ca0a8575, type: 2}
   bossID: 0
+  bossFightIsActive: 0
   hasBeenDefeated: 0
   hasBeenAwakened: 0
   fogWalls: []
