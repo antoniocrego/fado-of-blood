@@ -29,22 +29,23 @@ public class Door : Interactable
     [Header("Interaction Texts")]
     [SerializeField] private string textWhenOpen = "Close Door";
     [SerializeField] private string textWhenClosed = "Open Door";
-    [SerializeField] private string textWhenLockedNeedKey = "Unlock Door";
-    [SerializeField] private string textWhenLockedNoKey = "Locked";
+    [SerializeField] private string textWhenLockedNeedKey = "You need a key!";
+    [SerializeField] private string textWhenLockedNoKey = "The door is locked by a device!";
 
     private bool currentLockState; 
     private bool isPermanentlyUnlockedByKey = false; 
     
     private Coroutine _activeRotationCoroutine; 
 
-    [SerializeField] private float manualRotationDuration = 1.0f; 
+    [SerializeField] private float manualRotationDuration = 1.0f;
+
 
     protected override void Awake()
     {
         base.Awake();
         // Get the player from the scene 
-        player = FindObjectOfType<PlayerManager>(); 
-        
+        player = FindObjectOfType<PlayerManager>();
+
         if (doorAnimator == null)
         {
             doorAnimator = GetComponent<Animator>();
@@ -110,7 +111,7 @@ public class Door : Interactable
 
     public override void Interact(PlayerManager player)
     {
-
+        
         if (isPermanentlyUnlockedByKey || !currentLockState)
         {
             base.Interact(player);
@@ -190,9 +191,20 @@ public class Door : Interactable
 
     public override string GetInteractableText()
     {
-        if (isOpen) return textWhenOpen;
+        if(counter == 0) 
+        {
+            interactableText = "Open the door";
+            counter++; 
+            return interactableText; 
+        }
+        if (isOpen)
+        {
+            interactableText = textWhenOpen;
+            return textWhenOpen;
+        }
         if (currentLockState && !isPermanentlyUnlockedByKey)
         {
+            interactableText = requiresKeyToUnlock ? textWhenLockedNeedKey : textWhenLockedNoKey;
             return requiresKeyToUnlock ? textWhenLockedNeedKey : textWhenLockedNoKey;
         }
         return textWhenClosed;

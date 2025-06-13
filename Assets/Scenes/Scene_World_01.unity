@@ -638,8 +638,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7529480035902715927, guid: 95ff6c575fb48df4b8dd486f9647570f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.00048828125
+      objectReference: {fileID: 0}
+    - target: {fileID: 7529480035902715927, guid: 95ff6c575fb48df4b8dd486f9647570f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.002380371
+      value: -0.0024414062
       objectReference: {fileID: 0}
     - target: {fileID: 8692618596194278794, guid: 95ff6c575fb48df4b8dd486f9647570f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -7344,6 +7348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: Open the Door
+  counter: 0
   interactableCollider: {fileID: 396467455}
   doorAnimator: {fileID: 726866071}
   openAnimationName: DoorOpen
@@ -7361,8 +7366,8 @@ MonoBehaviour:
   unlockSound: {fileID: 0}
   textWhenOpen: Close Door
   textWhenClosed: Open Door
-  textWhenLockedNeedKey: Unlock Door
-  textWhenLockedNoKey: Locked
+  textWhenLockedNeedKey: 'You need a key ! '
+  textWhenLockedNoKey: The door is locked by a device !
   manualRotationDuration: 1
 --- !u!1 &397689010
 GameObject:
@@ -24078,6 +24083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: Pick Up Item
+  counter: 0
   interactableCollider: {fileID: 1016238053}
   pickUpType: 0
   item: {fileID: 11400000, guid: 25c270e39b641d14787ddaed0c8fc2a9, type: 2}
@@ -27828,6 +27834,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: Open the Door
+  counter: 0
   interactableCollider: {fileID: 1269795161}
   doorAnimator: {fileID: 726866071}
   openAnimationName: DoorOpen
@@ -27845,8 +27852,8 @@ MonoBehaviour:
   unlockSound: {fileID: 0}
   textWhenOpen: Close Door
   textWhenClosed: Open Door
-  textWhenLockedNeedKey: Unlock Door
-  textWhenLockedNoKey: Locked
+  textWhenLockedNeedKey: 'You need a key ! '
+  textWhenLockedNoKey: The door is locked by a device !
   manualRotationDuration: 1
 --- !u!65 &1269795161
 BoxCollider:
@@ -30453,6 +30460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: Open the lever
+  counter: 0
   interactableCollider: {fileID: 1439602971}
   leverAnimator: {fileID: 726866071}
   activateAnimationName: LeverUp
@@ -30616,6 +30624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableText: Open the Door
+  counter: 0
   interactableCollider: {fileID: 1443141073}
   doorAnimator: {fileID: 726866071}
   openAnimationName: DoorOpen
@@ -30633,8 +30642,8 @@ MonoBehaviour:
   unlockSound: {fileID: 0}
   textWhenOpen: Close Door
   textWhenClosed: Open Door
-  textWhenLockedNeedKey: Unlock Door
-  textWhenLockedNoKey: Locked
+  textWhenLockedNeedKey: 'You need a key ! '
+  textWhenLockedNoKey: The door is locked by a device !
   manualRotationDuration: 1
 --- !u!1 &1449299084
 GameObject:
