@@ -8,8 +8,8 @@ public class TitleScreenManager : MonoBehaviour
     [SerializeField] GameObject titleScreenMainMenu;
     [SerializeField] GameObject titleScreenLoadMenu;
 
-    [Header("Main Character")]
-    [SerializeField] GameObject mainCharacterObject;
+    [Header("Scene Object")]
+    [SerializeField] GameObject sceneObject;
 
     [Header("Buttons")]
     [SerializeField] Button mainMenuNewGameButton;
@@ -47,7 +47,7 @@ public class TitleScreenManager : MonoBehaviour
     public void OpenLoadGameMenu()
     {
         titleScreenMainMenu.SetActive(false);
-        mainCharacterObject.SetActive(false);
+        sceneObject.SetActive(false);
         titleScreenLoadMenu.SetActive(true);
 
         loadMenuReturnButton.Select();
@@ -57,7 +57,7 @@ public class TitleScreenManager : MonoBehaviour
     {
         titleScreenLoadMenu.SetActive(false);
         titleScreenMainMenu.SetActive(true);
-        mainCharacterObject.SetActive(true);
+        sceneObject.SetActive(true);
 
         mainMenuLoadGameButton.Select();
     }

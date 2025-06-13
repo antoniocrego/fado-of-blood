@@ -76,6 +76,7 @@ public class WorldAIManager : MonoBehaviour
             Destroy(ai.gameObject);
         }
         spawnedAIs.Clear();
+        spawnedBosses.Clear();
     }
 
     private void DisableAllCharacters()
