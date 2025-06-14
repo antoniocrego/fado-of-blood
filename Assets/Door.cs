@@ -10,7 +10,8 @@ public class Door : Interactable
     [SerializeField] private string openAnimationName = "DoorOpen";
     [SerializeField] private string closeAnimationName = "DoorClose";
     [SerializeField] private bool isOpen = false;
-    [SerializeField] private Collider physicalBarrierCollider; 
+    [SerializeField] Transform doorToBeRotated;
+    [SerializeField] bool openToTheRight = true; // Determines the direction of the door opening
 
 
     [Header("Lock Settings")]
@@ -44,32 +45,13 @@ public class Door : Interactable
     {
         base.Awake();
         // Get the player from the scene 
-        player = FindObjectOfType<PlayerManager>();
+        player = FindFirstObjectByType<PlayerManager>();
 
         if (doorAnimator == null)
         {
             doorAnimator = GetComponent<Animator>();
         }
         currentLockState = isLockedByDefault;
-
-        if (physicalBarrierCollider == null)
-        {
-            Collider[] colliders = GetComponents<Collider>();
-            foreach (Collider col in colliders)
-            {
-                if (col != interactableCollider)
-                {
-                    physicalBarrierCollider = col;
-                    break;
-                }
-            }
-        }
-
-        if (physicalBarrierCollider != null)
-        {
-            physicalBarrierCollider.isTrigger = false;
-            physicalBarrierCollider.enabled = !isOpen;
-        }
     }
 
     public void OperateByExternal()
@@ -98,15 +80,12 @@ public class Door : Interactable
 
         while (timeElapsed < duration)
         {
-            physicalBarrierCollider.transform.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
             objectToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        physicalBarrierCollider.transform.rotation = endRotation;
         objectToRotate.rotation = endRotation;
         _activeRotationCoroutine = null;
-        physicalBarrierCollider.enabled = true;
     }
 
     public override void Interact(PlayerManager player)
@@ -151,31 +130,20 @@ public class Door : Interactable
         isOpen = !isOpen;
         if (isOpen)
         {
-            if (physicalBarrierCollider != null)
-            {
-                Transform doorRotationObjectTransform = transform.Find("DoorRotationObject");
-                if (doorRotationObjectTransform != null)
-                { 
-                    if (_activeRotationCoroutine != null)
-                    {
-                        StopCoroutine(_activeRotationCoroutine);
-                    }
-                    Quaternion targetLocalRotation = Quaternion.Euler(doorRotationObjectTransform.transform.localEulerAngles.x, doorRotationObjectTransform.transform.localEulerAngles.y, doorRotationObjectTransform.transform.localEulerAngles.z + 90);
-                    Quaternion targetRotation = doorRotationObjectTransform.parent.rotation * targetLocalRotation;
-                    _activeRotationCoroutine = StartCoroutine(SmoothlyRotate(doorRotationObjectTransform, targetRotation, manualRotationDuration));
-                } 
-            }
-            else
-            {
-                Debug.LogWarning(gameObject.name + ": Child 'DoorRotationObject' not found for manual rotation.");
-            }
+            Transform doorRotationObjectTransform = doorToBeRotated;
+            if (doorRotationObjectTransform != null)
+            { 
+                if (_activeRotationCoroutine != null)
+                {
+                    StopCoroutine(_activeRotationCoroutine);
+                }
+                float neededRotation = openToTheRight ? 90f : -90f;
+                Quaternion targetLocalRotation = Quaternion.Euler(doorRotationObjectTransform.transform.localEulerAngles.x, doorRotationObjectTransform.transform.localEulerAngles.y + neededRotation, doorRotationObjectTransform.transform.localEulerAngles.z);
+                Quaternion targetRotation = doorRotationObjectTransform.parent.rotation * targetLocalRotation;
+                _activeRotationCoroutine = StartCoroutine(SmoothlyRotate(doorRotationObjectTransform, targetRotation, manualRotationDuration));
+            } 
+
             player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true);
-            physicalBarrierCollider.enabled = false; 
-        }
-        else
-        {
-            if (physicalBarrierCollider != null)
-                physicalBarrierCollider.enabled = true; 
         }
     }
     

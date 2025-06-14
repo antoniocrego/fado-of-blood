@@ -58,8 +58,8 @@ public class PlayerManager : CharacterManager
         }
 
         maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
-        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
-        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
     protected override void Update()
     {
@@ -107,7 +107,7 @@ public class PlayerManager : CharacterManager
             playerEquipmentManager.LoadLeftWeapon();
             playerUIHudManager.SetLeftWeaponQuickSlotIcon(newWeapon.itemID);
         }
-        
+
         previousRightHandWeapon = playerInventoryManager.currentRightHandWeapon;
         previousLeftHandWeapon = playerInventoryManager.currentLeftHandWeapon;
 
@@ -147,7 +147,7 @@ public class PlayerManager : CharacterManager
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
     }
-    
+
     public void LoadGame(ref CharacterSaveData currentCharacterData)
     {
         playerName = currentCharacterData.characterName;

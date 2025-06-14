@@ -11,7 +11,7 @@ public class CharacterSaveData
 
     [Header("World Position")]
     public float worldPositionX = 0;
-    public float worldPositionY = 0;
+    public float worldPositionY = 0.81f;
     public float worldPositionZ = 0;
 
     [Header("Boss Statuses")]
@@ -19,12 +19,18 @@ public class CharacterSaveData
     public SerializableDictionary<int, bool> bossesDefeated;
     
     [Header("World Items")]
-    public SerializableDictionary<int, bool> worldItemsLooted; 
+    public SerializableDictionary<int, bool> worldItemsLooted;
+
+    [Header("Bonfires")]
+    public SerializableDictionary<int, bool> bonfiresLit;
+    public int lastBonfireRestedAt = -1;
 
     public CharacterSaveData()
     {
         // Initialize the dictionaries to avoid null reference exceptions.
+        worldItemsLooted = new SerializableDictionary<int, bool>();
         bossesAwakened = new SerializableDictionary<int, bool>();
         bossesDefeated = new SerializableDictionary<int, bool>();
+        bonfiresLit = new SerializableDictionary<int, bool>();
     }
 }

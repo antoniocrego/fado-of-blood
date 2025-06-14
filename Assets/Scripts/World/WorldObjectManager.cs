@@ -13,6 +13,9 @@ public class WorldObjectManager : MonoBehaviour
     [Header("Fog Walls")]
     public List<FogWallInteractable> fogWalls;
 
+    [Header("Bonfires")]
+    public List<BonfireInteractable> bonfires;
+
     private void Awake()
     {
         if (instance == null)
@@ -52,12 +55,28 @@ public class WorldObjectManager : MonoBehaviour
             fogWalls.Add(fogWall);
         }
     }
-    
+
     public void RemoveFogWall(FogWallInteractable fogWall)
     {
         if (fogWalls.Contains(fogWall))
         {
             fogWalls.Remove(fogWall);
+        }
+    }
+
+    public void AddBonfire(BonfireInteractable bonfire)
+    {
+        if (!bonfires.Contains(bonfire))
+        {
+            bonfires.Add(bonfire);
+        }
+    }
+    
+    public void RemoveBonfire(BonfireInteractable bonfire)
+    {
+        if (bonfires.Contains(bonfire))
+        {
+            bonfires.Remove(bonfire);
         }
     }
 }
