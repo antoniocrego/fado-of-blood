@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{625f6a55-4391-4e48-958e-44335552abfe}">
+		<property name="assetPath">
+			<value>Take Damage_3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3131250000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0402de1f-0e62-4686-a543-a24fe43332e8}</destination>
+		</relationship>
+	</object>
+</objects>
