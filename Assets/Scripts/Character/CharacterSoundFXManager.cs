@@ -25,6 +25,10 @@ public class CharacterSoundFXManager : MonoBehaviour
     [Header("Footstep SFX")]
     [SerializeField] public string footstepFMODEvent = "event:/Footsteps/Footsteps";
 
+    [Header("Boss Defeated SFX")]
+    [SerializeField] protected string bossDefeatedSFXFMODEvent = "event:/UI/Boss Defeated";
+
+
     protected virtual void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -64,4 +68,11 @@ public class CharacterSoundFXManager : MonoBehaviour
             RuntimeManager.PlayOneShot(attackGruntFMODEvent, transform.position);
         }
     }
+
+    public void PlayBossDefeatedSFX()
+    {
+        RuntimeManager.PlayOneShot(bossDefeatedSFXFMODEvent, transform.position);
+    }
+
+
 }

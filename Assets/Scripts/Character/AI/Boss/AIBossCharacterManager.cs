@@ -92,6 +92,7 @@ public class AIBossCharacterManager : AICharacterManager
         isDead = true;
 
         PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp(defeatMessage);
+        characterSoundFXManager.PlayBossDefeatedSFX();
 
         // reset any needed flags
         DeactivateBossFight();

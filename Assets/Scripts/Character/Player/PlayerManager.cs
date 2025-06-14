@@ -160,6 +160,7 @@ public class PlayerManager : CharacterManager
     public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
     {
         PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
+        WorldSoundFXManager.instance.PlayYouDiedSFX();
 
         return base.ProcessDeath(manuallySelectDeathAnimation);
     }
