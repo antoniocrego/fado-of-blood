@@ -1558,8 +1558,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6587559957445840663}
   - component: {fileID: 7797202607364032148}
-  - component: {fileID: 3817570241395840089}
-  - component: {fileID: 5099429802300817533}
   m_Layer: 0
   m_Name: Paladin_J_Nordstrom
   m_TagString: Untagged
@@ -1707,45 +1705,6 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.79662716, y: 0.45543876, z: 0.2404747}
     m_Extent: {x: 0.15018606, y: 0.04597959, z: 0.507103}
   m_DirtyAABB: 0
---- !u!136 &3817570241395840089
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5307033919595572989}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.15
-  m_Height: 1.16
-  m_Direction: 2
-  m_Center: {x: 0.796285, y: 1.4112256, z: 0.24547864}
---- !u!114 &5099429802300817533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5307033919595572989}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81a16cb3a34e6f243ae5cde665a2abe3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colliderOwner: {fileID: 0}
-  damageCollider: {fileID: 0}
-  damage: 0
-  soldierCharacter: {fileID: 0}
 --- !u!1 &5629532297250181197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,10 +1951,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ecc5c8d46414d4fabe3c4feeadb57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
-  attackGrunts: []
+  damageGruntFMODEvent: event:/Enemies/Small_Enemies/Moan
+  damageSFXFMODEvent: event:/Combat/Blood and gore/Bone Crack
+  attackGruntFMODEvent: 
   attackWhooshes: []
-  deathSFX: {fileID: 0}
+  deathSFXFMODEvent: event:/Enemies/Small_Enemies/Death
   footstepFMODEvent: event:/Footsteps/Footsteps
 --- !u!114 &1926977909631597681
 MonoBehaviour:
