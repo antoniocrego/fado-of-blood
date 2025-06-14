@@ -22,6 +22,8 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
+        if (playerPerformingAction.isDead) return;
+
         if (playerPerformingAction.stamina <= 0) return;
 
         if (!playerPerformingAction.characterLocomotionManager.isGrounded) return;

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -53,6 +54,7 @@ public class CharacterManager : MonoBehaviour
     protected virtual void Start()
     {
         DontDestroyOnLoad(this);
+        IgnoreMyOwnColliders();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
         inventoryManager = GetComponent<CharacterInventoryManager>();
@@ -142,6 +144,31 @@ public class CharacterManager : MonoBehaviour
         else if (health > maxHealth)
         {
             // health = maxHealth; // Ensure health does not exceed maxHealth
+        }
+    }
+
+    protected virtual void IgnoreMyOwnColliders()
+    {
+        Collider characterCollider = GetComponent<Collider>();
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+        List<Collider> ignoreColliders = new List<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            ignoreColliders.Add(collider);
+        }
+
+        ignoreColliders.Add(characterCollider);
+
+        foreach (Collider collider in ignoreColliders)
+        {
+            foreach (Collider otherCollider in colliders)
+            {
+                if (otherCollider != collider)
+                {
+                    Physics.IgnoreCollision(collider, otherCollider);
+                }
+            }
         }
     }
 }

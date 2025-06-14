@@ -8,9 +8,12 @@ using UnityEngine;
         public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
+            
+            if (playerPerformingAction.isDead)
+                return;
 
             if (playerPerformingAction.stamina <= 0)
-                return;
+            return;
 
             if (!playerPerformingAction.isGrounded)
                 return;

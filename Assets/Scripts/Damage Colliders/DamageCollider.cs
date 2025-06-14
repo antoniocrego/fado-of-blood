@@ -28,7 +28,7 @@ public class DamageCollider : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other)
     {
         // Debug.Log("Trigger entered: " + other.gameObject.name);
-        CharacterManager damageTarget = other.GetComponent<CharacterManager>();
+        CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
         // Debug.Log("Damage target: " + damageTarget);
         if (damageTarget != null && damageTarget != colliderOwner)
         {

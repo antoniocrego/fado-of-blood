@@ -27,10 +27,17 @@ public class DamageCollider : MonoBehaviour
 
     protected virtual void OnTriggerEnter(Collider other)
     {
+<<<<<<< HEAD
         // Debug.Log("Trigger entered: " + other.gameObject.name);
         CharacterManager damageTarget = other.GetComponent<CharacterManager>();
         // Debug.Log("Damage target: " + damageTarget);
         if (damageTarget != null && damageTarget != colliderOwner)
+=======
+        Debug.Log("Trigger entered: " + other.gameObject.name);
+        CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
+        Debug.Log("Damage target: " + damageTarget);
+        if (damageTarget != null)
+>>>>>>> origin/take_damage
         {
             contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
             CheckForBlock(damageTarget);
@@ -44,7 +51,6 @@ public class DamageCollider : MonoBehaviour
         if (charactersDamaged.Contains(damageTarget))
             return;
 
-<<<<<<< HEAD
         GetBlockingDotValues(damageTarget);
 
         // 1. CHECK IF THE CHARACTER BEING DAMAGED IS BLOCKING
@@ -69,8 +75,6 @@ public class DamageCollider : MonoBehaviour
         dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
     }
 
-=======
->>>>>>> main
     protected virtual void DamageTarget(CharacterManager damageTarget)
     {
         if (charactersDamaged.Contains(damageTarget))

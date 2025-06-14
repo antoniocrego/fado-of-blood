@@ -9,8 +9,11 @@ public class OffHandMeleeAction : WeaponItemAction
     //    The off hand's action becomes a dual attack.
 
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
-    {
+    {   
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
+
+        if (playerPerformingAction.isDead)
+            return;
 
         //  CHECK FOR POWER STANCE ACTION (DUAL ATTACK)
 
