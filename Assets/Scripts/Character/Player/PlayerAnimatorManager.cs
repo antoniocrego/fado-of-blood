@@ -25,6 +25,7 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
     {
         if (player.isUsingRightHand)
         {
+            Debug.Log("Enabling Main Hand Combo");
             player.playerCombatManager.canComboWithMainHandWeapon = true;
         }
         else

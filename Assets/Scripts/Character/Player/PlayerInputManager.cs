@@ -249,7 +249,6 @@ public class PlayerInputManager : MonoBehaviour
             player.SetCharacterActionHand(true);
 
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
-
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action, player.playerInventoryManager.currentRightHandWeapon);
         }
     }

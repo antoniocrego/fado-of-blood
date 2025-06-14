@@ -21,8 +21,6 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
-        
-        if (playerPerformingAction.isPerformingAction) return;
 
         if (playerPerformingAction.stamina <= 0) return;
 
@@ -56,6 +54,7 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
 
     private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
+        Debug.Log(playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon + " " + playerPerformingAction.isPerformingAction);
         //  IF WE ARE ATTACKING CURRENTLY, AND WE CAN COMBO, PERFORM THE COMBO ATTACK
         if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
         {
