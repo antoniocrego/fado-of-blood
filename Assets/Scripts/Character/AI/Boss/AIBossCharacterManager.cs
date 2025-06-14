@@ -17,6 +17,9 @@ public class AIBossCharacterManager : AICharacterManager
     [Header("States")]
     [SerializeField] AIState sleepState;
 
+    [Header("Defeat Message")]
+    [SerializeField] string defeatMessage = "GREAT FOE DEFEATED";
+
     protected override void Start()
     {
         base.Start();
@@ -87,6 +90,8 @@ public class AIBossCharacterManager : AICharacterManager
     {
         health = 0;
         isDead = true;
+
+        PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp(defeatMessage);
 
         // reset any needed flags
         DeactivateBossFight();
@@ -163,5 +168,10 @@ public class AIBossCharacterManager : AICharacterManager
     {
         bossFightIsActive = false;
         // hp bar kills itself after 2.5 seconds
+
+        foreach (FogWallInteractable fogWall in fogWalls)
+        {
+            fogWall.isActive = false;
+        }
     }
 }

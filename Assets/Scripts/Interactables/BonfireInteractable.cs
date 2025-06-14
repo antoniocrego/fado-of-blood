@@ -62,8 +62,7 @@ public class BonfireInteractable : Interactable
         interactableText = activatedText;
 
         // send popup
-        // PlayerUIManager.instance.playerUIPopUpManager.
-        // player.playerInteractionManager.RemoveInteractionFromList(this);
+        PlayerUIManager.instance.playerUIPopUpManager.SendBonfireLitPopUp();
         StartCoroutine(WaitToRestoreCollider());
     }
 
