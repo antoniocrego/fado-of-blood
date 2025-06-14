@@ -25,7 +25,6 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerInteractionManager playerInteractionManager;
 
     [HideInInspector] public PlayerEffectsManager playerEffectsManager;
-
     public WeaponItem previousRightHandWeapon = null;
 
     public QuickSlotItem previousQuickSlotItem = null;
@@ -69,7 +68,7 @@ public class PlayerManager : CharacterManager
     {
         base.Update();
 
-        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(health); 
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(health);
 
         playerLocomotionManager.HandleAllMovement();
 
@@ -80,7 +79,7 @@ public class PlayerManager : CharacterManager
         if (playerInventoryManager.currentQuickSlotItem == null)
         {
             PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(6);
-         }
+        }
         if (playerInventoryManager.currentQuickSlotItem != previousQuickSlotItem)
         {
             QuickSlotItem newQuickSlotItem = null;
@@ -111,7 +110,7 @@ public class PlayerManager : CharacterManager
             playerEquipmentManager.LoadLeftWeapon();
             playerUIHudManager.SetLeftWeaponQuickSlotIcon(newWeapon.itemID);
         }
-        
+
         previousRightHandWeapon = playerInventoryManager.currentRightHandWeapon;
         previousLeftHandWeapon = playerInventoryManager.currentLeftHandWeapon;
 
@@ -167,7 +166,7 @@ public class PlayerManager : CharacterManager
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
     }
-    
+
     public void LoadGame(ref CharacterSaveData currentCharacterData)
     {
         playerName = currentCharacterData.characterName;
@@ -176,6 +175,13 @@ public class PlayerManager : CharacterManager
             currentCharacterData.worldPositionY,
             currentCharacterData.worldPositionZ
         );
+    }
+
+    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
+    {
+        PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
+
+        return base.ProcessDeath(manuallySelectDeathAnimation);
     }
 
 }
