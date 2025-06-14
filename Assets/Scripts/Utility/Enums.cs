@@ -18,12 +18,27 @@ public enum CharacterSlot
 public enum WeaponModelSlot
 {
     RightHand,
-    LeftHand,
+    LeftHandWeaponSlot,
+    LeftHandShieldSlot,
+}
+
+public enum WeaponModelType
+{
+    Weapon,
+    Shield
 }
 
 public enum AttackType
 {
     LightAttack01,
+    LightAttack02,
+    HeavyAttack01,
+    HeavyAttack02,
+    ChargedAttack01,
+    ChargedAttack02,
+    RunningAttack01,
+    RollingAttack01,
+    BackstepAttack01
 }
 
 public enum CharacterGroup
@@ -75,6 +90,14 @@ public enum EquipmentType
     LeftWeapon01,
     LeftWeapon02,
     LeftWeapon03,
+	QuickSlotConsumable01
+}
 
-    QuickSlotConsumable01,
+public enum DamageIntensity
+{
+    Ping,
+    Light,
+    Medium,
+    Heavy,
+    Colossal
 }

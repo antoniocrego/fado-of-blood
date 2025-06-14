@@ -169,6 +169,51 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "LB",
+                    "type": "Button",
+                    "id": "8d61885e-ecb7-46c1-8ee9-6b6956a4aac7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Que RB",
+                    "type": "Button",
+                    "id": "055f908e-023e-416f-888f-67bf854c2edb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "RT",
+                    "type": "Button",
+                    "id": "3027f1a8-e473-4d34-a7ed-421769ce0e22",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Que RT",
+                    "type": "Button",
+                    "id": "540af80b-b4a9-4798-8a5c-e81ff9719ad4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hold RT",
+                    "type": "PassThrough",
+                    "id": "af1e0781-5ab4-4125-920b-40c518374ef6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(pressPoint=0.1)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "X",
                     "type": "Button",
                     "id": "dcb13302-9504-45f4-99da-f55cf34aaa76",
@@ -301,6 +346,116 @@
                 },
                 {
                     "name": "",
+                    "id": "2efce239-3772-45d3-8af7-e26706bcf32c",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de770fa6-63e6-49ec-9b68-bbd23f9536c1",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6681064-5eb3-4b5e-af58-dcc3acaaf38c",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18aaf52b-d00f-4365-91fc-c6044fca8e0e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0c5ccf2d-7b28-45d8-bffa-c5b1a0eb184a",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b979bad-c29d-4669-bb43-31b08f7e8f49",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43c38026-0bda-456f-96fe-d6ae32309019",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "22447475-735b-4687-a9d8-2c7aaa0465b9",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0e94f069-1acf-4f57-b26a-6cc4943fd9e9",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3bb9133a-0f6a-48dd-9eee-d929a584c067",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "add76705-e1ac-478f-bd02-2558e34a02bf",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -411,8 +566,8 @@
                 },
                 {
                     "name": "",
-                    "id": "12171a9d-5732-45e7-9b17-4bc38ce65256",
-                    "path": "<Mouse>/rightButton",
+                    "id": "d5dd8107-b210-4f9f-8eb1-65ade8e3c2e9",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -422,8 +577,8 @@
                 },
                 {
                     "name": "",
-                    "id": "d5dd8107-b210-4f9f-8eb1-65ade8e3c2e9",
-                    "path": "<Gamepad>/rightStickPress",
+                    "id": "356644dc-5f0c-49b0-8189-44f411ecce56",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

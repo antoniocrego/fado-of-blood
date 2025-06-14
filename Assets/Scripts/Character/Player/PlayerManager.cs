@@ -8,10 +8,6 @@ public class PlayerManager : CharacterManager
     [Header("Player Name")]
     public string playerName = "Player";
 
-    [Header("Debug Menu")]
-    [SerializeField] bool switchRightWeapon = false;
-    [SerializeField] bool switchLeftWeapon = false;
-
     //TODO: handles animations and stats
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerInventoryManager playerInventoryManager;
@@ -120,24 +116,8 @@ public class PlayerManager : CharacterManager
             animator.SetBool("isChuggingFlask", playerEquipmentManager.isChugging);
             previousChuggingStatus = playerEquipmentManager.isChugging;
         }
-
-        DebugMenu();
     }
 
-    private void DebugMenu()
-    {
-        if (switchRightWeapon)
-        {
-            switchRightWeapon = false;
-            playerEquipmentManager.SwitchRightWeapon();
-        }
-
-        if (switchLeftWeapon)
-        {
-            switchLeftWeapon = false;
-            playerEquipmentManager.SwitchLeftWeapon();
-        }
-    }
 
     public void SetCharacterActionHand(bool rightHandedAction)
     {

@@ -2,10 +2,14 @@ using UnityEngine;
 
 public class CharacterStatsManager : MonoBehaviour
 {
+
+    [Header("Blocking Absorptions")]
+    public float blockingDamageAbsorption;
+
     public int CalculateStaminaBasedOnEnduranceLevel(int endurance)
     {
 
-        float stamina = endurance * 10;
+        float stamina = endurance * 100;
 
         return Mathf.RoundToInt(stamina);
     }

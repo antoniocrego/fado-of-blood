@@ -13,7 +13,7 @@ public class PlayerInputManager : MonoBehaviour
     public float cameraVerticalInput;
     public float cameraHorizontalInput;
 
-    public float movementCombined; 
+    public float movementCombined;
     PlayerControls playerControls;
 
     [Header("Player Action Input")]
@@ -23,9 +23,23 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool sprintInput = false;
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool lockedOn_input = false;
-    [SerializeField] bool RB_Input = false;
     [SerializeField] bool lockOnLeft_input = false;
     [SerializeField] bool lockOnRight_input = false;
+
+    [Header("BUMPER INPUTS")]
+    [SerializeField] bool RB_Input = false;
+    [SerializeField] bool LB_Input = false;
+
+    [Header("TRIGGER INPUTS")]
+    [SerializeField] bool RT_Input = false;
+    [SerializeField] bool Hold_RT_Input = false;
+
+    [Header("QUED INPUTS")]
+    [SerializeField] private bool input_Que_Is_Active = false;
+    [SerializeField] float default_Que_Input_Time = 0.35f;
+    [SerializeField] float que_Input_Timer = 0;
+    [SerializeField] bool que_RB_Input = false;
+    [SerializeField] bool que_RT_Input = false;
 
     [SerializeField] bool switch_Right_hand_weapon = false;
     [SerializeField] bool switch_Left_hand_weapon = false;
@@ -35,7 +49,6 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] bool use_Item_input = false;
 
 
-    
     [SerializeField] bool openCharacterMenuInput = false;
     [SerializeField] bool closeMenuInput = false;
 
@@ -61,13 +74,13 @@ public class PlayerInputManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
-        
-        SceneManager.activeSceneChanged += OnSceneChange;   
-        
+
+        SceneManager.activeSceneChanged += OnSceneChange;
+
         instance.enabled = true;
     }
 
-    private void Update() 
+    private void Update()
     {
         HandleAllInputs();
     }
@@ -80,40 +93,46 @@ public class PlayerInputManager : MonoBehaviour
         HandleSprintInput();
         HandleLockOnInput();
         HandleRBInput();
+        HandleLBInput();
+        HandleRTInput();
+        HandleChargeRTInput();
         HandleLockOnSwitchTargetInput();
         HandleCameraInput();
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
         HandleInteractInput();
-        HandleCloseUIInput();  
+        HandleCloseUIInput();
         HandleOpenCharacterMenuInput();
+        HandleQuedInputs();
     }
 
 
-    private void HandleMovementInput() 
+    private void HandleMovementInput()
     {
         verticalInput = movementInput.y;
-        horizontalInput = movementInput.x; 
+        horizontalInput = movementInput.x;
 
 
         movementCombined = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
 
-        if(movementCombined <= 0.5 && movementCombined > 0) 
+        if (movementCombined <= 0.5 && movementCombined > 0)
         {
             movementCombined = 0.5f;
         }
-        else if(movementCombined > 0.5 && movementCombined < 1) 
+        else if (movementCombined > 0.5 && movementCombined < 1)
         {
             movementCombined = 1f;
         }
-        if(player == null) 
+        if (player == null)
         {
             return;
         }
-        if(movementCombined!=0){
+        if (movementCombined != 0)
+        {
             player.isMoving = true;
         }
-        else{
+        else
+        {
             player.isMoving = false;
         }
         if (!player.playerLocomotionManager.canRun)
@@ -143,26 +162,26 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleDodgeInput() 
+    private void HandleDodgeInput()
     {
-        if(dodgeInput) 
+        if (dodgeInput)
         {
             dodgeInput = false;
 
             player.playerLocomotionManager.AttemptToPerformDodge();
         }
     }
-    
-    private void HandleInteractInput() 
+
+    private void HandleInteractInput()
     {
-        if(interaction_input) 
+        if (interaction_input)
         {
             interaction_input = false;
             player.playerInteractionManager.Interact();
         }
     }
 
-   
+
 
     private void HandleSprintInput()
     {
@@ -176,7 +195,7 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleLockOnInput() 
+    private void HandleLockOnInput()
     {
         if (player.isLockedOn)
         {
@@ -195,7 +214,7 @@ public class PlayerInputManager : MonoBehaviour
             }
 
         }
-        if(lockedOn_input && player.isLockedOn)
+        if (lockedOn_input && player.isLockedOn)
         {
             lockedOn_input = false;
             player.playerCameraManager.ClearLockOnTargets();
@@ -205,23 +224,23 @@ public class PlayerInputManager : MonoBehaviour
             return;
         }
 
-        if(lockedOn_input && !player.isLockedOn)
+        if (lockedOn_input && !player.isLockedOn)
         {
             lockedOn_input = false;
             player.playerCameraManager.HandleLocatingLockOnTargets();
-            if(player.playerCameraManager.currentLockOnTarget != null)
+            if (player.playerCameraManager.currentLockOnTarget != null)
             {
                 player.isLockedOn = true;
                 player.playerCombatManager.SetTarget(player.playerCameraManager.currentLockOnTarget);
             }
-                
+
             return;
         }
     }
 
     private void HandleRBInput()
     {
-        if(RB_Input)
+        if (RB_Input)
         {
             RB_Input = false;
 
@@ -230,8 +249,51 @@ public class PlayerInputManager : MonoBehaviour
             player.SetCharacterActionHand(true);
 
             // TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
-
             player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action, player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleLBInput()
+    {
+        if (LB_Input)
+        {
+            LB_Input = false;
+
+            //  TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.SetCharacterActionHand(false);
+
+            //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oh_LB_Action, player.playerInventoryManager.currentLeftHandWeapon);
+        }
+    }
+
+    private void HandleRTInput()
+    {
+        if (RT_Input)
+        {
+            RT_Input = false;
+
+            //  TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+            player.SetCharacterActionHand(true);
+
+            //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+            player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RT_Action, player.playerInventoryManager.currentRightHandWeapon);
+        }
+    }
+
+    private void HandleChargeRTInput()
+    {
+        //  WE ONLY WANT TO CHECK FOR A CHARGE IF WE ARE IN AN ACTION THAT REQUIRES IT (Attacking)
+        if (player.isPerformingAction)
+        {
+            if (player.isUsingRightHand)
+            {
+                player.SetIsChargingAttack(Hold_RT_Input);
+            }
         }
     }
 
@@ -250,7 +312,7 @@ public class PlayerInputManager : MonoBehaviour
                 }
             }
         }
-        
+
         if (lockOnRight_input)
         {
             lockOnRight_input = false;
@@ -259,30 +321,32 @@ public class PlayerInputManager : MonoBehaviour
                 player.playerCameraManager.HandleLocatingLockOnTargets();
 
                 if (player.playerCameraManager.rightLockOnTarget != null)
-                {   
+                {
                     player.playerCombatManager.SetTarget(player.playerCameraManager.rightLockOnTarget);
                 }
             }
         }
     }
 
-    private void HandleCameraInput() 
+    private void HandleCameraInput()
     {
-        if(player == null) 
+        if (player == null)
         {
             return;
         }
 
         cameraVerticalInput = cameraInput.y;
-        cameraHorizontalInput = cameraInput.x; 
+        cameraHorizontalInput = cameraInput.x;
     }
     private void OnSceneChange(Scene current, Scene next)
     {
         // TODO: CHANGE THIS TO USE SCENE NUMBERS DEFINED ELSEWHERE
-        if (next.buildIndex == 0){
+        if (next.buildIndex == 0)
+        {
             instance.enabled = false;
         }
-        else{
+        else
+        {
             instance.enabled = true;
         }
     }
@@ -295,13 +359,21 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
-            playerControls.PlayerActions.RB.performed += instance => RB_Input = true;
             playerControls.PlayerActions.LockOn.performed += i => lockedOn_input = true;
             playerControls.PlayerActions.LockOnLeft.performed += i => lockOnLeft_input = true;
             playerControls.PlayerActions.LockOnRight.performed += i => lockOnRight_input = true;
             playerControls.PlayerActions.Interact.performed += i => interaction_input = true;
 
+            //  BUMPERS
+            playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+            playerControls.PlayerActions.LB.performed += i => LB_Input = true;
+            playerControls.PlayerActions.LB.canceled += i => player.isBlocking = false;
             playerControls.PlayerActions.X.performed += i => use_Item_input = true;
+
+            //  TRIGGERS
+            playerControls.PlayerActions.RT.performed += i => RT_Input = true;
+            playerControls.PlayerActions.HoldRT.performed += i => Hold_RT_Input = true;
+            playerControls.PlayerActions.HoldRT.canceled += i => Hold_RT_Input = false;
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
@@ -313,7 +385,9 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
             playerControls.PlayerActions.OpenCharacterMenu.performed += i => openCharacterMenuInput = true;
 
-
+            //  QUED INPUTS
+            playerControls.PlayerActions.QueRB.performed += i => QueInput(ref que_RB_Input);
+            playerControls.PlayerActions.QueRT.performed += i => QueInput(ref que_RT_Input);
         }
 
         playerControls.Enable();
@@ -349,11 +423,11 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleSwitchLeftWeaponInput()
     {
-        if(switch_Left_hand_weapon)
+        if (switch_Left_hand_weapon)
         {
             switch_Left_hand_weapon = false;
             if (PlayerUIManager.instance.menuWindowIsOpen)
-                return; 
+                return;
             player.playerEquipmentManager.SwitchLeftWeapon();
         }
     }
@@ -386,5 +460,57 @@ public class PlayerInputManager : MonoBehaviour
     private void OnDestroy()
     {
         SceneManager.activeSceneChanged -= OnSceneChange;
+    }
+    
+    private void QueInput(ref bool quedInput)   //  PASSING A REFERENCE MEANS WE PASS A SPECIFIC BOOL, AND NOT THE VALUE OF THAT BOOL (TRUE OR FALSE)
+    {
+        //  RESET ALL QUED INPUTS SO ONLY ONE CAN QUE AT A TIME
+        que_RB_Input = false;
+        que_RT_Input = false;
+        //que_LB_Input = false;
+        //que_LT_Input = false;
+
+        //  CHECK FOR UI WINDOW BEING OPEN, IF ITS OPEN RETURN
+
+        if (player.isPerformingAction || player.isJumping)
+        {
+            quedInput = true;
+            que_Input_Timer = default_Que_Input_Time;
+            input_Que_Is_Active = true;
+        }
+    }
+
+    private void ProcessQuedInput()
+    {
+        if (player.isDead)
+            return;
+
+        if (que_RB_Input)
+            RB_Input = true;
+
+        if (que_RT_Input)
+            RT_Input = true;
+    }
+
+    private void HandleQuedInputs()
+    {
+        if (input_Que_Is_Active)
+        {
+            //  WHILE THE TIMER IS ABOVE 0, KEEP ATTEMPTING TO PRESS THE INPUT
+            if (que_Input_Timer > 0)
+            {
+                que_Input_Timer -= Time.deltaTime;
+                ProcessQuedInput();
+            }
+            else
+            {
+                //  RESET ALL QUED INPUTS
+                que_RB_Input = false;
+                que_RT_Input = false;
+
+                input_Que_Is_Active = false;
+                que_Input_Timer = 0;
+            }
+        }
     }
 }

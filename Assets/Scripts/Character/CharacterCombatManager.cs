@@ -6,6 +6,9 @@ public class CharacterCombatManager : MonoBehaviour
 {
     protected CharacterManager character;
 
+    [Header("Last Attack Animation Performed")]
+    public string lastAttackAnimationPerformed;
+
     [Header("Attack Target")]
     public CharacterManager currentTarget;
 
@@ -14,6 +17,11 @@ public class CharacterCombatManager : MonoBehaviour
 
     [Header("Attack Type")]
     public AttackType currentAttackType;
+
+    [Header("Attack Flags")]
+    public bool canPerformRollingAttack = false;
+    public bool canPerformBackstepAttack = false;
+    public bool canBlock = true;
 
     protected virtual void Awake()
     {
@@ -32,14 +40,44 @@ public class CharacterCombatManager : MonoBehaviour
             currentTarget = null;
         }
     }
-
+    
     public void EnableIsInvulnerable()
     {
         character.isInvulnerable = true;
     }
-    
+
     public void DisableIsInvulnerable()
     {
         character.isInvulnerable = false;
+    }
+
+    public void EnableCanDoRollingAttack()
+    {
+        canPerformRollingAttack = true;
+    }
+
+    public void DisableCanDoRollingAttack()
+    {
+        canPerformRollingAttack = false;
+    }
+
+    public void EnableCanDoBackstepAttack()
+    {
+        canPerformBackstepAttack = true;
+    }
+
+    public void DisableCanDoBackstepAttack()
+    {
+        canPerformBackstepAttack = false;
+    }
+
+    public virtual void EnableCanDoCombo()
+    {
+
+    }
+
+    public virtual void DisableCanDoCombo()
+    {
+
     }
 }

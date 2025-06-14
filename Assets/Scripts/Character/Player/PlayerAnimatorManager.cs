@@ -11,12 +11,32 @@ public class PlayerAnimatorManager : CharacterAnimatorManager
     }
     private void OnAnimatorMove()
     {
-        if(applyRootMotion) 
+        if (applyRootMotion)
         {
             Vector3 velocity = player.animator.deltaPosition;
             player.characterController.Move(velocity);
             player.transform.rotation *= player.animator.deltaRotation;
         }
-        
+
+    }
+    
+    //  ANIMATION EVENT CALLS
+    public override void EnableCanDoCombo()
+    {
+        if (player.isUsingRightHand)
+        {
+            Debug.Log("Enabling Main Hand Combo");
+            player.playerCombatManager.canComboWithMainHandWeapon = true;
+        }
+        else
+        {
+            //  ENABLE OFF HAND COMBO
+        }
+    }
+
+    public override void DisableCanDoCombo()
+    {
+        player.playerCombatManager.canComboWithMainHandWeapon = false;
+        //player.playerCombatManager.canComboWithOffHandWeapon = false;
     }
 }

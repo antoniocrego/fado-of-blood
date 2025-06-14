@@ -255,6 +255,51 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""LB"",
+                    ""type"": ""Button"",
+                    ""id"": ""8d61885e-ecb7-46c1-8ee9-6b6956a4aac7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Que RB"",
+                    ""type"": ""Button"",
+                    ""id"": ""055f908e-023e-416f-888f-67bf854c2edb"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""3027f1a8-e473-4d34-a7ed-421769ce0e22"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Que RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""540af80b-b4a9-4798-8a5c-e81ff9719ad4"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hold RT"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""af1e0781-5ab4-4125-920b-40c518374ef6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(pressPoint=0.1)"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""X"",
                     ""type"": ""Button"",
                     ""id"": ""dcb13302-9504-45f4-99da-f55cf34aaa76"",
@@ -387,6 +432,116 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2efce239-3772-45d3-8af7-e26706bcf32c"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de770fa6-63e6-49ec-9b68-bbd23f9536c1"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e6681064-5eb3-4b5e-af58-dcc3acaaf38c"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18aaf52b-d00f-4365-91fc-c6044fca8e0e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0c5ccf2d-7b28-45d8-bffa-c5b1a0eb184a"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b979bad-c29d-4669-bb43-31b08f7e8f49"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43c38026-0bda-456f-96fe-d6ae32309019"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""22447475-735b-4687-a9d8-2c7aaa0465b9"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Que RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0e94f069-1acf-4f57-b26a-6cc4943fd9e9"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3bb9133a-0f6a-48dd-9eee-d929a584c067"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""add76705-e1ac-478f-bd02-2558e34a02bf"",
                     ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
@@ -497,8 +652,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""12171a9d-5732-45e7-9b17-4bc38ce65256"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""id"": ""d5dd8107-b210-4f9f-8eb1-65ade8e3c2e9"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -508,8 +663,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d5dd8107-b210-4f9f-8eb1-65ade8e3c2e9"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""id"": ""356644dc-5f0c-49b0-8189-44f411ecce56"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -653,6 +808,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_OpenCharacterMenu = m_PlayerActions.FindAction("Open Character Menu", throwIfNotFound: true);
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_LB = m_PlayerActions.FindAction("LB", throwIfNotFound: true);
+        m_PlayerActions_QueRB = m_PlayerActions.FindAction("Que RB", throwIfNotFound: true);
+        m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_QueRT = m_PlayerActions.FindAction("Que RT", throwIfNotFound: true);
+        m_PlayerActions_HoldRT = m_PlayerActions.FindAction("Hold RT", throwIfNotFound: true);
         m_PlayerActions_X = m_PlayerActions.FindAction("X", throwIfNotFound: true);
         m_PlayerActions_Interact = m_PlayerActions.FindAction("Interact", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
@@ -849,6 +1009,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_OpenCharacterMenu;
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_LB;
+    private readonly InputAction m_PlayerActions_QueRB;
+    private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_QueRT;
+    private readonly InputAction m_PlayerActions_HoldRT;
     private readonly InputAction m_PlayerActions_X;
     private readonly InputAction m_PlayerActions_Interact;
     private readonly InputAction m_PlayerActions_LockOn;
@@ -883,6 +1048,26 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "PlayerActions/RB".
         /// </summary>
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/LB".
+        /// </summary>
+        public InputAction @LB => m_Wrapper.m_PlayerActions_LB;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueRB".
+        /// </summary>
+        public InputAction @QueRB => m_Wrapper.m_PlayerActions_QueRB;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/RT".
+        /// </summary>
+        public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/QueRT".
+        /// </summary>
+        public InputAction @QueRT => m_Wrapper.m_PlayerActions_QueRT;
+        /// <summary>
+        /// Provides access to the underlying input action "PlayerActions/HoldRT".
+        /// </summary>
+        public InputAction @HoldRT => m_Wrapper.m_PlayerActions_HoldRT;
         /// <summary>
         /// Provides access to the underlying input action "PlayerActions/X".
         /// </summary>
@@ -949,6 +1134,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @LB.started += instance.OnLB;
+            @LB.performed += instance.OnLB;
+            @LB.canceled += instance.OnLB;
+            @QueRB.started += instance.OnQueRB;
+            @QueRB.performed += instance.OnQueRB;
+            @QueRB.canceled += instance.OnQueRB;
+            @RT.started += instance.OnRT;
+            @RT.performed += instance.OnRT;
+            @RT.canceled += instance.OnRT;
+            @QueRT.started += instance.OnQueRT;
+            @QueRT.performed += instance.OnQueRT;
+            @QueRT.canceled += instance.OnQueRT;
+            @HoldRT.started += instance.OnHoldRT;
+            @HoldRT.performed += instance.OnHoldRT;
+            @HoldRT.canceled += instance.OnHoldRT;
             @X.started += instance.OnX;
             @X.performed += instance.OnX;
             @X.canceled += instance.OnX;
@@ -993,6 +1193,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @LB.started -= instance.OnLB;
+            @LB.performed -= instance.OnLB;
+            @LB.canceled -= instance.OnLB;
+            @QueRB.started -= instance.OnQueRB;
+            @QueRB.performed -= instance.OnQueRB;
+            @QueRB.canceled -= instance.OnQueRB;
+            @RT.started -= instance.OnRT;
+            @RT.performed -= instance.OnRT;
+            @RT.canceled -= instance.OnRT;
+            @QueRT.started -= instance.OnQueRT;
+            @QueRT.performed -= instance.OnQueRT;
+            @QueRT.canceled -= instance.OnQueRT;
+            @HoldRT.started -= instance.OnHoldRT;
+            @HoldRT.performed -= instance.OnHoldRT;
+            @HoldRT.canceled -= instance.OnHoldRT;
             @X.started -= instance.OnX;
             @X.performed -= instance.OnX;
             @X.canceled -= instance.OnX;
@@ -1289,6 +1504,41 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnRB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Que RB" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueRB(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "RT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRT(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Que RT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnQueRT(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Hold RT" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnHoldRT(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "X" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -9,10 +9,19 @@ public class WeaponManager : MonoBehaviour
         meleeDamageCollider = GetComponentInChildren<MeleeWeaponDamageCollider>();
     }
 
-    public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon){
+    public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon)
+    {
         meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
         meleeDamageCollider.damage = weapon.baseDamage;
 
-        meleeDamageCollider.lightAttack01Modifier = weapon.lightAttack01Modifier;
+        meleeDamageCollider.light_Attack_01_Modifier = weapon.light_Attack_01_Modifier;
+        meleeDamageCollider.light_Attack_02_Modifier = weapon.light_Attack_02_Modifier;
+        meleeDamageCollider.heavy_Attack_01_Modifier = weapon.heavy_Attack_01_Modifier;
+        meleeDamageCollider.heavy_Attack_02_Modifier = weapon.heavy_Attack_02_Modifier;
+        meleeDamageCollider.charge_Attack_01_Modifier = weapon.charge_Attack_01_Modifier;
+        meleeDamageCollider.charge_Attack_02_Modifier = weapon.charge_Attack_02_Modifier;
+        meleeDamageCollider.running_Attack_01_Modifier = weapon.running_Attack_01_Modifier;
+        meleeDamageCollider.rolling_Attack_01_Modifier = weapon.rolling_Attack_01_Modifier;
+        meleeDamageCollider.backstep_Attack_01_Modifier = weapon.backstep_Attack_01_Modifier;
     }
 }
