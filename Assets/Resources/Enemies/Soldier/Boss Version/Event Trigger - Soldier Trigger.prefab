@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2257866886081773115}
   - component: {fileID: 609259794765895465}
   m_Layer: 13
-  m_Name: Event Trigger - Adamastor Trigger
+  m_Name: Event Trigger - Soldier Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,4 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78ee3cd517d4bb40a0167ac47b6f43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossID: 3
+  bossID: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 188c0342f060dc746a1c7335d138e141
+guid: d7aa6f517decc7243a5c69f4219c8cd3
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 90DegreesRight
+      name: Soldier Impact 02
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 28
+      lastFrame: 21
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

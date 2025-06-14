@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0a4d4678704aa65439523b43b5b06254
+guid: 280c4cd7d0f10954b806c5275ba6cc28
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -31,11 +31,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: shield_main_run_attack_01
+      name: Soldier Impact 01
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 39
+      lastFrame: 29
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
