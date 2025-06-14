@@ -26,23 +26,29 @@ public class CharacterLocomotionManager : MonoBehaviour
 
     public bool canMove = true;
 
-    public void Update() 
+    public bool canRun = true;
+
+    public void Update()
     {
-        HandleGroundCheck(); 
-        if(isGrounded) 
+        if (character == null || character.isDead)
         {
-            if(yVelocity.y < 0) 
+            return;
+        }
+        HandleGroundCheck();
+        if (isGrounded)
+        {
+            if (yVelocity.y < 0)
             {
-                inAirTime = 0; 
+                inAirTime = 0;
                 fallingVelocityHasBeenSet = false;
-                yVelocity.y = groundedYVelocity; 
+                yVelocity.y = groundedYVelocity;
             }
         }
-        else 
+        else
         {
-            if(!fallingVelocityHasBeenSet) 
+            if (!fallingVelocityHasBeenSet)
             {
-                fallingVelocityHasBeenSet = true; 
+                fallingVelocityHasBeenSet = true;
                 yVelocity.y = fallStartYVelocity;
             }
 

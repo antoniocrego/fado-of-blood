@@ -3,6 +3,9 @@ using UnityEngine.AI;
 
 public class AICharacterManager : CharacterManager
 {
+    [Header("Character Name")]
+    public string characterName = "";
+
     [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
 
@@ -10,7 +13,7 @@ public class AICharacterManager : CharacterManager
     public NavMeshAgent navMeshAgent;
 
     [Header("Current State")]
-    [SerializeField] private AIState currentState;
+    [SerializeField] protected AIState currentState;
 
     [Header("States")]
     public AIStateIdle idleState;
@@ -18,9 +21,9 @@ public class AICharacterManager : CharacterManager
     public AIStateCombat combatState;
     public AIStateAttack attackState;
 
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
         aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
 

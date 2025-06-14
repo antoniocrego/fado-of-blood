@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{2cb4cde3-2839-4d03-a855-457165442bd6}">
+		<property name="assetPath">
+			<value>Footsteps_Wet-009.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.27710416666666665</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0402de1f-0e62-4686-a543-a24fe43332e8}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -26,9 +26,12 @@ public class AIStateCombat : AIState
 
         if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
-        if (!aiCharacter.isMoving){
-            if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
-                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+        if (aiCharacter.aiCharacterCombatManager.canPivot) {
+            if (!aiCharacter.isMoving)
+            {
+                if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+                    aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            }
         }
 
         aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);

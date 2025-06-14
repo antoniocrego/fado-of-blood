@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{1a1a5d08-eaf4-4f80-8387-6e9734485017}">
+		<property name="assetPath">
+			<value>Enter Fog.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>5</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{0402de1f-0e62-4686-a543-a24fe43332e8}</destination>
+		</relationship>
+	</object>
+</objects>

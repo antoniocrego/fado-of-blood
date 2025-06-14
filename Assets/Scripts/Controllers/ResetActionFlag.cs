@@ -22,9 +22,13 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterAnimatorManager.DisableCanDoCombo();
         character.characterCombatManager.DisableCanDoRollingAttack();
         character.characterCombatManager.DisableCanDoBackstepAttack();
-        character.isJumping = false;
         character.isInvulnerable = false;
         character.isAttacking = false;
+
+        if(character.characterEffectsManager.activeQuickSlotItemFX != null)
+        {
+            Destroy(character.characterEffectsManager.activeQuickSlotItemFX);
+        }
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

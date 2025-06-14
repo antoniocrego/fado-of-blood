@@ -46,6 +46,8 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] bool interaction_input = false;
 
+    [SerializeField] bool use_Item_input = false;
+
 
     [SerializeField] bool openCharacterMenuInput = false;
     [SerializeField] bool closeMenuInput = false;
@@ -85,6 +87,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleAllInputs()
     {
+        HandleUseItemInput();
         HandleMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
@@ -131,6 +134,23 @@ public class PlayerInputManager : MonoBehaviour
         else
         {
             player.isMoving = false;
+        }
+        if (!player.playerLocomotionManager.canRun)
+        {
+            if (movementCombined > 0.5f)
+            {
+                movementCombined = 0.5f;
+            }
+
+            if (verticalInput > 0.5f)
+            {
+                verticalInput = 0.5f;
+            }
+
+            if (horizontalInput > 0.5f)
+            {
+                horizontalInput = 0.5f;
+            }
         }
         if (!lockedOn_input || player.isSprinting)
         {
@@ -349,6 +369,7 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.RB.performed += i => RB_Input = true;
             playerControls.PlayerActions.LB.performed += i => LB_Input = true;
             playerControls.PlayerActions.LB.canceled += i => player.isBlocking = false;
+            playerControls.PlayerActions.X.performed += i => use_Item_input = true;
 
             //  TRIGGERS
             playerControls.PlayerActions.RT.performed += i => RT_Input = true;
@@ -371,6 +392,23 @@ public class PlayerInputManager : MonoBehaviour
         }
 
         playerControls.Enable();
+    }
+    
+    private void HandleUseItemInput()
+    {
+        if (use_Item_input)
+        {
+            use_Item_input = false;
+
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+                return;
+
+            if (player.playerInventoryManager.currentQuickSlotItem != null)
+            {
+                player.playerInventoryManager.currentQuickSlotItem.AttemptToUseItem(player);
+                player.playerEquipmentManager.QuickSlotItemUse(player.playerInventoryManager.currentQuickSlotItem.itemID);
+            }
+        }
     }
 
     private void HandleSwitchRightWeaponInput()

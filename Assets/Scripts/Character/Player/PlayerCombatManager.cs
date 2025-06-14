@@ -10,7 +10,9 @@ public class PlayerCombatManager : CharacterCombatManager
     [Header("Flags")]
     public bool canComboWithMainHandWeapon = false;
     //public bool canComboWithOffHandWeapon = false;
+    public bool isUsingItem = false;
 
+    public bool isAttacking = false;
     protected override void Awake()
     {
         base.Awake();
@@ -20,6 +22,8 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)
     {
+        if (weaponAction == null || weaponPerformingAction == null) return;
+        isAttacking = true;
         weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
     }
 
@@ -77,5 +81,13 @@ public class PlayerCombatManager : CharacterCombatManager
         if (player == null)
             Debug.Log("Player is null");
         player.playerCameraManager.SetLockCameraHeight();
+    }
+
+    public void SucessfullyUseQuickSlotItem()
+    {
+        if(player.playerInventoryManager.currentQuickSlotItem != null)
+        {
+            player.playerInventoryManager.currentQuickSlotItem.SucessfullyUseItem(player);
+        }
     }
 }

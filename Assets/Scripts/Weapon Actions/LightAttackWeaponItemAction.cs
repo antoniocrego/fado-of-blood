@@ -21,6 +21,8 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
     public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
         base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
+        
+        if (playerPerformingAction.isPerformingAction) return;
 
         if (playerPerformingAction.stamina <= 0) return;
 

@@ -36,7 +36,7 @@ using UnityEngine;
             }
 
             if (currentInteractableActions[0] != null)
-                PlayerUIManager.instance.playerUIPopUpManager.SendPlayerMessagePopUp(currentInteractableActions[0].interactableText);
+                PlayerUIManager.instance.playerUIPopUpManager.SendPlayerMessagePopUp(currentInteractableActions[0].GetInteractableText());
         }
 
         private void RefreshInteractionList()

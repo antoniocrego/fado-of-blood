@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Event" id="{c98637cf-5504-40fb-91b3-8a77ff95d4bd}">
+		<property name="name">
+			<value>NPC Elias Attack</value>
+		</property>
+		<property name="outputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5f6e3d6a-8842-4161-9a43-cc6622c48dc4}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{dc8a2f09-f4c3-477c-b207-14a867771294}</destination>
+		</relationship>
+		<relationship name="masterTrack">
+			<destination>{6855402b-8a8d-4ed8-adf2-87177a4f96dd}</destination>
+		</relationship>
+		<relationship name="mixerInput">
+			<destination>{03302160-8b2b-4969-8ca3-d50a9aaaf644}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{ec4210a3-6460-43c9-8637-a741150f0a11}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{4970b847-d06b-4157-8dbe-bd5c1705dd27}</destination>
+		</relationship>
+		<relationship name="groupTracks">
+			<destination>{254de527-cf05-4128-a9bf-ef322e55716f}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{7c002af3-f85c-45b0-95c2-2efacfcc303d}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{f88ffdf3-5f18-49f6-845b-152562c92cd5}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixer" id="{dc8a2f09-f4c3-477c-b207-14a867771294}">
+		<relationship name="masterBus">
+			<destination>{77a3ed02-86e6-4566-b4ed-21c7ae22ebe5}</destination>
+		</relationship>
+	</object>
+	<object class="MasterTrack" id="{6855402b-8a8d-4ed8-adf2-87177a4f96dd}">
+		<relationship name="mixerGroup">
+			<destination>{77a3ed02-86e6-4566-b4ed-21c7ae22ebe5}</destination>
+		</relationship>
+	</object>
+	<object class="MixerInput" id="{03302160-8b2b-4969-8ca3-d50a9aaaf644}">
+		<relationship name="effectChain">
+			<destination>{fca32430-dbb3-49ef-9055-6666fc1ba478}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{32cafb9c-fff9-43e8-9235-38b11b095ce2}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{6aac47f0-51cb-4401-ac71-04ff7e82faba}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{ec4210a3-6460-43c9-8637-a741150f0a11}" />
+	<object class="MarkerTrack" id="{4970b847-d06b-4157-8dbe-bd5c1705dd27}" />
+	<object class="GroupTrack" id="{254de527-cf05-4128-a9bf-ef322e55716f}">
+		<relationship name="modules">
+			<destination>{4c653083-3f82-4149-a4f9-21d6c241f2da}</destination>
+		</relationship>
+		<relationship name="mixerGroup">
+			<destination>{119d2ff2-3a40-40fd-8913-15f3ea39f7d3}</destination>
+		</relationship>
+	</object>
+	<object class="Timeline" id="{7c002af3-f85c-45b0-95c2-2efacfcc303d}">
+		<relationship name="modules">
+			<destination>{4c653083-3f82-4149-a4f9-21d6c241f2da}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerMaster" id="{77a3ed02-86e6-4566-b4ed-21c7ae22ebe5}">
+		<relationship name="effectChain">
+			<destination>{779be2a5-3d1e-428e-a76c-61188b5e109a}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{e7ba8e5c-fdba-41d6-8f1d-d4896dbc0d70}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{dc8a2f09-f4c3-477c-b207-14a867771294}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{fca32430-dbb3-49ef-9055-6666fc1ba478}">
+		<relationship name="effects">
+			<destination>{ac7822ba-fe97-4e67-9aa6-af6acd08912b}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{32cafb9c-fff9-43e8-9235-38b11b095ce2}" />
+	<object class="SingleSound" id="{4c653083-3f82-4149-a4f9-21d6c241f2da}">
+		<property name="length">
+			<value>3.6041666666666665</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{7aaa8bee-2045-40fe-ad8f-4814932fb455}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerGroup" id="{119d2ff2-3a40-40fd-8913-15f3ea39f7d3}">
+		<property name="volume">
+			<value>3.5</value>
+		</property>
+		<property name="name">
+			<value>Elias Attack</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{716e513b-dd1c-45a1-8fc6-fae557c9d359}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{17bb0f57-104a-4c91-af4b-c05d28e64742}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{77a3ed02-86e6-4566-b4ed-21c7ae22ebe5}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{779be2a5-3d1e-428e-a76c-61188b5e109a}">
+		<relationship name="effects">
+			<destination>{b8bb1156-9b2a-4f4d-8afc-2a264ec3c4aa}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{e7ba8e5c-fdba-41d6-8f1d-d4896dbc0d70}" />
+	<object class="MixerBusFader" id="{ac7822ba-fe97-4e67-9aa6-af6acd08912b}" />
+	<object class="MixerBusEffectChain" id="{716e513b-dd1c-45a1-8fc6-fae557c9d359}">
+		<relationship name="effects">
+			<destination>{e74aa7f8-0ece-4e06-836c-eaadec49e260}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{17bb0f57-104a-4c91-af4b-c05d28e64742}" />
+	<object class="MixerBusFader" id="{b8bb1156-9b2a-4f4d-8afc-2a264ec3c4aa}" />
+	<object class="MixerBusFader" id="{e74aa7f8-0ece-4e06-836c-eaadec49e260}" />
+</objects>

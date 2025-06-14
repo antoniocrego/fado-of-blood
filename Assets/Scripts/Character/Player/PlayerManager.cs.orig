@@ -1,0 +1,180 @@
+using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
+using System;
+
+public class PlayerManager : CharacterManager
+{
+    [Header("Player Name")]
+    public string playerName = "Player";
+
+    //TODO: handles animations and stats
+    [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
+    [HideInInspector] public PlayerInventoryManager playerInventoryManager;
+    [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+    [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
+    [HideInInspector] public PlayerStatsManager playerStatsManager;
+    [HideInInspector] public GameObject playerTarget;
+    [HideInInspector] public PlayerCamera playerCameraManager;
+    [HideInInspector] public PlayerCombatManager playerCombatManager;
+
+    [HideInInspector] public PlayerInteractionManager playerInteractionManager;
+
+    [HideInInspector] public PlayerEffectsManager playerEffectsManager;
+
+    public WeaponItem previousRightHandWeapon = null;
+
+    public QuickSlotItem previousQuickSlotItem = null;
+
+    public bool previousChuggingStatus = false;
+
+    public WeaponItem previousLeftHandWeapon = null;
+    public WeaponItem currentWeaponBeingUsed;
+    public bool isUsingRightHand = false;
+    public bool isUsingLeftHand = false;
+    public float lockOnRange = 20f;
+    public float minFov = -60f;
+    public float maxFov = 60f;
+
+    protected override void Start()
+    {
+        base.Start();
+
+        playerInventoryManager = GetComponent<PlayerInventoryManager>();
+        playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
+        playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+        playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
+        playerCombatManager = GetComponent<PlayerCombatManager>();
+        playerInteractionManager = GetComponent<PlayerInteractionManager>();
+        playerEffectsManager = GetComponent<PlayerEffectsManager>();
+        if (playerCameraManager == null)
+        {
+            playerCameraManager = FindAnyObjectByType<PlayerCamera>();
+        }
+        if (WorldSaveGameManager.instance != null)
+        {
+            WorldSaveGameManager.instance.player = this;
+        }
+
+        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(100);
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(100);
+    }
+    protected override void Update()
+    {
+        base.Update();
+
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(health); 
+
+        playerLocomotionManager.HandleAllMovement();
+
+        // NEED A NEW WAY TO CHANGE STAMINA VALUE
+        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
+        PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
+        if (playerInventoryManager.currentQuickSlotItem == null)
+        {
+            PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(6);
+         }
+        if (playerInventoryManager.currentQuickSlotItem != previousQuickSlotItem)
+        {
+            QuickSlotItem newQuickSlotItem = null;
+            int newID = playerInventoryManager.currentQuickSlotItem != null ? playerInventoryManager.currentQuickSlotItem.itemID : -1;
+
+            QuickSlotItem quickSlotItemFromDB = WorldItemDatabase.Instance.GetQuickSlotItemByID(newID);
+            if (quickSlotItemFromDB != null)
+                newQuickSlotItem = Instantiate(quickSlotItemFromDB);
+
+            if (newQuickSlotItem != null)
+            {
+                playerInventoryManager.currentQuickSlotItem = newQuickSlotItem;
+                PlayerUIManager.instance.playerUIHudManager.SetQuickSlotItemQuickSlotIcon(newQuickSlotItem.itemID);
+            }
+        }
+        if (playerInventoryManager.currentRightHandWeapon != previousRightHandWeapon)
+        {
+            WeaponItem newWeapon = playerInventoryManager.currentRightHandWeapon;
+            playerInventoryManager.currentRightHandWeapon = newWeapon;
+            playerEquipmentManager.LoadRightWeapon();
+            playerUIHudManager.SetRightWeaponQuickSlotIcon(newWeapon.itemID);
+        }
+
+        if (playerInventoryManager.currentLeftHandWeapon != previousLeftHandWeapon)
+        {
+            WeaponItem newWeapon = playerInventoryManager.currentLeftHandWeapon;
+            playerInventoryManager.currentLeftHandWeapon = newWeapon;
+            playerEquipmentManager.LoadLeftWeapon();
+            playerUIHudManager.SetLeftWeaponQuickSlotIcon(newWeapon.itemID);
+        }
+        
+        previousRightHandWeapon = playerInventoryManager.currentRightHandWeapon;
+        previousLeftHandWeapon = playerInventoryManager.currentLeftHandWeapon;
+
+<<<<<<< HEAD
+=======
+        if (previousChuggingStatus != playerEquipmentManager.isChugging)
+        {
+            animator.SetBool("isChuggingFlask", playerEquipmentManager.isChugging);
+            previousChuggingStatus = playerEquipmentManager.isChugging;
+        }
+
+        DebugMenu();
+    }
+
+    private void DebugMenu()
+    {
+        if (switchRightWeapon)
+        {
+            switchRightWeapon = false;
+            playerEquipmentManager.SwitchRightWeapon();
+        }
+
+        if (switchLeftWeapon)
+        {
+            switchLeftWeapon = false;
+            playerEquipmentManager.SwitchLeftWeapon();
+        }
+>>>>>>> main
+    }
+
+    public void SetCharacterActionHand(bool rightHandedAction)
+    {
+        if (rightHandedAction)
+        {
+            isUsingLeftHand = false;
+            isUsingRightHand = true;
+        }
+        else
+        {
+            isUsingLeftHand = true;
+            isUsingRightHand = false;
+        }
+    }
+
+    protected override void LateUpdate()
+    {
+        base.LateUpdate();
+
+        playerCameraManager.HandleCamera();
+    }
+
+    public void SaveGame(ref CharacterSaveData currentCharacterData)
+    {
+        currentCharacterData.characterName = playerName;
+        currentCharacterData.worldPositionX = transform.position.x;
+        currentCharacterData.worldPositionY = transform.position.y;
+        currentCharacterData.worldPositionZ = transform.position.z;
+    }
+    
+    public void LoadGame(ref CharacterSaveData currentCharacterData)
+    {
+        playerName = currentCharacterData.characterName;
+        transform.position = new Vector3(
+            currentCharacterData.worldPositionX,
+            currentCharacterData.worldPositionY,
+            currentCharacterData.worldPositionZ
+        );
+    }
+
+}
