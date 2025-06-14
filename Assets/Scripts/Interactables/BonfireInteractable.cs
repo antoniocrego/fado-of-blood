@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using FMODUnity;
 
 public class BonfireInteractable : Interactable
 {
@@ -51,8 +52,6 @@ public class BonfireInteractable : Interactable
         WorldSaveGameManager.instance.currentCharacterData.bonfiresLit[bonfireID] = isActivated;
         WorldSaveGameManager.instance.currentCharacterData.lastBonfireRestedAt = bonfireID;
 
-        // play sfx
-
         player.playerAnimatorManager.PlayTargetActionAnimation("Light_Bonfire", true, false);
         // hide weapon
 
@@ -60,6 +59,9 @@ public class BonfireInteractable : Interactable
         // add a small delay before the bonfire lights up
         bonfireVFX.SetActive(true);
         interactableText = activatedText;
+
+        // play sfx
+        RuntimeManager.PlayOneShot("event:/Environment/Bonfire/Bonfire Ignite", transform.position);
 
         // send popup
         PlayerUIManager.instance.playerUIPopUpManager.SendBonfireLitPopUp();
