@@ -54,7 +54,6 @@ public class LightAtttackWeaponItemAction : WeaponItemAction
 
     private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
-        Debug.Log(playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon + " " + playerPerformingAction.isPerformingAction);
         //  IF WE ARE ATTACKING CURRENTLY, AND WE CAN COMBO, PERFORM THE COMBO ATTACK
         if (playerPerformingAction.playerCombatManager.canComboWithMainHandWeapon && playerPerformingAction.isPerformingAction)
         {

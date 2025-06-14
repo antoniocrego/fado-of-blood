@@ -792,7 +792,7 @@ GameObject:
   - component: {fileID: 7588597561771307327}
   - component: {fileID: 7279573705916561887}
   - component: {fileID: 3082485360177969792}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mixamorig5:LeftHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,7 +1182,7 @@ GameObject:
   - component: {fileID: 1951920511398532474}
   - component: {fileID: 7320617778989275885}
   - component: {fileID: 3764741670630796291}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: mixamorig5:RightHandIndex1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1682,12 +1682,14 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
   stamina: 0
   isDead: 0
+  isGrounded: 1
   isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
@@ -1699,6 +1701,9 @@ MonoBehaviour:
   isMoving: 0
   isActive: 1
   isInvulnerable: 0
+  isJumping: 0
+  isBlocking: 0
+  isAttacking: 0
   characterName: 
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -1720,6 +1725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92da2767eaf20f545bca505eb901f512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blockingDamageAbsorption: 0
 --- !u!114 &1659235985714942098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1745,6 +1751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
+  activeQuickSlotItemFX: {fileID: 0}
 --- !u!114 &5529118367753029593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1818,6 +1825,7 @@ MonoBehaviour:
   isGrounded: 1
   canRotate: 1
   canMove: 1
+  canRun: 1
 --- !u!114 &-7822167365491235017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1847,9 +1855,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492f85cec31285146ac25893d1d25df5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   lockOnTransform: {fileID: 0}
   currentAttackType: 0
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
+  canBlock: 1
   actionRecoveryTimer: 0
   distanceFromTarget: 0
   viewableAngle: 0
