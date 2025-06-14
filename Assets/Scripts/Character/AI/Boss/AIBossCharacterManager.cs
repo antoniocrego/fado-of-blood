@@ -44,6 +44,12 @@ public class AIBossCharacterManager : AICharacterManager
         }
     }
 
+    public override void SetToInitialState()
+    {
+        currentState = sleepState; // Reset to sleep state.
+        characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
+    }
+
     private IEnumerator GetFogWallsFromWorldObjectManager()
     {
         while (WorldObjectManager.instance.fogWalls.Count == 0)

@@ -5,6 +5,7 @@ public class AICharacterSpawner : MonoBehaviour
     [Header("Character")]
     [SerializeField] GameObject characterGameObject;
     [SerializeField] GameObject instantiatedGameObject;
+    private AICharacterManager aiCharacterManager;
 
     private void Awake()
     {
@@ -23,7 +24,32 @@ public class AICharacterSpawner : MonoBehaviour
             instantiatedGameObject = Instantiate(characterGameObject);
             instantiatedGameObject.transform.position = transform.position;
             instantiatedGameObject.transform.rotation = transform.rotation;
-            WorldAIManager.instance.AddSpawnedCharacter(instantiatedGameObject.GetComponent<AICharacterManager>());
+            aiCharacterManager = instantiatedGameObject.GetComponent<AICharacterManager>();
+
+            if (aiCharacterManager != null)
+            {
+                WorldAIManager.instance.AddSpawnedCharacter(aiCharacterManager);
+            }
         }
+    }
+
+    public void ResetCharacter()
+    {
+        if (instantiatedGameObject == null) return;
+
+        if (aiCharacterManager == null) return;
+
+        instantiatedGameObject.transform.position = transform.position;
+        instantiatedGameObject.transform.rotation = transform.rotation;
+        aiCharacterManager.health = aiCharacterManager.maxHealth;
+        aiCharacterManager.isDead = false;
+        aiCharacterManager.characterAnimatorManager.PlayTargetActionAnimation("Empty", false, false, true, true);
+
+        // in case any character's base animation is not "Empty", this function must be implemented to change to that animation
+        aiCharacterManager.SetToInitialState();
+        aiCharacterManager.characterCombatManager.currentTarget = null; // being in idle state ignores currentTarget, but do it anyways
+        aiCharacterManager.navMeshAgent.enabled = false;
+        aiCharacterManager.navMeshAgent.enabled = true; // re-enable navmesh agent to reset its state
+        // reset ai hp bar ui once its implemented
     }
 }
