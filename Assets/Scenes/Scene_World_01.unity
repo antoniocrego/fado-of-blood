@@ -36522,6 +36522,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1481580475078281027, guid: 70b0964930316f04e89ab447f9f1b441, type: 3}
+      propertyPath: doorOpenSound
+      value: event:/Environment/Doors/Squeaky Gate Open
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481580475078281027, guid: 70b0964930316f04e89ab447f9f1b441, type: 3}
       propertyPath: isLockedByDefault
       value: 1
       objectReference: {fileID: 0}
@@ -91523,6 +91527,10 @@ PrefabInstance:
       propertyPath: doorAnimator
       value: 
       objectReference: {fileID: 726866071}
+    - target: {fileID: 1481580475078281027, guid: 70b0964930316f04e89ab447f9f1b441, type: 3}
+      propertyPath: doorOpenSound
+      value: event:/Environment/Doors/Squeaky Gate Open
+      objectReference: {fileID: 0}
     - target: {fileID: 1740350747582317233, guid: 70b0964930316f04e89ab447f9f1b441, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0

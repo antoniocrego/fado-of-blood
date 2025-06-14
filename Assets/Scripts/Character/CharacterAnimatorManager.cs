@@ -78,6 +78,7 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.characterLocomotionManager.canMove = canMove;
         character.characterLocomotionManager.canRotate = canRotate;
         character.characterLocomotionManager.canRun = canRun;
+        character.characterSoundFXManager.PlayAttackGruntSFX();
     }
 
     public void UpdateAnimatorController(AnimatorOverrideController weaponController)

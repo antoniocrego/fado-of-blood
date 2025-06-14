@@ -1045,10 +1045,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5472b172654e604aa31da94e02f3a4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
-  attackGrunts: []
+  damageGruntFMODEvent: event:/Voices/Hero/Hero Grunt_Damage
+  damageSFXFMODEvent: event:/Combat/Blood and gore/Bone Crack
+  attackGruntFMODEvent: event:/Voices/Hero/Hero Grunt_Combat
   attackWhooshes: []
-  deathSFX: {fileID: 0}
+  deathSFXFMODEvent: event:/Voices/Hero/Hero Death
   footstepFMODEvent: event:/Footsteps/Footsteps
 --- !u!143 &2237155631936088608
 CharacterController:

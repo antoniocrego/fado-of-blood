@@ -1,4 +1,5 @@
 using System.Collections;
+using FMODUnity;
 using UnityEngine;
 
 public class FogWallInteractable : Interactable
@@ -26,6 +27,7 @@ public class FogWallInteractable : Interactable
         player.playerAnimatorManager.PlayTargetActionAnimation("Pass_Through_01", true);
 
         // play sfx
+        RuntimeManager.PlayOneShot("event:/Environment/Fog/Fog door");
 
     }
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using FMODUnity;
 
 public class Door : Interactable
 {
@@ -20,12 +21,9 @@ public class Door : Interactable
     [SerializeField] private int requiredKeyID = 0; 
     [SerializeField] private string keyItemNameForMessage = "a specific key"; 
     [SerializeField] private bool consumeKeyOnUnlock = false;
-    
+
     [Header("Sounds")]
-    [SerializeField] private AudioClip openSound;
-    [SerializeField] private AudioClip closeSound;
-    [SerializeField] private AudioClip lockedSound;
-    [SerializeField] private AudioClip unlockSound;
+    [SerializeField] private string doorOpenSound = "event:/Environment/Doors/Wooden Door Open";
 
     [Header("Interaction Texts")]
     [SerializeField] private string textWhenOpen = "Close Door";
@@ -56,7 +54,7 @@ public class Door : Interactable
 
     public void OperateByExternal()
     {
-        Debug.Log(gameObject.name + ": OperateByExternal called. isPermanentlyUnlockedByKey = " + isPermanentlyUnlockedByKey + ", currentLockState = " + currentLockState); 
+        // Debug.Log(gameObject.name + ": OperateByExternal called. isPermanentlyUnlockedByKey = " + isPermanentlyUnlockedByKey + ", currentLockState = " + currentLockState); 
         if (isPermanentlyUnlockedByKey || !currentLockState)
         {
             if (interactableCollider != null)
@@ -132,7 +130,7 @@ public class Door : Interactable
         {
             Transform doorRotationObjectTransform = doorToBeRotated;
             if (doorRotationObjectTransform != null)
-            { 
+            {
                 if (_activeRotationCoroutine != null)
                 {
                     StopCoroutine(_activeRotationCoroutine);
@@ -141,9 +139,10 @@ public class Door : Interactable
                 Quaternion targetLocalRotation = Quaternion.Euler(doorRotationObjectTransform.transform.localEulerAngles.x, doorRotationObjectTransform.transform.localEulerAngles.y + neededRotation, doorRotationObjectTransform.transform.localEulerAngles.z);
                 Quaternion targetRotation = doorRotationObjectTransform.parent.rotation * targetLocalRotation;
                 _activeRotationCoroutine = StartCoroutine(SmoothlyRotate(doorRotationObjectTransform, targetRotation, manualRotationDuration));
-            } 
+            }
 
             player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true);
+            RuntimeManager.PlayOneShot(doorOpenSound, transform.position);
         }
     }
     

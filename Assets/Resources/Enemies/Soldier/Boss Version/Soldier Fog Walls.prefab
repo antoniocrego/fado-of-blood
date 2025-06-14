@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5698612567555176126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.22, y: -5.24, z: 20.21}
+  m_LocalPosition: {x: 34.22, y: -5.24, z: 20.04}
   m_LocalScale: {x: 0.38, y: 4.21, z: 4.03}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -188,11 +188,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 695337137450652327, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 695337137450652327, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 0.29
       objectReference: {fileID: 0}
     - target: {fileID: 770007657389250268, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -201,6 +201,10 @@ PrefabInstance:
     - target: {fileID: 1952614462465406331, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_Name
       value: Fog Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512530180842348730, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3040801698708944417, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -212,7 +216,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3040801698708944417, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.035
       objectReference: {fileID: 0}
     - target: {fileID: 3040801698708944417, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -260,11 +264,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566758515903972497, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_Size.y
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4566758515903972497, guid: c26ed39914d206f49b4301b0811fe8e5, type: 3}
       propertyPath: m_Size.z
-      value: 1
+      value: 0.44
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
