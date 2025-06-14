@@ -99,10 +99,10 @@ public class DamageCollider : MonoBehaviour
         colliderOwner = GetComponentInParent<CharacterManager>();
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = damageCollider.enabled ? Color.red : Color.green;
+    // void OnDrawGizmos()
+    // {
+    //     Gizmos.color = damageCollider.enabled ? Color.red : Color.green;
 
-        Gizmos.DrawWireCube(damageCollider.bounds.center, damageCollider.bounds.size);
-    }
+    //     Gizmos.DrawWireCube(damageCollider.bounds.center, damageCollider.bounds.size);
+    // }
 }

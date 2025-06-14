@@ -9,6 +9,8 @@ public class WeaponItemAction : ScriptableObject
 
     public virtual void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
     {
+        if (playerPerformingAction.isDead) return;
+        
         playerPerformingAction.currentWeaponBeingUsed = weaponPerformingAction;
         playerPerformingAction.playerCombatManager.currentWeaponBeingUsed = weaponPerformingAction;
 

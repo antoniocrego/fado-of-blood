@@ -53,7 +53,7 @@ MonoBehaviour:
   - {fileID: 4068238531255657771}
   - {fileID: 1331248823766149247}
   fogWallCollider: {fileID: 0}
-  fogWallID: 0
+  fogWallID: 3
   isActive: 0
 --- !u!1001 &675715052517891332
 PrefabInstance:
