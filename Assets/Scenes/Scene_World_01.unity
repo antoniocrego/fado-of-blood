@@ -60053,6 +60053,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
+      propertyPath: currentLeftHandWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: c960c3c6132fd6f448e543e65480834c, type: 2}
+    - target: {fileID: 5948118211449343234, guid: c8dd2e67539c08b489416ad6d47bc6b2, type: 3}
       propertyPath: currentRightHandWeapon
       value: 
       objectReference: {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
