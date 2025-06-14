@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="Event" id="{e760dc16-cc9f-4bb8-86a3-ac47344bb866}">
+		<property name="name">
+			<value>NPC Elias Combat</value>
+		</property>
+		<property name="outputFormat">
+			<value>1</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5f6e3d6a-8842-4161-9a43-cc6622c48dc4}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{8cb90f4a-790d-4349-9b15-1426439c01c6}</destination>
+		</relationship>
+		<relationship name="masterTrack">
+			<destination>{e45d7ea4-2f0d-4c36-9f41-8a6ebd47e9a1}</destination>
+		</relationship>
+		<relationship name="mixerInput">
+			<destination>{23a2cc7b-a88e-43e3-815c-94cc60140847}</destination>
+		</relationship>
+		<relationship name="automatableProperties">
+			<destination>{c9679418-89c5-4bf2-93c6-82bc69b41acb}</destination>
+		</relationship>
+		<relationship name="markerTracks">
+			<destination>{58592f5e-3614-4a95-a12b-9b741523d138}</destination>
+		</relationship>
+		<relationship name="groupTracks">
+			<destination>{b6e89a25-b576-4201-b8af-2b8d8853a7d6}</destination>
+		</relationship>
+		<relationship name="timeline">
+			<destination>{9cfbb966-c9ed-413b-be8b-8aa0948d8d05}</destination>
+		</relationship>
+		<relationship name="banks">
+			<destination>{f88ffdf3-5f18-49f6-845b-152562c92cd5}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixer" id="{8cb90f4a-790d-4349-9b15-1426439c01c6}">
+		<relationship name="masterBus">
+			<destination>{ed9390b5-6ff6-4b94-b9e8-94b47961b53f}</destination>
+		</relationship>
+	</object>
+	<object class="MasterTrack" id="{e45d7ea4-2f0d-4c36-9f41-8a6ebd47e9a1}">
+		<relationship name="mixerGroup">
+			<destination>{ed9390b5-6ff6-4b94-b9e8-94b47961b53f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerInput" id="{23a2cc7b-a88e-43e3-815c-94cc60140847}">
+		<relationship name="effectChain">
+			<destination>{8cccc143-2f8c-480f-abe9-19fd9554ad60}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{497ab03b-f2eb-43ff-92a9-9bbc6a9c0acc}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{6aac47f0-51cb-4401-ac71-04ff7e82faba}</destination>
+		</relationship>
+	</object>
+	<object class="EventAutomatableProperties" id="{c9679418-89c5-4bf2-93c6-82bc69b41acb}" />
+	<object class="MarkerTrack" id="{58592f5e-3614-4a95-a12b-9b741523d138}" />
+	<object class="GroupTrack" id="{b6e89a25-b576-4201-b8af-2b8d8853a7d6}">
+		<relationship name="modules">
+			<destination>{0ea3b2b9-63cd-4c42-b873-3100fa3a95bf}</destination>
+		</relationship>
+		<relationship name="mixerGroup">
+			<destination>{a35c1c8f-779f-40ef-b814-3a11a7893dad}</destination>
+		</relationship>
+	</object>
+	<object class="Timeline" id="{9cfbb966-c9ed-413b-be8b-8aa0948d8d05}">
+		<relationship name="modules">
+			<destination>{0ea3b2b9-63cd-4c42-b873-3100fa3a95bf}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerMaster" id="{ed9390b5-6ff6-4b94-b9e8-94b47961b53f}">
+		<relationship name="effectChain">
+			<destination>{604e39f0-767b-424a-a02f-d3921aaa9d9f}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{482c3c8c-94f9-4ca9-89bb-078c5bbd9eaa}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{8cb90f4a-790d-4349-9b15-1426439c01c6}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{8cccc143-2f8c-480f-abe9-19fd9554ad60}">
+		<relationship name="effects">
+			<destination>{eff14e65-0a76-432d-984d-63013ee0f860}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{497ab03b-f2eb-43ff-92a9-9bbc6a9c0acc}" />
+	<object class="SingleSound" id="{0ea3b2b9-63cd-4c42-b873-3100fa3a95bf}">
+		<property name="length">
+			<value>3.2591666666666668</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{6d77d91c-4c01-44b2-b4d5-91d7724a9632}</destination>
+		</relationship>
+	</object>
+	<object class="EventMixerGroup" id="{a35c1c8f-779f-40ef-b814-3a11a7893dad}">
+		<property name="volume">
+			<value>3.5</value>
+		</property>
+		<property name="name">
+			<value>Elias Combat</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{3925c3bc-16f2-4969-82f9-e1fdf5f0043e}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{a9ddc1e9-9ad3-4a5c-b488-f5a56b39e4f1}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{ed9390b5-6ff6-4b94-b9e8-94b47961b53f}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{604e39f0-767b-424a-a02f-d3921aaa9d9f}">
+		<relationship name="effects">
+			<destination>{53548112-1355-47c1-9443-c606e4228172}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{482c3c8c-94f9-4ca9-89bb-078c5bbd9eaa}" />
+	<object class="MixerBusFader" id="{eff14e65-0a76-432d-984d-63013ee0f860}" />
+	<object class="MixerBusEffectChain" id="{3925c3bc-16f2-4969-82f9-e1fdf5f0043e}">
+		<relationship name="effects">
+			<destination>{194999b2-fae4-4c3c-aa73-30cdea875272}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{a9ddc1e9-9ad3-4a5c-b488-f5a56b39e4f1}" />
+	<object class="MixerBusFader" id="{53548112-1355-47c1-9443-c606e4228172}" />
+	<object class="MixerBusFader" id="{194999b2-fae4-4c3c-aa73-30cdea875272}" />
+</objects>

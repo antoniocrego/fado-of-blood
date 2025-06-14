@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="Event" id="{991d3f4f-ade3-4367-9c9a-0d97ea18355f}">
 		<property name="name">
-			<value>Sword_Swish</value>
+			<value>Sword_Swish_Large</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -102,7 +102,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{dd31c8f9-84b9-49d6-b334-5ad9b267bcea}">
 		<property name="name">
-			<value>Swish</value>
+			<value>Swish L</value>
 		</property>
 		<relationship name="effectChain">
 			<destination>{3fa36ea1-1ce8-4669-a25e-93f782d2892e}</destination>
