@@ -13,6 +13,8 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterEffectsManager characterEffectsManager;
     [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+    [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
+
 
     [HideInInspector] public PlayerUIHudManager playerUIHudManager;
     public CharacterGroup characterGroup;
@@ -29,7 +31,7 @@ public class CharacterManager : MonoBehaviour
 
     public int endurance = 1;
 
-    public int vitality = 1;
+    public int vitality = 10;
     public int maxStamina = 0;
 
     public int maxHealth = 0;
@@ -38,7 +40,11 @@ public class CharacterManager : MonoBehaviour
 
     public bool isMoving = false;
 
-    protected virtual void Awake()
+    public bool isActive = true;
+
+    public bool isInvulnerable = false;
+
+    protected virtual void Start()
     {
         DontDestroyOnLoad(this);
         characterController = GetComponent<CharacterController>();
@@ -48,6 +54,7 @@ public class CharacterManager : MonoBehaviour
         characterEffectsManager = GetComponent<CharacterEffectsManager>();
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
+        characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         health = 100;
         previousHealth = health;
         maxHealth = 100;
@@ -58,6 +65,12 @@ public class CharacterManager : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (!isActive)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
         if (isDead)
         {
             return;
@@ -81,19 +94,24 @@ public class CharacterManager : MonoBehaviour
 
     }
 
-    public virtual IEnumerator ProcessDeath()
+    public virtual IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
     {
-        this.health = 0;
-        this.isDead = true;
+        health = 0;
+        isDead = true;
 
         // Disable character controller
-        this.characterLocomotionManager.canMove = false;
-        this.characterLocomotionManager.canRotate = false;
-        this.isPerformingAction = false;
-        this.isSprinting = false;
-        this.isMoving = false;
+        characterLocomotionManager.canMove = false;
+        characterLocomotionManager.canRotate = false;
+        isPerformingAction = false;
+        isSprinting = false;
+        isMoving = false;
 
-        characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
+        if (!manuallySelectDeathAnimation)
+        {
+            // Play death animation
+            characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
+        }
+
 
         // Play death SFX
         yield return new WaitForSeconds(5);

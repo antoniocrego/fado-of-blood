@@ -29,22 +29,23 @@ public class Door : Interactable
     [Header("Interaction Texts")]
     [SerializeField] private string textWhenOpen = "Close Door";
     [SerializeField] private string textWhenClosed = "Open Door";
-    [SerializeField] private string textWhenLockedNeedKey = "Unlock Door";
-    [SerializeField] private string textWhenLockedNoKey = "Locked";
+    [SerializeField] private string textWhenLockedNeedKey = "You need a key!";
+    [SerializeField] private string textWhenLockedNoKey = "The door is locked by a device!";
 
     private bool currentLockState; 
     private bool isPermanentlyUnlockedByKey = false; 
     
     private Coroutine _activeRotationCoroutine; 
 
-    [SerializeField] private float manualRotationDuration = 1.0f; 
+    [SerializeField] private float manualRotationDuration = 1.0f;
+
 
     protected override void Awake()
     {
         base.Awake();
         // Get the player from the scene 
-        player = FindObjectOfType<PlayerManager>(); 
-        
+        player = FindObjectOfType<PlayerManager>();
+
         if (doorAnimator == null)
         {
             doorAnimator = GetComponent<Animator>();
@@ -87,8 +88,8 @@ public class Door : Interactable
             Debug.Log(gameObject.name + " is locked.");
         }
     }
-    
-     private IEnumerator SmoothlyRotate(Transform objectToRotate, Quaternion endRotation, float duration)
+
+    private IEnumerator SmoothlyRotate(Transform objectToRotate, Quaternion endRotation, float duration)
     {
         if (objectToRotate == null) yield break;
 
@@ -97,18 +98,20 @@ public class Door : Interactable
 
         while (timeElapsed < duration)
         {
+            physicalBarrierCollider.transform.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
             objectToRotate.rotation = Quaternion.Slerp(startRotation, endRotation, timeElapsed / duration);
             timeElapsed += Time.deltaTime;
-            yield return null; 
+            yield return null;
         }
-
-        objectToRotate.rotation = endRotation; 
-        _activeRotationCoroutine = null; 
+        physicalBarrierCollider.transform.rotation = endRotation;
+        objectToRotate.rotation = endRotation;
+        _activeRotationCoroutine = null;
+        physicalBarrierCollider.enabled = true;
     }
 
     public override void Interact(PlayerManager player)
     {
-
+        
         if (isPermanentlyUnlockedByKey || !currentLockState)
         {
             base.Interact(player);
@@ -166,7 +169,7 @@ public class Door : Interactable
             {
                 Debug.LogWarning(gameObject.name + ": Child 'DoorRotationObject' not found for manual rotation.");
             }
-            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, true, true, true);
+            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true);
             physicalBarrierCollider.enabled = false; 
         }
         else
@@ -188,9 +191,20 @@ public class Door : Interactable
 
     public override string GetInteractableText()
     {
-        if (isOpen) return textWhenOpen;
+        if(counter == 0) 
+        {
+            interactableText = "Open the door";
+            counter++; 
+            return interactableText; 
+        }
+        if (isOpen)
+        {
+            interactableText = textWhenOpen;
+            return textWhenOpen;
+        }
         if (currentLockState && !isPermanentlyUnlockedByKey)
         {
+            interactableText = requiresKeyToUnlock ? textWhenLockedNeedKey : textWhenLockedNoKey;
             return requiresKeyToUnlock ? textWhenLockedNeedKey : textWhenLockedNoKey;
         }
         return textWhenClosed;

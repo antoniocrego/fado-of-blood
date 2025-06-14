@@ -97,9 +97,13 @@
 			<destination>{65eab2cd-10e8-4d85-aef9-e61bd3c9c95d}</destination>
 			<destination>{46213bfa-0668-4bf4-be7a-2b4d76f7bf83}</destination>
 			<destination>{e10c39aa-dae2-4294-b278-eb461a3e4c89}</destination>
+			<destination>{743bf076-6853-45ed-ad8d-36a9f74f0968}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{19c346b9-973d-4e58-ba14-d420a04e024a}">
+		<property name="volume">
+			<value>-5</value>
+		</property>
 		<property name="name">
 			<value>Unsheathe small</value>
 		</property>
@@ -138,6 +142,11 @@
 	<object class="SingleSound" id="{e10c39aa-dae2-4294-b278-eb461a3e4c89}">
 		<relationship name="audioFile">
 			<destination>{e4e8b97f-288d-4190-b7d4-bb0f5dc7b9f5}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{743bf076-6853-45ed-ad8d-36a9f74f0968}">
+		<relationship name="audioFile">
+			<destination>{d61747ed-42ab-44da-bcf7-25937fb55a7b}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{5fa1e70c-e75b-411e-8697-5a3ffb5b17f1}">

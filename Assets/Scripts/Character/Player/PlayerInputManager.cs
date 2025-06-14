@@ -32,6 +32,9 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] bool interaction_input = false;
 
+    [SerializeField] bool use_Item_input = false;
+
+
     
     [SerializeField] bool openCharacterMenuInput = false;
     [SerializeField] bool closeMenuInput = false;
@@ -71,6 +74,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleAllInputs()
     {
+        HandleUseItemInput();
         HandleMovementInput();
         HandleDodgeInput();
         HandleSprintInput();
@@ -112,11 +116,28 @@ public class PlayerInputManager : MonoBehaviour
         else{
             player.isMoving = false;
         }
-        if(!lockedOn_input || player.isSprinting) 
+        if (!player.playerLocomotionManager.canRun)
+        {
+            if (movementCombined > 0.5f)
+            {
+                movementCombined = 0.5f;
+            }
+
+            if (verticalInput > 0.5f)
+            {
+                verticalInput = 0.5f;
+            }
+
+            if (horizontalInput > 0.5f)
+            {
+                horizontalInput = 0.5f;
+            }
+        }
+        if (!lockedOn_input || player.isSprinting)
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, movementCombined, player.isMoving, player.isSprinting);
         }
-        else if(lockedOn_input)
+        else if (lockedOn_input)
         {
             player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontalInput, verticalInput, player.isMoving, player.isSprinting);
         }
@@ -280,6 +301,8 @@ public class PlayerInputManager : MonoBehaviour
             playerControls.PlayerActions.LockOnRight.performed += i => lockOnRight_input = true;
             playerControls.PlayerActions.Interact.performed += i => interaction_input = true;
 
+            playerControls.PlayerActions.X.performed += i => use_Item_input = true;
+
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
             playerControls.CameraMovement.Look.performed += i => cameraInput = i.ReadValue<Vector2>();
@@ -295,10 +318,27 @@ public class PlayerInputManager : MonoBehaviour
 
         playerControls.Enable();
     }
+    
+    private void HandleUseItemInput()
+    {
+        if (use_Item_input)
+        {
+            use_Item_input = false;
+
+            if (PlayerUIManager.instance.menuWindowIsOpen)
+                return;
+
+            if (player.playerInventoryManager.currentQuickSlotItem != null)
+            {
+                player.playerInventoryManager.currentQuickSlotItem.AttemptToUseItem(player);
+                player.playerEquipmentManager.QuickSlotItemUse(player.playerInventoryManager.currentQuickSlotItem.itemID);
+            }
+        }
+    }
 
     private void HandleSwitchRightWeaponInput()
     {
-        if(switch_Right_hand_weapon)
+        if (switch_Right_hand_weapon)
         {
             switch_Right_hand_weapon = false;
             if (PlayerUIManager.instance.menuWindowIsOpen)

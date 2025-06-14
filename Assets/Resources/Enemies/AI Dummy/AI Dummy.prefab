@@ -1342,6 +1342,8 @@ GameObject:
   - component: {fileID: 33938371628675613}
   - component: {fileID: 3455852010164073040}
   - component: {fileID: 2298830446336353497}
+  - component: {fileID: -7822167365491235017}
+  - component: {fileID: -4905060935292506392}
   m_Layer: 6
   m_Name: AI Dummy
   m_TagString: Enemy
@@ -1411,25 +1413,30 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterSoundFXManager: {fileID: 0}
+  playerUIHudManager: {fileID: 0}
   characterGroup: 2
   health: 0
   stamina: 0
   isDead: 0
+  isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
   endurance: 1
+  vitality: 1
   maxStamina: 0
-  isJumping: 0
+  maxHealth: 0
   isLockedOn: 0
   isMoving: 0
+  isActive: 1
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 0}
-  idleState: {fileID: 11400000, guid: ff02bf20d074d00439c73b510eef9d69, type: 2}
-  pursueState: {fileID: 11400000, guid: c6a90ac900fc47642b048b17a10df159, type: 2}
-  combatState: {fileID: 11400000, guid: 386c30d7958363c4faec143759a51fc0, type: 2}
-  attackState: {fileID: 11400000, guid: 93e5c74ebc515fe408ad1699ca0a8575, type: 2}
+  idleState: {fileID: 11400000, guid: a0400a6c1c41c3a438231bf8921de1b8, type: 2}
+  pursueState: {fileID: 11400000, guid: e343e1ae04825394887e4757ab10bc4d, type: 2}
+  combatState: {fileID: 11400000, guid: 2e7953f711672534dabfbe8e79704182, type: 2}
+  attackState: {fileID: 11400000, guid: 6f10a2e97ebb111498c3fb8161a55ff5, type: 2}
 --- !u!114 &3570471759097901935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1466,6 +1473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f83cc303a55699c4fb781470d612be9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatterVFX: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
 --- !u!114 &5529118367753029593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,6 +1575,115 @@ MonoBehaviour:
   baseDamage: 10
   attack01DamageMultiplier: 1
   attack02DamageMultiplier: 1.5
+--- !u!114 &-7822167365491235017
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629532297250181197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33ecc5c8d46414d4fabe3c4feeadb57d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &-4905060935292506392
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629532297250181197}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &5806063139030718495
 GameObject:
   m_ObjectHideFlags: 0

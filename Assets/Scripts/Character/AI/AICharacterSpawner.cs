@@ -23,6 +23,7 @@ public class AICharacterSpawner : MonoBehaviour
             instantiatedGameObject = Instantiate(characterGameObject);
             instantiatedGameObject.transform.position = transform.position;
             instantiatedGameObject.transform.rotation = transform.rotation;
+            WorldAIManager.instance.AddSpawnedCharacter(instantiatedGameObject.GetComponent<AICharacterManager>());
         }
     }
 }

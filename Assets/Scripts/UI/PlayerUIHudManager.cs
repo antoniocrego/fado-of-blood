@@ -11,6 +11,12 @@ public class PlayerUIHudManager : MonoBehaviour
     [SerializeField] Image rightWeaponQuickSlotIcon;
     [SerializeField] Image leftWeaponQuickSlotIcon;
 
+    [SerializeField] Image quickSlotItemQuickSlotIcon;
+
+    [Header("Boss HUD")]
+    public Transform bossHealthBarParent;
+    public GameObject bossHealthBarPrefab;
+
     public void ToggleHUD(bool status)
     {
 
@@ -100,5 +106,27 @@ public class PlayerUIHudManager : MonoBehaviour
         leftWeaponQuickSlotIcon.sprite = weapon.itemIcon;
         leftWeaponQuickSlotIcon.enabled = true;
     }
+
+    public void SetQuickSlotItemQuickSlotIcon(int itemID)
+        {
+            QuickSlotItem quickSlotItem = WorldItemDatabase.Instance.GetQuickSlotItemByID(itemID);
+
+            if (quickSlotItem == null)
+            {
+                quickSlotItemQuickSlotIcon.enabled = false;
+                quickSlotItemQuickSlotIcon.sprite = null;
+                return;
+            }
+
+            if (quickSlotItem.itemIcon == null)
+            {
+                quickSlotItemQuickSlotIcon.enabled = false;
+                quickSlotItemQuickSlotIcon.sprite = null;
+                return;
+            }
+
+            quickSlotItemQuickSlotIcon.sprite = quickSlotItem.itemIcon;
+            quickSlotItemQuickSlotIcon.enabled = true;
+        }
 
 }

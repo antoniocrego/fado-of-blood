@@ -5,6 +5,11 @@ using UnityEngine;
 public class WorldCharacterEffectsManager : MonoBehaviour{
     public static WorldCharacterEffectsManager instance;
 
+    [Header("VFX")]
+    public GameObject bloodSplatterVFX;
+
+    public GameObject healingFlaskVFX;
+
     [Header("Damage")]
     public TakeDamageEffect takeDamageEffect;
     [SerializeField] List<InstantCharacterEffect> instantEffects;

@@ -54,23 +54,26 @@ public class CharacterAnimatorManager : MonoBehaviour{
         character.animator.SetBool("isMoving", isMoving);
     }
 
-    public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
+    public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true)
     {
         this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
 
-        character.characterLocomotionManager.canMove = canMove; 
+        character.characterLocomotionManager.canMove = canMove;
         character.characterLocomotionManager.canRotate = canRotate; 
+        
+        character.characterLocomotionManager.canRun = canRun;
     }
 
-    public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion=true, bool canRotate = false, bool canMove = false)
+    public virtual void PlayTargetAttackActionAnimation(AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true)
     {
         this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
         character.characterCombatManager.currentAttackType = attackType;
-        character.characterLocomotionManager.canMove = canMove; 
+        character.characterLocomotionManager.canMove = canMove;
         character.characterLocomotionManager.canRotate = canRotate; 
+        character.characterLocomotionManager.canRun = canRun;
     }
 }

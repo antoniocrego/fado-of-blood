@@ -16,6 +16,8 @@ public class PlayerUIEquipmentManager : MonoBehaviour
     [SerializeField] Image leftHandSlot02;
     [SerializeField] Image leftHandSlot03;
 
+    [SerializeField] Image quickSlotConsumable01Icon;
+
     //  THIS INVENTORY POPULATES WITH RELATED ITEMS WHEN CHANGING EQUIPMENT
     [Header("Equipment Inventory")]
     public EquipmentType currentSelectedEquipmentSlot;
@@ -32,12 +34,14 @@ public class PlayerUIEquipmentManager : MonoBehaviour
 
         ClearEquipmentInventory();
         RefreshWeaponSlotIcons();
+        RefreshQuickSlotIcon();
     }
 
     public void RefreshMenu()
     {
         ClearEquipmentInventory();
         RefreshWeaponSlotIcons();
+        RefreshQuickSlotIcon();
     }
 
     public void SelectLastSelectedEquipmentSlot()
@@ -77,6 +81,26 @@ public class PlayerUIEquipmentManager : MonoBehaviour
     {
         PlayerUIManager.instance.menuWindowIsOpen = false;
         menu.SetActive(false);
+    }
+
+    private void RefreshQuickSlotIcon()
+    {
+        PlayerManager player = FindAnyObjectByType<PlayerManager>();
+
+        if (quickSlotConsumable01Icon != null) 
+        {
+            QuickSlotItem currentQuickSlot = player.playerInventoryManager.currentQuickSlotItem;
+            if (currentQuickSlot != null && currentQuickSlot.itemIcon != null)
+            {
+                quickSlotConsumable01Icon.enabled = true;
+                quickSlotConsumable01Icon.sprite = currentQuickSlot.itemIcon;
+            }
+            else
+            {
+                quickSlotConsumable01Icon.enabled = false;
+                quickSlotConsumable01Icon.sprite = null;
+            }
+        }
     }
 
     private void RefreshWeaponSlotIcons()
@@ -194,6 +218,10 @@ public class PlayerUIEquipmentManager : MonoBehaviour
             case EquipmentType.LeftWeapon03:
                 LoadWeaponInventory();
                 break;
+
+            case EquipmentType.QuickSlotConsumable01: 
+                LoadQuickSlotInventory();
+                break;
             default:
                 break;
         }
@@ -238,9 +266,77 @@ public class PlayerUIEquipmentManager : MonoBehaviour
             }
         }
     }
+    
+    private void EquipQuickSlotItemFromSelection(QuickSlotItem item)
+    {
+        PlayerManager player = FindAnyObjectByType<PlayerManager>();
+        if (player == null || player.playerInventoryManager == null) return;
+
+        if (currentSelectedEquipmentSlot == EquipmentType.QuickSlotConsumable01) 
+        {
+            player.playerInventoryManager.currentQuickSlotItem = item;
+            player.playerInventoryManager.RemoveItemFromInventory(item);
+        }
+        RefreshMenu(); 
+        equipmentInventoryWindow.SetActive(false); 
+        PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+        SelectLastSelectedEquipmentSlot(); 
+    }
+
+    public void LoadQuickSlotInventory()
+    {
+        PlayerManager player = FindAnyObjectByType<PlayerManager>();
+        if (player == null || player.playerInventoryManager == null) return;
+
+        List<QuickSlotItem> quickSlotsInInventory = new List<QuickSlotItem>();
+
+        for (int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
+        {
+            QuickSlotItem quickSlot = player.playerInventoryManager.itemsInInventory[i] as QuickSlotItem;
+            if (quickSlot != null)
+                quickSlotsInInventory.Add(quickSlot);
+        }
+
+        if (quickSlotsInInventory.Count <= 0)
+        {
+            Debug.Log("No quick slot items in inventory to display.");
+            return;
+        }
+
+        bool hasSelectedFirstInventorySlot = false;
+
+        for (int i = 0; i < quickSlotsInInventory.Count; i++)
+        {
+            GameObject inventorySlotGameObject = Instantiate(equipmentInventorySlotPrefab, equipmentInventoryContentWindow);
+            UI_EquipmentInventorySlot equipmentInventorySlot = inventorySlotGameObject.GetComponent<UI_EquipmentInventorySlot>();
+
+            QuickSlotItem itemToEquipOnClick = quickSlotsInInventory[i]; 
+            equipmentInventorySlot.AddItem(itemToEquipOnClick);
+
+            Button inventorySlotButton = inventorySlotGameObject.GetComponent<Button>();
+            if (inventorySlotButton != null)
+            {
+                inventorySlotButton.onClick.AddListener(() => EquipQuickSlotItemFromSelection(itemToEquipOnClick));
+            }
+
+            if (!hasSelectedFirstInventorySlot && inventorySlotButton != null)
+            {
+                hasSelectedFirstInventorySlot = true;
+                inventorySlotButton.Select();
+                inventorySlotButton.OnSelect(null);
+            }
+        }
+    }
 
     public void SelectEquipmentSlot(int equipmentSlot)
     {
+        RefreshMenu();
+        currentSelectedEquipmentSlot = (EquipmentType)equipmentSlot;
+    }
+
+    public void SelectQuickSlot(int equipmentSlot)
+    {
+        RefreshMenu();
         currentSelectedEquipmentSlot = (EquipmentType)equipmentSlot;
     }
 
@@ -344,6 +440,14 @@ public class PlayerUIEquipmentManager : MonoBehaviour
                 if (player.playerInventoryManager.leftHandWeaponIndex == 2)
                 {
                     player.playerInventoryManager.currentLeftHandWeapon = WorldItemDatabase.Instance.unarmedWeapon;
+                }
+                break;
+            case EquipmentType.QuickSlotConsumable01: 
+                if (player.playerInventoryManager.currentQuickSlotItem != null)
+                {
+                    player.playerInventoryManager.AddItemToInventory(player.playerInventoryManager.currentQuickSlotItem); 
+                    player.playerInventoryManager.currentQuickSlotItem = null; 
+                    Debug.Log("Unequipped Quick Slot Item from " + currentSelectedEquipmentSlot);
                 }
                 break;
             default:

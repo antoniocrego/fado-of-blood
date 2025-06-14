@@ -1,19 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class WorldAIManager : MonoBehaviour
 {
     public static WorldAIManager instance;
 
-    [Header("Debug")]
-    [SerializeField] bool despawnCharacters = false;
-    [SerializeField] bool respawnCharacters = false;
-
     [Header("AIs")]
     [SerializeField] List<AICharacterSpawner> aiCharacterSpawners;
-    [SerializeField] List<GameObject> spawnedAIs;
+    [SerializeField] List<AICharacterManager> spawnedAIs;
+
+    [Header("Bosses")]
+    [SerializeField] List<AIBossCharacterManager> spawnedBosses;
 
     private void Awake()
     {
@@ -38,12 +37,30 @@ public class WorldAIManager : MonoBehaviour
         spawner.AttemptToSpawnCharacter();
     }
 
+    public void AddSpawnedCharacter(AICharacterManager character)
+    {
+        if (!spawnedAIs.Contains(character))
+        {
+            spawnedAIs.Add(character);
+
+            if (character is AIBossCharacterManager)
+            {
+                spawnedBosses.Add((AIBossCharacterManager) character);
+            }
+        }
+    }
+
+    public AIBossCharacterManager GetBossByID(int bossID)
+    {
+        return spawnedBosses.FirstOrDefault(boss => boss.bossID == bossID);
+    }
+
     private void DespawnAllCharacters()
     {
         // TODO: Need to change this to work with spawner
-        foreach (GameObject ai in spawnedAIs)
+        foreach (AICharacterManager ai in spawnedAIs)
         {
-            Destroy(ai);
+            Destroy(ai.gameObject);
         }
         spawnedAIs.Clear();
     }
