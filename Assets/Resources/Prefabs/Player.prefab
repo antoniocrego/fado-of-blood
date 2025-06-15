@@ -1020,6 +1020,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f92890d248fee943998cc64978a6807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitForwardMedium: Hit_Forward_Medium_01
+  hitBackwardMedium: Hit_Backward_Medium_01
+  hitLeftMedium: Hit_Left_Medium_01
+  hitRightMedium: Hit_Right_Medium_01
   applyRootMotion: 0
 --- !u!114 &1350991937288706699
 MonoBehaviour:
@@ -1052,6 +1056,7 @@ MonoBehaviour:
   attackWhooshes: []
   deathSFXFMODEvent: event:/Voices/Hero/Hero Death
   footstepFMODEvent: event:/Footsteps/Footsteps
+  bossDefeatedSFXFMODEvent: event:/UI/Boss Defeated
 --- !u!54 &5435915713583613915
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1060,7 +1065,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 749865201942795662}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.000001
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

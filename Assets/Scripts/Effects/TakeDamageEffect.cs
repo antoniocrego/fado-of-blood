@@ -32,7 +32,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         if (character.isInvulnerable) return;
 
         base.ProcessEffect(character);
-        
+
         if (character.isDead)
         {
             return;
@@ -44,7 +44,7 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         CalculateDamage(character);
-
+        PlayDirectionalDamageVFX(character);
         PlayDamageSFX(character);
         PlayDamageVFX(character);
     }
@@ -73,5 +73,31 @@ public class TakeDamageEffect : InstantCharacterEffect
     private void PlayDamageSFX(CharacterManager character)
     {
         character.characterSoundFXManager.PlayDamageSFX();
+    }
+
+    private void PlayDirectionalDamageVFX(CharacterManager character)
+    {
+        if (angleHitFrom >= 145 && angleHitFrom <= 180)
+        {
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.forwardHitAnimations);
+        }
+        else if (angleHitFrom >= -180 && angleHitFrom <= -145)
+        {
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.forwardHitAnimations);
+        }
+        else if (angleHitFrom >= -45 && angleHitFrom <= 45)
+        {
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.backwardHitAnimations);
+        }
+        else if (angleHitFrom >= -144 && angleHitFrom <= -45)
+        {
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.leftHitAnimations);
+        }
+        else if (angleHitFrom >= 45 && angleHitFrom <= 144)
+        {
+            damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.rightHitAnimations);
+        }
+
+        character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
     }
 }

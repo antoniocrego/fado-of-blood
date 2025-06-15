@@ -10,6 +10,18 @@ public class CharacterAnimatorManager : MonoBehaviour
     int vertical;
     int horizontal;
 
+    [Header("Damage Animations")]
+    public string lastHitAnimation = string.Empty;
+    [SerializeField] string hitForwardMedium = "Hit_Forward_Medium_01";
+    [SerializeField] string hitBackwardMedium = "Hit_Backward_Medium_01";
+    [SerializeField] string hitLeftMedium = "Hit_Left_Medium_01";
+    [SerializeField] string hitRightMedium = "Hit_Right_Medium_01";
+    public List<string> forwardHitAnimations = new List<string>();
+    public List<string> backwardHitAnimations = new List<string>();
+    public List<string> leftHitAnimations = new List<string>();
+    public List<string> rightHitAnimations = new List<string>();
+
+
     public bool applyRootMotion = false;
 
     protected virtual void Awake()
@@ -18,6 +30,40 @@ public class CharacterAnimatorManager : MonoBehaviour
 
         vertical = Animator.StringToHash("vertical");
         horizontal = Animator.StringToHash("horizontal");
+    }
+
+    protected virtual void Start()
+    {
+        forwardHitAnimations.Add(hitForwardMedium);
+        backwardHitAnimations.Add(hitBackwardMedium);
+        leftHitAnimations.Add(hitLeftMedium);
+        rightHitAnimations.Add(hitRightMedium);
+    }
+
+
+    public string GetRandomAnimation(List<string> animations)
+    {
+        if (animations.Count == 0)
+        {
+            return string.Empty;
+        }
+
+        List<string> availableList = new List<string>();
+        foreach (string animation in animations)
+        {
+            if (string.IsNullOrEmpty(animation) || animation == lastHitAnimation) // Avoid repeating the last hit animation
+            {
+                continue;
+            }
+
+            availableList.Add(animation);
+        }
+        if (availableList.Count == 0 && animations.Count > 0) // If no valid animations are available, return a random one from the original list
+        {
+            return animations[Random.Range(0, animations.Count)];
+        }
+        int randomIndex = Random.Range(0, availableList.Count);
+        return availableList[randomIndex];
     }
     public void UpdateAnimatorMovementParameters(float horizontalValue, float verticalValue, bool isMoving, bool isSpriting)
     {
