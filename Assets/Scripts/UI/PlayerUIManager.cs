@@ -15,6 +15,8 @@ public class PlayerUIManager : MonoBehaviour
     public static PlayerUIManager instance;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
+    [HideInInspector] public PlayerManager playerManager;
+
     public PlayerUIHudManager playerUIHudManager;
 
     public PlayerUIPopUpManager playerUIPopUpManager;
@@ -44,6 +46,7 @@ public class PlayerUIManager : MonoBehaviour
         playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
         playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
         playerUIInventoryManager = GetComponentInChildren<PlayerUIInventoryManager>();
+        playerManager = FindFirstObjectByType<PlayerManager>();
     }
     void Start()
     {

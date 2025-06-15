@@ -129,7 +129,7 @@ public class CharacterManager : MonoBehaviour
 
         // Play death SFX
         characterSoundFXManager.PlayDeathSFX();
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(2);
     }
 
     public void CheckHealth()

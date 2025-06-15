@@ -1756,7 +1756,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2890524705403633649}
   - component: {fileID: 7391068081281175589}
-  - component: {fileID: 3570471759097901935}
   - component: {fileID: 1659235985714942098}
   - component: {fileID: 1084276223117257817}
   - component: {fileID: 5529118367753029593}
@@ -1766,6 +1765,7 @@ GameObject:
   - component: {fileID: -7822167365491235017}
   - component: {fileID: 1926977909631597681}
   - component: {fileID: 3617683679935988933}
+  - component: {fileID: -6298059366573521736}
   m_Layer: 6
   m_Name: Boss Soldier
   m_TagString: Enemy
@@ -1816,19 +1816,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &3570471759097901935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5629532297250181197}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92da2767eaf20f545bca505eb901f512, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockingDamageAbsorption: 0
 --- !u!114 &1659235985714942098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1941,11 +1928,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33ecc5c8d46414d4fabe3c4feeadb57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
-  attackGrunts: []
+  damageGruntFMODEvent: event:/Enemies/Small_Enemies/Moan
+  damageSFXFMODEvent: event:/Combat/Blood and gore/Bone Crack
+  attackGruntFMODEvent: 
   attackWhooshes: []
-  deathSFX: {fileID: 0}
+  deathSFXFMODEvent: event:/Enemies/Small_Enemies/Death
   footstepFMODEvent: event:/Footsteps/Footsteps
+  bossDefeatedSFXFMODEvent: event:/UI/Boss Defeated
 --- !u!114 &1926977909631597681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2029,6 +2018,7 @@ MonoBehaviour:
   characterName: The Plagued Gaol's Warden
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
+  aiCharacterStatsManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 0}
   idleState: {fileID: 11400000, guid: a0400a6c1c41c3a438231bf8921de1b8, type: 2}
@@ -2044,6 +2034,20 @@ MonoBehaviour:
   wakeAnimation: Wake_Up_01
   sleepState: {fileID: 11400000, guid: a7ed130140b6e7947a4ae261a32de093, type: 2}
   defeatMessage: GREAT FOE DEFEATED
+--- !u!114 &-6298059366573521736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5629532297250181197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe4ee78f407c3147836c2630402b218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingDamageAbsorption: 0
+  runesDroppedOnDeath: 10000
 --- !u!1 &5832668545415540658
 GameObject:
   m_ObjectHideFlags: 0

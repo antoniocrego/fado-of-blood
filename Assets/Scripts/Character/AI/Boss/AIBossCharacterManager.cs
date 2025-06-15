@@ -120,10 +120,16 @@ public class AIBossCharacterManager : AICharacterManager
         }
 
         // play death sfx
+        characterSoundFXManager.PlayDeathSFX();
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
 
-        // award players with souls
+        PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+        if (player != null)
+        {
+            player.playerStatsManager.AddBloodDrops(aiCharacterStatsManager.bloodDroppedOnDeath);
+        }
 
         // disable character
     }

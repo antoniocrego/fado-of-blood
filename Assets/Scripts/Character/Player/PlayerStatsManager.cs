@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class PlayerStatsManager : CharacterStatsManager
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    PlayerManager player;
+    public int bloodDrops = 0;
+
     void Start()
     {
-        
+        player = GetComponent<PlayerManager>();
+        if (player == null)
+        {
+            Debug.LogError("PlayerStatsManager requires a PlayerManager component.");
+            return;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void AddBloodDrops(int amount)
     {
-        
+        bloodDrops += amount;
+        PlayerUIManager.instance.playerUIHudManager.AddBloodDrops(amount);
     }
 }

@@ -185,9 +185,6 @@ PrefabInstance:
       addedObject: {fileID: 9173304064790444408}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8550011901467276321}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 825647799306187443}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
       insertIndex: -1
@@ -213,6 +210,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7873097896308014776}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2009121485338941065}
     - targetCorrespondingSourceObject: {fileID: -3086436065929644917, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3222928179219694880}
@@ -282,6 +282,7 @@ MonoBehaviour:
   characterName: Adamastor, the Root of the Plague
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
+  aiCharacterStatsManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 0}
   idleState: {fileID: 11400000, guid: ff02bf20d074d00439c73b510eef9d69, type: 2}
@@ -298,19 +299,6 @@ MonoBehaviour:
   sleepState: {fileID: 11400000, guid: 9bb57d6154a8195408bc3431a52b789c, type: 2}
   defeatMessage: GREAT FOE DEFEATED
   aiAdamastorCombatManager: {fileID: 0}
---- !u!114 &8550011901467276321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280273032421435470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92da2767eaf20f545bca505eb901f512, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blockingDamageAbsorption: 0
 --- !u!114 &825647799306187443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -457,11 +445,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c865326e44c0dc4888d004b42122711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageGrunts: []
-  attackGrunts: []
+  damageGruntFMODEvent: event:/Enemies/Small_Enemies/Moan
+  damageSFXFMODEvent: event:/Combat/Blood and gore/Bone Crack
+  attackGruntFMODEvent: 
   attackWhooshes: []
-  deathSFX: {fileID: 0}
+  deathSFXFMODEvent: event:/Enemies/Small_Enemies/Death
   footstepFMODEvent: event:/Footsteps/Footsteps
+  bossDefeatedSFXFMODEvent: event:/UI/Boss Defeated
 --- !u!82 &7873097896308014776
 AudioSource:
   m_ObjectHideFlags: 0
@@ -559,6 +549,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2009121485338941065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280273032421435470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffe4ee78f407c3147836c2630402b218, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockingDamageAbsorption: 0
+  runesDroppedOnDeath: 50000
 --- !u!4 &1734433670373868912 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 366175167995203695, guid: 60a4482e3ae1a3042a0bf7be48255010, type: 3}
