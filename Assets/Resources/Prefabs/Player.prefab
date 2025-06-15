@@ -1052,6 +1052,7 @@ MonoBehaviour:
   attackWhooshes: []
   deathSFXFMODEvent: event:/Voices/Hero/Hero Death
   footstepFMODEvent: event:/Footsteps/Footsteps
+  bossDefeatedSFXFMODEvent: event:/UI/Boss Defeated
 --- !u!54 &5435915713583613915
 Rigidbody:
   m_ObjectHideFlags: 0
