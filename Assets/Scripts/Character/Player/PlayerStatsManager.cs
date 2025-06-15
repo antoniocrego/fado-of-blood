@@ -15,6 +15,12 @@ public class PlayerStatsManager : CharacterStatsManager
         }
     }
 
+    public void SetBloodDrops(int amount)
+    {
+        bloodDrops = amount;
+        PlayerUIManager.instance.playerUIHudManager.SetBloodDrops(amount);
+    }
+
     public void AddBloodDrops(int amount)
     {
         bloodDrops += amount;

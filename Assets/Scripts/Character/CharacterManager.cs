@@ -22,8 +22,8 @@ public class CharacterManager : MonoBehaviour
     public CharacterGroup characterGroup;
 
     private float previousHealth;
-    public float health;
-    public float stamina;
+    public float health = 100;
+    public float stamina = 100;
     public bool isDead = false;
 
     public bool isGrounded = true;
@@ -33,12 +33,9 @@ public class CharacterManager : MonoBehaviour
 
     public bool isSprinting = false;
 
-    public int endurance = 1;
+    public int maxStamina = 100;
 
-    public int vitality = 10;
-    public int maxStamina = 0;
-
-    public int maxHealth = 0;
+    public int maxHealth = 100;
 
     public bool isLockedOn = false;
 
@@ -63,13 +60,10 @@ public class CharacterManager : MonoBehaviour
         characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
         characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
-        health = 100;
-        stamina = 100;
-        previousHealth = health;
-        maxHealth = 100;
         characterCombatManager = GetComponent<CharacterCombatManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
         playerUIHudManager = FindFirstObjectByType<PlayerUIHudManager>();
+        previousHealth = health;
     }
 
     protected virtual void Update()

@@ -55,16 +55,21 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.animator.SetBool("isMoving", isMoving);
     }
 
-    public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true)
+    public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true, bool hideWeapons = false)
     {
         this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
 
         character.characterLocomotionManager.canMove = canMove;
-        character.characterLocomotionManager.canRotate = canRotate; 
-        
+        character.characterLocomotionManager.canRotate = canRotate;
+
         character.characterLocomotionManager.canRun = canRun;
+        
+        if (hideWeapons && character is PlayerManager player)
+        {
+            player.playerEquipmentManager.HideWeapons();
+        }
     }
 
     public virtual void PlayTargetAttackActionAnimation(WeaponItem weapon, AttackType attackType, string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true)

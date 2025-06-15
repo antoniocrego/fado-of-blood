@@ -24,8 +24,12 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterCombatManager.DisableCanDoBackstepAttack();
         character.isInvulnerable = false;
         character.isAttacking = false;
+        if (character is PlayerManager player)
+        {
+            player.playerEquipmentManager.unHideWeapons();
+        }
 
-        if(character.characterEffectsManager.activeQuickSlotItemFX != null)
+        if (character.characterEffectsManager.activeQuickSlotItemFX != null)
         {
             Destroy(character.characterEffectsManager.activeQuickSlotItemFX);
         }

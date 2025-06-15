@@ -56,7 +56,7 @@ public class PlayerManager : CharacterManager
             WorldSaveGameManager.instance.player = this;
         }
 
-        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
+        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel();
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
@@ -69,7 +69,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager.HandleAllMovement();
 
         // NEED A NEW WAY TO CHANGE STAMINA VALUE
-        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel();
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
         if (playerInventoryManager.currentQuickSlotItem == null)
