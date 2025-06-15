@@ -26,7 +26,7 @@ public class PlayerManager : CharacterManager
     public QuickSlotItem previousQuickSlotItem = null;
 
     public bool previousChuggingStatus = false;
-
+    public bool previousIsBlockingStatus = false;
     public WeaponItem previousLeftHandWeapon = null;
     public WeaponItem currentWeaponBeingUsed;
     public bool isUsingRightHand = false;
@@ -56,7 +56,7 @@ public class PlayerManager : CharacterManager
             WorldSaveGameManager.instance.player = this;
         }
 
-        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
+        // maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
@@ -114,6 +114,12 @@ public class PlayerManager : CharacterManager
         {
             animator.SetBool("isChuggingFlask", playerEquipmentManager.isChugging);
             previousChuggingStatus = playerEquipmentManager.isChugging;
+        }
+
+        if (previousIsBlockingStatus != isBlocking)
+        {
+            animator.SetBool("isBlocking", isBlocking);
+            previousIsBlockingStatus = isBlocking;
         }
     }
 

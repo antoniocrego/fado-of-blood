@@ -165,8 +165,8 @@ MonoBehaviour:
   - {fileID: 6809616047719266825}
   healthBar: {fileID: 4542467924494035596}
   staminaBar: {fileID: 5224151801060187740}
-  rightWeaponQuickSlotIcon: {fileID: 439743166318490785}
-  leftWeaponQuickSlotIcon: {fileID: 6739177734436188875}
+  rightWeaponQuickSlotIcon: {fileID: 6739177734436188875}
+  leftWeaponQuickSlotIcon: {fileID: 439743166318490785}
   quickSlotItemQuickSlotIcon: {fileID: 0}
   bossHealthBarParent: {fileID: 0}
   bossHealthBarPrefab: {fileID: 0}

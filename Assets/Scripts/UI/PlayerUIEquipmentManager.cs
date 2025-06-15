@@ -193,6 +193,8 @@ public class PlayerUIEquipmentManager : MonoBehaviour
             Destroy(item.gameObject);
         }
     }
+    
+    
 
     public void LoadEquipmentInventory()
     {
@@ -218,8 +220,7 @@ public class PlayerUIEquipmentManager : MonoBehaviour
             case EquipmentType.LeftWeapon03:
                 LoadWeaponInventory();
                 break;
-
-            case EquipmentType.QuickSlotConsumable01: 
+            case EquipmentType.QuickSlotConsumable01:
                 LoadQuickSlotInventory();
                 break;
             default:
