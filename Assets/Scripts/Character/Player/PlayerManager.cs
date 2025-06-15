@@ -56,7 +56,11 @@ public class PlayerManager : CharacterManager
             WorldSaveGameManager.instance.player = this;
         }
 
-        // maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel(vitality);
+        maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel();
+        health = maxHealth;
+        stamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel();
+        maxStamina = Mathf.RoundToInt(stamina);
+        
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
@@ -69,7 +73,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager.HandleAllMovement();
 
         // NEED A NEW WAY TO CHANGE STAMINA VALUE
-        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(endurance);
+        maxStamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel();
         PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(stamina);
         if (playerInventoryManager.currentQuickSlotItem == null)
@@ -148,19 +152,32 @@ public class PlayerManager : CharacterManager
     public void SaveGame(ref CharacterSaveData currentCharacterData)
     {
         currentCharacterData.characterName = playerName;
+        currentCharacterData.vitality = playerStatsManager.vitality;
+        currentCharacterData.endurance = playerStatsManager.endurance;
+        currentCharacterData.resistance = playerStatsManager.resistance;
+        currentCharacterData.strength = playerStatsManager.strength;
         currentCharacterData.worldPositionX = transform.position.x;
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
+        currentCharacterData.bloodDrops = playerStatsManager.bloodDrops;
     }
 
     public void LoadGame(ref CharacterSaveData currentCharacterData)
     {
         playerName = currentCharacterData.characterName;
+
+        playerStatsManager.vitality = currentCharacterData.vitality;
+        playerStatsManager.endurance = currentCharacterData.endurance;
+        playerStatsManager.resistance = currentCharacterData.resistance;
+        playerStatsManager.strength = currentCharacterData.strength;
+
         transform.position = new Vector3(
             currentCharacterData.worldPositionX,
             currentCharacterData.worldPositionY,
             currentCharacterData.worldPositionZ
         );
+        playerStatsManager.bloodDrops = currentCharacterData.bloodDrops;
+        PlayerUIManager.instance.playerUIHudManager.SetBloodDrops(playerStatsManager.bloodDrops);
     }
 
     public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)

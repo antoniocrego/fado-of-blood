@@ -52,7 +52,7 @@ public class BonfireInteractable : Interactable
         WorldSaveGameManager.instance.currentCharacterData.bonfiresLit[bonfireID] = isActivated;
         WorldSaveGameManager.instance.currentCharacterData.lastBonfireRestedAt = bonfireID;
 
-        player.playerAnimatorManager.PlayTargetActionAnimation("Light_Bonfire", true, false);
+        player.playerAnimatorManager.PlayTargetActionAnimation("Light_Bonfire", true, false, hideWeapons: true);
         // hide weapon
 
 
@@ -74,11 +74,13 @@ public class BonfireInteractable : Interactable
 
         // refill flasks
 
-        interactableCollider.enabled = true; // temp
-        player.health = player.playerStatsManager.CalculateHealthBasedOnVitalityLevel(player.vitality);
-        player.stamina = player.playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(player.endurance);
+        StartCoroutine(WaitToRestoreCollider()); // need to change this so it comes back after getting up
+        player.health = player.playerStatsManager.CalculateHealthBasedOnVitalityLevel();
+        player.stamina = player.playerStatsManager.CalculateStaminaBasedOnEnduranceLevel();
         player.playerUIHudManager.SetNewHealthValue(player.health);
         player.playerUIHudManager.SetNewStaminaValue(player.stamina);
+        //player.playerAnimatorManager.PlayTargetActionAnimation("Rest_Bonfire", true, false);
+        PlayerUIManager.instance.playerUIBonfireManager.OpenMenu();
 
         WorldAIManager.instance.ResetAllCharacters();
 

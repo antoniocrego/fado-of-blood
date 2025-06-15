@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections;
 
 public class AICharacterManager : CharacterManager
 {
@@ -8,6 +9,7 @@ public class AICharacterManager : CharacterManager
 
     [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
     [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
+    [HideInInspector] public AICharacterStatsManager aiCharacterStatsManager;
 
     [Header("Navmesh Agent")]
     public NavMeshAgent navMeshAgent;
@@ -26,6 +28,7 @@ public class AICharacterManager : CharacterManager
         base.Start();
         aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
         aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
+        aiCharacterStatsManager = GetComponent<AICharacterStatsManager>();
 
         navMeshAgent = GetComponentInChildren<NavMeshAgent>();
 
@@ -51,40 +54,61 @@ public class AICharacterManager : CharacterManager
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        
+
         ProcessStateMachine();
     }
 
-    private void ProcessStateMachine(){
+    private void ProcessStateMachine()
+    {
         AIState nextState = currentState?.Tick(this);
 
-        if (nextState != null){
+        if (nextState != null)
+        {
             currentState = nextState;
         }
 
         navMeshAgent.transform.localPosition = Vector3.zero;
         navMeshAgent.transform.localRotation = Quaternion.identity;
 
-        if (aiCharacterCombatManager.currentTarget != null){
+        if (aiCharacterCombatManager.currentTarget != null)
+        {
             aiCharacterCombatManager.targetDirection = aiCharacterCombatManager.currentTarget.transform.position - transform.position;
             aiCharacterCombatManager.viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, aiCharacterCombatManager.targetDirection);
             aiCharacterCombatManager.distanceFromTarget = Vector3.Distance(transform.position, aiCharacterCombatManager.currentTarget.transform.position);
         }
 
-        if (navMeshAgent.enabled){
+        if (navMeshAgent.enabled)
+        {
             Vector3 agentDestination = navMeshAgent.destination;
             float remainingDistance = Vector3.Distance(agentDestination, transform.position);
 
-            if (remainingDistance > navMeshAgent.stoppingDistance){
+            if (remainingDistance > navMeshAgent.stoppingDistance)
+            {
                 isMoving = true;
             }
-            else{
+            else
+            {
                 isMoving = false;
             }
         }
-        else{
+        else
+        {
             isMoving = false;
         }
         animator.SetBool("isMoving", isMoving);
+    }
+
+    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
+    {
+        yield return base.ProcessDeath(manuallySelectDeathAnimation);
+
+        PlayerManager player = FindFirstObjectByType<PlayerManager>();
+
+        if (player != null)
+        {
+            player.playerStatsManager.AddBloodDrops(aiCharacterStatsManager.bloodDroppedOnDeath);
+        }
+
+        yield return null;
     }
 }

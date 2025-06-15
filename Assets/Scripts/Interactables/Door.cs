@@ -141,7 +141,7 @@ public class Door : Interactable
                 _activeRotationCoroutine = StartCoroutine(SmoothlyRotate(doorRotationObjectTransform, targetRotation, manualRotationDuration));
             }
 
-            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true);
+            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true, hideWeapons: true);
             RuntimeManager.PlayOneShot(doorOpenSound, transform.position);
         }
     }

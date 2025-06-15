@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,13 @@ public class PlayerUIHudManager : MonoBehaviour
     [Header("Boss HUD")]
     public Transform bossHealthBarParent;
     public GameObject bossHealthBarPrefab;
+
+    [Header("Blood Drops")]
+    [SerializeField] float updateCountDelayTimer = 3f;
+    private int pendingBloodDropsCount = 0;
+    private Coroutine bloodDropsUpdateCoroutine;
+    [SerializeField] TextMeshProUGUI bloodDropsText;
+    [SerializeField] TextMeshProUGUI bloodDropsToAddText;
 
     public void ToggleHUD(bool status)
     {
@@ -108,25 +117,70 @@ public class PlayerUIHudManager : MonoBehaviour
     }
 
     public void SetQuickSlotItemQuickSlotIcon(int itemID)
+    {
+        QuickSlotItem quickSlotItem = WorldItemDatabase.Instance.GetQuickSlotItemByID(itemID);
+
+        if (quickSlotItem == null)
         {
-            QuickSlotItem quickSlotItem = WorldItemDatabase.Instance.GetQuickSlotItemByID(itemID);
-
-            if (quickSlotItem == null)
-            {
-                quickSlotItemQuickSlotIcon.enabled = false;
-                quickSlotItemQuickSlotIcon.sprite = null;
-                return;
-            }
-
-            if (quickSlotItem.itemIcon == null)
-            {
-                quickSlotItemQuickSlotIcon.enabled = false;
-                quickSlotItemQuickSlotIcon.sprite = null;
-                return;
-            }
-
-            quickSlotItemQuickSlotIcon.sprite = quickSlotItem.itemIcon;
-            quickSlotItemQuickSlotIcon.enabled = true;
+            quickSlotItemQuickSlotIcon.enabled = false;
+            quickSlotItemQuickSlotIcon.sprite = null;
+            return;
         }
+
+        if (quickSlotItem.itemIcon == null)
+        {
+            quickSlotItemQuickSlotIcon.enabled = false;
+            quickSlotItemQuickSlotIcon.sprite = null;
+            return;
+        }
+
+        quickSlotItemQuickSlotIcon.sprite = quickSlotItem.itemIcon;
+        quickSlotItemQuickSlotIcon.enabled = true;
+    }
+
+    public void SetBloodDrops(int bloodDrops)
+    {
+        bloodDropsText.text = bloodDrops.ToString();
+    }
+
+    public void AddBloodDrops(int count)
+    {
+        pendingBloodDropsCount += count;
+
+        if (bloodDropsUpdateCoroutine != null)
+        {
+            StopCoroutine(bloodDropsUpdateCoroutine);
+        }
+
+        bloodDropsUpdateCoroutine = StartCoroutine(WaitThenUpdateBloodDrops());
+    }
+
+    private IEnumerator WaitThenUpdateBloodDrops()
+    {
+        float timer = updateCountDelayTimer;
+        int bloodDropsToAdd = pendingBloodDropsCount;
+        bloodDropsToAddText.text = "+" + bloodDropsToAdd.ToString();
+        bloodDropsToAddText.enabled = true;
+
+        while (timer > 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (bloodDropsToAdd != pendingBloodDropsCount)
+            {
+                bloodDropsToAdd = pendingBloodDropsCount;
+                bloodDropsToAddText.text = "+" + bloodDropsToAdd.ToString();
+                // timer = updateCountDelayTimer; // Reset the timer if new blood drops are added.
+            }
+
+            yield return null;
+        }
+
+        bloodDropsToAddText.enabled = false;
+        pendingBloodDropsCount = 0;
+        bloodDropsText.text = PlayerUIManager.instance.playerManager.playerStatsManager.bloodDrops.ToString();
+
+        yield return null;
+    }
 
 }
