@@ -145,6 +145,7 @@ public class PlayerManager : CharacterManager
         currentCharacterData.worldPositionX = transform.position.x;
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
+        currentCharacterData.bloodDrops = playerStatsManager.bloodDrops;
     }
 
     public void LoadGame(ref CharacterSaveData currentCharacterData)
@@ -155,6 +156,8 @@ public class PlayerManager : CharacterManager
             currentCharacterData.worldPositionY,
             currentCharacterData.worldPositionZ
         );
+        playerStatsManager.bloodDrops = currentCharacterData.bloodDrops;
+        PlayerUIManager.instance.playerUIHudManager.SetBloodDrops(playerStatsManager.bloodDrops);
     }
 
     public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)

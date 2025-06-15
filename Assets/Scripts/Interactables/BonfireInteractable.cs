@@ -74,11 +74,13 @@ public class BonfireInteractable : Interactable
 
         // refill flasks
 
-        interactableCollider.enabled = true; // temp
+        StartCoroutine(WaitToRestoreCollider()); // need to change this so it comes back after getting up
         player.health = player.playerStatsManager.CalculateHealthBasedOnVitalityLevel(player.vitality);
         player.stamina = player.playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(player.endurance);
         player.playerUIHudManager.SetNewHealthValue(player.health);
         player.playerUIHudManager.SetNewStaminaValue(player.stamina);
+        //player.playerAnimatorManager.PlayTargetActionAnimation("Rest_Bonfire", true, false);
+        PlayerUIManager.instance.playerUIBonfireManager.OpenMenu();
 
         WorldAIManager.instance.ResetAllCharacters();
 

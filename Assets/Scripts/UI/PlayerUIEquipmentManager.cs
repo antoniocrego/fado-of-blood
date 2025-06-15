@@ -3,11 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUIEquipmentManager : MonoBehaviour
+public class PlayerUIEquipmentManager : PlayerUIMenu
 {
-    [Header("Menu")]
-    [SerializeField] GameObject menu;
-
     [Header("Weapon Slots")]
     [SerializeField] Image rightHandSlot01;
     [SerializeField] Image rightHandSlot02;
@@ -26,10 +23,9 @@ public class PlayerUIEquipmentManager : MonoBehaviour
     [SerializeField] Transform equipmentInventoryContentWindow;
     [SerializeField] Item currentSelectedItem;
 
-    public void OpenEquipmentManagerMenu()
+    public override void OpenMenu()
     {
-        PlayerUIManager.instance.menuWindowIsOpen = true;
-        menu.SetActive(true);
+        base.OpenMenu();
         equipmentInventoryWindow.SetActive(false);
 
         ClearEquipmentInventory();
@@ -70,17 +66,11 @@ public class PlayerUIEquipmentManager : MonoBehaviour
             default:
                 break;
         }
-        if(lastSelectedButton != null)
+        if (lastSelectedButton != null)
         {
             lastSelectedButton.Select();
             lastSelectedButton.OnSelect(null);
         }
-    }
-
-    public void CloseEquipmentManagerMenu()
-    {
-        PlayerUIManager.instance.menuWindowIsOpen = false;
-        menu.SetActive(false);
     }
 
     private void RefreshQuickSlotIcon()

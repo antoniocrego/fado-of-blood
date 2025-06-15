@@ -17,15 +17,19 @@ public class PlayerUIManager : MonoBehaviour
 
     [HideInInspector] public PlayerManager playerManager;
 
-    public PlayerUIHudManager playerUIHudManager;
+    [HideInInspector] public PlayerUIHudManager playerUIHudManager;
 
-    public PlayerUIPopUpManager playerUIPopUpManager;
+    [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
-    public PlayerUICharacterMenuManager playerUICharacterMenuManager;
+    [HideInInspector] public PlayerUICharacterMenuManager playerUICharacterMenuManager;
 
-    public PlayerUIEquipmentManager playerUIEquipmentManager;
+    [HideInInspector] public PlayerUIEquipmentManager playerUIEquipmentManager;
 
-    public PlayerUIInventoryManager playerUIInventoryManager;
+    [HideInInspector] public PlayerUIInventoryManager playerUIInventoryManager;
+
+    [HideInInspector] public PlayerUILevelUpManager playerUILevelUpManager;
+
+    [HideInInspector] public PlayerUIBonfireManager playerUIBonfireManager;
 
     public bool menuWindowIsOpen = false;
     public bool popUpWindowIsOpen = false;
@@ -46,6 +50,8 @@ public class PlayerUIManager : MonoBehaviour
         playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
         playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
         playerUIInventoryManager = GetComponentInChildren<PlayerUIInventoryManager>();
+        playerUILevelUpManager = GetComponentInChildren<PlayerUILevelUpManager>();
+        playerUIBonfireManager = GetComponentInChildren<PlayerUIBonfireManager>();
         playerManager = FindFirstObjectByType<PlayerManager>();
     }
     void Start()
@@ -61,12 +67,13 @@ public class PlayerUIManager : MonoBehaviour
 
     public void CloseAllMenuWindows()
     {
-        playerUICharacterMenuManager.CloseCharacterMenu();
-        playerUIEquipmentManager.CloseEquipmentManagerMenu();
-        playerUIInventoryManager.CloseInventoryManagerMenu();
-        
+        playerUICharacterMenuManager.CloseMenuAfterFixedFrame();
+        playerUIEquipmentManager.CloseMenuAfterFixedFrame();
+        playerUIInventoryManager.CloseMenuAfterFixedFrame();
+        playerUILevelUpManager.CloseMenuAfterFixedFrame();
+        playerUIBonfireManager.CloseMenuAfterFixedFrame();
     }
-    
+
     public void SetRightWeaponQuickSlotIcon(int weaponID)
     {
         WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);

@@ -138,6 +138,11 @@ public class PlayerUIHudManager : MonoBehaviour
         quickSlotItemQuickSlotIcon.enabled = true;
     }
 
+    public void SetBloodDrops(int bloodDrops)
+    {
+        bloodDropsText.text = bloodDrops.ToString();
+    }
+
     public void AddBloodDrops(int count)
     {
         pendingBloodDropsCount += count;

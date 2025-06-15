@@ -5,10 +5,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems; // Required for EventTrigger
 using TMPro; // Make sure to import TextMeshPro
 
-public class PlayerUIInventoryManager : MonoBehaviour
+public class PlayerUIInventoryManager : PlayerUIMenu
 {
     [Header("Menu & Main Inventory UI")]
-    [SerializeField] GameObject menu;
     [SerializeField] GameObject inventoryWindow; 
     [SerializeField] Transform inventoryContentWindow; 
     [SerializeField] GameObject equipmentInventorySlotPrefab;
@@ -32,17 +31,15 @@ public class PlayerUIInventoryManager : MonoBehaviour
         }
     }
 
-    public void CloseInventoryManagerMenu()
+    public override void CloseMenu()
     {
-        PlayerUIManager.instance.menuWindowIsOpen = false;
-        menu.SetActive(false);
+        base.CloseMenu();
         ClearAndHideDetailsPanel(); 
     }
 
-    public void OpenInventoryManagerMenu()
+    public override void OpenMenu()
     {
-        PlayerUIManager.instance.menuWindowIsOpen = true;
-        menu.SetActive(true);
+        base.OpenMenu();
         ClearInventoryWindow();
         LoadInventoryItems();
         if (currentlySelectedSlotScript == null)

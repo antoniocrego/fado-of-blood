@@ -168,6 +168,8 @@ public class PlayerInputManager : MonoBehaviour
         {
             dodgeInput = false;
 
+            if (PlayerUIManager.instance.menuWindowIsOpen) return;
+
             player.playerLocomotionManager.AttemptToPerformDodge();
         }
     }
@@ -440,7 +442,7 @@ public class PlayerInputManager : MonoBehaviour
 
             PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
             PlayerUIManager.instance.CloseAllMenuWindows();
-            PlayerUIManager.instance.playerUICharacterMenuManager.OpenCharacterMenu();
+            PlayerUIManager.instance.playerUICharacterMenuManager.OpenMenu();
         }
     }
 

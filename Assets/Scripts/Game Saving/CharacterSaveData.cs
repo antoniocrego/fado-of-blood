@@ -25,6 +25,9 @@ public class CharacterSaveData
     public SerializableDictionary<int, bool> bonfiresLit;
     public int lastBonfireRestedAt = -1;
 
+    [Header("Blood Drops")]
+    public int bloodDrops = 0;
+
     public CharacterSaveData()
     {
         // Initialize the dictionaries to avoid null reference exceptions.
