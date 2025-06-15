@@ -79,6 +79,8 @@ public class DamageCollider : MonoBehaviour
 
         TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
         damageEffect.damage = damage;
+        damageEffect.contactPoint = contactPoint;
+        damageEffect.angleHitFrom = Vector3.SignedAngle(colliderOwner.transform.forward, damageTarget.transform.forward, Vector3.up);
 
         damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
     }
