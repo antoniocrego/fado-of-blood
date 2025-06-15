@@ -57,6 +57,10 @@ public class PlayerManager : CharacterManager
         }
 
         maxHealth = playerStatsManager.CalculateHealthBasedOnVitalityLevel();
+        health = maxHealth;
+        stamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel();
+        maxStamina = Mathf.RoundToInt(stamina);
+        
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
@@ -142,6 +146,10 @@ public class PlayerManager : CharacterManager
     public void SaveGame(ref CharacterSaveData currentCharacterData)
     {
         currentCharacterData.characterName = playerName;
+        currentCharacterData.vitality = playerStatsManager.vitality;
+        currentCharacterData.endurance = playerStatsManager.endurance;
+        currentCharacterData.resistance = playerStatsManager.resistance;
+        currentCharacterData.strength = playerStatsManager.strength;
         currentCharacterData.worldPositionX = transform.position.x;
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
@@ -151,6 +159,12 @@ public class PlayerManager : CharacterManager
     public void LoadGame(ref CharacterSaveData currentCharacterData)
     {
         playerName = currentCharacterData.characterName;
+
+        playerStatsManager.vitality = currentCharacterData.vitality;
+        playerStatsManager.endurance = currentCharacterData.endurance;
+        playerStatsManager.resistance = currentCharacterData.resistance;
+        playerStatsManager.strength = currentCharacterData.strength;
+
         transform.position = new Vector3(
             currentCharacterData.worldPositionX,
             currentCharacterData.worldPositionY,

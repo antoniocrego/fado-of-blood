@@ -87,6 +87,7 @@ public class PlayerUILevelUpManager : PlayerUIMenu
 
         int currentLevel = playerStats.CalculateCharacterLevel();
         totalLevelUpCost = CalculateLevelCost(currentLevel, expectedLevel);
+        bloodDropsNeededText.text = totalLevelUpCost.ToString();
         int expectedBloodDropsHeld = playerStats.bloodDrops - totalLevelUpCost;
         expectedBloodDropsHeldText.text = expectedBloodDropsHeld.ToString();
 
@@ -99,6 +100,8 @@ public class PlayerUILevelUpManager : PlayerUIMenu
         {
             confirmButton.interactable = true;
         }
+
+        ChangeTextColorsDependingOnCost();
     }
 
     public void UpdateVigorSlider()
@@ -144,6 +147,9 @@ public class PlayerUILevelUpManager : PlayerUIMenu
 
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(player.health);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(player.stamina);
+
+        SetCurrentStats();
+        ChangeTextColorsDependingOnCost();
     }
 
     private void SetAllLevelsCost()
@@ -159,10 +165,80 @@ public class PlayerUILevelUpManager : PlayerUIMenu
         int totalCost = 0;
         for (int i = currentLevel; i < expectedLevel; i++)
         {
+            if (i > playerLevels.Length - 1)
+            {
+                Debug.LogWarning("Level exceeds maximum defined levels. Returning crazy cost.");
+                return int.MaxValue;
+            }
             totalCost += playerLevels[i];
         }
 
         return totalCost;
+    }
+
+    private void ChangeTextColorsDependingOnCost()
+    {
+        PlayerManager player = PlayerUIManager.instance.playerManager;
+
+        int expectedVigorLevel = Mathf.RoundToInt(vigorSlider.value);
+        int expectedResistanceLevel = Mathf.RoundToInt(resistanceSlider.value);
+        int expectedEnduranceLevel = Mathf.RoundToInt(enduranceSlider.value);
+        int expectedStrengthLevel = Mathf.RoundToInt(strengthSlider.value);
+
+        if (totalLevelUpCost > 0)
+        {
+            bloodDropsNeededText.color = Color.red;
+        }
+        else
+        {
+            bloodDropsNeededText.color = Color.white;
+        }
+
+        ChangeTextFieldToSpecificColorBasedOnValue(player, expectedVigorText, player.playerStatsManager.vitality, expectedVigorLevel);
+        ChangeTextFieldToSpecificColorBasedOnValue(player, expectedResistanceText, player.playerStatsManager.resistance, expectedResistanceLevel);
+        ChangeTextFieldToSpecificColorBasedOnValue(player, expectedEnduranceText, player.playerStatsManager.endurance, expectedEnduranceLevel);
+        ChangeTextFieldToSpecificColorBasedOnValue(player, expectedStrengthText, player.playerStatsManager.strength, expectedStrengthLevel);
+
+        if (totalLevelUpCost > player.playerStatsManager.bloodDrops)
+        {
+            expectedBloodDropsHeldText.color = Color.red;
+        }
+        else
+        {
+            expectedBloodDropsHeldText.color = Color.white;
+        }
+    }
+
+    private void ChangeTextFieldToSpecificColorBasedOnValue(PlayerManager player, TextMeshProUGUI textField, int currentValue, int expectedValue)
+    {
+        if (currentValue == expectedValue)
+        {
+            textField.color = Color.white;
+            return;
+        }
+
+        if (totalLevelUpCost <= player.playerStatsManager.bloodDrops)
+        {
+            if (expectedValue > currentValue)
+            {
+                textField.color = Color.green;
+            }
+            else
+            {
+                textField.color = Color.white;
+            }
+        }
+        else
+        {
+            if (expectedValue > currentValue)
+            {
+                textField.color = Color.red;
+            }
+            else
+            {
+                textField.color = Color.white;
+            }
+        }
     }
 
 }

@@ -9,6 +9,12 @@ public class CharacterSaveData
     [Header("Time Played")]
     public float secondsPlayed = 0f;
 
+    [Header("Character Stats")]
+    public int vitality = 1;
+    public int resistance = 1;
+    public int endurance = 1;
+    public int strength = 1;
+
     [Header("World Position")]
     public float worldPositionX = 0;
     public float worldPositionY = 0.81f;
@@ -27,6 +33,8 @@ public class CharacterSaveData
 
     [Header("Blood Drops")]
     public int bloodDrops = 0;
+
+
 
     public CharacterSaveData()
     {

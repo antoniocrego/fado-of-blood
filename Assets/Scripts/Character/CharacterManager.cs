@@ -79,7 +79,8 @@ public class CharacterManager : MonoBehaviour
             return;
         }
 
-        if (health != previousHealth)
+        // health <= 0 checks if was spawned in dead (no save scumming)
+        if (health != previousHealth || health <= 0)
         {
             CheckHealth();
         }

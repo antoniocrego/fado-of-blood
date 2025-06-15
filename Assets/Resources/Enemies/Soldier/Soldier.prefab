@@ -1799,15 +1799,13 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
   characterGroup: 2
-  health: 0
+  health: 400
   stamina: 0
   isDead: 0
   isGrounded: 1
   isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
-  endurance: 1
-  vitality: 1
   maxStamina: 0
   maxHealth: 0
   isLockedOn: 0
@@ -1996,8 +1994,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe4ee78f407c3147836c2630402b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vitality: 1
+  resistance: 1
+  endurance: 1
+  strength: 1
   blockingDamageAbsorption: 0
-  runesDroppedOnDeath: 2500
+  bloodDroppedOnDeath: 500
 --- !u!1 &5832668545415540658
 GameObject:
   m_ObjectHideFlags: 0

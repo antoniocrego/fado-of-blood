@@ -2004,10 +2004,8 @@ MonoBehaviour:
   isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
-  endurance: 1
-  vitality: 10
   maxStamina: 0
-  maxHealth: 0
+  maxHealth: 3000
   isLockedOn: 0
   isMoving: 0
   isActive: 1
@@ -2046,8 +2044,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe4ee78f407c3147836c2630402b218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vitality: 1
+  resistance: 1
+  endurance: 1
+  strength: 1
   blockingDamageAbsorption: 0
-  runesDroppedOnDeath: 10000
+  bloodDroppedOnDeath: 10000
 --- !u!1 &5832668545415540658
 GameObject:
   m_ObjectHideFlags: 0
