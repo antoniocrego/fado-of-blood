@@ -22,6 +22,7 @@ public class PlayerCombatManager : CharacterCombatManager
 
     public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)
     {
+        if(weaponPerformingAction.weaponModelType == WeaponModelType.Unarmed) return;
         if (weaponAction == null || weaponPerformingAction == null) return;
         isAttacking = true;
         weaponAction.AttemptToPerformAction(player, weaponPerformingAction);

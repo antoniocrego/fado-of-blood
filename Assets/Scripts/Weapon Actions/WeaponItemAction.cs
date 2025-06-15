@@ -16,7 +16,7 @@ public class WeaponItemAction : ScriptableObject
 
         if (playerPerformingAction.currentWeaponBeingUsed != null)
         {
-            playerPerformingAction.playerAnimatorManager.UpdateAnimatorController(playerPerformingAction.currentWeaponBeingUsed.weaponAnimator);
+            playerPerformingAction.playerAnimatorManager.UpdateAnimatorController("coming from WeaponItemAction", playerPerformingAction.currentWeaponBeingUsed.weaponAnimator);
         }
     }
 }

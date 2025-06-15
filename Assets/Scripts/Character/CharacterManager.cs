@@ -38,7 +38,7 @@ public class CharacterManager : MonoBehaviour
     public int vitality = 10;
     public int maxStamina = 0;
 
-    public int maxHealth = 0;
+    public int maxHealth = 100;
 
     public bool isLockedOn = false;
 

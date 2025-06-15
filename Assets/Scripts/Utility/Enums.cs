@@ -25,7 +25,8 @@ public enum WeaponModelSlot
 public enum WeaponModelType
 {
     Weapon,
-    Shield
+    Shield,
+    Unarmed
 }
 
 public enum AttackType

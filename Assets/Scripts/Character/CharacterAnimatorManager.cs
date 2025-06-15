@@ -74,14 +74,14 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.isPerformingAction = isPerformingAction;
         character.characterCombatManager.currentAttackType = attackType;
         character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
-        UpdateAnimatorController(weapon.weaponAnimator);
+        UpdateAnimatorController("coming from PlayTargetAttackActionAnimation", weapon.weaponAnimator);
         character.characterLocomotionManager.canMove = canMove;
         character.characterLocomotionManager.canRotate = canRotate;
         character.characterLocomotionManager.canRun = canRun;
         character.characterSoundFXManager.PlayAttackGruntSFX();
     }
 
-    public void UpdateAnimatorController(AnimatorOverrideController weaponController)
+    public void UpdateAnimatorController(string whereItComesFrom, AnimatorOverrideController weaponController)
     {
         character.animator.runtimeAnimatorController = weaponController;
     }
