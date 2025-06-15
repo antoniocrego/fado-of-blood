@@ -19,6 +19,7 @@ public class ResetActionFlag : StateMachineBehaviour
         character.characterAnimatorManager.applyRootMotion = rootMotionDefault;
         character.characterLocomotionManager.canMove = true;
         character.characterLocomotionManager.canRotate = true;
+        character.characterLocomotionManager.canRun = true;
         character.characterAnimatorManager.DisableCanDoCombo();
         character.characterCombatManager.DisableCanDoRollingAttack();
         character.characterCombatManager.DisableCanDoBackstepAttack();

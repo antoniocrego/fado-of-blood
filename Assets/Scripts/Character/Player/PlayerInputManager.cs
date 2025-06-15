@@ -20,7 +20,7 @@ public class PlayerInputManager : MonoBehaviour
     [SerializeField] Vector2 movementInput;
     [SerializeField] Vector2 cameraInput;
     [SerializeField] bool dodgeInput = false;
-    [SerializeField] bool sprintInput = false;
+    public bool sprintInput = false;
     [SerializeField] bool jumpInput = false;
     [SerializeField] bool lockedOn_input = false;
     [SerializeField] bool lockOnLeft_input = false;

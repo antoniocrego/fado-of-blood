@@ -33,6 +33,8 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [SerializeField] private float sprintingRecovery = 1f;
 
+    [SerializeField] float minimumStaminaToStartSprinting = 10f;
+
     [SerializeField] private float jumpHeight = 1f;
 
     [SerializeField] float jumpForwardSpeed = 5; 
@@ -153,28 +155,33 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     public void HandleSprint() 
     {
-        if(player.isPerformingAction) 
+        bool canSprintConditionsMet = PlayerInputManager.instance.sprintInput &&
+                                      !player.isPerformingAction &&
+                                      PlayerInputManager.instance.movementCombined > 0.5f;
+
+        if (player.isSprinting)
         {
-            player.isSprinting = false;
+            if (!canSprintConditionsMet || player.stamina <= 0)
+            {
+                player.isSprinting = false;
+            }
         }
-        if(player.stamina <= 0) 
+        else
         {
-            player.isSprinting = false;
-            return;
+            if (canSprintConditionsMet && player.stamina > minimumStaminaToStartSprinting)
+            {
+                player.isSprinting = true;
+            }
         }
 
-        if(movementCombined > 0.5) 
-        {
-            player.isSprinting = true; 
-        }
-        else 
-        {
-            player.isSprinting = false;
-        }
-
-        if(player.isSprinting) 
+        if (player.isSprinting)
         {
             player.stamina -= spritingStaminaCost * Time.deltaTime;
+            if (player.stamina < 0) 
+            {
+                player.stamina = 0;
+                player.isSprinting = false; 
+            }
         }
     }
 
