@@ -776,7 +776,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1049579595269638306}
@@ -1052,6 +1052,7 @@ MonoBehaviour:
   attackWhooshes: []
   deathSFXFMODEvent: event:/Voices/Hero/Hero Death
   footstepFMODEvent: event:/Footsteps/Footsteps
+  bossDefeatedSFXFMODEvent: event:/UI/Boss Defeated
 --- !u!54 &5435915713583613915
 Rigidbody:
   m_ObjectHideFlags: 0
