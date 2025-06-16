@@ -150,32 +150,6 @@ public class PlayerCamera : MonoBehaviour
 
     }
 
-    public void HandleLockOnTarget()
-    {/*
-        availableTargets.Clear();
-        
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].transform == player.transform || colliders[i].transform.IsChildOf(player.transform))
-            {
-                continue;
-            }
-
-            float currentAngle = Vector3.Angle(cameraObject.transform.forward, (colliders[i].gameObject.transform.position - cameraObject.transform.position).normalized);
-            if (currentAngle <= player.fieldOfView)
-            {
-                RaycastHit hit;
-                if (Physics.Linecast(player.transform.position, colliders[i].gameObject.transform.position, out hit, 0))
-                {
-                    continue;
-                }
-                availableTargets.Add(colliders[i].gameObject);
-            }
-        }
-        availableTargets.Sort((x, y) => Vector3.Distance(player.transform.position, x.transform.position).CompareTo(Vector3.Distance(player.transform.position, y.transform.position)));
-       */
-    }
-
     public void HandleLocatingLockOnTargets()
     {
         Collider[] colliders = Physics.OverlapSphere(player.transform.position, player.lockOnRange, WorldUtilityManager.Instance.GetCharacterLayer());
@@ -191,7 +165,7 @@ public class PlayerCamera : MonoBehaviour
                 continue;
             }
             Vector3 lockOnTargetDirection = lockOnTarget.transform.position - player.transform.position;
-            float angle = Vector3.SignedAngle(player.transform.forward, lockOnTargetDirection, Vector3.up);
+            float angle = Vector3.SignedAngle(cameraObject.transform.forward, lockOnTargetDirection, Vector3.up);
 
             if (lockOnTarget.isDead)
             {
