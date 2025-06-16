@@ -65,7 +65,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
         damageEffect.damage = damage;
         damageEffect.contactPoint = contactPoint;
         damageEffect.angleHitFrom = Vector3.SignedAngle(characterCausingDamage.transform.forward, damageTarget.transform.forward, Vector3.up);
-        Debug.Log("Angle hit from: " + damageEffect.angleHitFrom);
 
         switch (characterCausingDamage.characterCombatManager.currentAttackType)
         {

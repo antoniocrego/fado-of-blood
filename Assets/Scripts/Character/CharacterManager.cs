@@ -16,9 +16,8 @@ public class CharacterManager : MonoBehaviour
     [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
     [HideInInspector] public CharacterStatsManager characterStatsManager;
     [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
-
-
     [HideInInspector] public PlayerUIHudManager playerUIHudManager;
+    [HideInInspector] public UICharacterHPBar characterHPBar;
     public CharacterGroup characterGroup;
 
     private float previousHealth;
@@ -62,6 +61,7 @@ public class CharacterManager : MonoBehaviour
         characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
         characterCombatManager = GetComponent<CharacterCombatManager>();
         characterStatsManager = GetComponent<CharacterStatsManager>();
+        characterHPBar = GetComponentInChildren<UICharacterHPBar>();
         playerUIHudManager = FindFirstObjectByType<PlayerUIHudManager>();
         previousHealth = health;
     }

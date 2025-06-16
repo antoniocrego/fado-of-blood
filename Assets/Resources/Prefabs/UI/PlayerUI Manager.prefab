@@ -86,6 +86,7 @@ GameObject:
   - component: {fileID: 7804716614233642015}
   - component: {fileID: 3520368043891023204}
   - component: {fileID: 2160967477382655860}
+  - component: {fileID: 5353922921234245975}
   m_Layer: 0
   m_Name: Hud Manager
   m_TagString: Untagged
@@ -140,7 +141,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cc3541cec7d8b240b64aa1116dc9aad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvasGroup: [{fileID: 3520368043891023204}, {fileID: 6809616047719266825}]
+  canvasGroup:
+  - {fileID: 3520368043891023204}
+  - {fileID: 6809616047719266825}
   healthBar: {fileID: 4542467924494035596}
   staminaBar: {fileID: 5224151801060187740}
   rightWeaponQuickSlotIcon: {fileID: 6739177734436188875}
@@ -151,6 +154,31 @@ MonoBehaviour:
   updateCountDelayTimer: 3
   bloodDropsText: {fileID: 8533102804463829883}
   bloodDropsToAddText: {fileID: 7884841972611525212}
+--- !u!114 &5353922921234245975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143067503707879883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc3541cec7d8b240b64aa1116dc9aad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup:
+  - {fileID: 3520368043891023204}
+  - {fileID: 6809616047719266825}
+  healthBar: {fileID: 4542467924494035596}
+  staminaBar: {fileID: 5224151801060187740}
+  rightWeaponQuickSlotIcon: {fileID: 6739177734436188875}
+  leftWeaponQuickSlotIcon: {fileID: 439743166318490785}
+  quickSlotItemQuickSlotIcon: {fileID: 0}
+  bossHealthBarParent: {fileID: 0}
+  bossHealthBarPrefab: {fileID: 0}
+  updateCountDelayTimer: 3
+  bloodDropsText: {fileID: 0}
+  bloodDropsToAddText: {fileID: 0}
 --- !u!1 &325379422350521756
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,28 +893,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &5353922921234245975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 143067503707879883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3cc3541cec7d8b240b64aa1116dc9aad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvasGroup:
-  - {fileID: 3520368043891023204}
-  - {fileID: 6809616047719266825}
-  healthBar: {fileID: 4542467924494035596}
-  staminaBar: {fileID: 5224151801060187740}
-  rightWeaponQuickSlotIcon: {fileID: 6739177734436188875}
-  leftWeaponQuickSlotIcon: {fileID: 439743166318490785}
-  quickSlotItemQuickSlotIcon: {fileID: 0}
-  bossHealthBarParent: {fileID: 0}
-  bossHealthBarPrefab: {fileID: 0}
 --- !u!1 &677887567673164218
 GameObject:
   m_ObjectHideFlags: 0
@@ -2975,7 +2981,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.000061035156, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7589695098832762226
