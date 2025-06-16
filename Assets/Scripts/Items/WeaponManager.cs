@@ -13,6 +13,7 @@ public class WeaponManager : MonoBehaviour
     {
         meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
         meleeDamageCollider.damage = weapon.baseDamage;
+        meleeDamageCollider.poiseDamage = weapon.poiseDamage;
 
         meleeDamageCollider.light_Attack_01_Modifier = weapon.light_Attack_01_Modifier;
         meleeDamageCollider.light_Attack_02_Modifier = weapon.light_Attack_02_Modifier;

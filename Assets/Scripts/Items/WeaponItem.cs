@@ -13,6 +13,7 @@ public class WeaponItem : Item
 
     [Header("Weapon Stats")]
     public float baseDamage = 10f;
+    public float poiseDamage = 10f;
     public float strength = 0f;
     public float dex = 0f;
     public float magic = 0f;
@@ -36,6 +37,10 @@ public class WeaponItem : Item
     public float runningAttackStaminaCostMultiplier = 1.1f;
     public float rollingAttackStaminaCostMultiplier = 1.1f;
     public float backstepAttackStaminaCostMultiplier = 1.1f;
+
+    [Header("Weapon Blocking Absorption")]
+    public float blockingDamageAbsorption = 70;
+    public float stability = 50;
 
     [Header("Actions")]
     public WeaponItemAction oh_RB_Action; // ONE HAND RIGHT BUMPER ACTION

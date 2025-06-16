@@ -14,7 +14,11 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
 
     [Header("Poise")]
     public float poiseDamage = 0;
-    public bool poiseIsBroken = false;          //  IF POISE IS BROKEN CHARACTER IS "STUNNED" AND A DAMAGE ANIMATION IS PLAYED
+    public bool poiseIsBroken = false; 
+    
+    [Header("Stamina")]
+    public float staminaDamage = 0;
+    public float finalStaminaDamage = 0;         //  IF POISE IS BROKEN CHARACTER IS "STUNNED" AND A DAMAGE ANIMATION IS PLAYED
 
     //  (TO DO) BUILD UPS
     //  build up effect amounts
@@ -46,6 +50,7 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
             return;
 
         CalculateDamage(character);
+        CalculateStaminaDamage(character);
         PlayDirectionalBasedBlockingAnimation(character);
         //  CHECK FOR BUILD UPS (POISON, BLEED ECT)
         PlayDamageSFX(character);
@@ -80,7 +85,17 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
 
         character.health -= finalDamageDealt;
 
-        //  CALCULATE POISE DAMAGE TO DETERMINE IF THE CHARACTER WILL BE STUNNED
+    }
+
+    private void CalculateStaminaDamage(CharacterManager character)
+    {
+
+        finalStaminaDamage = staminaDamage;
+
+        float staminaDamageAbsorption = finalStaminaDamage * (character.characterStatsManager.blockingStability / 100);
+        float staminaDamageAfterAbsorption = finalStaminaDamage - staminaDamageAbsorption;
+
+        character.stamina -= staminaDamageAfterAbsorption;
     }
 
     private void PlayDamageVFX(CharacterManager character)
@@ -106,24 +121,13 @@ public class TakeBlockedDamageEffect : InstantCharacterEffect
 
         DamageIntensity damageIntensity = WorldUtilityManager.Instance.GetDamageIntensityBasedOnPoiseDamage(poiseDamage);
         // 2. PLAY A PROPER ANIMATION TO MATCH THE "INTENSITY" OF THE BLOW
-
-        //  TODO: CHECK FOR TWO HAND STATUS, IF TWO HANDING USE TWO HAND VERSION OF BLOCK ANIM INSTEAD
         switch (damageIntensity)
         {
-            case DamageIntensity.Ping:
-                damageAnimation = "Block_Ping_01";
-                break;
             case DamageIntensity.Light:
                 damageAnimation = "Block_Light_01";
                 break;
-            case DamageIntensity.Medium:
-                damageAnimation = "Block_Medium_01";
-                break;
             case DamageIntensity.Heavy:
                 damageAnimation = "Block_Heavy_01";
-                break;
-            case DamageIntensity.Colossal:
-                damageAnimation = "Block_Colossal_01";
                 break;
             default:
                 break;

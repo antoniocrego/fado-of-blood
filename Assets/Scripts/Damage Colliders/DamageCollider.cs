@@ -15,6 +15,9 @@ public class DamageCollider : MonoBehaviour
     [Header("Damage")]
     public float damage = 0;
 
+    [Header("Poise")]
+    public float poiseDamage = 0;
+
     [Header("Contact Point")]
     protected Vector3 contactPoint;
 
@@ -56,6 +59,9 @@ public class DamageCollider : MonoBehaviour
             TakeBlockedDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
 
             damageEffect.damage = damage;
+            damageEffect.poiseDamage = poiseDamage;
+            damageEffect.staminaDamage = poiseDamage;
+            damageEffect.contactPoint = contactPoint;
 
             // 3. APPLY BLOCKED CHARACTER DAMAGE TO TARGET
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
@@ -79,6 +85,7 @@ public class DamageCollider : MonoBehaviour
 
         TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
         damageEffect.damage = damage;
+        damageEffect.poiseDamage = poiseDamage;
         damageEffect.contactPoint = contactPoint;
         damageEffect.angleHitFrom = Vector3.SignedAngle(colliderOwner.transform.forward, damageTarget.transform.forward, Vector3.up);
 

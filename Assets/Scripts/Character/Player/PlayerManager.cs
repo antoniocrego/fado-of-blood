@@ -124,6 +124,9 @@ public class PlayerManager : CharacterManager
         {
             animator.SetBool("isBlocking", isBlocking);
             previousIsBlockingStatus = isBlocking;
+
+            playerStatsManager.blockingDamageAbsorption = playerCombatManager.currentWeaponBeingUsed.blockingDamageAbsorption;
+            playerStatsManager.blockingStability = playerCombatManager.currentWeaponBeingUsed.stability;
         }
     }
 
