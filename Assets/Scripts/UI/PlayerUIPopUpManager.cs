@@ -35,11 +35,23 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI bonfireLitPopUpBackgroundText;
     [SerializeField] CanvasGroup bonfireLitPopUpCanvasGroup;
 
+    [Header("NEW AREA Pop Up")]
+    [SerializeField] GameObject newAreaPopUpGameObject;
+    [SerializeField] TextMeshProUGUI newAreaPopUpText;
+    [SerializeField] CanvasGroup newAreaPopUpCanvasGroup;
+    [SerializeField] TextMeshProUGUI newAreaPopUpBackgroundText;
+
     public void CloseAllPopUpWindows()
     {
         popUpMessageGameObject.SetActive(false);
 
         itemPopUpGameObject.SetActive(false);
+
+        youDiedPopUpGameObject.SetActive(false);
+
+        bossDefeatedPopUpGameObject.SetActive(false);
+
+        bonfireLitPopUpGameObject.SetActive(false);
 
         PlayerUIManager.instance.popUpWindowIsOpen = false;
     }
@@ -94,6 +106,17 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(StretchPopUpTextOverTime(bonfireLitPopUpBackgroundText, 8, 19));
         StartCoroutine(FadeInPopUpOverTime(bonfireLitPopUpCanvasGroup, 5));
         StartCoroutine(WaitThenFadeOutPopUpOverTime(bonfireLitPopUpCanvasGroup, 2, 5));
+    }
+
+    public void SendNewAreaPopUp(int areaID)
+    {
+        newAreaPopUpText.text = Areas.AreaNames[areaID];
+        newAreaPopUpBackgroundText.text = Areas.AreaNames[areaID];
+        newAreaPopUpGameObject.SetActive(true);
+        newAreaPopUpBackgroundText.characterSpacing = 0;
+        StartCoroutine(StretchPopUpTextOverTime(newAreaPopUpBackgroundText, 8, 19));
+        StartCoroutine(FadeInPopUpOverTime(newAreaPopUpCanvasGroup, 2));
+        StartCoroutine(WaitThenFadeOutPopUpOverTime(newAreaPopUpCanvasGroup, 2, 1));
     }
 
     private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)
@@ -161,12 +184,6 @@ public class PlayerUIPopUpManager : MonoBehaviour
         canvas.alpha = 0;
 
         yield return null;
-    }
-
-    public void CloseYouDiedPopUp()
-    {
-        youDiedPopUpGameObject.SetActive(false);
-        PlayerUIManager.instance.popUpWindowIsOpen = false;
     }
 }
 

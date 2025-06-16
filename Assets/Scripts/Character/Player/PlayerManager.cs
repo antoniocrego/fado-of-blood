@@ -276,6 +276,7 @@ public class PlayerManager : CharacterManager
         transform.position = respawnPosition;
 
         PlayerUIManager.instance.CloseAllMenuWindows();
+        PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
 
         playerCombatManager.currentTarget = null;
         playerCameraManager.ClearLockOnTargets();

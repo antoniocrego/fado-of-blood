@@ -27,6 +27,9 @@ public class CharacterSaveData
     public float worldPositionY = 1.2f;
     public float worldPositionZ = 0;
 
+    [Header("Current Area")]
+    public int currentAreaID = 0; // Default to the first area
+
     [Header("Boss Statuses")]
     public SerializableDictionary<int, bool> bossesAwakened;
     public SerializableDictionary<int, bool> bossesDefeated;

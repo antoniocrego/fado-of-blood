@@ -205,16 +205,18 @@ public class WorldSaveGameManager : MonoBehaviour
         return worldSceneIndex;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            SaveGame();
-        }
+    // Call SaveGame when the application pauses to ensure data is saved.
+    // if we wanted to use on quit we'd need a more robust save system with backups
+    // void OnApplicationQuit()
+    // {
+    //     SaveGame();
+    // }
 
-        if (Input.GetKeyDown(KeyCode.F9))
-        {
-            LoadGame();
-        }   
-    }
+    // void OnApplicationPause(bool pause)
+    // {
+    //     if (pause)
+    //     {
+    //         SaveGame();
+    //     }
+    // }
 }
