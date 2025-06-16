@@ -1837,7 +1837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageGruntFMODEvent: event:/Enemies/Small_Enemies/Moan
   damageSFXFMODEvent: event:/Combat/Blood and gore/Bone Crack
-  attackGruntFMODEvent: 
+  attackGruntFMODEvent: event:/Enemies/Small_Enemies/Grunt_Combat
   attackWhooshes: []
   deathSFXFMODEvent: event:/Enemies/Small_Enemies/Death
   footstepFMODEvent: event:/Footsteps/Footsteps

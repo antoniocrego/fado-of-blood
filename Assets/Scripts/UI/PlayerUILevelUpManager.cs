@@ -130,6 +130,10 @@ public class PlayerUILevelUpManager : PlayerUIMenu
 
     public void ConfirmLevelUp()
     {
+        if (totalLevelUpCost <= 0 || totalLevelUpCost > PlayerUIManager.instance.playerManager.playerStatsManager.bloodDrops)
+        {
+            return;
+        }
         PlayerManager player = PlayerUIManager.instance.playerManager;
 
         PlayerStatsManager playerStats = player.playerStatsManager;
