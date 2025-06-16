@@ -8,6 +8,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
 
     [Header("Damage")]
     [SerializeField] float baseDamage = 10f;
+    [SerializeField] float basePoiseDamage = 10f;
     [SerializeField] float attack01DamageMultiplier = 1f;
     [SerializeField] float attack02DamageMultiplier = 1.5f;
 
@@ -15,11 +16,13 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     {
         // we could have both calculations here, but since each attack only uses 1 hand, its not worth it
         rightHandDamageCollider.damage = baseDamage * attack01DamageMultiplier;
+        rightHandDamageCollider.poiseDamage = basePoiseDamage * attack01DamageMultiplier;
     }
 
     public void SetAttack02Damage()
     {
         rightHandDamageCollider.damage = baseDamage * attack02DamageMultiplier;
+        rightHandDamageCollider.poiseDamage = basePoiseDamage * attack02DamageMultiplier;
     }
 
     public void OpenRightHandDamageCollider()

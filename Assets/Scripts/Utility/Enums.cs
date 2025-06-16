@@ -97,9 +97,6 @@ public enum EquipmentType
 
 public enum DamageIntensity
 {
-    Ping,
     Light,
-    Medium,
-    Heavy,
-    Colossal
+    Heavy
 }

@@ -7,8 +7,6 @@ public class ToggleBlockingController : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log("ToggleBlockingController OnStateEnter called");
-
         if (player == null)
             player = animator.GetComponent<PlayerManager>();
 
@@ -20,12 +18,10 @@ public class ToggleBlockingController : StateMachineBehaviour
         if (player.isBlocking)
         {
             player.characterAnimatorManager.UpdateAnimatorController("coming from toggleblockingcontroller", player.playerInventoryManager.currentLeftHandWeapon.weaponAnimator);
-            Debug.Log("Changed animator controller to shield");
         }
         else
         {
             player.characterAnimatorManager.UpdateAnimatorController("coming from toggleblockingcontroller", player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
-            Debug.Log("Changed animator controller to sword");
         }
     }
 

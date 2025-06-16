@@ -13,6 +13,9 @@ public class TakeDamageEffect : InstantCharacterEffect
     [Header("Damage")]
     public float damage = 0;
 
+    [Header("Poise")]
+    public float poiseDamage = 0;
+
     [Header("Final Damage")]
     private float finalDamageDealt = 0;
 

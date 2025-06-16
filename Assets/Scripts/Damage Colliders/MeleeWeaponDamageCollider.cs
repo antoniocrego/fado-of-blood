@@ -63,6 +63,7 @@ public class MeleeWeaponDamageCollider : DamageCollider
 
         TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
         damageEffect.damage = damage;
+        damageEffect.poiseDamage = poiseDamage;
         damageEffect.contactPoint = contactPoint;
         damageEffect.angleHitFrom = Vector3.SignedAngle(characterCausingDamage.transform.forward, damageTarget.transform.forward, Vector3.up);
 
@@ -105,5 +106,6 @@ public class MeleeWeaponDamageCollider : DamageCollider
     private void ApplyAttackDamageModifiers(float modifier, TakeDamageEffect damage)
     {
         damage.damage *= modifier;
+        damage.poiseDamage *= modifier;
     }
 }
