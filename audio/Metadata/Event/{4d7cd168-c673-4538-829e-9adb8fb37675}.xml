@@ -5,7 +5,7 @@
 			<value>Blunt heavy impact</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5431f150-513a-46e5-acfb-f23c58ce8ba3}</destination>
@@ -128,6 +128,7 @@
 	<object class="MixerBusEffectChain" id="{005f3d7e-9db9-42bb-97ac-173f5a9317f3}">
 		<relationship name="effects">
 			<destination>{69dfda12-dbb4-4031-be50-91d0947a39a6}</destination>
+			<destination>{33a03a0d-32bc-4d39-a4f1-a7dfdcbc722f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6bd3aa01-c057-4dc6-ba1e-74f4451329ad}" />
@@ -190,6 +191,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{d1cf624b-c3b9-4518-8d7a-af7284066080}" />
 	<object class="MixerBusFader" id="{69dfda12-dbb4-4031-be50-91d0947a39a6}" />
+	<object class="SpatialiserEffect" id="{33a03a0d-32bc-4d39-a4f1-a7dfdcbc722f}" />
 	<object class="AutomationPoint" id="{21ac2b06-0321-4458-8b7f-47e8afac1f42}">
 		<property name="position">
 			<value>0</value>

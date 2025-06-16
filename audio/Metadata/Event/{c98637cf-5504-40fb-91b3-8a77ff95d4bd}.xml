@@ -5,7 +5,7 @@
 			<value>NPC Elias Attack</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5f6e3d6a-8842-4161-9a43-cc6622c48dc4}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{779be2a5-3d1e-428e-a76c-61188b5e109a}">
 		<relationship name="effects">
 			<destination>{b8bb1156-9b2a-4f4d-8afc-2a264ec3c4aa}</destination>
+			<destination>{b090a07b-cee0-439f-8018-13d0eceb932d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e7ba8e5c-fdba-41d6-8f1d-d4896dbc0d70}" />
@@ -127,5 +128,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{17bb0f57-104a-4c91-af4b-c05d28e64742}" />
 	<object class="MixerBusFader" id="{b8bb1156-9b2a-4f4d-8afc-2a264ec3c4aa}" />
+	<object class="SpatialiserEffect" id="{b090a07b-cee0-439f-8018-13d0eceb932d}" />
 	<object class="MixerBusFader" id="{e74aa7f8-0ece-4e06-836c-eaadec49e260}" />
 </objects>

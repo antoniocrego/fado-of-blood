@@ -5,7 +5,7 @@
 			<value>Squeaky Gate Open</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{61978bbb-e2b6-4535-bb00-e24342061d84}</destination>
@@ -117,6 +117,7 @@
 	<object class="MixerBusEffectChain" id="{a2957259-428c-41ba-9121-4a7e50f33e3c}">
 		<relationship name="effects">
 			<destination>{ff12afda-4ac8-4fd6-b240-aa949124dbbd}</destination>
+			<destination>{ffe636ce-5791-4013-afff-742d7f2ed377}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b285dff4-25d0-48dd-99db-d467c4beabe1}" />
@@ -154,6 +155,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{49f143c9-528c-4245-9da4-0d439fc76c7b}" />
 	<object class="MixerBusFader" id="{ff12afda-4ac8-4fd6-b240-aa949124dbbd}" />
+	<object class="SpatialiserEffect" id="{ffe636ce-5791-4013-afff-742d7f2ed377}" />
 	<object class="AutomationPoint" id="{aae276f1-04ed-4e56-90ed-317fad4345ee}">
 		<property name="position">
 			<value>0</value>

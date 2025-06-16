@@ -5,7 +5,7 @@
 			<value>Sword_Unsheathe_L</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5431f150-513a-46e5-acfb-f23c58ce8ba3}</destination>
@@ -125,6 +125,7 @@
 	<object class="MixerBusEffectChain" id="{9fcb5e27-810c-494d-94ab-96804febfc6e}">
 		<relationship name="effects">
 			<destination>{3f7300a8-eb07-4073-a12d-b6b15ff1dd9a}</destination>
+			<destination>{2808ba11-fe05-4100-8657-adb0e5886c38}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8ac471d3-7055-4576-bf68-a09d9f225887}" />
@@ -172,6 +173,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{1eea654f-e97d-4073-b48e-8e857e39aaf2}" />
 	<object class="MixerBusFader" id="{3f7300a8-eb07-4073-a12d-b6b15ff1dd9a}" />
+	<object class="SpatialiserEffect" id="{2808ba11-fe05-4100-8657-adb0e5886c38}" />
 	<object class="AutomationPoint" id="{08ac27dc-50d3-44fb-b11d-9c8e60adc17a}">
 		<property name="position">
 			<value>0</value>

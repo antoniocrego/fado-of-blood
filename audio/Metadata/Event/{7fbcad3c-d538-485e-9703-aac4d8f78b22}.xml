@@ -5,7 +5,7 @@
 			<value>Fire Boss Death</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{24883166-7f5f-4142-a0cf-862990c55e0b}</destination>
@@ -172,6 +172,7 @@
 	<object class="MixerBusEffectChain" id="{d42c7168-dd36-4ab8-8beb-bf9b13f25767}">
 		<relationship name="effects">
 			<destination>{c7d98eab-b73c-4a88-a330-949934a53eb8}</destination>
+			<destination>{d12ee374-4310-46e5-9fea-cf63e50a6b45}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9bba642e-ea9e-4759-8090-014907beaeed}" />
@@ -231,6 +232,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{6ec7073a-36ac-4c19-9d9c-177b05eb3237}" />
 	<object class="MixerBusFader" id="{c7d98eab-b73c-4a88-a330-949934a53eb8}" />
+	<object class="SpatialiserEffect" id="{d12ee374-4310-46e5-9fea-cf63e50a6b45}" />
 	<object class="AutomationPoint" id="{d04d392b-f9b6-4335-95f5-b762a3700ad7}">
 		<property name="position">
 			<value>0</value>

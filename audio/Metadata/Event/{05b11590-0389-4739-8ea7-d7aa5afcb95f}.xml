@@ -5,7 +5,7 @@
 			<value>Trader Death</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{9ec217e2-1126-4dc4-9b7b-f427f2d883a7}</destination>
@@ -113,6 +113,7 @@
 	<object class="MixerBusEffectChain" id="{6edd37c4-1ff6-4012-9349-9f742b34c848}">
 		<relationship name="effects">
 			<destination>{f40f6f23-9c93-43ae-a244-f9d2ab9535bd}</destination>
+			<destination>{9fa72e68-2679-4744-8759-792e7f600ec9}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{266e5f42-9948-4d28-8b72-e828f0d164a9}" />
@@ -124,5 +125,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{41779c9a-cecc-4e97-87b3-3786d758306f}" />
 	<object class="MixerBusFader" id="{f40f6f23-9c93-43ae-a244-f9d2ab9535bd}" />
+	<object class="SpatialiserEffect" id="{9fa72e68-2679-4744-8759-792e7f600ec9}" />
 	<object class="MixerBusFader" id="{150af083-4ed7-4079-a59f-4422fb5b50e9}" />
 </objects>

@@ -5,7 +5,7 @@
 			<value>Bell</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1d2893c4-0d68-4181-b315-f70d97b08abb}</destination>
@@ -119,6 +119,7 @@
 	<object class="MixerBusEffectChain" id="{1f214d06-d63a-4476-98e1-621dde0d2cbe}">
 		<relationship name="effects">
 			<destination>{fd3c9ea0-285e-4899-bc91-136fd1f7913c}</destination>
+			<destination>{c5fd323e-b265-43ea-9bdb-1202f4ac42b7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7ab21445-898f-4624-8735-da5415cf242e}" />
@@ -146,6 +147,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{354f7e6f-4961-4f18-a0ed-03bf3cdbbf01}" />
 	<object class="MixerBusFader" id="{fd3c9ea0-285e-4899-bc91-136fd1f7913c}" />
+	<object class="SpatialiserEffect" id="{c5fd323e-b265-43ea-9bdb-1202f4ac42b7}" />
 	<object class="AutomationPoint" id="{cdf74ce2-1beb-413c-bf0c-a3c346334283}">
 		<property name="position">
 			<value>0</value>

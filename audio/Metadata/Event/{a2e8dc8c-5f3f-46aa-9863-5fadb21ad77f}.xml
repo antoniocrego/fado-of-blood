@@ -5,7 +5,7 @@
 			<value>Female_Heavy attack</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cdf2b8f1-f164-4d38-a81c-1bdb6671957b}</destination>
@@ -122,6 +122,7 @@
 	<object class="MixerBusEffectChain" id="{c95f22ac-b20d-48c7-a5d6-e285546a27b8}">
 		<relationship name="effects">
 			<destination>{6dac377e-01c5-4643-9628-7ba579517997}</destination>
+			<destination>{904ebe88-d5ad-4e3f-81ad-46d0406a329d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7e0e6a3d-892f-49e7-806e-681a502876b8}" />
@@ -149,6 +150,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{e247cd2f-7ffa-46fb-ae68-03efee63bb4c}" />
 	<object class="MixerBusFader" id="{6dac377e-01c5-4643-9628-7ba579517997}" />
+	<object class="SpatialiserEffect" id="{904ebe88-d5ad-4e3f-81ad-46d0406a329d}" />
 	<object class="AutomationPoint" id="{3d9af35e-16cf-4ff8-839a-ff0e3d3802e8}">
 		<property name="position">
 			<value>0</value>

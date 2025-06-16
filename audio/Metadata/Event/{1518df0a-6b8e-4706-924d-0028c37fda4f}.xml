@@ -5,7 +5,7 @@
 			<value>Sword Impact_Heavy</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5431f150-513a-46e5-acfb-f23c58ce8ba3}</destination>
@@ -129,6 +129,7 @@
 	<object class="MixerBusEffectChain" id="{1912845e-be50-48f8-9ecc-f96eedd445ee}">
 		<relationship name="effects">
 			<destination>{077fe186-80f3-44f7-be2a-fb4bd1d41d95}</destination>
+			<destination>{b6530b73-e2ed-46de-b0fb-6acd894b485a}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{40d756b4-6d7a-4261-9c53-ab79b7eebf32}" />
@@ -181,6 +182,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{152e6ebd-ebc3-406d-8f5e-6a92d737b44c}" />
 	<object class="MixerBusFader" id="{077fe186-80f3-44f7-be2a-fb4bd1d41d95}" />
+	<object class="SpatialiserEffect" id="{b6530b73-e2ed-46de-b0fb-6acd894b485a}" />
 	<object class="AutomationPoint" id="{8d64aefe-a8c5-4737-a84f-96cf572ceebc}">
 		<property name="position">
 			<value>0</value>
