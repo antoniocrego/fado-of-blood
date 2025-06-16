@@ -19,14 +19,14 @@
 			<value>8</value>
 		</property>
 		<property name="enumerationLabels">
-			<value>E_Dirt</value>
-			<value>E_Mud</value>
-			<value>E_Wet</value>
-			<value>E_Wood</value>
-			<value>E_Grass</value>
-			<value>E_Gravel</value>
-			<value>E_Metal</value>
-			<value>E_Sand</value>
+			<value>Dirt</value>
+			<value>Mud</value>
+			<value>Wet</value>
+			<value>Wood</value>
+			<value>Grass</value>
+			<value>Gravel</value>
+			<value>Metal</value>
+			<value>Sand</value>
 		</property>
 		<property name="initialValue">
 			<value>0</value>
