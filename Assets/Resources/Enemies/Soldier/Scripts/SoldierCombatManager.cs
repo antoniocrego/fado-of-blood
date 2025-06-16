@@ -77,11 +77,11 @@ public class SoldierCombatManager : AICharacterCombatManager
     {
         if (aiCharacter.isPerformingAction) return;
 
-        if (viewableAngle >= 70 && viewableAngle <= 110)
+        if (viewableAngle >= 60 && viewableAngle <= 110)
         {
             aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 R", true);
         }
-        else if (viewableAngle <= -70 && viewableAngle >= -110)
+        else if (viewableAngle <= -60 && viewableAngle >= -110)
         {
             aiCharacter.characterAnimatorManager.PlayTargetActionAnimation("Turn 90 L", true);
         }

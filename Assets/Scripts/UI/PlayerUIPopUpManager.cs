@@ -31,7 +31,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [Header("BONFIRE LIT Pop Up")]
     [SerializeField] GameObject bonfireLitPopUpGameObject;
     [SerializeField] TextMeshProUGUI bonfireLitPopUpText;
-    
+
     [SerializeField] TextMeshProUGUI bonfireLitPopUpBackgroundText;
     [SerializeField] CanvasGroup bonfireLitPopUpCanvasGroup;
 
@@ -50,7 +50,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         popUpMessageText.text = messageText;
         popUpMessageGameObject.SetActive(true);
     }
-    
+
     public void SendItemPopUp(Item item, int amount)
     {
         itemAmount.enabled = false;
@@ -75,8 +75,8 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 5));
         StartCoroutine(WaitThenFadeOutPopUpOverTime(youDiedPopUpCanvasGroup, 2, 5));
     }
-    
-    public void SendBossDefeatedPopUp(string bossDefeatedMessage = "GREAT FOE DEFEATED")    
+
+    public void SendBossDefeatedPopUp(string bossDefeatedMessage = "GREAT FOE DEFEATED")
     {
         bossDefeatedPopUpText.text = bossDefeatedMessage;
         bossDefeatedPopUpBackgroundText.text = bossDefeatedMessage;
@@ -86,7 +86,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopUpCanvasGroup, 5));
         StartCoroutine(WaitThenFadeOutPopUpOverTime(bossDefeatedPopUpCanvasGroup, 2, 5));
     }
-    
+
     public void SendBonfireLitPopUp()
     {
         bonfireLitPopUpGameObject.SetActive(true);
@@ -161,6 +161,12 @@ public class PlayerUIPopUpManager : MonoBehaviour
         canvas.alpha = 0;
 
         yield return null;
+    }
+
+    public void CloseYouDiedPopUp()
+    {
+        youDiedPopUpGameObject.SetActive(false);
+        PlayerUIManager.instance.popUpWindowIsOpen = false;
     }
 }
 

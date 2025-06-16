@@ -9,6 +9,13 @@ public class CharacterSaveData
     [Header("Time Played")]
     public float secondsPlayed = 0f;
 
+    [Header("Blood Pool")]
+    public bool hasBloodPool = false;
+    public float bloodPoolPositionX;
+    public float bloodPoolPositionY;
+    public float bloodPoolPositionZ;
+    public int bloodPoolBloodDrops;
+
     [Header("Character Stats")]
     public int vitality = 1;
     public int resistance = 1;
@@ -17,7 +24,7 @@ public class CharacterSaveData
 
     [Header("World Position")]
     public float worldPositionX = 0;
-    public float worldPositionY = 0.81f;
+    public float worldPositionY = 1.2f;
     public float worldPositionZ = 0;
 
     [Header("Boss Statuses")]

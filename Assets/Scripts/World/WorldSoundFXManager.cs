@@ -1,5 +1,6 @@
 using UnityEngine;
 using FMODUnity;
+using FMOD.Studio;
 
 public class WorldSoundFXManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class WorldSoundFXManager : MonoBehaviour
 
     [Header("You Died SFX")]
     [SerializeField] protected string youDiedSFXFMODEvent = "event:/UI/You Died";
+    [SerializeField] protected EventInstance youDiedInstance;
 
     private void Awake()
     {
@@ -42,6 +44,13 @@ public class WorldSoundFXManager : MonoBehaviour
 
     public void PlayYouDiedSFX()
     {
-        RuntimeManager.PlayOneShot(youDiedSFXFMODEvent, transform.position);
+        youDiedInstance = RuntimeManager.CreateInstance(youDiedSFXFMODEvent);
+        youDiedInstance.start();
+    }
+
+    public void EndYouDiedSFXEarly()
+    {
+        youDiedInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        youDiedInstance.release();
     }
 }

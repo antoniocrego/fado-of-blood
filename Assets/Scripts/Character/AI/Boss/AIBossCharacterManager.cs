@@ -86,7 +86,7 @@ public class AIBossCharacterManager : AICharacterManager
 
     }
 
-    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
+    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false) 
     {
         health = 0;
         isDead = true;
@@ -122,7 +122,7 @@ public class AIBossCharacterManager : AICharacterManager
         // play death sfx
         characterSoundFXManager.PlayDeathSFX();
 
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(3f);
 
         PlayerManager player = FindFirstObjectByType<PlayerManager>();
 
@@ -175,6 +175,12 @@ public class AIBossCharacterManager : AICharacterManager
     {
         bossFightIsActive = false;
         // hp bar kills itself after 2.5 seconds
+
+        characterLocomotionManager.canMove = false;
+        characterLocomotionManager.canRotate = false;
+        isPerformingAction = false;
+        isSprinting = false;
+        isMoving = false;
 
         foreach (FogWallInteractable fogWall in fogWalls)
         {

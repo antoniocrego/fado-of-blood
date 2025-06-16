@@ -29,6 +29,8 @@ public class Interactable : MonoBehaviour
     public virtual void Interact(PlayerManager player)
     {
         //Debug.Log("YOU HAVE INTERACTED!");
+        if (player.isDead) return;
+        
         player.playerInteractionManager.RemoveInteractionFromList(this);
         PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();    
         interactableCollider.enabled = false;
@@ -43,7 +45,7 @@ public class Interactable : MonoBehaviour
     {
         PlayerManager player = other.GetComponent<PlayerManager>();
         // Debug.Log("OnTriggerEnter Interactable");
-        if (player != null)
+        if (player != null && !player.isDead)
         {
             // Debug.Log("PlayerManager found in Interactable");
             player.playerInteractionManager.AddInteractionToList(this);

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CharacterManager : MonoBehaviour
@@ -98,7 +99,8 @@ public class CharacterManager : MonoBehaviour
 
     }
 
-    public virtual void SetIsChargingAttack(bool isCharging) {
+    public virtual void SetIsChargingAttack(bool isCharging)
+    {
         isChargingAttack = isCharging;
         animator.SetBool("isChargingAttack", isCharging);
     }
@@ -121,10 +123,9 @@ public class CharacterManager : MonoBehaviour
             characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
         }
 
-
         // Play death SFX
         characterSoundFXManager.PlayDeathSFX();
-        yield return new WaitForSeconds(2);
+        yield return null;
     }
 
     public void CheckHealth()
@@ -164,6 +165,15 @@ public class CharacterManager : MonoBehaviour
                     Physics.IgnoreCollision(collider, otherCollider);
                 }
             }
+        }
+    }
+
+    public void DisableAllDamageHitboxes()
+    {
+        DamageCollider[] colliders = GetComponentsInChildren<DamageCollider>();
+        foreach (DamageCollider collider in colliders)
+        {
+            collider.DisableDamageCollider();
         }
     }
 }
