@@ -12,7 +12,7 @@ public class FlaskItem : QuickSlotItem
 
     [Header("Restoration Value")]
 
-    [SerializeField] int flaskRestoration = 50;
+    public int flaskRestoration = 50;
 
     [Header("Empty Item")]
     public GameObject emptyFlaskItem;
@@ -79,24 +79,38 @@ public class FlaskItem : QuickSlotItem
             {
                 return;
             }
-            if (player.health + flaskRestoration > player.maxHealth)
+
+            int amountToHeal = this.flaskRestoration; 
+
+            if (player.health + amountToHeal > player.maxHealth)
             {
                 Debug.Log("Player health is almost max, restoring only the remaining health.");
                 Debug.Log("Current Health: " + player.health);
                 Debug.Log("Max Health: " + player.maxHealth);
-                Debug.Log("Flask Restoration: " + flaskRestoration);
-                flaskRestoration = (int)(player.maxHealth - player.health);
+                Debug.Log("Flask Base Restoration: " + this.flaskRestoration); 
+                amountToHeal = (int)(player.maxHealth - player.health); 
             }
-            player.health += flaskRestoration;
-            player.playerEquipmentManager.remainingHealthFlasks -= 1;
+            player.health += amountToHeal; 
+            PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(player.health); 
+
+            if (player.playerEquipmentManager.remainingHealthFlasks > 0) 
+            {
+                player.playerEquipmentManager.remainingHealthFlasks -= 1;
+            }
         }
         if (healthFlask && player.playerEquipmentManager.remainingHealthFlasks <= 0)
         {
-            Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
-            GameObject emptyFlask = Instantiate(emptyFlaskItem, player.playerEquipmentManager.rightHandSlot.transform);
-            player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
+            if (player.playerEffectsManager.activeQuickSlotItemFX != null)
+            {
+                Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
+            }
+            if (emptyFlaskItem != null) 
+            {
+                GameObject emptyFlask = Instantiate(emptyFlaskItem, player.playerEquipmentManager.rightHandSlot.transform);
+                player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
+            }
         }
-        PlayHealingFX(player);
+        PlayHealingFX(player); 
     }
 
     private void PlayHealingFX(PlayerManager player)

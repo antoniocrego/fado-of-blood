@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a336c05c89ea7c643ab74b4363b6fc9f, type: 3}
+  m_Name: Shard
+  m_EditorClassIdentifier: 
+  itemName: Shard of Vital
+  itemIcon: {fileID: 21300000, guid: 9a79db696efd9b946ba3d8540745df5f, type: 3}
+  itemDescription: Forged in the age of forgotten kings, this radiant shard pulses
+    with ancient vigor. When consumed, it grants greater potency to healing draughts
+    and increases their number, as though the gods themselves favor thy survival.
+  itemID: 1
+  consumableModel: {fileID: 919132149155446097, guid: ada3951a01488d142889d21a357f8bb2, type: 3}
