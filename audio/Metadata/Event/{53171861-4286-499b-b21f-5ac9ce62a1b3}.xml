@@ -5,7 +5,7 @@
 			<value>Fog door</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{d2ce101c-de1e-4310-9e6e-bc94e9728344}</destination>
@@ -142,6 +142,7 @@
 	<object class="MixerBusEffectChain" id="{14b7a97a-1d29-44ea-b807-edd42738b40a}">
 		<relationship name="effects">
 			<destination>{81fc3aee-7607-4f14-8a14-87ee6176ac8c}</destination>
+			<destination>{04c1ced1-755a-4211-9369-8b0f01f30b82}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{9b465f29-27c3-41f2-ad5b-9226374537e6}" />
@@ -185,4 +186,5 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{81fc3aee-7607-4f14-8a14-87ee6176ac8c}" />
+	<object class="SpatialiserEffect" id="{04c1ced1-755a-4211-9369-8b0f01f30b82}" />
 </objects>

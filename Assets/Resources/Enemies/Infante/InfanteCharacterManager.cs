@@ -16,7 +16,6 @@ public class InfanteCharacterManager : AIBossCharacterManager
 
     public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
     {
-        RuntimeManager.PlayOneShot(deathSpeech, transform.position);
         // spawn game ending event triggers
         return base.ProcessDeath(manuallySelectDeathAnimation);
     }

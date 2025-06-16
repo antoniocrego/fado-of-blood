@@ -5,7 +5,7 @@
 			<value>NPC Line 3</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5f6e3d6a-8842-4161-9a43-cc6622c48dc4}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{03e6f61e-4299-4195-80d5-48739a9b41f9}">
 		<relationship name="effects">
 			<destination>{42014441-165e-43d3-ac89-2561a7419daf}</destination>
+			<destination>{1ebe877c-2bc0-45a6-bbb4-46de2b3789ed}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a191ccd2-2125-49cc-b1c4-ffda609b68fc}" />
@@ -127,5 +128,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{4a462eab-ffe8-4229-a0cc-8610a9c12def}" />
 	<object class="MixerBusFader" id="{42014441-165e-43d3-ac89-2561a7419daf}" />
+	<object class="SpatialiserEffect" id="{1ebe877c-2bc0-45a6-bbb4-46de2b3789ed}" />
 	<object class="MixerBusFader" id="{1c8a400b-7cd8-4f77-ad70-e0d94cb2f226}" />
 </objects>

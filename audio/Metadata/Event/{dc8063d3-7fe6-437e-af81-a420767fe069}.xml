@@ -5,7 +5,7 @@
 			<value>Creaking Door Open</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{61978bbb-e2b6-4535-bb00-e24342061d84}</destination>
@@ -123,6 +123,7 @@
 	<object class="MixerBusEffectChain" id="{ac615398-25ba-47ea-b48a-d857df1c586e}">
 		<relationship name="effects">
 			<destination>{a46f924c-c39c-49d5-b18e-bfcf6b5e793f}</destination>
+			<destination>{41bd0ebf-e2ac-4bd5-a0a5-bf6c8644ea4f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{00d8a4cb-75ae-4546-9b83-f4abbafb0076}" />
@@ -175,6 +176,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{20b19df5-7996-4244-9cb2-7fd257b2cc08}" />
 	<object class="MixerBusFader" id="{a46f924c-c39c-49d5-b18e-bfcf6b5e793f}" />
+	<object class="SpatialiserEffect" id="{41bd0ebf-e2ac-4bd5-a0a5-bf6c8644ea4f}" />
 	<object class="AutomationPoint" id="{8fa5ef17-a101-4239-9f16-78364ea53716}">
 		<property name="position">
 			<value>0</value>

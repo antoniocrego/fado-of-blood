@@ -5,7 +5,7 @@
 			<value>Grunt_Combat</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c8f9a467-de8f-4ad4-a47a-3e00fa29291e}</destination>
@@ -117,6 +117,7 @@
 	<object class="MixerBusEffectChain" id="{fd8032d7-4322-466e-aef8-f4445bd525de}">
 		<relationship name="effects">
 			<destination>{b7598d13-a96c-41c2-8e18-42d15ea83708}</destination>
+			<destination>{b49c8dda-bc74-44e4-b421-eb82d43d6119}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7d431b2e-a9ae-4e81-8d34-b4d1d6a72c53}" />
@@ -153,5 +154,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{9a247238-e17d-4cd3-b90f-86c3afd6b025}" />
 	<object class="MixerBusFader" id="{b7598d13-a96c-41c2-8e18-42d15ea83708}" />
+	<object class="SpatialiserEffect" id="{b49c8dda-bc74-44e4-b421-eb82d43d6119}" />
 	<object class="MixerBusFader" id="{f27c2e39-52b4-4304-9ef6-3d41aef5b3ff}" />
 </objects>

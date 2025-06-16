@@ -48,6 +48,8 @@ public class CharacterManager : MonoBehaviour
     public bool isJumping = false;
     public bool isBlocking = false;
     public bool isAttacking = false;
+    public string currentSurfaceType = "Dirt"; // Default surface type
+
     protected virtual void Start()
     {
         IgnoreMyOwnColliders();

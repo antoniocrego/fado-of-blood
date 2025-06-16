@@ -11,6 +11,7 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
     private bool hasTouchedGround = false;
     private bool hasPlayedFootstepSFX = false;
     [SerializeField] float distanceToGround = 0.1f; // Distance to check for ground
+    [SerializeField] string footstepSFXEvent = "event:/Footsteps/Footsteps"; // FMOD event for footsteps
 
     private void Start()
     {
@@ -57,10 +58,12 @@ public class CharacterFootstepSFXMaker : MonoBehaviour
 
     private void PlayFootstepSFX()
     {
-        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance("event:/Footsteps/Footsteps");
+        FMOD.Studio.EventInstance instance = RuntimeManager.CreateInstance(footstepSFXEvent);
         instance.set3DAttributes(RuntimeUtils.To3DAttributes(transform));
         // TODO: Add logic to choose the correct footstep sound based on the surface type
-        instance.setParameterByNameWithLabel("Footsteps", "Sand");
+
+        instance.setParameterByNameWithLabel("Footsteps", character.currentSurfaceType);
+
         instance.start();
         instance.release();
     }

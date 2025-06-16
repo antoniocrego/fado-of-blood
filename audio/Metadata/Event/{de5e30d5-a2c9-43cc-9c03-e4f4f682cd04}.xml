@@ -5,7 +5,7 @@
 			<value>Final Boss Intro</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{22472fe9-cab2-4fa6-9e96-d9a716e3a9af}</destination>
@@ -197,6 +197,7 @@
 	<object class="MixerBusEffectChain" id="{556e45ff-918c-434a-9d7f-863b5c5b2f87}">
 		<relationship name="effects">
 			<destination>{7777d118-efc7-4872-aefb-200684bf3a98}</destination>
+			<destination>{d560a14b-2217-46a1-aa4f-9f62ed47be9d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7fc49a59-8ea9-4484-93b8-45690e9e649d}" />
@@ -264,6 +265,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{efd67286-5687-4254-95d5-e0cf1945b6de}" />
 	<object class="MixerBusFader" id="{7777d118-efc7-4872-aefb-200684bf3a98}" />
+	<object class="SpatialiserEffect" id="{d560a14b-2217-46a1-aa4f-9f62ed47be9d}" />
 	<object class="AutomationPoint" id="{3ed32ace-2cd8-4df1-9a66-4c71cf3dc48e}">
 		<property name="position">
 			<value>1.5032029165993128</value>
