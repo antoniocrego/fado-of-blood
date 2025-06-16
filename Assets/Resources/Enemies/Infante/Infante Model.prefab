@@ -573,9 +573,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageGruntFMODEvent: event:/Enemies/Small_Enemies/Moan
   damageSFXFMODEvent: event:/Combat/Blood and gore/Bone Crack
-  attackGruntFMODEvent: 
+  attackGruntFMODEvent: event:/Enemies/Final Boss/Boss Grunt_Combat
   attackWhooshes: []
-  deathSFXFMODEvent: event:/Enemies/Small_Enemies/Death
+  deathSFXFMODEvent: event:/Voices/Final Boss/Final Boss Death
   footstepFMODEvent: event:/Footsteps/Footsteps
   bossDefeatedSFXFMODEvent: event:/UI/Boss Defeated
 --- !u!4 &8722266572190523044 stripped
