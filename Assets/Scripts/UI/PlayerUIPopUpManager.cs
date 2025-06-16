@@ -31,15 +31,27 @@ public class PlayerUIPopUpManager : MonoBehaviour
     [Header("BONFIRE LIT Pop Up")]
     [SerializeField] GameObject bonfireLitPopUpGameObject;
     [SerializeField] TextMeshProUGUI bonfireLitPopUpText;
-    
+
     [SerializeField] TextMeshProUGUI bonfireLitPopUpBackgroundText;
     [SerializeField] CanvasGroup bonfireLitPopUpCanvasGroup;
+
+    [Header("NEW AREA Pop Up")]
+    [SerializeField] GameObject newAreaPopUpGameObject;
+    [SerializeField] TextMeshProUGUI newAreaPopUpText;
+    [SerializeField] CanvasGroup newAreaPopUpCanvasGroup;
+    [SerializeField] TextMeshProUGUI newAreaPopUpBackgroundText;
 
     public void CloseAllPopUpWindows()
     {
         popUpMessageGameObject.SetActive(false);
 
         itemPopUpGameObject.SetActive(false);
+
+        youDiedPopUpGameObject.SetActive(false);
+
+        bossDefeatedPopUpGameObject.SetActive(false);
+
+        bonfireLitPopUpGameObject.SetActive(false);
 
         PlayerUIManager.instance.popUpWindowIsOpen = false;
     }
@@ -50,7 +62,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         popUpMessageText.text = messageText;
         popUpMessageGameObject.SetActive(true);
     }
-    
+
     public void SendItemPopUp(Item item, int amount)
     {
         itemAmount.enabled = false;
@@ -75,8 +87,8 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 5));
         StartCoroutine(WaitThenFadeOutPopUpOverTime(youDiedPopUpCanvasGroup, 2, 5));
     }
-    
-    public void SendBossDefeatedPopUp(string bossDefeatedMessage = "GREAT FOE DEFEATED")    
+
+    public void SendBossDefeatedPopUp(string bossDefeatedMessage = "GREAT FOE DEFEATED")
     {
         bossDefeatedPopUpText.text = bossDefeatedMessage;
         bossDefeatedPopUpBackgroundText.text = bossDefeatedMessage;
@@ -86,7 +98,7 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopUpCanvasGroup, 5));
         StartCoroutine(WaitThenFadeOutPopUpOverTime(bossDefeatedPopUpCanvasGroup, 2, 5));
     }
-    
+
     public void SendBonfireLitPopUp()
     {
         bonfireLitPopUpGameObject.SetActive(true);
@@ -94,6 +106,17 @@ public class PlayerUIPopUpManager : MonoBehaviour
         StartCoroutine(StretchPopUpTextOverTime(bonfireLitPopUpBackgroundText, 8, 19));
         StartCoroutine(FadeInPopUpOverTime(bonfireLitPopUpCanvasGroup, 5));
         StartCoroutine(WaitThenFadeOutPopUpOverTime(bonfireLitPopUpCanvasGroup, 2, 5));
+    }
+
+    public void SendNewAreaPopUp(int areaID)
+    {
+        newAreaPopUpText.text = Areas.AreaNames[areaID];
+        newAreaPopUpBackgroundText.text = Areas.AreaNames[areaID];
+        newAreaPopUpGameObject.SetActive(true);
+        newAreaPopUpBackgroundText.characterSpacing = 0;
+        StartCoroutine(StretchPopUpTextOverTime(newAreaPopUpBackgroundText, 8, 19));
+        StartCoroutine(FadeInPopUpOverTime(newAreaPopUpCanvasGroup, 2));
+        StartCoroutine(WaitThenFadeOutPopUpOverTime(newAreaPopUpCanvasGroup, 2, 1));
     }
 
     private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)

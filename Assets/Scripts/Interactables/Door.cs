@@ -7,6 +7,7 @@ public class Door : Interactable
     PlayerManager player;
 
     [Header("Door Settings")]
+    [SerializeField] int doorID = 0; // Unique ID for the door
     [SerializeField] private Animator doorAnimator;
     [SerializeField] private string openAnimationName = "DoorOpen";
     [SerializeField] private string closeAnimationName = "DoorClose";
@@ -49,7 +50,24 @@ public class Door : Interactable
         {
             doorAnimator = GetComponent<Animator>();
         }
+
         currentLockState = isLockedByDefault;
+
+        if (WorldSaveGameManager.instance.currentCharacterData.doorsOpened.ContainsKey(doorID))
+        {
+            isOpen = WorldSaveGameManager.instance.currentCharacterData.doorsOpened[doorID];
+        }
+        else
+        {
+            WorldSaveGameManager.instance.currentCharacterData.doorsOpened.Add(doorID, isOpen);
+        }
+
+        if (isOpen)
+        {
+            interactableCollider.enabled = false; // Disable collider if the door is already open
+            ToggleDoorState(true);
+        }
+
     }
 
     public void OperateByExternal()
@@ -123,9 +141,9 @@ public class Door : Interactable
         }
     }
 
-     private void ToggleDoorState()
+     private void ToggleDoorState(bool isBornOpen = false)
     {
-        isOpen = !isOpen;
+        if (!isBornOpen) isOpen = !isOpen;
         if (isOpen)
         {
             Transform doorRotationObjectTransform = doorToBeRotated;
@@ -141,8 +159,14 @@ public class Door : Interactable
                 _activeRotationCoroutine = StartCoroutine(SmoothlyRotate(doorRotationObjectTransform, targetRotation, manualRotationDuration));
             }
 
-            player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true, hideWeapons: true);
-            RuntimeManager.PlayOneShot(doorOpenSound, transform.position);
+            WorldSaveGameManager.instance.currentCharacterData.doorsOpened[doorID] = true;
+
+            if (!isBornOpen)
+            {
+                player.playerAnimatorManager.PlayTargetActionAnimation("Swap_Right_Weapon_01", false, false, true, true, hideWeapons: true);
+                RuntimeManager.PlayOneShot(doorOpenSound, transform.position);
+                WorldSaveGameManager.instance.SaveGame();
+            }
         }
     }
     
@@ -152,7 +176,7 @@ public class Door : Interactable
         if (!isPermanentlyUnlockedByKey) 
         {
             currentLockState = lockDoor;
-            Debug.Log(gameObject.name + " lock state set to: " + currentLockState);
+            //Debug.Log(gameObject.name + " lock state set to: " + currentLockState);
         }
     }
 

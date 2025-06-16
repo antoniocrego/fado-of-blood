@@ -85,6 +85,8 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     private void PlayDirectionalDamageVFX(CharacterManager character)
     {
+        character.DisableAllDamageHitboxes();
+        
         if (angleHitFrom >= 145 && angleHitFrom <= 180)
         {
             damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.forwardHitAnimations);

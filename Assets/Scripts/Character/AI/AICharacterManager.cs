@@ -102,6 +102,8 @@ public class AICharacterManager : CharacterManager
     {
         yield return base.ProcessDeath(manuallySelectDeathAnimation);
 
+        yield return new WaitForSeconds(2f); // Wait a little before awarding blood drops.
+
         PlayerManager player = FindFirstObjectByType<PlayerManager>();
 
         if (player != null)
