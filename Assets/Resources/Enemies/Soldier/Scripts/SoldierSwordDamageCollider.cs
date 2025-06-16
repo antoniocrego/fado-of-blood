@@ -14,6 +14,5 @@ public class SoldierSwordDamageCollider : DamageCollider
     protected override void DamageTarget(CharacterManager damageTarget)
     {
         base.DamageTarget(damageTarget);
-        
     }
 }

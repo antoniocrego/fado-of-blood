@@ -10,6 +10,7 @@ public class CharacterStatsManager : MonoBehaviour
 
     [Header("Blocking Absorptions")]
     public float blockingDamageAbsorption;
+    public float blockingStability;
 
     public int CalculateStaminaBasedOnEnduranceLevel()
     {
