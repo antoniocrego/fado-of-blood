@@ -27,6 +27,8 @@ public class UICharacterHPBar : UiStat_Bar
         slider.maxValue = character.maxHealth;
 
         float oldValue = slider.value;
+        if (oldValue == 0)
+            oldValue = character.maxHealth;
         currentDamageTaken = currentDamageTaken + (oldValue - newValue); 
         if (currentDamageTaken < 0)
         {
