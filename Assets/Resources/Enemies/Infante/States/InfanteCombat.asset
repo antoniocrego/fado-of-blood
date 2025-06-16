@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0746bce1926bbf43a59464e0f1b1a4b, type: 3}
   m_Name: InfanteCombat
   m_EditorClassIdentifier: 
-  aiCharacterAttacks: []
+  aiCharacterAttacks:
+  - {fileID: 11400000, guid: 826a3bccc321c6d4ab21e9e7706875f5, type: 2}
+  - {fileID: 11400000, guid: 9f42c9435e2124a42b36442cfb19f5b7, type: 2}
+  - {fileID: 11400000, guid: 51f4b9900fb898a4083544763cd4ddf7, type: 2}
+  - {fileID: 11400000, guid: b98ecd27867881f4e93f8fe95e984923, type: 2}
+  - {fileID: 11400000, guid: e4f0696a5d9ebc94f9fa273f9b9d34e4, type: 2}
+  - {fileID: 11400000, guid: f09c3efee6a9c044aa06eaa0b861edbc, type: 2}
+  - {fileID: 11400000, guid: ced12e7168991eb40a5318edb077743d, type: 2}
+  - {fileID: 11400000, guid: 39fa1d639e936d7449234cc858d30617, type: 2}
   canPerformCombo: 0
   chanceToPerformCombo: 25
   maximumEngagementDistance: 5
