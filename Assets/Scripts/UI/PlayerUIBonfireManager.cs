@@ -29,6 +29,7 @@ public class PlayerUIBonfireManager : PlayerUIMenu
         if (shardItemInstance != null)
         {
             mainHealthFlaskToUpgrade.flaskRestoration += restorationIncreaseAmount;
+            player.playerEquipmentManager.remainingHealthFlasks += shardsToConsume; 
             player.playerInventoryManager.RemoveItemFromInventory(shardItemInstance); 
             PlayerUIManager.instance.playerUIBonfireManager.CloseMenu();
             string successMessage = $"Consumed '{shardItemName}'. Flask potency increased.";

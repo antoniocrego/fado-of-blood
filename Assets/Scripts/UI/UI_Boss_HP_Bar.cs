@@ -8,7 +8,7 @@ public class UI_Boss_HP_Bar : UiStat_Bar
     public void EnableBossHPBar(AIBossCharacterManager boss)
     {
         if (boss == null) return;
-        scaleBarLengthWithStats = false; 
+        scaleBarLengthWithStats = false;
         bossCharacter = boss;
         gameObject.SetActive(true);
         SetMaxStat(bossCharacter.maxHealth);
