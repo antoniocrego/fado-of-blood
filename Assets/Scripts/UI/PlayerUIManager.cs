@@ -54,10 +54,6 @@ public class PlayerUIManager : MonoBehaviour
         playerUIBonfireManager = GetComponentInChildren<PlayerUIBonfireManager>();
         playerManager = FindFirstObjectByType<PlayerManager>();
     }
-    void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
 
     // Update is called once per frame
     void Update()

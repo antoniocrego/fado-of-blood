@@ -159,7 +159,15 @@ public class PlayerUIHudManager : MonoBehaviour
     {
         float timer = updateCountDelayTimer;
         int bloodDropsToAdd = pendingBloodDropsCount;
-        bloodDropsToAddText.text = "+" + bloodDropsToAdd.ToString();
+        if (bloodDropsToAdd > 0)
+        {
+            bloodDropsToAddText.text = "+" + bloodDropsToAdd.ToString();
+        }
+        else
+        {
+            bloodDropsToAddText.text = "-" + Mathf.Abs(bloodDropsToAdd).ToString();
+        }
+        
         bloodDropsToAddText.enabled = true;
 
         while (timer > 0)
@@ -169,7 +177,14 @@ public class PlayerUIHudManager : MonoBehaviour
             if (bloodDropsToAdd != pendingBloodDropsCount)
             {
                 bloodDropsToAdd = pendingBloodDropsCount;
-                bloodDropsToAddText.text = "+" + bloodDropsToAdd.ToString();
+                if (bloodDropsToAdd > 0)
+                {
+                    bloodDropsToAddText.text = "+" + bloodDropsToAdd.ToString();
+                }
+                else
+                {
+                    bloodDropsToAddText.text = "-" + Mathf.Abs(bloodDropsToAdd).ToString();
+                }
                 // timer = updateCountDelayTimer; // Reset the timer if new blood drops are added.
             }
 

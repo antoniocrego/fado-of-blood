@@ -35,6 +35,8 @@ public class PlayerManager : CharacterManager
     public float minFov = -60f;
     public float maxFov = 60f;
 
+    private Coroutine revivalCoroutine;
+
     protected override void Start()
     {
         base.Start();
@@ -60,7 +62,7 @@ public class PlayerManager : CharacterManager
         health = maxHealth;
         stamina = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel();
         maxStamina = Mathf.RoundToInt(stamina);
-        
+
         PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(maxHealth);
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
     }
@@ -171,21 +173,137 @@ public class PlayerManager : CharacterManager
         playerStatsManager.resistance = currentCharacterData.resistance;
         playerStatsManager.strength = currentCharacterData.strength;
 
-        transform.position = new Vector3(
-            currentCharacterData.worldPositionX,
-            currentCharacterData.worldPositionY,
-            currentCharacterData.worldPositionZ
-        );
+        if (currentCharacterData.isInForbiddenSaveArea)
+        {
+            transform.position = new Vector3(
+                currentCharacterData.safeSavePositionX,
+                currentCharacterData.safeSavePositionY,
+                currentCharacterData.safeSavePositionZ
+            );
+        }
+        else
+        {
+            // If not in a forbidden save area, use the saved world position
+            transform.position = new Vector3(
+                currentCharacterData.worldPositionX,
+                currentCharacterData.worldPositionY,
+                currentCharacterData.worldPositionZ
+            );
+        }
+
         playerStatsManager.bloodDrops = currentCharacterData.bloodDrops;
-        PlayerUIManager.instance.playerUIHudManager.SetBloodDrops(playerStatsManager.bloodDrops);
+
+        if (currentCharacterData.hasBloodPool)
+        {
+            Vector3 bloodPoolPosition = new Vector3(
+                currentCharacterData.bloodPoolPositionX,
+                currentCharacterData.bloodPoolPositionY,
+                currentCharacterData.bloodPoolPositionZ
+            );
+            CreateDeadSpot(bloodPoolPosition, currentCharacterData.bloodPoolBloodDrops, false);
+        }
+
+        if (playerStatsManager)
+            PlayerUIManager.instance.playerUIHudManager.SetBloodDrops(playerStatsManager.bloodDrops);
     }
 
     public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
     {
         PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
         WorldSoundFXManager.instance.PlayYouDiedSFX();
+        CreateDeadSpot(transform.position, playerStatsManager.bloodDrops, true);
 
-        return base.ProcessDeath(manuallySelectDeathAnimation);
+        yield return base.ProcessDeath(manuallySelectDeathAnimation);
+
+        yield return new WaitForSeconds(6f);
+
+        ReviveWrap();
+    }
+
+    public void CreateDeadSpot(Vector3 position, int bloodDropCount, bool generating = true)
+    {
+        GameObject bloodPoolVFX = Instantiate(
+            WorldCharacterEffectsManager.instance.bloodPoolVFX,
+            position,
+            Quaternion.identity
+        );
+        BloodPoolInteractable bloodPoolInteractable = bloodPoolVFX.GetComponent<BloodPoolInteractable>();
+        bloodPoolInteractable.bloodDrops = bloodDropCount;
+
+        if (generating)
+        {
+            // player just died, we're creating a blood pool and adding it to the save data
+            playerStatsManager.AddBloodDrops(-playerStatsManager.bloodDrops);
+
+            WorldSaveGameManager.instance.currentCharacterData.hasBloodPool = true;
+            WorldSaveGameManager.instance.currentCharacterData.bloodPoolPositionX = position.x;
+            WorldSaveGameManager.instance.currentCharacterData.bloodPoolPositionY = position.y;
+            WorldSaveGameManager.instance.currentCharacterData.bloodPoolPositionZ = position.z;
+            WorldSaveGameManager.instance.currentCharacterData.bloodPoolBloodDrops = bloodDropCount;
+        }
+    }
+
+    public void ReviveWrap()
+    {
+        if (revivalCoroutine != null)
+        {
+            StopCoroutine(revivalCoroutine);
+        }
+        revivalCoroutine = StartCoroutine(Revive());
+    }
+
+    private IEnumerator Revive()
+    {
+        LoadingScreenManager.instance.ActivateLoadingScreen();
+
+        // let's end the Dying SFX early
+        WorldSoundFXManager.instance.EndYouDiedSFXEarly();
+
+        WorldAIManager.instance.ResetAllCharacters();
+
+        CharacterSaveData currentCharacterData = WorldSaveGameManager.instance.currentCharacterData;
+
+        int latestBonfireID = currentCharacterData.lastBonfireRestedAt;
+
+        Vector3 respawnPosition = new Vector3(0f, 1.2f, 0f);
+
+        if (latestBonfireID >= 0 && currentCharacterData.bonfiresLit.ContainsKey(latestBonfireID) && currentCharacterData.bonfiresLit[latestBonfireID])
+        {
+            respawnPosition = WorldObjectManager.instance.bonfires[latestBonfireID].respawnPosition.position;
+        }
+        else
+        {
+            Debug.LogWarning("Invalid bonfire ID, respawning at default position.");
+        }
+
+        RevivePlayer(respawnPosition);
+
+        yield return null;
+    }
+    
+    private void RevivePlayer(Vector3 respawnPosition)
+    {
+        health = maxHealth;
+        stamina = maxStamina;
+
+        transform.position = respawnPosition;
+
+        PlayerUIManager.instance.CloseAllMenuWindows();
+        PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopUpWindows();
+
+        playerCombatManager.currentTarget = null;
+        playerCameraManager.ClearLockOnTargets();
+
+        PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(maxHealth);
+        PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(maxStamina);
+
+        isDead = false;
+        // there's conflicting "Empty" states so we have to specify the layer
+        animator.Play("Empty", 2, 0f); // Reset animator state
+
+        WorldSaveGameManager.instance.SaveGame();
+
+        LoadingScreenManager.instance.DeactivateLoadingScreen();
     }
 
 }

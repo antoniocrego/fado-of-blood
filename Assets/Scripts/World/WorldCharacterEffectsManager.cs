@@ -10,6 +10,8 @@ public class WorldCharacterEffectsManager : MonoBehaviour{
 
     public GameObject healingFlaskVFX;
 
+    public GameObject bloodPoolVFX;
+
     [Header("Damage")]
     public TakeDamageEffect takeDamageEffect;
     public TakeBlockedDamageEffect takeBlockedDamageEffect;

@@ -62,6 +62,14 @@ public class TakeDamageEffect : InstantCharacterEffect
         Debug.Log("Character health before taking damage: " + character.health);
         character.health -= finalDamageDealt;
         character.playerUIHudManager.SetNewHealthValue(character.health);
+        if (character is AICharacterManager)
+        {
+            Debug.Log("AI character health after taking damage: " + character.health);
+        }
+        if (character.characterHPBar != null)
+            {
+                character.characterHPBar.SetStat(character.health);
+            }
         Debug.Log("Character health after taking damage: " + character.health);
     }
 
@@ -77,6 +85,8 @@ public class TakeDamageEffect : InstantCharacterEffect
 
     private void PlayDirectionalDamageVFX(CharacterManager character)
     {
+        character.DisableAllDamageHitboxes();
+        
         if (angleHitFrom >= 145 && angleHitFrom <= 180)
         {
             damageAnimation = character.characterAnimatorManager.GetRandomAnimation(character.characterAnimatorManager.forwardHitAnimations);

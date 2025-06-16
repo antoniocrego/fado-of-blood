@@ -198,6 +198,19 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         player.LoadGame(ref currentCharacterData);
+
+        loadWorldSceneCoroutine = null; // Reset coroutine reference
+    }
+
+    public IEnumerator LoadMainMenuScene()
+    {
+        LoadingScreenManager.instance.ActivateLoadingScreen();
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(0); // Assuming 0 is the main menu scene index
+
+        while (!loadOperation.isDone)
+        {
+            yield return null;
+        }
     }
 
     public int GetWorldSceneIndex()
@@ -205,16 +218,18 @@ public class WorldSaveGameManager : MonoBehaviour
         return worldSceneIndex;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F5))
-        {
-            SaveGame();
-        }
+    // Call SaveGame when the application pauses to ensure data is saved.
+    // if we wanted to use on quit we'd need a more robust save system with backups
+    // void OnApplicationQuit()
+    // {
+    //     SaveGame();
+    // }
 
-        if (Input.GetKeyDown(KeyCode.F9))
-        {
-            LoadGame();
-        }   
-    }
+    // void OnApplicationPause(bool pause)
+    // {
+    //     if (pause)
+    //     {
+    //         SaveGame();
+    //     }
+    // }
 }

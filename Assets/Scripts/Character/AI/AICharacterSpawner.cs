@@ -43,7 +43,8 @@ public class AICharacterSpawner : MonoBehaviour
         instantiatedGameObject.transform.rotation = transform.rotation;
         aiCharacterManager.health = aiCharacterManager.maxHealth;
         aiCharacterManager.isDead = false;
-        aiCharacterManager.characterAnimatorManager.PlayTargetActionAnimation("Empty", false, false, true, true);
+        // there's conflicting "Empty" states so we have to specify the layer
+        aiCharacterManager.animator.Play("Empty", 2, 0f); // reset animation to "Empty" state
 
         // in case any character's base animation is not "Empty", this function must be implemented to change to that animation
         aiCharacterManager.SetToInitialState();

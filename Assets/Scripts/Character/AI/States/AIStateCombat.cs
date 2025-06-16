@@ -20,13 +20,27 @@ public class AIStateCombat : AIState
     [Header("Engagement Distance")]
     [SerializeField] public float maximumEngagementDistance = 5f;
 
+    [Header("Failsafe")]
+    [SerializeField] protected int failedAttemptsAtGettingAttack = 0;
+    [SerializeField] protected int maximumFailedAttemptsAtGettingAttack = 3;
+
     public override AIState Tick(AICharacterManager aiCharacter)
     {
         if (aiCharacter.isPerformingAction) return this;
 
         if (!aiCharacter.navMeshAgent.enabled) aiCharacter.navMeshAgent.enabled = true;
 
-        if (aiCharacter.aiCharacterCombatManager.canPivot) {
+        if (failedAttemptsAtGettingAttack >= maximumFailedAttemptsAtGettingAttack)
+        {
+            // If we failed to get an attack, we should reset the state.
+            failedAttemptsAtGettingAttack = 0;
+            hasAttack = false;
+            hasRolledForComboChance = false;
+            return SwitchState(aiCharacter, aiCharacter.pursueState);
+        }
+
+        if (aiCharacter.aiCharacterCombatManager.canPivot)
+        {
             if (!aiCharacter.isMoving)
             {
                 if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
@@ -38,17 +52,20 @@ public class AIStateCombat : AIState
 
         if (aiCharacter.aiCharacterCombatManager.currentTarget == null)
             return SwitchState(aiCharacter, aiCharacter.idleState);
-            
-        if (!hasAttack){
+
+        if (!hasAttack)
+        {
             GetNewAttack(aiCharacter);
         }
-        else{
+        else
+        {
             aiCharacter.attackState.currentAttack = chosenAttack;
 
             return SwitchState(aiCharacter, aiCharacter.attackState);
         }
-        
-        if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > maximumEngagementDistance){
+
+        if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > maximumEngagementDistance)
+        {
             return SwitchState(aiCharacter, aiCharacter.pursueState);
         }
 
@@ -66,13 +83,13 @@ public class AIStateCombat : AIState
             // we're too far or too close to the target
             if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > attack.maximumAttackDistance || aiCharacter.aiCharacterCombatManager.distanceFromTarget < attack.minimumAttackDistance)
                 continue;
-            
+
             // we're not in the right angle to attack
             if (aiCharacter.aiCharacterCombatManager.viewableAngle < attack.minimumAttackAngle || aiCharacter.aiCharacterCombatManager.viewableAngle > attack.maximumAttackAngle)
                 continue;
-            
+
             potentialAttacks.Add(attack);
-        }   
+        }
 
         if (potentialAttacks.Count <= 0) return;
 
@@ -83,7 +100,7 @@ public class AIStateCombat : AIState
             totalWeight += attack.attackWeight;
         }
 
-        var randomWeightValue = Random.Range(1, totalWeight+1);
+        var randomWeightValue = Random.Range(1, totalWeight + 1);
         var processedWeight = 0;
 
         foreach (AICharacterAttackAction attack in potentialAttacks)
@@ -99,6 +116,8 @@ public class AIStateCombat : AIState
                 return;
             }
         }
+        // if we reach here, we failed to get a valid attack
+        failedAttemptsAtGettingAttack++;
     }
 
     protected virtual bool RollForOutcomeChance(int outcomeChance){

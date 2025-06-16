@@ -4,14 +4,19 @@ using UnityEngine.UI;
 
 public class UiStat_Bar : MonoBehaviour
 {
-    private Slider slider;
+    protected Slider slider;
 
     protected virtual void Awake()
     {
         slider = GetComponent<Slider>();
     }
 
-    public virtual void SetStat(float newValue) 
+    protected virtual void Start()
+    {
+
+    }
+
+    public virtual void SetStat(float newValue)
     {
         slider.value = newValue;
 

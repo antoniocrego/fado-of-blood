@@ -25,5 +25,6 @@ public class PlayerStatsManager : CharacterStatsManager
     {
         bloodDrops += amount;
         PlayerUIManager.instance.playerUIHudManager.AddBloodDrops(amount);
+        WorldSaveGameManager.instance.SaveGame();
     }
 }
