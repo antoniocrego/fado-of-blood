@@ -6396,9 +6396,19 @@ MonoBehaviour:
   currentCharacterData:
     characterName: 
     secondsPlayed: 0
+    hasBloodPool: 0
+    bloodPoolPositionX: 0
+    bloodPoolPositionY: 0
+    bloodPoolPositionZ: 0
+    bloodPoolBloodDrops: 0
+    vitality: 1
+    resistance: 1
+    endurance: 1
+    strength: 1
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    currentAreaID: 0
     bossesAwakened:
       keys: 
       values: 
@@ -6412,12 +6422,23 @@ MonoBehaviour:
       keys: 
       values: 
     lastBonfireRestedAt: -1
+    bloodDrops: 0
   characterSlot01:
     characterName: 
     secondsPlayed: 0
+    hasBloodPool: 0
+    bloodPoolPositionX: 0
+    bloodPoolPositionY: 0
+    bloodPoolPositionZ: 0
+    bloodPoolBloodDrops: 0
+    vitality: 1
+    resistance: 1
+    endurance: 1
+    strength: 1
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    currentAreaID: 0
     bossesAwakened:
       keys: 
       values: 
@@ -6431,12 +6452,23 @@ MonoBehaviour:
       keys: 
       values: 
     lastBonfireRestedAt: -1
+    bloodDrops: 0
   characterSlot02:
     characterName: 
     secondsPlayed: 0
+    hasBloodPool: 0
+    bloodPoolPositionX: 0
+    bloodPoolPositionY: 0
+    bloodPoolPositionZ: 0
+    bloodPoolBloodDrops: 0
+    vitality: 1
+    resistance: 1
+    endurance: 1
+    strength: 1
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    currentAreaID: 0
     bossesAwakened:
       keys: 
       values: 
@@ -6450,12 +6482,23 @@ MonoBehaviour:
       keys: 
       values: 
     lastBonfireRestedAt: -1
+    bloodDrops: 0
   characterSlot03:
     characterName: 
     secondsPlayed: 0
+    hasBloodPool: 0
+    bloodPoolPositionX: 0
+    bloodPoolPositionY: 0
+    bloodPoolPositionZ: 0
+    bloodPoolBloodDrops: 0
+    vitality: 1
+    resistance: 1
+    endurance: 1
+    strength: 1
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    currentAreaID: 0
     bossesAwakened:
       keys: 
       values: 
@@ -6469,12 +6512,23 @@ MonoBehaviour:
       keys: 
       values: 
     lastBonfireRestedAt: -1
+    bloodDrops: 0
   characterSlot04:
     characterName: 
     secondsPlayed: 0
+    hasBloodPool: 0
+    bloodPoolPositionX: 0
+    bloodPoolPositionY: 0
+    bloodPoolPositionZ: 0
+    bloodPoolBloodDrops: 0
+    vitality: 1
+    resistance: 1
+    endurance: 1
+    strength: 1
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    currentAreaID: 0
     bossesAwakened:
       keys: 
       values: 
@@ -6488,12 +6542,23 @@ MonoBehaviour:
       keys: 
       values: 
     lastBonfireRestedAt: -1
+    bloodDrops: 0
   characterSlot05:
     characterName: 
     secondsPlayed: 0
+    hasBloodPool: 0
+    bloodPoolPositionX: 0
+    bloodPoolPositionY: 0
+    bloodPoolPositionZ: 0
+    bloodPoolBloodDrops: 0
+    vitality: 1
+    resistance: 1
+    endurance: 1
+    strength: 1
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    currentAreaID: 0
     bossesAwakened:
       keys: 
       values: 
@@ -6507,6 +6572,7 @@ MonoBehaviour:
       keys: 
       values: 
     lastBonfireRestedAt: -1
+    bloodDrops: 0
 --- !u!4 &615428222
 Transform:
   m_ObjectHideFlags: 0
@@ -13633,8 +13699,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1600787822}
   - component: {fileID: 1600787821}
-  - component: {fileID: 1600787820}
   - component: {fileID: 1600787819}
+  - component: {fileID: 1600787823}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: Untagged
@@ -13686,14 +13752,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1600787820
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1600787818}
-  m_Enabled: 1
 --- !u!20 &1600787821
 Camera:
   m_ObjectHideFlags: 0
@@ -13760,6 +13818,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1600787823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1600787818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nonRigidbodyVelocity: 0
+  attenuationObject: {fileID: 0}
 --- !u!1 &1627057016
 GameObject:
   m_ObjectHideFlags: 0
@@ -13967,7 +14039,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6270372154750309992, guid: a75cd3c992fdf3c4ba167c0cfa19ac34, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2034652811}
   m_SourcePrefab: {fileID: 100100000, guid: a75cd3c992fdf3c4ba167c0cfa19ac34, type: 3}
 --- !u!1 &1728195981
 GameObject:
@@ -14744,6 +14819,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f537b8185f3d5184da7e17886923b3aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &2034652805 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6270372154750309992, guid: a75cd3c992fdf3c4ba167c0cfa19ac34, type: 3}
+  m_PrefabInstance: {fileID: 1657702876}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2034652811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034652805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10b0628d3b9ca0746acff75ea01dfce7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2067063606
@@ -15587,8 +15679,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 80351228}
-  - {fileID: 1657702876}
   - {fileID: 1728195986}
+  - {fileID: 1657702876}
   - {fileID: 9038629799857368630}
   - {fileID: 1600787822}
   - {fileID: 503882}

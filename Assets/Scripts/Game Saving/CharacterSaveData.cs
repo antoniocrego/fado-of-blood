@@ -27,6 +27,13 @@ public class CharacterSaveData
     public float worldPositionY = 1.2f;
     public float worldPositionZ = 0;
 
+    // if a player saves inside a boss area
+    [Header("Safe Save Position")]
+    public bool isInForbiddenSaveArea = false; // Indicates if the player is in a forbidden save area
+    public float safeSavePositionX = 0f;
+    public float safeSavePositionY = 1.2f;
+    public float safeSavePositionZ = 0f;
+
     [Header("Current Area")]
     public int currentAreaID = 0; // Default to the first area
 
@@ -44,6 +51,12 @@ public class CharacterSaveData
     [Header("Blood Drops")]
     public int bloodDrops = 0;
 
+    [Header("Levers")]
+    public SerializableDictionary<int, bool> leversPulled;
+
+    [Header("Doors")]
+    public SerializableDictionary<int, bool> doorsOpened;
+
 
 
     public CharacterSaveData()
@@ -53,5 +66,7 @@ public class CharacterSaveData
         bossesAwakened = new SerializableDictionary<int, bool>();
         bossesDefeated = new SerializableDictionary<int, bool>();
         bonfiresLit = new SerializableDictionary<int, bool>();
+        leversPulled = new SerializableDictionary<int, bool>();
+        doorsOpened = new SerializableDictionary<int, bool>();
     }
 }

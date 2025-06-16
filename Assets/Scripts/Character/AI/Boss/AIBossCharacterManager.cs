@@ -159,6 +159,8 @@ public class AIBossCharacterManager : AICharacterManager
         {
             fogWalls[i].isActive = true;
         }
+
+        WorldSaveGameManager.instance.SaveGame();
     }
 
     public void ActivateBossFight()

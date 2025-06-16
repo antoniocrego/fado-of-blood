@@ -173,11 +173,24 @@ public class PlayerManager : CharacterManager
         playerStatsManager.resistance = currentCharacterData.resistance;
         playerStatsManager.strength = currentCharacterData.strength;
 
-        transform.position = new Vector3(
-            currentCharacterData.worldPositionX,
-            currentCharacterData.worldPositionY,
-            currentCharacterData.worldPositionZ
-        );
+        if (currentCharacterData.isInForbiddenSaveArea)
+        {
+            transform.position = new Vector3(
+                currentCharacterData.safeSavePositionX,
+                currentCharacterData.safeSavePositionY,
+                currentCharacterData.safeSavePositionZ
+            );
+        }
+        else
+        {
+            // If not in a forbidden save area, use the saved world position
+            transform.position = new Vector3(
+                currentCharacterData.worldPositionX,
+                currentCharacterData.worldPositionY,
+                currentCharacterData.worldPositionZ
+            );
+        }
+
         playerStatsManager.bloodDrops = currentCharacterData.bloodDrops;
 
         if (currentCharacterData.hasBloodPool)
@@ -287,6 +300,8 @@ public class PlayerManager : CharacterManager
         isDead = false;
         // there's conflicting "Empty" states so we have to specify the layer
         animator.Play("Empty", 2, 0f); // Reset animator state
+
+        WorldSaveGameManager.instance.SaveGame();
 
         LoadingScreenManager.instance.DeactivateLoadingScreen();
     }

@@ -198,6 +198,19 @@ public class WorldSaveGameManager : MonoBehaviour
         }
 
         player.LoadGame(ref currentCharacterData);
+
+        loadWorldSceneCoroutine = null; // Reset coroutine reference
+    }
+
+    public IEnumerator LoadMainMenuScene()
+    {
+        LoadingScreenManager.instance.ActivateLoadingScreen();
+        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(0); // Assuming 0 is the main menu scene index
+
+        while (!loadOperation.isDone)
+        {
+            yield return null;
+        }
     }
 
     public int GetWorldSceneIndex()

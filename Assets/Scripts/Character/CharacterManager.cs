@@ -51,7 +51,6 @@ public class CharacterManager : MonoBehaviour
     public bool isAttacking = false;
     protected virtual void Start()
     {
-        DontDestroyOnLoad(this);
         IgnoreMyOwnColliders();
         characterController = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();

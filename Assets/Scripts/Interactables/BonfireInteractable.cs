@@ -52,6 +52,12 @@ public class BonfireInteractable : Interactable
         WorldSaveGameManager.instance.currentCharacterData.bonfiresLit[bonfireID] = isActivated;
         WorldSaveGameManager.instance.currentCharacterData.lastBonfireRestedAt = bonfireID;
 
+        // being super safe here for any softlocks
+        WorldSaveGameManager.instance.currentCharacterData.safeSavePositionX = respawnPosition.position.x;
+        WorldSaveGameManager.instance.currentCharacterData.safeSavePositionY = respawnPosition.position.y;
+        WorldSaveGameManager.instance.currentCharacterData.safeSavePositionZ = respawnPosition.position.z;
+        WorldSaveGameManager.instance.currentCharacterData.isInForbiddenSaveArea = false; // reset forbidden save area status just in case
+
         player.playerAnimatorManager.PlayTargetActionAnimation("Light_Bonfire", true, false, hideWeapons: true);
         // hide weapon
 
@@ -66,11 +72,19 @@ public class BonfireInteractable : Interactable
         // send popup
         PlayerUIManager.instance.playerUIPopUpManager.SendBonfireLitPopUp();
         StartCoroutine(WaitToRestoreCollider());
+
+        WorldSaveGameManager.instance.SaveGame();
     }
 
     private void RestAtBonfire(PlayerManager player)
     {
         WorldSaveGameManager.instance.currentCharacterData.lastBonfireRestedAt = bonfireID;
+
+        // being super safe here for any softlocks
+        WorldSaveGameManager.instance.currentCharacterData.safeSavePositionX = respawnPosition.position.x;
+        WorldSaveGameManager.instance.currentCharacterData.safeSavePositionY = respawnPosition.position.y;
+        WorldSaveGameManager.instance.currentCharacterData.safeSavePositionZ = respawnPosition.position.z;
+        WorldSaveGameManager.instance.currentCharacterData.isInForbiddenSaveArea = false; // reset forbidden save area status just in case
 
         // refill flasks
 
@@ -83,6 +97,8 @@ public class BonfireInteractable : Interactable
         PlayerUIManager.instance.playerUIBonfireManager.OpenMenu();
 
         WorldAIManager.instance.ResetAllCharacters();
+
+        WorldSaveGameManager.instance.SaveGame();
 
     }
 
