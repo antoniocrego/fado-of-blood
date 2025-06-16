@@ -5,7 +5,7 @@
 			<value>Kicks</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cdf2b8f1-f164-4d38-a81c-1bdb6671957b}</destination>
@@ -119,6 +119,7 @@
 	<object class="MixerBusEffectChain" id="{266a21eb-a5c3-40b4-8d3e-c0ea1543f224}">
 		<relationship name="effects">
 			<destination>{dfe2a0ea-ee09-4a73-aaa9-efed37b9d330}</destination>
+			<destination>{2579ba34-820d-42aa-b62b-ba138208937b}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d8686171-3f10-4444-807b-cad04cf1cc0e}" />
@@ -158,6 +159,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{dae4d64b-5a49-4dfd-8f47-457e56edb524}" />
 	<object class="MixerBusFader" id="{dfe2a0ea-ee09-4a73-aaa9-efed37b9d330}" />
+	<object class="SpatialiserEffect" id="{2579ba34-820d-42aa-b62b-ba138208937b}" />
 	<object class="AutomationPoint" id="{1f3a01f9-6932-4155-a869-33ba4bb9d32a}">
 		<property name="position">
 			<value>0.69499999999999995</value>

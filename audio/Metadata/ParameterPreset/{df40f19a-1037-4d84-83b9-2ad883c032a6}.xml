@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{df40f19a-1037-4d84-83b9-2ad883c032a6}">
+		<property name="name">
+			<value>Enemy Footsteps</value>
+		</property>
+		<relationship name="folder">
+			<destination>{6d0ecacf-1e03-4bbb-b71c-2d590664d705}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{b42339a1-060e-4fd3-b21f-fa4da216eb85}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{b42339a1-060e-4fd3-b21f-fa4da216eb85}">
+		<property name="parameterType">
+			<value>2</value>
+		</property>
+		<property name="maximum">
+			<value>8</value>
+		</property>
+		<property name="enumerationLabels">
+			<value>E_Dirt</value>
+			<value>E_Mud</value>
+			<value>E_Wet</value>
+			<value>E_Wood</value>
+			<value>E_Grass</value>
+			<value>E_Gravel</value>
+			<value>E_Metal</value>
+			<value>E_Sand</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

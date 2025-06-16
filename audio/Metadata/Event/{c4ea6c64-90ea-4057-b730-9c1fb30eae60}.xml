@@ -5,7 +5,7 @@
 			<value>Hand Combat</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{cdf2b8f1-f164-4d38-a81c-1bdb6671957b}</destination>
@@ -119,6 +119,7 @@
 	<object class="MixerBusEffectChain" id="{f699fd42-5b83-4c81-95e2-f18cd83c8f32}">
 		<relationship name="effects">
 			<destination>{cda7322c-bac4-4324-8d29-84b4af6d59ce}</destination>
+			<destination>{9c1f18ca-f937-4e92-b591-376386fd108d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{28b2e0a3-7de3-49a8-b3cb-bd5c8667508e}" />
@@ -158,6 +159,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{40c81290-6504-4a06-a234-d7cd5cc3d84d}" />
 	<object class="MixerBusFader" id="{cda7322c-bac4-4324-8d29-84b4af6d59ce}" />
+	<object class="SpatialiserEffect" id="{9c1f18ca-f937-4e92-b591-376386fd108d}" />
 	<object class="AutomationPoint" id="{a65bac31-de59-440d-8071-9c15d570021b}">
 		<property name="position">
 			<value>0.31</value>

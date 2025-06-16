@@ -5,7 +5,7 @@
 			<value>Skin Tear</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{e85f0f25-c6dc-497f-b208-7a75fc69a566}</destination>
@@ -120,6 +120,7 @@
 	<object class="MixerBusEffectChain" id="{c6e7cdc9-3507-4b9c-ba0d-b3ab15c92382}">
 		<relationship name="effects">
 			<destination>{bc778769-d5ef-4e8f-a2fb-ea8e389bedcf}</destination>
+			<destination>{98b42df6-e5b5-4718-97fe-fada852f0466}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{c5efedcc-56ee-4b89-ad49-76c29d8a0760}" />
@@ -164,6 +165,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{1cb22e9b-22cf-4019-a818-1f4ef03c0f71}" />
 	<object class="MixerBusFader" id="{bc778769-d5ef-4e8f-a2fb-ea8e389bedcf}" />
+	<object class="SpatialiserEffect" id="{98b42df6-e5b5-4718-97fe-fada852f0466}" />
 	<object class="AutomationPoint" id="{cc9938b6-9e58-446c-b4f4-33b5723fccd6}">
 		<property name="position">
 			<value>1.6400000000000001</value>

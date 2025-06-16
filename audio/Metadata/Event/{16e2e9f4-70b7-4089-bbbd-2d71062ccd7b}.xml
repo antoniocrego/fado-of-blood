@@ -5,7 +5,7 @@
 			<value>Cave_Trickle</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ca20167-8ef6-4f94-bb2a-13de1fa104b9}</destination>
@@ -167,6 +167,7 @@
 			<destination>{dabf07fc-f581-4d17-9987-a8bb4c5112a4}</destination>
 			<destination>{0aebd06e-7bea-4642-8d43-55f335a6527b}</destination>
 			<destination>{e2111e5b-7555-47d2-a819-7d8074676178}</destination>
+			<destination>{b2ecbb37-c21c-450d-85d0-9c212f776127}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{3236247c-0708-4e44-8a32-7871b7d3bc18}" />
@@ -232,4 +233,5 @@
 			<destination>{16d304e8-e52d-4635-92dd-ecdea346a46c}</destination>
 		</relationship>
 	</object>
+	<object class="SpatialiserEffect" id="{b2ecbb37-c21c-450d-85d0-9c212f776127}" />
 </objects>

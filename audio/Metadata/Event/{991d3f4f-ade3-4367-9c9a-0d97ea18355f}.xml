@@ -5,7 +5,7 @@
 			<value>Sword_Swish_Large</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5431f150-513a-46e5-acfb-f23c58ce8ba3}</destination>
@@ -118,6 +118,7 @@
 	<object class="MixerBusEffectChain" id="{fd8a8a01-6f8d-4a0c-a385-0de00e2926f5}">
 		<relationship name="effects">
 			<destination>{de002905-1e0d-4d6e-95fe-eece9b4a87b0}</destination>
+			<destination>{ae792788-5eff-4646-a894-daf13be9719f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{447e46f6-bc19-423d-989e-c888cc6efa18}" />
@@ -159,5 +160,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{4f7ccc06-da54-4ede-afa4-472e6dba338d}" />
 	<object class="MixerBusFader" id="{de002905-1e0d-4d6e-95fe-eece9b4a87b0}" />
+	<object class="SpatialiserEffect" id="{ae792788-5eff-4646-a894-daf13be9719f}" />
 	<object class="MixerBusFader" id="{d3ceeb17-3b3e-4a9a-bc81-b951bdeaed6f}" />
 </objects>

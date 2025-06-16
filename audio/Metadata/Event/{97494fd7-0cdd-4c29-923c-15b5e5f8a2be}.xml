@@ -5,7 +5,7 @@
 			<value>Cave_Drops_Focused</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1ca20167-8ef6-4f94-bb2a-13de1fa104b9}</destination>
@@ -210,6 +210,7 @@
 		<relationship name="effects">
 			<destination>{5c3d43bc-662e-4e32-b41a-8f81c980bc7f}</destination>
 			<destination>{25ae87ab-5006-49e7-b462-bc4e7f850dff}</destination>
+			<destination>{45e4f630-b65f-4dc1-a562-b69742f26df2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{29cd3259-8f48-4a2d-896e-cd7b9d1f84f3}" />
@@ -226,4 +227,5 @@
 			<destination>{16d304e8-e52d-4635-92dd-ecdea346a46c}</destination>
 		</relationship>
 	</object>
+	<object class="SpatialiserEffect" id="{45e4f630-b65f-4dc1-a562-b69742f26df2}" />
 </objects>

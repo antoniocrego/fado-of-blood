@@ -5,7 +5,7 @@
 			<value>NPC Elias Death</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{5f6e3d6a-8842-4161-9a43-cc6622c48dc4}</destination>
@@ -116,6 +116,7 @@
 	<object class="MixerBusEffectChain" id="{5ab08282-a243-4388-9c73-982fc1c90a93}">
 		<relationship name="effects">
 			<destination>{4f031043-8231-49ee-a7dc-67cca42d0c6d}</destination>
+			<destination>{db144a20-e903-41e1-9d72-755241d14f0f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{a53f8911-de58-4673-82d7-2bb218d287c2}" />
@@ -127,5 +128,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{15228014-6140-4410-8160-ab1ea9915cde}" />
 	<object class="MixerBusFader" id="{4f031043-8231-49ee-a7dc-67cca42d0c6d}" />
+	<object class="SpatialiserEffect" id="{db144a20-e903-41e1-9d72-755241d14f0f}" />
 	<object class="MixerBusFader" id="{251b45c9-18a9-425c-8d7c-224e825fad38}" />
 </objects>

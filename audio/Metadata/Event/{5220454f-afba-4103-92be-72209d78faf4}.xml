@@ -5,7 +5,7 @@
 			<value>Moan</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c8f9a467-de8f-4ad4-a47a-3e00fa29291e}</destination>
@@ -123,6 +123,7 @@
 	<object class="MixerBusEffectChain" id="{e351643a-3057-4bed-9f35-1803cad937a5}">
 		<relationship name="effects">
 			<destination>{c12899de-ddc0-4197-94d0-af635cd745c6}</destination>
+			<destination>{14b6a8c1-ab9e-4e68-a2fb-447beb3f042d}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d3b6f121-399d-4901-a2a3-634fa1601175}" />
@@ -175,6 +176,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{2e36c3bc-919f-4085-bd91-ede499d2d5ac}" />
 	<object class="MixerBusFader" id="{c12899de-ddc0-4197-94d0-af635cd745c6}" />
+	<object class="SpatialiserEffect" id="{14b6a8c1-ab9e-4e68-a2fb-447beb3f042d}" />
 	<object class="AutomationPoint" id="{d08194b9-12dd-4cc6-bff3-bbc237a8a519}">
 		<property name="position">
 			<value>0</value>
