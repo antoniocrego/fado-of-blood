@@ -29,9 +29,9 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [SerializeField] private float sprintSpeed = 7f;
 
-    [SerializeField] private float spritingStaminaCost = 1f;
+    [SerializeField] private float spritingStaminaCost = 10f;
 
-    [SerializeField] private float sprintingRecovery = 1f;
+    [SerializeField] private float sprintingRecovery = 5f;
 
     [SerializeField] float minimumStaminaToStartSprinting = 10f;
 
