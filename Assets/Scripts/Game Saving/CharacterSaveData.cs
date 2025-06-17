@@ -57,7 +57,16 @@ public class CharacterSaveData
     [Header("Doors")]
     public SerializableDictionary<int, bool> doorsOpened;
 
+    [Header("Equipped Weapons")]
+    public int rightWeaponIndex;
+    public SerializableWeapon rightWeapon01;
+    public SerializableWeapon rightWeapon02;
+    public SerializableWeapon rightWeapon03;
 
+    public int leftWeaponIndex;
+    public SerializableWeapon leftWeapon01;
+    public SerializableWeapon leftWeapon02;
+    public SerializableWeapon leftWeapon03;
 
     public CharacterSaveData()
     {

@@ -37,6 +37,8 @@ public class LoadingScreenManager : MonoBehaviour
     {
         //if (loadingScreen.activeSelf) return;
 
+        WorldSoundtrackManager.instance.StopTrack();
+
         canvasGroup.alpha = 1f;
     }
 

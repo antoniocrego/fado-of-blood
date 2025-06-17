@@ -199,6 +199,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
         player.LoadGame(ref currentCharacterData);
 
+        WorldSoundtrackManager.instance.StopTrack();
+
         loadWorldSceneCoroutine = null; // Reset coroutine reference
     }
 
@@ -211,6 +213,8 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             yield return null;
         }
+
+        WorldSoundtrackManager.instance.StopTrack();
     }
 
     public int GetWorldSceneIndex()
@@ -232,4 +236,11 @@ public class WorldSaveGameManager : MonoBehaviour
     //         SaveGame();
     //     }
     // }
+
+    public SerializableWeapon GetSerializableWeaponFromWeaponItem(WeaponItem weapon)
+    {
+        SerializableWeapon serializableWeapon = new SerializableWeapon();
+        serializableWeapon.weaponID = weapon.itemID;
+        return serializableWeapon;
+    }
 }

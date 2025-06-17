@@ -69,4 +69,17 @@ public class WorldItemDatabase : MonoBehaviour
     {
         return quickSlotItems.FirstOrDefault(item => item.itemID == ID);
     }
+
+    public WeaponItem GetWeaponFromSerializedData(SerializableWeapon serializedWeapon)
+    {
+        WeaponItem weapon = null;
+
+        if (GetWeaponByID(serializedWeapon.weaponID))
+            weapon = Instantiate(GetWeaponByID(serializedWeapon.weaponID));
+
+        if (weapon == null)
+            return Instantiate(unarmedWeapon);
+
+        return weapon;
+    }
 }

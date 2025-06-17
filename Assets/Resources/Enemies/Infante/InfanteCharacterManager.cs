@@ -19,4 +19,16 @@ public class InfanteCharacterManager : AIBossCharacterManager
         // spawn game ending event triggers
         return base.ProcessDeath(manuallySelectDeathAnimation);
     }
+
+    public override void ActivateBossFight()
+    {
+        base.ActivateBossFight();
+        WorldSoundtrackManager.instance.PlayTrack("event:/Music/Final Boss Music", true);
+    }
+
+    public override void DeactivateBossFight()
+    {
+        base.DeactivateBossFight();
+        WorldSoundtrackManager.instance.StopTrack();
+    }
 }

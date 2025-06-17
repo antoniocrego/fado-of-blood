@@ -6408,6 +6408,10 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    isInForbiddenSaveArea: 0
+    safeSavePositionX: 0
+    safeSavePositionY: 1.2
+    safeSavePositionZ: 0
     currentAreaID: 0
     bossesAwakened:
       keys: 
@@ -6423,6 +6427,13 @@ MonoBehaviour:
       values: 
     lastBonfireRestedAt: -1
     bloodDrops: 0
+    leversPulled:
+      keys: 
+      values: 
+    doorsOpened:
+      keys: 
+      values: 
+    equippedWeaponID: -1
   characterSlot01:
     characterName: 
     secondsPlayed: 0
@@ -6438,6 +6449,10 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    isInForbiddenSaveArea: 0
+    safeSavePositionX: 0
+    safeSavePositionY: 1.2
+    safeSavePositionZ: 0
     currentAreaID: 0
     bossesAwakened:
       keys: 
@@ -6453,6 +6468,13 @@ MonoBehaviour:
       values: 
     lastBonfireRestedAt: -1
     bloodDrops: 0
+    leversPulled:
+      keys: 
+      values: 
+    doorsOpened:
+      keys: 
+      values: 
+    equippedWeaponID: -1
   characterSlot02:
     characterName: 
     secondsPlayed: 0
@@ -6468,6 +6490,10 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    isInForbiddenSaveArea: 0
+    safeSavePositionX: 0
+    safeSavePositionY: 1.2
+    safeSavePositionZ: 0
     currentAreaID: 0
     bossesAwakened:
       keys: 
@@ -6483,6 +6509,13 @@ MonoBehaviour:
       values: 
     lastBonfireRestedAt: -1
     bloodDrops: 0
+    leversPulled:
+      keys: 
+      values: 
+    doorsOpened:
+      keys: 
+      values: 
+    equippedWeaponID: -1
   characterSlot03:
     characterName: 
     secondsPlayed: 0
@@ -6498,6 +6531,10 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    isInForbiddenSaveArea: 0
+    safeSavePositionX: 0
+    safeSavePositionY: 1.2
+    safeSavePositionZ: 0
     currentAreaID: 0
     bossesAwakened:
       keys: 
@@ -6513,6 +6550,13 @@ MonoBehaviour:
       values: 
     lastBonfireRestedAt: -1
     bloodDrops: 0
+    leversPulled:
+      keys: 
+      values: 
+    doorsOpened:
+      keys: 
+      values: 
+    equippedWeaponID: -1
   characterSlot04:
     characterName: 
     secondsPlayed: 0
@@ -6528,6 +6572,10 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    isInForbiddenSaveArea: 0
+    safeSavePositionX: 0
+    safeSavePositionY: 1.2
+    safeSavePositionZ: 0
     currentAreaID: 0
     bossesAwakened:
       keys: 
@@ -6543,6 +6591,13 @@ MonoBehaviour:
       values: 
     lastBonfireRestedAt: -1
     bloodDrops: 0
+    leversPulled:
+      keys: 
+      values: 
+    doorsOpened:
+      keys: 
+      values: 
+    equippedWeaponID: -1
   characterSlot05:
     characterName: 
     secondsPlayed: 0
@@ -6558,6 +6613,10 @@ MonoBehaviour:
     worldPositionX: 0
     worldPositionY: 0
     worldPositionZ: 0
+    isInForbiddenSaveArea: 0
+    safeSavePositionX: 0
+    safeSavePositionY: 1.2
+    safeSavePositionZ: 0
     currentAreaID: 0
     bossesAwakened:
       keys: 
@@ -6573,6 +6632,13 @@ MonoBehaviour:
       values: 
     lastBonfireRestedAt: -1
     bloodDrops: 0
+    leversPulled:
+      keys: 
+      values: 
+    doorsOpened:
+      keys: 
+      values: 
+    equippedWeaponID: -1
 --- !u!4 &615428222
 Transform:
   m_ObjectHideFlags: 0
@@ -15298,6 +15364,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8151635912500808941}
   m_CullTransparentMesh: 1
+--- !u!1001 &5947094430924327372
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5154019808800340383, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_Name
+      value: World Soundtrack Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 547.6184
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 40.56828
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 140.00623
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7841254819854787401, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c12ff2c20c02bdf4dadd2ef5245ae567, type: 3}
 --- !u!224 &6680907958352444567
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15686,3 +15809,4 @@ SceneRoots:
   - {fileID: 503882}
   - {fileID: 615428222}
   - {fileID: 158442148}
+  - {fileID: 5947094430924327372}

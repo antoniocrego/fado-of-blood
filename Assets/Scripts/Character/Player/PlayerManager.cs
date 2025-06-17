@@ -165,6 +165,16 @@ public class PlayerManager : CharacterManager
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
         currentCharacterData.bloodDrops = playerStatsManager.bloodDrops;
+
+        currentCharacterData.rightWeaponIndex = playerInventoryManager.rightHandWeaponIndex;
+        currentCharacterData.rightWeapon01 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[0]);
+        currentCharacterData.rightWeapon02 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[1]);
+        currentCharacterData.rightWeapon03 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[2]);
+
+        currentCharacterData.leftWeaponIndex = playerInventoryManager.leftHandWeaponIndex;
+        currentCharacterData.leftWeapon01 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInLeftHandSlots[0]);
+        currentCharacterData.leftWeapon02 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInLeftHandSlots[1]);
+        currentCharacterData.leftWeapon03 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInLeftHandSlots[2]);
     }
 
     public void LoadGame(ref CharacterSaveData currentCharacterData)
@@ -205,6 +215,21 @@ public class PlayerManager : CharacterManager
             );
             CreateDeadSpot(bloodPoolPosition, currentCharacterData.bloodPoolBloodDrops, false);
         }
+
+        // load weapon slots
+        playerInventoryManager.weaponsInRightHandSlots[0] = currentCharacterData.rightWeapon01.GetWeapon();
+        playerInventoryManager.weaponsInRightHandSlots[1] = currentCharacterData.rightWeapon02.GetWeapon();
+        playerInventoryManager.weaponsInRightHandSlots[2] = currentCharacterData.rightWeapon03.GetWeapon();
+
+        playerInventoryManager.weaponsInLeftHandSlots[0] = currentCharacterData.leftWeapon01.GetWeapon();
+        playerInventoryManager.weaponsInLeftHandSlots[1] = currentCharacterData.leftWeapon02.GetWeapon();
+        playerInventoryManager.weaponsInLeftHandSlots[2] = currentCharacterData.leftWeapon03.GetWeapon();
+
+        playerInventoryManager.leftHandWeaponIndex = currentCharacterData.leftWeaponIndex;
+        playerInventoryManager.currentLeftHandWeapon = playerInventoryManager.weaponsInLeftHandSlots[currentCharacterData.leftWeaponIndex];
+        playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
+        playerInventoryManager.currentRightHandWeapon = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex];
+        
 
         if (playerStatsManager)
             PlayerUIManager.instance.playerUIHudManager.SetBloodDrops(playerStatsManager.bloodDrops);

@@ -37,6 +37,7 @@ public class TitleScreenManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        WorldSoundtrackManager.instance.PlayTrack("event:/Music/Fire Boss Music", true);
     }
 
     public void StartNewGame()
