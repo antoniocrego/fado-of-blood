@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 585703304210883595}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.11512004, y: -0.2926426, z: -0.7000456, w: 0.64112705}
+  m_LocalRotation: {x: 0.11512583, y: -0.2926417, z: -0.7000458, w: 0.6411262}
   m_LocalPosition: {x: 74.968376, y: -242.29236, z: 36.978783}
   m_LocalScale: {x: 0.9423294, y: 0.9423294, z: 0.9423294}
   m_ConstrainProportionsScale: 0
@@ -39,7 +39,7 @@ Transform:
   - {fileID: 689477366955718846}
   - {fileID: 3177571023362376845}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -15.195, y: -33.77, z: -90.394}
 --- !u!1001 &36817950088655790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,7 +58,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.920044
+      value: 40.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.y
@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 40.119995
+      value: 42.95
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalRotation.w
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 165
+  m_VersionIndex: 627
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -421,15 +421,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.049988
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -17.89
+      value: -21.06
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.970001
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -533,15 +533,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.169983
+      value: -8.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.89
+      value: 37.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalRotation.w
@@ -653,7 +653,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.9599991
+      value: -3.77
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalRotation.w
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 165
+  m_VersionIndex: 627
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1008,11 +1008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -3.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f63d02294ea68c14aae7768c670bfe03, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 165
+  m_VersionIndex: 627
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1475,19 +1475,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalScale.y
-      value: 65
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 40.929993
+      value: 40.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 30.100002
+      value: 36.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.479996
+      value: 15.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a179947a5e31cc0428e706c0841d3277, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 165
+  m_VersionIndex: 627
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -1830,11 +1830,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5.4999995
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.5
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalScale.z
@@ -1842,15 +1842,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 41.184998
+      value: 41.18
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -21.52
+      value: -21.62
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.630005
+      value: 35.92
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc4f94dd759a9b141a7411b1144b2de2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2264,7 +2264,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 165
+  m_VersionIndex: 627
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
