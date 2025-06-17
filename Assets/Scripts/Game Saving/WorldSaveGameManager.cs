@@ -83,7 +83,7 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             currentCharacterSlot = CharacterSlot.CharacterSlot01;
             currentCharacterData = new CharacterSaveData();
-            StartCoroutine(LoadWorldScene());
+            CutsceneManager.instance.PlayCutscene(CutsceneManager.CutsceneType.Intro, () => StartCoroutine(LoadWorldScene()));
             return;
         }
 
@@ -92,7 +92,7 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             currentCharacterSlot = CharacterSlot.CharacterSlot02;
             currentCharacterData = new CharacterSaveData();
-            StartCoroutine(LoadWorldScene());
+            CutsceneManager.instance.PlayCutscene(CutsceneManager.CutsceneType.Intro, () => StartCoroutine(LoadWorldScene()));
             return;
         }
 
@@ -101,7 +101,7 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             currentCharacterSlot = CharacterSlot.CharacterSlot03;
             currentCharacterData = new CharacterSaveData();
-            StartCoroutine(LoadWorldScene());
+            CutsceneManager.instance.PlayCutscene(CutsceneManager.CutsceneType.Intro, () => StartCoroutine(LoadWorldScene()));
             return;
         }
 
@@ -110,7 +110,7 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             currentCharacterSlot = CharacterSlot.CharacterSlot04;
             currentCharacterData = new CharacterSaveData();
-            StartCoroutine(LoadWorldScene());
+            CutsceneManager.instance.PlayCutscene(CutsceneManager.CutsceneType.Intro, () => StartCoroutine(LoadWorldScene()));
             return;
         }
 
@@ -119,7 +119,7 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             currentCharacterSlot = CharacterSlot.CharacterSlot05;
             currentCharacterData = new CharacterSaveData();
-            StartCoroutine(LoadWorldScene());
+            CutsceneManager.instance.PlayCutscene(CutsceneManager.CutsceneType.Intro, () => StartCoroutine(LoadWorldScene()));
             return;
         }
 
