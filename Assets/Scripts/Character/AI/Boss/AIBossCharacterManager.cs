@@ -136,6 +136,8 @@ public class AIBossCharacterManager : AICharacterManager
 
     public virtual void WakeBoss()
     {
+        if (hasBeenDefeated) return;
+
         if (!hasBeenAwakened)
         {
             characterAnimatorManager.PlayTargetActionAnimation(wakeAnimation, true);

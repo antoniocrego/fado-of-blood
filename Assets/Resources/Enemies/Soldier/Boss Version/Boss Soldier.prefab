@@ -1745,6 +1745,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   soldierCharacter: {fileID: 0}
 --- !u!1 &5629532297250181197
 GameObject:
@@ -1975,6 +1976,7 @@ MonoBehaviour:
   swordDamageCollider: {fileID: 4942678102567785182}
   footDamageCollider: {fileID: 220182544677862916}
   baseDamage: 10
+  basePoiseDamage: 10
   slash01DamageMultiplier: 1
   slash02Part1DamageMultiplier: 1.5
   slash02Part2DamageMultiplier: 1
@@ -2005,8 +2007,9 @@ MonoBehaviour:
   characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
+  characterHPBar: {fileID: 0}
   characterGroup: 2
-  health: 3000
+  health: 2000
   stamina: 0
   isDead: 0
   isGrounded: 1
@@ -2014,7 +2017,7 @@ MonoBehaviour:
   isPerformingAction: 0
   isSprinting: 0
   maxStamina: 0
-  maxHealth: 3000
+  maxHealth: 2000
   isLockedOn: 0
   isMoving: 0
   isActive: 1
@@ -2022,6 +2025,7 @@ MonoBehaviour:
   isJumping: 0
   isBlocking: 0
   isAttacking: 0
+  currentSurfaceType: Dirt
   characterName: The Plagued Gaol's Warden
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -2057,8 +2061,10 @@ MonoBehaviour:
   resistance: 1
   endurance: 1
   strength: 1
+  scaleFactor: 10
   blockingDamageAbsorption: 0
-  bloodDroppedOnDeath: 10000
+  blockingStability: 0
+  bloodDroppedOnDeath: 12500
 --- !u!1 &5832668545415540658
 GameObject:
   m_ObjectHideFlags: 0
@@ -2480,6 +2486,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   soldierCharacter: {fileID: 0}
 --- !u!1 &6965195701893831988
 GameObject:
@@ -3142,6 +3149,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   soldierCharacter: {fileID: 0}
 --- !u!1 &8574737561791966497
 GameObject:

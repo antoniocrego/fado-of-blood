@@ -48,8 +48,8 @@ public class WeaponItem : Item
 
     public float CalculateEffectiveDamage(CharacterStatsManager stats)
     {
-        float effectiveDamage = baseDamage;
-        effectiveDamage += stats.strength * strengthScaling;
+        float scalingFactor = stats.strength / 30f; // tune this
+        float effectiveDamage = baseDamage * (1f + scalingFactor * strengthScaling);
         return effectiveDamage;
     }
 
