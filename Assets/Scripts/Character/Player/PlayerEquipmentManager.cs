@@ -302,4 +302,16 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
         QuickSlotItem item = WorldItemDatabase.Instance.GetQuickSlotItemByID(quickSlotItemID);
         item.AttemptToUseItem(player);
     }
+
+    public void LoadQuickSlotItem(QuickSlotItem quickSlotItem)
+    {
+        if (quickSlotItem == null)
+        {
+            player.playerInventoryManager.currentQuickSlotItem = null;
+            return;
+            
+        }
+
+        player.playerInventoryManager.currentQuickSlotItem = quickSlotItem;
+    }
 }

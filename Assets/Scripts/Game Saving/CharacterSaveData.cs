@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -68,6 +69,15 @@ public class CharacterSaveData
     public SerializableWeapon leftWeapon02;
     public SerializableWeapon leftWeapon03;
 
+    public SerializableQuickSlotItem quickSlotItem01;
+    
+    public int remainingHealthFlasks = 3;
+
+    [Header("Inventory")]
+    public List<SerializableWeapon> weaponsInInventory;
+    public List<SerializableQuickSlotItem> quickSlotItemsInInventory;
+    public List<SerializableItem> otherItemsInInventory;
+
     public CharacterSaveData()
     {
         // Initialize the dictionaries to avoid null reference exceptions.
@@ -77,5 +87,7 @@ public class CharacterSaveData
         bonfiresLit = new SerializableDictionary<int, bool>();
         leversPulled = new SerializableDictionary<int, bool>();
         doorsOpened = new SerializableDictionary<int, bool>();
+        weaponsInInventory = new List<SerializableWeapon>();
+        quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
     }
 }
