@@ -8,11 +8,11 @@ public class AIBossCharacterManager : AICharacterManager
 
     [Header("Status")]
     public bool bossFightIsActive = false;
-    [SerializeField] bool hasBeenDefeated = false;
-    [SerializeField] bool hasBeenAwakened = false;
-    [SerializeField] List<FogWallInteractable> fogWalls;
-    [SerializeField] string sleepAnimation;
-    [SerializeField] string wakeAnimation;
+    [SerializeField] protected bool hasBeenDefeated = false;
+    [SerializeField] protected bool hasBeenAwakened = false;
+    [SerializeField] protected List<FogWallInteractable> fogWalls;
+    [SerializeField] protected string sleepAnimation;
+    [SerializeField] protected string wakeAnimation;
 
     [Header("States")]
     [SerializeField] AIState sleepState;

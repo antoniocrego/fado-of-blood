@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UICharacterSaveSlot : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UICharacterSaveSlot : MonoBehaviour
 
     [Header("Character Info")]
     public TMP_Text characterName;
+    public Image saveIcon;
     public TMP_Text timePlayed;
 
     private void OnEnable()
@@ -29,6 +31,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot01.characterName;
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot01);
                 }
                 else
                 {
@@ -39,6 +42,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot02.characterName;
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot02);
                 }
                 else
                 {
@@ -49,6 +53,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot03.characterName;
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot03);
                 }
                 else
                 {
@@ -59,6 +64,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot04.characterName;
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot04);
                 }
                 else
                 {
@@ -69,6 +75,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot05.characterName;
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot05);
                 }
                 else
                 {
@@ -87,5 +94,21 @@ public class UICharacterSaveSlot : MonoBehaviour
     public void SelectCurrentSlot()
     {
         TitleScreenManager.instance.SelectCharacterSlot(characterSlot);
+    }
+
+    public Color GetColorFromEnding(CharacterSaveData characterData) {
+        int endingID = characterData.endingID;
+        Debug.Log($"Character Slot: {characterSlot}, Ending ID: {endingID}");
+        switch (endingID)
+        {
+            case 0:
+                return Color.white;
+            case 1:
+                return Color.blue;
+            case 2:
+                return Color.red;
+            default:
+                return Color.gray;
+        }
     }
 }

@@ -100,3 +100,10 @@ public enum DamageIntensity
     Light,
     Heavy
 }
+
+public enum Ending
+{
+    None,
+    Good,
+    Bad
+}

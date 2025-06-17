@@ -411,7 +411,7 @@ MonoBehaviour:
   rightHandDamageCollider: {fileID: 7848280884766007181}
   leftHandDamageCollider: {fileID: 1214276789816387708}
   rightLegDamageCollider: {fileID: 450251239013532083}
-  baseDamage: 10
+  baseDamage: 60
   basePoiseDamage: 10
   attack01DamageMultiplier: 1
   attack02DamageMultiplier: 1.5

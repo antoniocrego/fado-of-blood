@@ -6454,6 +6454,8 @@ MonoBehaviour:
     weaponsInInventory: []
     quickSlotItemsInInventory: []
     otherItemsInInventory: []
+    hasKilledTheFinalBoss: 0
+    endingID: 0
   characterSlot01:
     characterName: 
     secondsPlayed: 0
@@ -6515,6 +6517,8 @@ MonoBehaviour:
     weaponsInInventory: []
     quickSlotItemsInInventory: []
     otherItemsInInventory: []
+    hasKilledTheFinalBoss: 0
+    endingID: 0
   characterSlot02:
     characterName: 
     secondsPlayed: 0
@@ -6576,6 +6580,8 @@ MonoBehaviour:
     weaponsInInventory: []
     quickSlotItemsInInventory: []
     otherItemsInInventory: []
+    hasKilledTheFinalBoss: 0
+    endingID: 0
   characterSlot03:
     characterName: 
     secondsPlayed: 0
@@ -6637,6 +6643,8 @@ MonoBehaviour:
     weaponsInInventory: []
     quickSlotItemsInInventory: []
     otherItemsInInventory: []
+    hasKilledTheFinalBoss: 0
+    endingID: 0
   characterSlot04:
     characterName: 
     secondsPlayed: 0
@@ -6698,6 +6706,8 @@ MonoBehaviour:
     weaponsInInventory: []
     quickSlotItemsInInventory: []
     otherItemsInInventory: []
+    hasKilledTheFinalBoss: 0
+    endingID: 0
   characterSlot05:
     characterName: 
     secondsPlayed: 0
@@ -6759,6 +6769,8 @@ MonoBehaviour:
     weaponsInInventory: []
     quickSlotItemsInInventory: []
     otherItemsInInventory: []
+    hasKilledTheFinalBoss: 0
+    endingID: 0
 --- !u!4 &615428222
 Transform:
   m_ObjectHideFlags: 0
@@ -15101,7 +15113,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4467569936523688113, guid: 355bebe250b592a45825f1e07d177b3f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

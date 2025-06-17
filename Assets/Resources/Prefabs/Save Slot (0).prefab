@@ -96,6 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterSlot: 0
   characterName: {fileID: 1293113145068584672}
+  saveIcon: {fileID: 1527831693601970906}
   timePlayed: {fileID: 8982846892682366088}
 --- !u!114 &946967278207661307
 MonoBehaviour:

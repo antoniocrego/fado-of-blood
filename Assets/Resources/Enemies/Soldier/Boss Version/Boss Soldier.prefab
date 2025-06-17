@@ -1975,7 +1975,7 @@ MonoBehaviour:
   attackRotationSpeed: 5
   swordDamageCollider: {fileID: 4942678102567785182}
   footDamageCollider: {fileID: 220182544677862916}
-  baseDamage: 10
+  baseDamage: 30
   basePoiseDamage: 10
   slash01DamageMultiplier: 1
   slash02Part1DamageMultiplier: 1.5
