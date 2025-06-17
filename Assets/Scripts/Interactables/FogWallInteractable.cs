@@ -40,8 +40,10 @@ public class FogWallInteractable : Interactable
     {
         Physics.IgnoreCollision(player.characterController, fogWallCollider, true);
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2.1f);
 
+        // Re-enable collision after 2.1 seconds
+        interactableCollider.enabled = true;
         Physics.IgnoreCollision(player.characterController, fogWallCollider, false);
     }
 

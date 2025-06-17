@@ -259,7 +259,7 @@ MonoBehaviour:
   playerUIHudManager: {fileID: 0}
   characterHPBar: {fileID: 0}
   characterGroup: 2
-  health: 20000
+  health: 12000
   stamina: 0
   isDead: 0
   isGrounded: 1
@@ -267,7 +267,7 @@ MonoBehaviour:
   isPerformingAction: 0
   isSprinting: 0
   maxStamina: 0
-  maxHealth: 20000
+  maxHealth: 12000
   isLockedOn: 0
   isMoving: 0
   isActive: 1
@@ -275,6 +275,7 @@ MonoBehaviour:
   isJumping: 0
   isBlocking: 0
   isAttacking: 0
+  currentSurfaceType: Dirt
   characterName: Adamastor, the Root of the Plague
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -411,6 +412,7 @@ MonoBehaviour:
   leftHandDamageCollider: {fileID: 1214276789816387708}
   rightLegDamageCollider: {fileID: 450251239013532083}
   baseDamage: 10
+  basePoiseDamage: 10
   attack01DamageMultiplier: 1
   attack02DamageMultiplier: 1.5
 --- !u!143 &8950197202351785505
@@ -473,7 +475,9 @@ MonoBehaviour:
   resistance: 1
   endurance: 1
   strength: 1
+  scaleFactor: 10
   blockingDamageAbsorption: 0
+  blockingStability: 0
   bloodDroppedOnDeath: 50000
 --- !u!4 &1734433670373868912 stripped
 Transform:
@@ -528,6 +532,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   adamastorCharacter: {fileID: 0}
 --- !u!1 &4083279533896562718 stripped
 GameObject:
@@ -572,6 +577,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   adamastorCharacter: {fileID: 0}
 --- !u!1 &5201620856110834068 stripped
 GameObject:
@@ -616,4 +622,5 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   adamastorCharacter: {fileID: 0}

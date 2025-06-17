@@ -303,13 +303,21 @@ public class PlayerManager : CharacterManager
 
         yield return base.ProcessDeath(manuallySelectDeathAnimation);
 
+        
         yield return new WaitForSeconds(6f);
+
 
         ReviveWrap();
     }
 
     public void CreateDeadSpot(Vector3 position, int bloodDropCount, bool generating = true)
     {
+        BloodPoolInteractable anyBloodPools = FindAnyObjectByType<BloodPoolInteractable>();
+        if (anyBloodPools != null)
+        {
+            // if we already have a blood pool, get rid of it
+            Destroy(anyBloodPools.gameObject);
+        }
         GameObject bloodPoolVFX = Instantiate(
             WorldCharacterEffectsManager.instance.bloodPoolVFX,
             position,
@@ -344,6 +352,8 @@ public class PlayerManager : CharacterManager
     {
         LoadingScreenManager.instance.ActivateLoadingScreen();
 
+        Debug.Log("Loading screen should be active");
+
         // let's end the Dying SFX early
         WorldSoundFXManager.instance.EndYouDiedSFXEarly();
 
@@ -357,7 +367,7 @@ public class PlayerManager : CharacterManager
 
         if (latestBonfireID >= 0 && currentCharacterData.bonfiresLit.ContainsKey(latestBonfireID) && currentCharacterData.bonfiresLit[latestBonfireID])
         {
-            respawnPosition = WorldObjectManager.instance.bonfires[latestBonfireID].respawnPosition.position;
+            respawnPosition = WorldObjectManager.instance.GetBonfireByID(latestBonfireID).respawnPosition.position;
         }
         else
         {

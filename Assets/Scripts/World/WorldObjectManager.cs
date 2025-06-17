@@ -71,12 +71,17 @@ public class WorldObjectManager : MonoBehaviour
             bonfires.Add(bonfire);
         }
     }
-    
+
     public void RemoveBonfire(BonfireInteractable bonfire)
     {
         if (bonfires.Contains(bonfire))
         {
             bonfires.Remove(bonfire);
         }
+    }
+
+    public BonfireInteractable GetBonfireByID(int bonfireID)
+    {
+        return bonfires.Find(b => b.bonfireID == bonfireID);
     }
 }

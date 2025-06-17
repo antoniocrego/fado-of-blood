@@ -35,16 +35,16 @@ public class LoadingScreenManager : MonoBehaviour
 
     public void ActivateLoadingScreen()
     {
-        //if (loadingScreen.activeSelf) return;
-
-        WorldSoundtrackManager.instance.StopTrack();
-
+        if (loadingScreen.activeSelf) return;
+        loadingScreen.SetActive(true);
         canvasGroup.alpha = 1f;
+        Debug.Log("Activating loading screen");
+        WorldSoundtrackManager.instance.StopTrack();
     }
 
     public void DeactivateLoadingScreen(float delay = 1)
     {
-        //if (!loadingScreen.activeSelf) return;
+        if (!loadingScreen.activeSelf) return;
 
         if (fadeLoadingScreenCoroutine != null)
         {
