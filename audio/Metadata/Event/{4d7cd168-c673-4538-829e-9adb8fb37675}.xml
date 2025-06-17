@@ -112,6 +112,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{2c150c4b-aa1d-4b54-9492-4436b8847589}">
+		<property name="volume">
+			<value>-10.5</value>
+		</property>
 		<property name="name">
 			<value>Blunt heavy impact</value>
 		</property>

@@ -12,6 +12,8 @@ public class UiStat_Bar : MonoBehaviour
     [SerializeField] protected bool scaleBarLengthWithStats = true;
     [SerializeField] protected float widthScaleMultiplier = 1f;
 
+    public int visualMax = 1000; 
+
     protected virtual void Awake()
     {
         slider = GetComponent<Slider>();
@@ -33,12 +35,9 @@ public class UiStat_Bar : MonoBehaviour
         slider.maxValue = maxValue;
         slider.value = maxValue;
 
-        if (scaleBarLengthWithStats)
-        {
-            rectTransform.sizeDelta = new Vector2(maxValue * widthScaleMultiplier, rectTransform.sizeDelta.y);
+        int displayValue = Mathf.Min(maxValue, visualMax);
+        rectTransform.sizeDelta = new Vector2(displayValue * widthScaleMultiplier, rectTransform.sizeDelta.y);
 
-            //  RESETS THE POSITION OF THE BARS BASED ON THEIR LAYOUT GROUP'S SETTINGS
-            PlayerUIManager.instance.playerUIHudManager.RefreshHUD();
-        }
+        PlayerUIManager.instance.playerUIHudManager.RefreshHUD();
     }
 }

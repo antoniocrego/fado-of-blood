@@ -7,6 +7,7 @@ public class CharacterStatsManager : MonoBehaviour
     public int resistance = 1;
     public int endurance = 1;
     public int strength = 1;
+    public int scaleFactor = 10; 
 
     [Header("Blocking Absorptions")]
     public float blockingDamageAbsorption;
@@ -15,18 +16,19 @@ public class CharacterStatsManager : MonoBehaviour
     public int CalculateStaminaBasedOnEnduranceLevel()
     {
 
-        float stamina = endurance * 100;
-
+        float maxStaminaCap = 1000.0f;
+        float exponentValue = -(float)endurance / scaleFactor;
+        float stamina = maxStaminaCap * (1f - Mathf.Exp(exponentValue));
         return Mathf.RoundToInt(stamina);
     }
 
     public int CalculateHealthBasedOnVitalityLevel()
     {
-        float health = vitality * 100;
-
+        float maxHealthCap = 1600.0f; 
+        float exponentValue = -(float)vitality / scaleFactor;
+        float health = maxHealthCap * (1f - Mathf.Exp(exponentValue));
         return Mathf.RoundToInt(health);
     }
-
     public int CalculateCharacterLevel(bool expectedLevel = false)
     {
         int characterLevel;

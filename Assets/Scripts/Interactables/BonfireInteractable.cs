@@ -94,6 +94,8 @@ public class BonfireInteractable : Interactable
         player.playerUIHudManager.SetNewHealthValue(player.health);
         player.playerUIHudManager.SetNewStaminaValue(player.stamina);
         //player.playerAnimatorManager.PlayTargetActionAnimation("Rest_Bonfire", true, false);
+        // Close all menus before opening the bonfire menu
+        PlayerUIManager.instance.CloseAllMenuWindows();
         PlayerUIManager.instance.playerUIBonfireManager.OpenMenu();
 
         WorldAIManager.instance.ResetAllCharacters();

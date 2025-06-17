@@ -149,7 +149,16 @@ public class PlayerUILevelUpManager : PlayerUIMenu
         playerStats.endurance = endurance;
         playerStats.strength = strength;
 
+        // Health Calculation
+        player.maxHealth = playerStats.CalculateHealthBasedOnVitalityLevel();
+        player.health = player.maxHealth;
         PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue(player.health);
+        PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(player.maxHealth);
+
+        // Stamina Calculation
+        player.maxStamina = playerStats.CalculateStaminaBasedOnEnduranceLevel();
+        player.stamina = player.maxStamina;
+        PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(player.maxStamina);
         PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue(player.stamina);
 
         SetCurrentStats();

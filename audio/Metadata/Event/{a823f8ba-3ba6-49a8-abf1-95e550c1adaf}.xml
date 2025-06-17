@@ -5,7 +5,7 @@
 			<value>Sconces torches</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1d2893c4-0d68-4181-b315-f70d97b08abb}</destination>
@@ -137,6 +137,7 @@
 	<object class="MixerBusEffectChain" id="{396681b5-0b1c-4eca-bba5-d44e0bcac125}">
 		<relationship name="effects">
 			<destination>{4ba3ad88-5326-4961-86c1-0d5e41ead9ff}</destination>
+			<destination>{31eb2db0-57ee-4c12-8586-d389657d47c6}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2d9e1adb-5455-4ed0-aad0-93e0252a67d2}" />
@@ -174,6 +175,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{e591c189-5428-4155-8554-e7adf79f110d}" />
 	<object class="MixerBusFader" id="{4ba3ad88-5326-4961-86c1-0d5e41ead9ff}" />
+	<object class="SpatialiserEffect" id="{31eb2db0-57ee-4c12-8586-d389657d47c6}" />
 	<object class="AutomationPoint" id="{f9c1aca0-22a5-466d-b657-c70a3ed5da7f}">
 		<property name="position">
 			<value>0</value>
