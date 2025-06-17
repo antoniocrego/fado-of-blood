@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Key
   itemIcon: {fileID: 21300000, guid: 241e199888de8a34280b9070e2b5efbb, type: 3}
-  itemDescription: Key to open doors
+  itemDescription: Heavy and cold to the touch, this ancient key bears the insignia
+    of a long-fallen order. It turns only in locks of old make, parting doors sealed
+    by duty, fear, or forgotten oaths
   itemID: 0
   consumableModel: {fileID: -927199367670048503, guid: 0669f3d8f4b119f418a4bbe061cc198f, type: 3}

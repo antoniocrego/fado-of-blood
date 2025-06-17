@@ -7,7 +7,7 @@ public class WeaponItem : Item
 
     [Header("Model Instantiation")]
     public WeaponModelType weaponModelType;
-    
+
     [Header("Weapon Model")]
     public GameObject weaponModel;
 
@@ -15,8 +15,7 @@ public class WeaponItem : Item
     public float baseDamage = 10f;
     public float poiseDamage = 10f;
     public float strength = 0f;
-    public float dex = 0f;
-    public float magic = 0f;
+    public float strengthScaling = 1.0f;
 
     [Header("Attack Modifiers")]
     public float light_Attack_01_Modifier = 1.0f;
@@ -28,7 +27,7 @@ public class WeaponItem : Item
     public float running_Attack_01_Modifier = 1.1f;
     public float rolling_Attack_01_Modifier = 1.1f;
     public float backstep_Attack_01_Modifier = 1.1f;
-    
+
     [Header("Stamina Cost Modifiers")]
     public int baseStaminaCost = 20;
     public float lightAttackStaminaCostMultiplier = 1.0f;
@@ -46,4 +45,12 @@ public class WeaponItem : Item
     public WeaponItemAction oh_RB_Action; // ONE HAND RIGHT BUMPER ACTION
     public WeaponItemAction oh_RT_Action; // ONE HAND RIGHT TRIGGER ACTION
     public WeaponItemAction oh_LB_Action;   // ONE HAND LEFT BUMPER ACTION
+
+    public float CalculateEffectiveDamage(CharacterStatsManager stats)
+    {
+        float effectiveDamage = baseDamage;
+        effectiveDamage += stats.strength * strengthScaling;
+        return effectiveDamage;
+    }
+
 }

@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Health Flask
   itemIcon: {fileID: 21300000, guid: 4b29148d8202bd241b401216df293b33, type: 3}
-  itemDescription: 
-  itemID: 1
+  itemDescription: A stout vessel bound in iron and etched with runes of renewal.
+    Within swirls a sacred elixir brewed by monastery healers. Each sip mends torn
+    flesh and steadies the soul, warding off the grasp of death for a while longer.
+  itemID: 5
   itemModel: {fileID: 334829909814231502, guid: 90fbc8e02b9014d4b9f89b83bc07eaef, type: 3}
   useItemAnimation: Item_Flask_Drink_Start_01
   healthFlask: 1

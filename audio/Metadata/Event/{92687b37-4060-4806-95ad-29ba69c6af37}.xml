@@ -110,6 +110,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d09b64a5-e9b6-467f-bc3c-3197c5a05fa2}">
+		<property name="volume">
+			<value>-6</value>
+		</property>
 		<property name="name">
 			<value>Sword impact light 1</value>
 		</property>

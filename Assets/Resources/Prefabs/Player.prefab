@@ -829,7 +829,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
   - {fileID: 11400000, guid: 0fa0019a92eeb6b42a8b543d1a541a37, type: 2}
   leftHandWeaponIndex: 0
-  itemsInInventory: []
+  itemsInInventory:
+  - {fileID: 0}
   currentQuickSlotItem: {fileID: 0}
 --- !u!114 &4168413056940886147
 MonoBehaviour:
@@ -854,6 +855,7 @@ MonoBehaviour:
   characterStatsManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   playerUIHudManager: {fileID: 0}
+  characterHPBar: {fileID: 0}
   characterGroup: 0
   health: 0
   stamina: 0
@@ -862,8 +864,6 @@ MonoBehaviour:
   isInvincible: 0
   isPerformingAction: 0
   isSprinting: 0
-  endurance: 1
-  vitality: 1
   maxStamina: 0
   maxHealth: 0
   isLockedOn: 0
@@ -873,6 +873,7 @@ MonoBehaviour:
   isJumping: 0
   isBlocking: 0
   isAttacking: 0
+  currentSurfaceType: Dirt
   playerName: Player
   playerAnimatorManager: {fileID: 0}
   playerInventoryManager: {fileID: 0}
@@ -1004,8 +1005,9 @@ MonoBehaviour:
   runningSpeed: 5
   walkingSpeed: 2
   sprintSpeed: 7
-  spritingStaminaCost: 1
-  sprintingRecovery: 1
+  spritingStaminaCost: 10
+  sprintingRecovery: 5
+  minimumStaminaToStartSprinting: 10
   jumpHeight: 1
   jumpForwardSpeed: 5
   freeFallSpeed: 2
@@ -1021,10 +1023,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f92890d248fee943998cc64978a6807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastHitAnimation: 
   hitForwardMedium: Hit_Forward_Medium_01
   hitBackwardMedium: Hit_Backward_Medium_01
   hitLeftMedium: Hit_Left_Medium_01
   hitRightMedium: Hit_Right_Medium_01
+  forwardHitAnimations: []
+  backwardHitAnimations: []
+  leftHitAnimations: []
+  rightHitAnimations: []
   applyRootMotion: 0
 --- !u!114 &1350991937288706699
 MonoBehaviour:
@@ -1038,7 +1045,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7060b117ac006de438d01ee0dcf6a800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  vitality: 1
+  resistance: 1
+  endurance: 1
+  strength: 1
   blockingDamageAbsorption: 0
+  blockingStability: 0
+  bloodDrops: 0
 --- !u!114 &-5256317076558561274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1532,6 +1545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToGround: 0.2
+  footstepSFXEvent: event:/Footsteps/Footsteps
+  surfaceParameterName: Footsteps
 --- !u!1 &1439118987043723490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1610,6 +1625,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distanceToGround: 0.2
+  footstepSFXEvent: event:/Footsteps/Footsteps
+  surfaceParameterName: Footsteps
 --- !u!1 &1563703522910075493
 GameObject:
   m_ObjectHideFlags: 0

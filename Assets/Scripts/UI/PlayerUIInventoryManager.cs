@@ -161,6 +161,7 @@ public class PlayerUIInventoryManager : PlayerUIMenu
         if (detailItemIcon != null)
         {
             detailItemIcon.sprite = itemToDisplay.itemIcon;
+            detailItemIcon.color = Color.white;
             detailItemIcon.enabled = (itemToDisplay.itemIcon != null);
         }
         if (detailItemNameText != null)
@@ -183,6 +184,7 @@ public class PlayerUIInventoryManager : PlayerUIMenu
         if (detailItemIcon != null)
         {
             detailItemIcon.sprite = null;
+            detailItemIcon.color = new Color(0, 0, 0, 0); 
             detailItemIcon.enabled = false;
         }
         if (detailItemNameText != null)
