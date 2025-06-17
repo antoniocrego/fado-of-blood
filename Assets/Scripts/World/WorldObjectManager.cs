@@ -16,6 +16,10 @@ public class WorldObjectManager : MonoBehaviour
     [Header("Bonfires")]
     public List<BonfireInteractable> bonfires;
 
+    [Header("Ending Triggers")]
+    public GameObject goodEndingTrigger;
+    public GameObject badEndingTrigger;
+
     private void Awake()
     {
         if (instance == null)
@@ -30,7 +34,7 @@ public class WorldObjectManager : MonoBehaviour
 
     private void Start()
     {
-
+        UpdateEndingTriggers();
     }
 
     public void SpawnObject(ObjectSpawner spawner)
@@ -71,12 +75,31 @@ public class WorldObjectManager : MonoBehaviour
             bonfires.Add(bonfire);
         }
     }
-    
+
     public void RemoveBonfire(BonfireInteractable bonfire)
     {
         if (bonfires.Contains(bonfire))
         {
             bonfires.Remove(bonfire);
+        }
+    }
+
+    public BonfireInteractable GetBonfireByID(int bonfireID)
+    {
+        return bonfires.Find(b => b.bonfireID == bonfireID);
+    }
+
+    public void UpdateEndingTriggers()
+    {
+        if (WorldSaveGameManager.instance.currentCharacterData.hasKilledTheFinalBoss && WorldSaveGameManager.instance.currentCharacterData.endingID == 0)
+        {
+            goodEndingTrigger.SetActive(true);
+            badEndingTrigger.SetActive(true);
+        }
+        else
+        {
+            goodEndingTrigger.SetActive(false);
+            badEndingTrigger.SetActive(false);
         }
     }
 }

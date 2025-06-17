@@ -163,6 +163,7 @@ public class PlayerUILevelUpManager : PlayerUIMenu
 
         SetCurrentStats();
         ChangeTextColorsDependingOnCost();
+        WorldSaveGameManager.instance.SaveGame();
     }
 
     private void SetAllLevelsCost()

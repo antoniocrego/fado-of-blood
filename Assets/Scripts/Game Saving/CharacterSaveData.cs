@@ -78,6 +78,10 @@ public class CharacterSaveData
     public List<SerializableQuickSlotItem> quickSlotItemsInInventory;
     public List<SerializableItem> otherItemsInInventory;
 
+    [Header("Ending")]
+    public bool hasKilledTheFinalBoss = false; // Indicates if the final boss has been defeated
+    public int endingID = 0; // 0 for no ending, 1 for good ending, 2 for bad ending
+
     public CharacterSaveData()
     {
         // Initialize the dictionaries to avoid null reference exceptions.

@@ -8,11 +8,11 @@ public class AIBossCharacterManager : AICharacterManager
 
     [Header("Status")]
     public bool bossFightIsActive = false;
-    [SerializeField] bool hasBeenDefeated = false;
-    [SerializeField] bool hasBeenAwakened = false;
-    [SerializeField] List<FogWallInteractable> fogWalls;
-    [SerializeField] string sleepAnimation;
-    [SerializeField] string wakeAnimation;
+    [SerializeField] protected bool hasBeenDefeated = false;
+    [SerializeField] protected bool hasBeenAwakened = false;
+    [SerializeField] protected List<FogWallInteractable> fogWalls;
+    [SerializeField] protected string sleepAnimation;
+    [SerializeField] protected string wakeAnimation;
 
     [Header("States")]
     [SerializeField] AIState sleepState;
@@ -49,8 +49,15 @@ public class AIBossCharacterManager : AICharacterManager
 
     public override void SetToInitialState()
     {
-        currentState = sleepState; // Reset to sleep state.
-        characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
+        if (!hasBeenAwakened)
+        {
+            currentState = sleepState; // Reset to sleep state.
+            characterAnimatorManager.PlayTargetActionAnimation(sleepAnimation, true);
+        }
+        else
+        {
+            currentState = idleState; // Reset to idle state if already awakened.
+        }
     }
 
     private IEnumerator GetFogWallsFromWorldObjectManager()
@@ -86,7 +93,7 @@ public class AIBossCharacterManager : AICharacterManager
 
     }
 
-    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false) 
+    public override IEnumerator ProcessDeath(bool manuallySelectDeathAnimation = false)
     {
         health = 0;
         isDead = true;
@@ -132,6 +139,7 @@ public class AIBossCharacterManager : AICharacterManager
         }
 
         // disable character
+        isActive = false;
     }
 
     public virtual void WakeBoss()
@@ -190,5 +198,15 @@ public class AIBossCharacterManager : AICharacterManager
         {
             fogWall.isActive = false;
         }
+    }
+    
+    public virtual void SoftDeactivateBossFight()
+    {
+        bossFightIsActive = false;
+        // hp bar kills itself after 2.5 seconds
+
+        isPerformingAction = false;
+        isSprinting = false;
+        isMoving = false;
     }
 }

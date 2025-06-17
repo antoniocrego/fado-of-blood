@@ -18,10 +18,14 @@ public class UI_Boss_HP_Bar : UiStat_Bar
     private void OnBossHPChanged(float newHP)
     {
         SetStat(newHP);
-        
+
         if (newHP <= 0)
         {
             DisableBossHPBar(2.5f);
+        }
+        if (!bossCharacter.bossFightIsActive)
+        {
+            DisableBossHPBar(0.5f);
         }
     }
 

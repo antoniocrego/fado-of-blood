@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
-using UnityEngine.SceneManagement;
+using  UnityEngine.InputSystem;
 using System;
 
 public class CutsceneManager : MonoBehaviour
@@ -17,7 +17,6 @@ public class CutsceneManager : MonoBehaviour
 
     private bool isPlaying = false;
     private Action onCutsceneComplete; // callback
-    // public AudioListener audioListener;
 
     public enum CutsceneType
     {
@@ -26,6 +25,13 @@ public class CutsceneManager : MonoBehaviour
         BadEnding
     }
 
+    public PlayerInput playerInput;
+    InputActionMap playerMovement;
+    InputActionMap playerActions;
+    InputActionMap cameraMovement;
+    InputActionMap UI;
+    InputActionMap cutsceneMap;
+    private InputAction skipAction;
 
     private void Awake()
     {
@@ -37,6 +43,22 @@ public class CutsceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        playerMovement = playerInput.actions.FindActionMap("PlayerMovement");
+        playerActions = playerInput.actions.FindActionMap("PlayerActions");
+        cameraMovement = playerInput.actions.FindActionMap("CameraMovement");
+        UI = playerInput.actions.FindActionMap("UI");
+        cutsceneMap = playerInput.actions.FindActionMap("Cutscene");
+        skipAction = cutsceneMap.FindAction("Skip");
+
+        skipAction.performed += ctx => SkipCutscene();
+        
+        skipAction.Disable();
+    }
+
+    void OnDisable()
+    {
+        skipAction.Disable();
     }
 
     void Start()
@@ -45,18 +67,15 @@ public class CutsceneManager : MonoBehaviour
         videoPlayer.loopPointReached += OnVideoEnd;
     }
 
-    void Update()
-    {
-        if (isPlaying && Input.GetKeyDown(KeyCode.Escape))
-        {
-            SkipCutscene();
-        }
-    }
-
     public void PlayCutscene(CutsceneType type, Action onComplete = null)
     {
+        playerMovement.Disable();
+        playerActions.Disable();
+        cameraMovement.Disable();
+        UI.Disable();
+        skipAction.Enable();
+
         WorldSoundtrackManager.instance.StopTrack();
-        // audioListener.enabled = true;
         onCutsceneComplete = onComplete;
 
         switch(type)
@@ -83,15 +102,21 @@ public class CutsceneManager : MonoBehaviour
     
     void SkipCutscene()
     {
+        if (!isPlaying) return;
         videoPlayer.Stop();
         EndCutscene();
     }
 
     void EndCutscene()
     {
+        playerMovement.Enable();
+        playerActions.Enable();
+        cameraMovement.Enable();
+        UI.Enable();
+        skipAction.Disable();
+
         isPlaying = false;
         cutsceneUI.SetActive(false);
-        // audioListener.enabled = false;
 
         onCutsceneComplete?.Invoke();
     }

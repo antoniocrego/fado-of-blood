@@ -5,7 +5,7 @@ using FMODUnity;
 public class BonfireInteractable : Interactable
 {
     [Header("Bonfire Info")]
-    [SerializeField] int bonfireID;
+    [SerializeField] public int bonfireID;
 
     [Header("VFX")]
     [SerializeField] GameObject bonfireVFX;

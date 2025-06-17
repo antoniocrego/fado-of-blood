@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class UICharacterSaveSlot : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class UICharacterSaveSlot : MonoBehaviour
 
     [Header("Character Info")]
     public TMP_Text characterName;
+    public Image saveIcon;
     public TMP_Text timePlayed;
 
     private void OnEnable()
@@ -30,6 +32,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot01.characterName;
                     timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot01.secondsPlayed);
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot01);
                 }
                 else
                 {
@@ -41,6 +44,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot02.characterName;
                     timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot02.secondsPlayed);
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot02);
                 }
                 else
                 {
@@ -52,6 +56,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot03.characterName;
                     timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot03.secondsPlayed);
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot03);
                 }
                 else
                 {
@@ -63,6 +68,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot04.characterName;
                     timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot04.secondsPlayed);
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot04);
                 }
                 else
                 {
@@ -74,6 +80,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot05.characterName;
                     timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot05.secondsPlayed);
+                    saveIcon.color = GetColorFromEnding(WorldSaveGameManager.instance.characterSlot05);
                 }
                 else
                 {
@@ -92,5 +99,21 @@ public class UICharacterSaveSlot : MonoBehaviour
     public void SelectCurrentSlot()
     {
         TitleScreenManager.instance.SelectCharacterSlot(characterSlot);
+    }
+
+    public Color GetColorFromEnding(CharacterSaveData characterData) {
+        int endingID = characterData.endingID;
+        Debug.Log($"Character Slot: {characterSlot}, Ending ID: {endingID}");
+        switch (endingID)
+        {
+            case 0:
+                return Color.white;
+            case 1:
+                return Color.blue;
+            case 2:
+                return Color.red;
+            default:
+                return Color.gray;
+        }
     }
 }

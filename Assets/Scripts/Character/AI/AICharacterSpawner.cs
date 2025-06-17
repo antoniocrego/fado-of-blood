@@ -51,6 +51,11 @@ public class AICharacterSpawner : MonoBehaviour
         aiCharacterManager.characterCombatManager.currentTarget = null; // being in idle state ignores currentTarget, but do it anyways
         aiCharacterManager.navMeshAgent.enabled = false;
         aiCharacterManager.navMeshAgent.enabled = true; // re-enable navmesh agent to reset its state
-        // reset ai hp bar ui once its implemented
+                                                        // reset ai hp bar ui once its implemented
+
+        if (aiCharacterManager is AIBossCharacterManager boss)
+        {
+            boss.SoftDeactivateBossFight();
+        }
     }
 }
