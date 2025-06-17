@@ -180,6 +180,10 @@ public class PlayerManager : CharacterManager
 
         currentCharacterData.remainingHealthFlasks = playerEquipmentManager.remainingHealthFlasks;
 
+        currentCharacterData.weaponsInInventory = new List<SerializableWeapon>();
+        currentCharacterData.quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
+        currentCharacterData.otherItemsInInventory = new List<SerializableItem>();
+
         for (int i = 0; i < playerInventoryManager.itemsInInventory.Count; i++)
         {
             if (playerInventoryManager.itemsInInventory[i] != null)
@@ -194,7 +198,7 @@ public class PlayerManager : CharacterManager
                     currentCharacterData.quickSlotItemsInInventory.Add(WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(quickSlotItemInInventory));
                 else if (itemInInventory != null)
                     currentCharacterData.otherItemsInInventory.Add(WorldSaveGameManager.instance.GetSerializableItemFromItem(itemInInventory));
-                
+
             }
         }
     }
