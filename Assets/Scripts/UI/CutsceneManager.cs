@@ -12,8 +12,13 @@ public class CutsceneManager : MonoBehaviour
     public GameObject cutsceneUI;
 
     public VideoClip introCutscene;
+    [SerializeField] string introAudioFMOD = "event:/Cutscenes/Intro";
     public VideoClip goodEndingCutscene;
+    [SerializeField] string goodEndingAudioFMOD = "event:/Cutscenes/Good_Ending";
     public VideoClip badEndingCutscene;
+    [SerializeField] string badEndingAudioFMOD = "event:/Cutscenes/Bad_Ending";
+    [Header("Audio")]
+    private FMOD.Studio.EventInstance audioInstance;
 
     private bool isPlaying = false;
     private Action onCutsceneComplete; // callback
@@ -25,7 +30,7 @@ public class CutsceneManager : MonoBehaviour
         BadEnding
     }
 
-    public PlayerInput playerInput;
+    public InputActionAsset playerInput;
     InputActionMap playerMovement;
     InputActionMap playerActions;
     InputActionMap cameraMovement;
@@ -44,11 +49,11 @@ public class CutsceneManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        playerMovement = playerInput.actions.FindActionMap("PlayerMovement");
-        playerActions = playerInput.actions.FindActionMap("PlayerActions");
-        cameraMovement = playerInput.actions.FindActionMap("CameraMovement");
-        UI = playerInput.actions.FindActionMap("UI");
-        cutsceneMap = playerInput.actions.FindActionMap("Cutscene");
+        playerMovement = playerInput.FindActionMap("Player Movement");
+        playerActions = playerInput.FindActionMap("Player Actions");
+        cameraMovement = playerInput.FindActionMap("Camera Movement");
+        UI = playerInput.FindActionMap("UI");
+        cutsceneMap = playerInput.FindActionMap("Cutscene");
         skipAction = cutsceneMap.FindAction("Skip");
 
         skipAction.performed += ctx => SkipCutscene();
@@ -82,12 +87,18 @@ public class CutsceneManager : MonoBehaviour
         {
             case CutsceneType.Intro:
                 videoPlayer.clip = introCutscene;
+                audioInstance = FMODUnity.RuntimeManager.CreateInstance(introAudioFMOD);
+                audioInstance.start();
                 break;
             case CutsceneType.GoodEnding:
                 videoPlayer.clip = goodEndingCutscene;
+                audioInstance = FMODUnity.RuntimeManager.CreateInstance(goodEndingAudioFMOD);
+                audioInstance.start();
                 break;
             case CutsceneType.BadEnding:
                 videoPlayer.clip = badEndingCutscene;
+                audioInstance = FMODUnity.RuntimeManager.CreateInstance(badEndingAudioFMOD);
+                audioInstance.start();
                 break;
         }
         cutsceneUI.SetActive(true);
@@ -104,6 +115,9 @@ public class CutsceneManager : MonoBehaviour
     {
         if (!isPlaying) return;
         videoPlayer.Stop();
+        audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        audioInstance.release();
+
         EndCutscene();
     }
 
