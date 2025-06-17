@@ -13,6 +13,9 @@ public class TakeDamageEffect : InstantCharacterEffect
     [Header("Damage")]
     public float damage = 0;
 
+    [Header("Poise")]
+    public float poiseDamage = 0;
+
     [Header("Final Damage")]
     private float finalDamageDealt = 0;
 
@@ -57,6 +60,15 @@ public class TakeDamageEffect : InstantCharacterEffect
         }
 
         finalDamageDealt = damage;
+
+        if (character is PlayerManager)
+        {
+            var stats = character.characterStatsManager;
+            float resistanceReduction = 1f - (stats.resistance * 0.01f);
+            resistanceReduction = Mathf.Clamp(resistanceReduction, 0.0f, 1.0f); 
+            finalDamageDealt *= resistanceReduction;
+        }
+
         Debug.Log("Final damage dealt: " + finalDamageDealt);
 
         Debug.Log("Character health before taking damage: " + character.health);
@@ -67,9 +79,9 @@ public class TakeDamageEffect : InstantCharacterEffect
             Debug.Log("AI character health after taking damage: " + character.health);
         }
         if (character.characterHPBar != null)
-            {
-                character.characterHPBar.SetStat(character.health);
-            }
+        {
+            character.characterHPBar.SetStat(character.health);
+        }
         Debug.Log("Character health after taking damage: " + character.health);
     }
 

@@ -14,12 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Straight Sword
   itemIcon: {fileID: 21300000, guid: 0ef6a2bbca24b564bacf37aa8bdcfe6a, type: 3}
-  itemDescription: A straight sword.
-  itemID: 1
+  itemDescription: A well-balanced blade once wielded by squires turned champions.
+    Forged with tempered steel and honor-bound purpose, it strikes true in the hands
+    of the disciplined. Neither ornate nor crude, but deadly in its simplicity.
+  itemID: 3
   weaponAnimator: {fileID: 22100000, guid: ae9effb7fcf60444a90f46ff64be17cd, type: 2}
   weaponModelType: 0
   weaponModel: {fileID: 8125302532151398992, guid: 90d19bbd1918a504ba39f990c73b5e8c, type: 3}
   baseDamage: 10
+  poiseDamage: 10
   strength: 0
   dex: 0
   magic: 0
@@ -39,6 +42,8 @@ MonoBehaviour:
   runningAttackStaminaCostMultiplier: 1.1
   rollingAttackStaminaCostMultiplier: 1.1
   backstepAttackStaminaCostMultiplier: 1.1
+  blockingDamageAbsorption: 70
+  stability: 50
   oh_RB_Action: {fileID: 11400000, guid: 43d7da4c61ebf4a40b2fb3790e475243, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: f20f7ac4aa23763448a3424a935e6ee3, type: 2}
   oh_LB_Action: {fileID: 11400000, guid: bfa2753c996236b49bd30ba9aba4f92f, type: 2}

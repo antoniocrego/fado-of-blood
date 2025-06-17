@@ -12,6 +12,7 @@ public class AIAdamastorCombatManager : AICharacterCombatManager
 
     [Header("Damage")]
     [SerializeField] float baseDamage = 10f;
+    [SerializeField] float basePoiseDamage = 10f;
     [SerializeField] float attack01DamageMultiplier = 1.5f;
     [SerializeField] float attack02DamageMultiplier = 3f;
 
@@ -24,11 +25,13 @@ public class AIAdamastorCombatManager : AICharacterCombatManager
     public void SetAttack01Damage()
     {
         leftHandDamageCollider.damage = baseDamage * attack01DamageMultiplier;
+        leftHandDamageCollider.poiseDamage = basePoiseDamage * attack01DamageMultiplier;
     }
 
     public void SetAttack02Damage()
     {
         rightLegDamageCollider.damage = baseDamage * attack02DamageMultiplier;
+        rightLegDamageCollider.poiseDamage = basePoiseDamage * attack02DamageMultiplier;
     }
 
     public void OpenRightHandDamageCollider()

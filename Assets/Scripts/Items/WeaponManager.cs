@@ -11,8 +11,11 @@ public class WeaponManager : MonoBehaviour
 
     public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon)
     {
+        var stats = characterWieldingWeapon.characterStatsManager;
+        meleeDamageCollider.damage = weapon.CalculateEffectiveDamage(stats);
         meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
-        meleeDamageCollider.damage = weapon.baseDamage;
+        // meleeDamageCollider.damage = weapon.baseDamage;
+        meleeDamageCollider.poiseDamage = weapon.poiseDamage;
 
         meleeDamageCollider.light_Attack_01_Modifier = weapon.light_Attack_01_Modifier;
         meleeDamageCollider.light_Attack_02_Modifier = weapon.light_Attack_02_Modifier;
