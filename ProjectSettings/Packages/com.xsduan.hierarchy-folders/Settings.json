@@ -20,11 +20,6 @@
                 "type": "UnityHierarchyFolders.Runtime.StrippingMode, UnityHierarchyFolders.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
                 "key": "_playModeSetting",
                 "value": "{\"m_Value\":0}"
-            },
-            {
-                "type": "UnityHierarchyFolders.Runtime.StrippingMode, UnityHierarchyFolders.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null",
-                "key": "_buildSetting",
-                "value": "{\"m_Value\":0}"
             }
         ]
     }
