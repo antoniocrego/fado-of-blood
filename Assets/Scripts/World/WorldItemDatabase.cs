@@ -69,4 +69,41 @@ public class WorldItemDatabase : MonoBehaviour
     {
         return quickSlotItems.FirstOrDefault(item => item.itemID == ID);
     }
+
+    public WeaponItem GetWeaponFromSerializedData(SerializableWeapon serializedWeapon)
+    {
+        WeaponItem weapon = null;
+
+        if (GetWeaponByID(serializedWeapon.weaponID))
+            weapon = Instantiate(GetWeaponByID(serializedWeapon.weaponID));
+
+        if (weapon == null)
+            return Instantiate(unarmedWeapon);
+
+        return weapon;
+    }
+
+    public QuickSlotItem GetQuickSlotItemFromSerializedData(SerializableQuickSlotItem serializedQuickSlotItem)
+    {
+        QuickSlotItem quickSlotItem = null;
+
+        if (GetQuickSlotItemByID(serializedQuickSlotItem.itemID))
+        {
+            quickSlotItem = Instantiate(GetQuickSlotItemByID(serializedQuickSlotItem.itemID));
+            quickSlotItem.itemAmount = serializedQuickSlotItem.itemAmount;
+        }
+
+        return quickSlotItem;
+    }
+    
+    public Item GetItemFromSerializedData(SerializableItem serializedItem)
+    {
+        Item item = null;
+
+        if (GetItemByID(serializedItem.itemID))
+            item = Instantiate(GetItemByID(serializedItem.itemID));
+
+        return item;
+    }
+
 }

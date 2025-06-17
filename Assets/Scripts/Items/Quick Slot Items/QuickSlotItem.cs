@@ -8,13 +8,15 @@ public class QuickSlotItem : Item
 
     [Header("Animation")]
     [SerializeField] protected string useItemAnimation;
+    
+    public int itemAmount = 1;
 
     public virtual void AttemptToUseItem(PlayerManager player)
     {
         if (!CanIUseThisItem(player))
             return;
 
-        player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false,true,true);
+        player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false, true, true);
     }
 
     public virtual void SucessfullyUseItem(PlayerManager player)

@@ -199,6 +199,8 @@ public class WorldSaveGameManager : MonoBehaviour
 
         player.LoadGame(ref currentCharacterData);
 
+        WorldSoundtrackManager.instance.StopTrack();
+
         loadWorldSceneCoroutine = null; // Reset coroutine reference
     }
 
@@ -211,6 +213,8 @@ public class WorldSaveGameManager : MonoBehaviour
         {
             yield return null;
         }
+
+        WorldSoundtrackManager.instance.StopTrack();
     }
 
     public int GetWorldSceneIndex()
@@ -232,4 +236,35 @@ public class WorldSaveGameManager : MonoBehaviour
     //         SaveGame();
     //     }
     // }
+
+    public SerializableWeapon GetSerializableWeaponFromWeaponItem(WeaponItem weapon)
+    {
+        SerializableWeapon serializableWeapon = new SerializableWeapon();
+        serializableWeapon.weaponID = weapon.itemID;
+        return serializableWeapon;
+    }
+
+    public SerializableQuickSlotItem GetSerializableQuickSlotItemFromQuickSlotItem(QuickSlotItem quickSlotItem)
+    {
+        SerializableQuickSlotItem serializableQuickSlotItem = new SerializableQuickSlotItem();
+
+        if (quickSlotItem != null)
+        {
+            serializableQuickSlotItem.itemID = quickSlotItem.itemID;
+            serializableQuickSlotItem.itemAmount = quickSlotItem.itemAmount;
+        }
+        else
+        {
+            serializableQuickSlotItem.itemID = -1; // Use -1 or another value to indicate no item
+        }
+
+        return serializableQuickSlotItem;
+    }
+
+    public SerializableItem GetSerializableItemFromItem(Item item)
+    {
+        SerializableItem serializableItem = new SerializableItem();
+        serializableItem.itemID = item.itemID;
+        return serializableItem;
+    }
 }

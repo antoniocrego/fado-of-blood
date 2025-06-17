@@ -142,14 +142,12 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
                 player.playerInventoryManager.rightHandWeaponIndex = -1;
                 selectedWeapon = WorldItemDatabase.Instance.unarmedWeapon;
                 player.playerInventoryManager.currentRightHandWeapon = selectedWeapon;
-                LoadRightWeapon();
             }
             else
             {
                 player.playerInventoryManager.rightHandWeaponIndex = firstWeaponPosition;
                 selectedWeapon = firstWeapon;
                 player.playerInventoryManager.currentRightHandWeapon = selectedWeapon;
-                LoadRightWeapon();
             }
 
             return;
@@ -162,7 +160,6 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             {
                 selectedWeapon = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
                 player.playerInventoryManager.currentRightHandWeapon = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
-                LoadRightWeapon();
             }
         }
 
@@ -244,14 +241,12 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
                 player.playerInventoryManager.leftHandWeaponIndex = -1;
                 selectedWeapon = WorldItemDatabase.Instance.unarmedWeapon;
                 player.playerInventoryManager.currentLeftHandWeapon = selectedWeapon;
-                LoadLeftWeapon();
             }
             else
             {
                 player.playerInventoryManager.leftHandWeaponIndex = firstWeaponPosition;
                 selectedWeapon = firstWeapon;
                 player.playerInventoryManager.currentLeftHandWeapon = selectedWeapon;
-                LoadLeftWeapon();
             }
 
             return;
@@ -264,7 +259,6 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
             {
                 selectedWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex];
                 player.playerInventoryManager.currentLeftHandWeapon = player.playerInventoryManager.weaponsInLeftHandSlots[player.playerInventoryManager.leftHandWeaponIndex];
-                LoadLeftWeapon();
             }
         }
 
@@ -327,5 +321,17 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     {
         QuickSlotItem item = WorldItemDatabase.Instance.GetQuickSlotItemByID(quickSlotItemID);
         item.AttemptToUseItem(player);
+    }
+
+    public void LoadQuickSlotItem(QuickSlotItem quickSlotItem)
+    {
+        if (quickSlotItem == null)
+        {
+            player.playerInventoryManager.currentQuickSlotItem = null;
+            return;
+            
+        }
+
+        player.playerInventoryManager.currentQuickSlotItem = quickSlotItem;
     }
 }

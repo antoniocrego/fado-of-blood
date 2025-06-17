@@ -163,7 +163,7 @@ public class AIBossCharacterManager : AICharacterManager
         WorldSaveGameManager.instance.SaveGame();
     }
 
-    public void ActivateBossFight()
+    public virtual void ActivateBossFight()
     {
         if (bossFightIsActive) return;
         bossFightIsActive = true;
@@ -173,7 +173,7 @@ public class AIBossCharacterManager : AICharacterManager
         bossHPBar.EnableBossHPBar(this);
     }
 
-    public void DeactivateBossFight()
+    public virtual void DeactivateBossFight()
     {
         bossFightIsActive = false;
         // hp bar kills itself after 2.5 seconds

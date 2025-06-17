@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
@@ -57,7 +58,25 @@ public class CharacterSaveData
     [Header("Doors")]
     public SerializableDictionary<int, bool> doorsOpened;
 
+    [Header("Equipped Weapons")]
+    public int rightWeaponIndex;
+    public SerializableWeapon rightWeapon01;
+    public SerializableWeapon rightWeapon02;
+    public SerializableWeapon rightWeapon03;
 
+    public int leftWeaponIndex;
+    public SerializableWeapon leftWeapon01;
+    public SerializableWeapon leftWeapon02;
+    public SerializableWeapon leftWeapon03;
+
+    public SerializableQuickSlotItem quickSlotItem01;
+    
+    public int remainingHealthFlasks = 3;
+
+    [Header("Inventory")]
+    public List<SerializableWeapon> weaponsInInventory;
+    public List<SerializableQuickSlotItem> quickSlotItemsInInventory;
+    public List<SerializableItem> otherItemsInInventory;
 
     public CharacterSaveData()
     {
@@ -68,5 +87,7 @@ public class CharacterSaveData
         bonfiresLit = new SerializableDictionary<int, bool>();
         leversPulled = new SerializableDictionary<int, bool>();
         doorsOpened = new SerializableDictionary<int, bool>();
+        weaponsInInventory = new List<SerializableWeapon>();
+        quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
     }
 }

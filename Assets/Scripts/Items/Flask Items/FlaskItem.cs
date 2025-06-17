@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using FMODUnity;
 
 [CreateAssetMenu(menuName = "Items/Consumables/Flask")]
 public class FlaskItem : QuickSlotItem
@@ -44,7 +45,7 @@ public class FlaskItem : QuickSlotItem
                 return; 
             }
             player.playerCombatManager.isUsingItem = true;
-            player.playerAnimatorManager.PlayTargetActionAnimation(emptyFlaskItemAnimation, true, false, true, true, false);
+            player.playerAnimatorManager.PlayTargetActionAnimation(emptyFlaskItemAnimation, true, false, true, true, false, true);
             Destroy(player.playerEffectsManager.activeQuickSlotItemFX);
             GameObject emptyFlask = Instantiate(emptyFlaskItem, player.playerEquipmentManager.rightHandSlot.transform);
             player.playerEffectsManager.activeQuickSlotItemFX = emptyFlask;
@@ -63,7 +64,7 @@ public class FlaskItem : QuickSlotItem
 
         player.playerEffectsManager.activeQuickSlotItemFX = Instantiate(itemModel, player.playerEquipmentManager.rightHandSlot.transform);
 
-        player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false, true, true, false);
+        player.playerAnimatorManager.PlayTargetActionAnimation(useItemAnimation, true, false, true, true, false, true);
 
         player.playerEquipmentManager.HideWeapons();
     }
@@ -81,10 +82,10 @@ public class FlaskItem : QuickSlotItem
             }
             if (player.health + flaskRestoration > player.maxHealth)
             {
-                Debug.Log("Player health is almost max, restoring only the remaining health.");
-                Debug.Log("Current Health: " + player.health);
-                Debug.Log("Max Health: " + player.maxHealth);
-                Debug.Log("Flask Restoration: " + flaskRestoration);
+                // Debug.Log("Player health is almost max, restoring only the remaining health.");
+                // Debug.Log("Current Health: " + player.health);
+                // Debug.Log("Max Health: " + player.maxHealth);
+                // Debug.Log("Flask Restoration: " + flaskRestoration);
                 flaskRestoration = (int)(player.maxHealth - player.health);
             }
             player.health += flaskRestoration;
@@ -102,7 +103,7 @@ public class FlaskItem : QuickSlotItem
     private void PlayHealingFX(PlayerManager player)
     {
         Instantiate(WorldCharacterEffectsManager.instance.healingFlaskVFX, player.transform);
-        player.characterSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.healingFlaskSFX);
+        RuntimeManager.PlayOneShot("event:/Character/Healing/Healing Potion", player.transform.position);
     }
 
 

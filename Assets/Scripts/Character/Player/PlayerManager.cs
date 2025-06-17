@@ -165,6 +165,42 @@ public class PlayerManager : CharacterManager
         currentCharacterData.worldPositionY = transform.position.y;
         currentCharacterData.worldPositionZ = transform.position.z;
         currentCharacterData.bloodDrops = playerStatsManager.bloodDrops;
+
+        currentCharacterData.rightWeaponIndex = playerInventoryManager.rightHandWeaponIndex;
+        currentCharacterData.rightWeapon01 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[0]);
+        currentCharacterData.rightWeapon02 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[1]);
+        currentCharacterData.rightWeapon03 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInRightHandSlots[2]);
+
+        currentCharacterData.leftWeaponIndex = playerInventoryManager.leftHandWeaponIndex;
+        currentCharacterData.leftWeapon01 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInLeftHandSlots[0]);
+        currentCharacterData.leftWeapon02 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInLeftHandSlots[1]);
+        currentCharacterData.leftWeapon03 = WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(playerInventoryManager.weaponsInLeftHandSlots[2]);
+
+        currentCharacterData.quickSlotItem01 = WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(playerInventoryManager.currentQuickSlotItem);
+
+        currentCharacterData.remainingHealthFlasks = playerEquipmentManager.remainingHealthFlasks;
+
+        currentCharacterData.weaponsInInventory = new List<SerializableWeapon>();
+        currentCharacterData.quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
+        currentCharacterData.otherItemsInInventory = new List<SerializableItem>();
+
+        for (int i = 0; i < playerInventoryManager.itemsInInventory.Count; i++)
+        {
+            if (playerInventoryManager.itemsInInventory[i] != null)
+            {
+                WeaponItem weaponInInventory = playerInventoryManager.itemsInInventory[i] as WeaponItem;
+                QuickSlotItem quickSlotItemInInventory = playerInventoryManager.itemsInInventory[i] as QuickSlotItem;
+                Item itemInInventory = playerInventoryManager.itemsInInventory[i];
+
+                if (weaponInInventory != null)
+                    currentCharacterData.weaponsInInventory.Add(WorldSaveGameManager.instance.GetSerializableWeaponFromWeaponItem(weaponInInventory));
+                else if (quickSlotItemInInventory != null)
+                    currentCharacterData.quickSlotItemsInInventory.Add(WorldSaveGameManager.instance.GetSerializableQuickSlotItemFromQuickSlotItem(quickSlotItemInInventory));
+                else if (itemInInventory != null)
+                    currentCharacterData.otherItemsInInventory.Add(WorldSaveGameManager.instance.GetSerializableItemFromItem(itemInInventory));
+
+            }
+        }
     }
 
     public void LoadGame(ref CharacterSaveData currentCharacterData)
@@ -204,6 +240,55 @@ public class PlayerManager : CharacterManager
                 currentCharacterData.bloodPoolPositionZ
             );
             CreateDeadSpot(bloodPoolPosition, currentCharacterData.bloodPoolBloodDrops, false);
+        }
+
+        // load weapon slots
+        playerInventoryManager.weaponsInRightHandSlots[0] = currentCharacterData.rightWeapon01.GetWeapon();
+        playerInventoryManager.weaponsInRightHandSlots[1] = currentCharacterData.rightWeapon02.GetWeapon();
+        playerInventoryManager.weaponsInRightHandSlots[2] = currentCharacterData.rightWeapon03.GetWeapon();
+
+        playerInventoryManager.weaponsInLeftHandSlots[0] = currentCharacterData.leftWeapon01.GetWeapon();
+        playerInventoryManager.weaponsInLeftHandSlots[1] = currentCharacterData.leftWeapon02.GetWeapon();
+        playerInventoryManager.weaponsInLeftHandSlots[2] = currentCharacterData.leftWeapon03.GetWeapon();
+
+        playerInventoryManager.leftHandWeaponIndex = currentCharacterData.leftWeaponIndex;
+        playerInventoryManager.currentLeftHandWeapon = playerInventoryManager.weaponsInLeftHandSlots[currentCharacterData.leftWeaponIndex];
+        playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
+        playerInventoryManager.currentRightHandWeapon = playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex];
+
+        // load quick slot item
+        playerInventoryManager.currentQuickSlotItem = currentCharacterData.quickSlotItem01.GetQuickSlotItem();
+        playerEquipmentManager.LoadQuickSlotItem(playerInventoryManager.currentQuickSlotItem);
+
+        // load flasks
+        playerEquipmentManager.remainingHealthFlasks = currentCharacterData.remainingHealthFlasks;
+
+        // load items in inventory
+        for (int i = 0; i < currentCharacterData.weaponsInInventory.Count; i++)
+        {
+            WeaponItem weaponItem = currentCharacterData.weaponsInInventory[i].GetWeapon();
+            if (weaponItem != null)
+            {
+                playerInventoryManager.AddItemToInventory(weaponItem);
+            }
+        }
+
+        for (int i = 0; i < currentCharacterData.quickSlotItemsInInventory.Count; i++)
+        {
+            QuickSlotItem quickSlotItem = currentCharacterData.quickSlotItemsInInventory[i].GetQuickSlotItem();
+            if (quickSlotItem != null)
+            {
+                playerInventoryManager.AddItemToInventory(quickSlotItem);
+            }
+        }
+
+        for (int i = 0; i < currentCharacterData.otherItemsInInventory.Count; i++)
+        {
+            Item item = currentCharacterData.otherItemsInInventory[i].GetItem();
+            if (item != null)
+            {
+                playerInventoryManager.AddItemToInventory(item);
+            }
         }
 
         if (playerStatsManager)
