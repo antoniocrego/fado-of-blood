@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PlayerInputManager : MonoBehaviour
@@ -51,6 +52,8 @@ public class PlayerInputManager : MonoBehaviour
 
     [SerializeField] bool openCharacterMenuInput = false;
     [SerializeField] bool closeMenuInput = false;
+    [SerializeField] float gamepadSensitivity = 7f;
+    [SerializeField] float mouseSensitivity = 1f;
 
     private Coroutine lockOnCoroutine;
 
@@ -95,7 +98,6 @@ public class PlayerInputManager : MonoBehaviour
         HandleRTInput();
         HandleChargeRTInput();
         HandleLockOnSwitchTargetInput();
-        HandleCameraInput();
         HandleSwitchRightWeaponInput();
         HandleSwitchLeftWeaponInput();
         HandleInteractInput();
@@ -185,7 +187,7 @@ public class PlayerInputManager : MonoBehaviour
 
     private void HandleSprintInput()
     {
-        if (sprintInput)
+        if (sprintInput && !player.isLockedOn)
         {
             player.playerLocomotionManager.HandleSprint();
         }
@@ -232,6 +234,7 @@ public class PlayerInputManager : MonoBehaviour
             {
                 player.isLockedOn = true;
                 player.playerCombatManager.SetTarget(player.playerCameraManager.currentLockOnTarget);
+                player.isSprinting = false; //  Disable sprinting when locking on
             }
 
             return;
@@ -328,15 +331,19 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    private void HandleCameraInput()
+    private void HandleCameraInput(InputAction.CallbackContext context)
     {
         if (player == null)
         {
             return;
         }
+        bool isGamepadInput = context.control.device is Gamepad;
 
-        cameraVerticalInput = cameraInput.y;
-        cameraHorizontalInput = cameraInput.x;
+        cameraInput = context.ReadValue<Vector2>();
+        float speed = isGamepadInput ? gamepadSensitivity : mouseSensitivity;
+
+        cameraVerticalInput = cameraInput.y * speed;
+        cameraHorizontalInput = cameraInput.x * speed;
     }
     private void OnSceneChange(Scene current, Scene next)
     {
@@ -377,7 +384,7 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
-            playerControls.CameraMovement.Look.performed += i => cameraInput = i.ReadValue<Vector2>();
+            playerControls.CameraMovement.Look.performed += HandleCameraInput;
 
             playerControls.PlayerActions.SwitchRightWeapon.performed += i => switch_Right_hand_weapon = true;
             playerControls.PlayerActions.SwitchLeftWeapon.performed += i => switch_Left_hand_weapon = true;
