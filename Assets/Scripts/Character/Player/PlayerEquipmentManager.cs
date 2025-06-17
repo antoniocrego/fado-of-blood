@@ -66,30 +66,10 @@ public class PlayerEquipmentManager : CharacterEquipmentManager
     }
 
     // RIGHT WEAPON
-    public void LoadRightWeapon()
+     public void LoadRightWeapon()
     {
         if (player.playerInventoryManager.currentRightHandWeapon != null)
         {
-            if (player.playerInventoryManager.currentRightHandWeapon.weaponModelType == WeaponModelType.Shield)
-            {
-                for (int i = 0; i < player.playerInventoryManager.weaponsInRightHandSlots.Length; i++)
-                {
-                    WeaponItem weaponToEquip = player.playerInventoryManager.weaponsInRightHandSlots[i];
-
-                    if (weaponToEquip != null)
-                    {
-                        if (weaponToEquip.weaponModelType != WeaponModelType.Shield)
-                        {
-                            player.playerInventoryManager.currentRightHandWeapon = weaponToEquip;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                }
-            }
-            
             //REMOVE THE OLD WEAPON
             rightHandSlot.UnloadWeapon();
 

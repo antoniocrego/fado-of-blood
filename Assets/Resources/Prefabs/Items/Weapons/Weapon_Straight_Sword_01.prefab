@@ -52,8 +52,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.04896248, y: 1.14, z: 0.1}
-  m_Center: {x: 0.012185653, y: 0.05, z: 0.39738438}
+  m_Size: {x: 0.09611141, y: 1.5188931, z: 0.12903973}
+  m_Center: {x: 0.016424589, y: -0.1144139, z: 0.3828639}
 --- !u!114 &7201048683414154279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +69,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   characterCausingDamage: {fileID: 0}
   light_Attack_01_Modifier: 0
   light_Attack_02_Modifier: 0
@@ -131,8 +132,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.04896248, y: 1.1961764, z: 0.13846557}
-  m_Center: {x: 0.012185653, y: 0.098087676, z: 0.39738438}
+  m_Size: {x: 0.048962478, y: 1.5732316, z: 0.26598406}
+  m_Center: {x: 0.012185648, y: -0.0904398, z: 0.420118}
 --- !u!114 &1755972845211493554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +149,7 @@ MonoBehaviour:
   colliderOwner: {fileID: 0}
   damageCollider: {fileID: 0}
   damage: 0
+  poiseDamage: 0
   characterCausingDamage: {fileID: 0}
   light_Attack_01_Modifier: 0
   light_Attack_02_Modifier: 0

@@ -224,13 +224,24 @@ public class PlayerUIEquipmentManager : PlayerUIMenu
 
         List<WeaponItem> weaponsInInventory = new List<WeaponItem>();
 
-        //  SEARCH OUR ENTIRE INVENTORY, AND OUT OF ALL OF THE ITEMS IN OUR INVENTORY IF THE ITEM IS A WEAPON ADD IT TO OUR WEAPONS LIST
+        // Filter based on slot type
+        bool isRightHand = currentSelectedEquipmentSlot == EquipmentType.RightWeapon01 ||
+                        currentSelectedEquipmentSlot == EquipmentType.RightWeapon02 ||
+                        currentSelectedEquipmentSlot == EquipmentType.RightWeapon03;
+        bool isLeftHand = currentSelectedEquipmentSlot == EquipmentType.LeftWeapon01 ||
+                        currentSelectedEquipmentSlot == EquipmentType.LeftWeapon02 ||
+                        currentSelectedEquipmentSlot == EquipmentType.LeftWeapon03;
+
         for (int i = 0; i < player.playerInventoryManager.itemsInInventory.Count; i++)
         {
             WeaponItem weapon = player.playerInventoryManager.itemsInInventory[i] as WeaponItem;
-
             if (weapon != null)
-                weaponsInInventory.Add(weapon);
+            {
+                if (isRightHand && weapon.weaponModelType == WeaponModelType.Weapon)
+                    weaponsInInventory.Add(weapon);
+                else if (isLeftHand && weapon.weaponModelType == WeaponModelType.Shield)
+                    weaponsInInventory.Add(weapon);
+            }
         }
 
         if (weaponsInInventory.Count <= 0)
