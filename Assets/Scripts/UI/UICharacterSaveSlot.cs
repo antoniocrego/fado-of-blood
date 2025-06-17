@@ -29,6 +29,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot01.characterName;
+                    timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot01.secondsPlayed);
                 }
                 else
                 {
@@ -39,6 +40,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot02.characterName;
+                    timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot02.secondsPlayed);
                 }
                 else
                 {
@@ -49,6 +51,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot03.characterName;
+                    timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot03.secondsPlayed);
                 }
                 else
                 {
@@ -59,6 +62,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot04.characterName;
+                    timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot04.secondsPlayed);
                 }
                 else
                 {
@@ -69,6 +73,7 @@ public class UICharacterSaveSlot : MonoBehaviour
                 if (saveFileDataWriter.CheckToSeeIfFileExists())
                 {
                     characterName.text = WorldSaveGameManager.instance.characterSlot05.characterName;
+                    timePlayed.text = TimeUtility.FormatTime(WorldSaveGameManager.instance.characterSlot05.secondsPlayed);
                 }
                 else
                 {

@@ -35,6 +35,8 @@ public class PlayerManager : CharacterManager
     public float minFov = -60f;
     public float maxFov = 60f;
 
+    [SerializeField] float secondsPlayed = 0f;
+
     private Coroutine revivalCoroutine;
 
     protected override void Start()
@@ -130,6 +132,8 @@ public class PlayerManager : CharacterManager
             playerStatsManager.blockingDamageAbsorption = playerCombatManager.currentWeaponBeingUsed.blockingDamageAbsorption;
             playerStatsManager.blockingStability = playerCombatManager.currentWeaponBeingUsed.stability;
         }
+
+        secondsPlayed += Time.deltaTime;
     }
 
 
@@ -183,6 +187,7 @@ public class PlayerManager : CharacterManager
         currentCharacterData.weaponsInInventory = new List<SerializableWeapon>();
         currentCharacterData.quickSlotItemsInInventory = new List<SerializableQuickSlotItem>();
         currentCharacterData.otherItemsInInventory = new List<SerializableItem>();
+        currentCharacterData.secondsPlayed = secondsPlayed;
 
         for (int i = 0; i < playerInventoryManager.itemsInInventory.Count; i++)
         {
@@ -206,6 +211,7 @@ public class PlayerManager : CharacterManager
     public void LoadGame(ref CharacterSaveData currentCharacterData)
     {
         playerName = currentCharacterData.characterName;
+        secondsPlayed = currentCharacterData.secondsPlayed;
 
         playerStatsManager.vitality = currentCharacterData.vitality;
         playerStatsManager.endurance = currentCharacterData.endurance;
