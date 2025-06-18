@@ -70,10 +70,12 @@ public class CutsceneManager : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         videoPlayer.loopPointReached += OnVideoEnd;
+        videoPlayer.errorReceived += (source, message) => Debug.LogError("VideoPlayer Error: " + message);
     }
 
     public void PlayCutscene(CutsceneType type, Action onComplete = null)
     {
+        if (isPlaying) return;
         playerMovement.Disable();
         playerActions.Disable();
         cameraMovement.Disable();
@@ -115,7 +117,7 @@ public class CutsceneManager : MonoBehaviour
     {
         if (!isPlaying) return;
         videoPlayer.Stop();
-        audioInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        audioInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         audioInstance.release();
 
         EndCutscene();

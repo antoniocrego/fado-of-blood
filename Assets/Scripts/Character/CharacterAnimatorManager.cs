@@ -102,9 +102,10 @@ public class CharacterAnimatorManager : MonoBehaviour
     }
 
     public virtual void PlayTargetActionAnimation(string targetAnimation, bool isPerformingAction, bool applyRootMotion = true, bool canRotate = false, bool canMove = false, bool canRun = true, bool hideWeapons = false)
-    {
-        if(!character.animator.HasState(2, Animator.StringToHash(targetAnimation)))
+    {   
+        if (!character.animator.HasState(2, Animator.StringToHash(targetAnimation)) && !gameObject.CompareTag("Player"))
             return;
+        Debug.Log($"Playing target action animation: {targetAnimation} for character: {character.name}");
         this.applyRootMotion = applyRootMotion;
         character.animator.CrossFade(targetAnimation, 0.2f);
         character.isPerformingAction = isPerformingAction;
